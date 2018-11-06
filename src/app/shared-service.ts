@@ -9,17 +9,23 @@ export class SharedData {
   agencySubject =new BehaviorSubject<any>('');
   searchSubject = new BehaviorSubject<any>('');
   watchSubject=new BehaviorSubject<any>('');
-  watchtotalSubject=new BehaviorSubject<any>('');
   currentMessage = this.watchSubject.asObservable();
+
   notiSubject=new BehaviorSubject<any>('');
-  currentMessagetotal = this.watchtotalSubject.asObservable();
   notification = this.notiSubject.asObservable();
+  unreadnotiSubject=new BehaviorSubject<any>('');
+  unreadnotification = this.unreadnotiSubject.asObservable();
+  watchtotalSubject=new BehaviorSubject<any>('');
+  currentMessagetotal = this.watchtotalSubject.asObservable();
 
   constructor() {
  
   }
   notifyInfo(message) {
     this.notiSubject.next(message)
+  }
+  unreadnotifyInfo(message) {
+    this.unreadnotiSubject.next(message)
   }
   watchtotal(message) {
     this.watchtotalSubject.next(message)

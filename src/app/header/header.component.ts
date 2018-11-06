@@ -139,6 +139,7 @@ this.query=event;
   ngOnInit() {
     this. check_login1();
     this._shareData.notification.subscribe(message => this.notificate = message)
+    this._shareData.unreadnotification.subscribe(message => this.unread = message)
 
     this._shareData.currentMessage.subscribe(message => this.wrfp = message)
     this._shareData.currentMessagetotal.subscribe(message => this.total = message)
@@ -165,8 +166,10 @@ this.query=event;
 
       data => {
         this.notificate = data['notifications'];
+        this.unread=data.unread;
         this._shareData.notifyInfo(this.notificate );
-this.unread=data.unread;
+        this._shareData.unreadnotifyInfo(this.unread );
+
       //  this.total_notification=data.total
       
       },
@@ -182,6 +185,7 @@ this.unread=data.unread;
         this.wrfp = data['result'];
        this.total=data.total
        this._shareData.watchInfo( this.wrfp); 
+       this._shareData.watchtotal(this.total);
       },
       error => {
         // console.log(error);

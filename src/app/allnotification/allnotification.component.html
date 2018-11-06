@@ -29,7 +29,7 @@
                   {{item.type_of_notification}}
                </div>
               </a>
-              <span class="sh-del " data-target="#myModal2" data-toggle="modal" (click)="get(rfp?.wrfp.id,rfp?.wrfp.title)">
+              <span class="sh-del " (click)="deletenofication(item?.id)">
                 <i class="fas fa-trash-alt"></i>
               </span>
             <div class="heart-detail plan-detail">
@@ -48,7 +48,7 @@
                   {{item.type_of_notification}}
                </div>
               </a>
-              <span class="sh-del " data-target="#myModal2" data-toggle="modal" (click)="get(rfp?.wrfp.id,rfp?.wrfp.title)">
+              <span class="sh-del " (click)="deletenofication(item?.id)">
                 <i class="fas fa-trash-alt"></i>
               </span>
             <!-- <div class="heart-detail plan-detail"*ngIf="item.read == false">

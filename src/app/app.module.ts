@@ -164,7 +164,7 @@ export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestO
 }
 ////////////////////////end///////////////////////
 //////////////////////////// Live Chat ////////////////////////////
-import { LivechatWidgetModule } from '@livechat/angular-widget';
+// import { LivechatWidgetModule } from '@livechat/angular-widget';
 
 /////////////////////////// End //////////////////////////////////
 /////////////////////////Social login//////////////////////////////
@@ -260,7 +260,7 @@ export class MaterialModule {}
         MatTooltipModule,
         MatStepperModule,
         SocialLoginModule,
-        LivechatWidgetModule
+        // LivechatWidgetModule
     ],
     declarations: [
         AdminComponent,
