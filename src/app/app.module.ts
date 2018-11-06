@@ -170,6 +170,7 @@ import { LivechatWidgetModule } from '@livechat/angular-widget';
 /////////////////////////Social login//////////////////////////////
 import { SocialLoginModule, AuthServiceConfig } from "angular4-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angular4-social-login";
+import { partnershipservice } from './partnership/partnership.service';
 
 let config = new AuthServiceConfig([
     {
@@ -352,6 +353,7 @@ export class MaterialModule {}
         AllAgenciesService,
         AgencyService,
         BlogService,
+        partnershipservice,
         SpeechRecognitionService,
         PaymentmethodsService,
         {
