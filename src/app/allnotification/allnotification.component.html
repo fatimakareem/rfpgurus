@@ -12,14 +12,18 @@
       <!--We will require verified e-mail address since we deliver digital products via email.-->
   <!--</span>-->
               <!--</div>-->
-  
+              <div   class="col-md-5 page-title" style="margin: 10px auto;
+              float: none;" >
+                <span>Notifications</span>
+               
+              </div>
               <div class="col-md-5  sh-notification-div" >
                   <div class="card">
      <div  *ngFor="let item of notificate">
         <div class="addtocart-time" (click)="deletenofication(item?.id)">
           <i class="fa fa-times"></i>
         </div>
-        <div class="heart-main-div">
+        <div class="heart-main-div" *ngIf="item.read == false">
           <div class="heart-contact sh-del-watchlist">              <a [routerLink]="['/rfp/', item.target]"> 
                 <div class="heart-heading" style="cursor:pointer">
                   {{item.type_of_notification}}
@@ -28,17 +32,38 @@
               <span class="sh-del " data-target="#myModal2" data-toggle="modal" (click)="get(rfp?.wrfp.id,rfp?.wrfp.title)">
                 <i class="fas fa-trash-alt"></i>
               </span>
-            <div class="heart-detail plan-detail"*ngIf="item.read == false">
+            <div class="heart-detail plan-detail">
               <h5 style="cursor:pointer"  (click)="single(item.target);updatenofication(item.id)"> {{item.description}}</h5>
-            </div>
-            <div class="heart-detail plan-detail sh-notification-seen" *ngIf="item.read == true">
+            </div> <hr>
+            <!-- <div class="heart-detail plan-detail sh-notification-seen" *ngIf="item.read == true">
                 <h5 (click)="single(item.target);updatenofication(item?.id)"> {{item.description}}</h5>
-              </div>
+              </div> -->
           </div>
         </div>
        
+
+        <div class="heart-main-div" *ngIf="item.read == true">
+          <div class="heart-contact sh-del-watchlist ">              <a [routerLink]="['/rfp/', item.target]"> 
+                <div class="heart-heading" style="cursor:pointer">
+                  {{item.type_of_notification}}
+               </div>
+              </a>
+              <span class="sh-del " data-target="#myModal2" data-toggle="modal" (click)="get(rfp?.wrfp.id,rfp?.wrfp.title)">
+                <i class="fas fa-trash-alt"></i>
+              </span>
+            <!-- <div class="heart-detail plan-detail"*ngIf="item.read == false">
+              <h5 style="cursor:pointer"  (click)="single(item.target);updatenofication(item.id)"> {{item.description}}</h5>
+            </div> -->
+            <div class="heart-detail plan-detail sh-notification-seen" >
+                <h5 (click)="single(item.target);updatenofication(item?.id)"> {{item.description}}</h5>
+              </div> <hr>
+          </div> 
+          </div>
       </div>
-      <!-- <div class="wishlist-btn-div"> -->
-        <button class="btn btn-primary btn-rose btn-lg pull-left"(click)="deleteallnotification()">Clear All Notifications </button>
-      <!-- </div> -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" *ngIf="notificate">
+        <button class="btn btn-rose btn-fill btn-wd add-payment" (click)="deleteallnotification()">Clear All Notifications </button>
+      </div>
+      <!-- <div class="wishlist-btn-div text-center">
+        <button class="btn btn-primary btn-rose btn-lg pull-left text-center"(click)="deleteallnotification()">Clear All Notifications </button>
+      </div> -->
                   </div></div></div></div>

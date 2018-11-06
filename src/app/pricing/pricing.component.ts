@@ -4,6 +4,7 @@ import { PricingService } from './pricing.service';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
+import { RfpService } from '../rfps/single-rfp/rfp.service';
 
 
 @Component({
@@ -64,7 +65,7 @@ export class PricingComponent implements OnInit {
 
   /////////////////////////////end///////////////////////////
 
-  constructor(private _nav: Router, private _serv: PricingService, private http: Http) { }
+  constructor(private _serv1: RfpService,private _nav: Router, private _serv: PricingService, private http: Http) { }
   //
   next_stepdetail(event: any) {
     if (event.target.value == "BM") {
@@ -283,8 +284,15 @@ ex_get_value;
 ex_month_value;
 ex_year_value;
 value_2;
+subscribe;
   show_card_info() {
-    if (localStorage.getItem('currentUser')) {
+    this._serv1.usersubscribe(this.uname).subscribe(
+      data =>{
+        this.subscribe=data.Response
+      //   console.log(data.Response);
+       
+    
+    if (localStorage.getItem('currentUser') && this.subscribe!="Subscribe user") {
     return this._serv.get_card_info()
       .subscribe(response => {
         for (let i of response) {
@@ -309,7 +317,7 @@ value_2;
         this.expmonth=this.ex_month_value;
         this.expyear=this.ex_year_value;
         this.ccv=this.status.cvc;
-      })}
+      })}  });
   }
   ngOnInit() {
     this.show_card_info();

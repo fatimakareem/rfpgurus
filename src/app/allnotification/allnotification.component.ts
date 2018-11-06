@@ -10,13 +10,18 @@ import { AuthService, SocialUser } from "angular4-social-login";
   styleUrls: ['./allnotification.component.scss']
 })
 export class AllnotificationComponent implements OnInit {
-
+  id;
+  title;
   constructor( private _nav: Router,public _shareData: SharedData,private _serv: HeaderService,) { }
 
   ngOnInit() {
     this.notification();
     this._shareData.notification.subscribe(message => this.notificate = message)
 
+  }
+  get(id,title){
+    this.id=id;
+    this.title=title
   }
   notificate;
   unread;
