@@ -77,7 +77,7 @@
                     <div class="item CategorySliderTop" *ngFor="let ite of cat">
                       <div class="image" >
                         <a (click)="catRfp(ite.category)">
-                          <img title={{ite.category}} style="border: none;width: 100%; " class="img" src="../../assets/Icons/{{ite.category}}@80px.png">
+                          <img title={{ite.category}} style="border: none;width: 100%; " class="img" src="https://storage.rfpgurus.com/bplrfpgurus/{{ite.icon_image}}">
                         </a>
                       </div>
                       <div class="slide-overlay">
@@ -559,7 +559,7 @@
                 <span>Here are some of the industry verticals that we serve and aggregate data from.</span>
               </p>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background-color:#f8f8f8; padding: 20px">
+            <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background-color:#f8f8f8; padding: 20px">
               <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 bottom-lists sh">
                 <ul class="list5">
                   <li>
@@ -1059,6 +1059,29 @@
 
 
                 </ul>
+              </div>
+            </div> -->
+            <div class="container" id="CategoryDiv" *ngIf="CategoryCheck">
+              <div class="col-md-12" >
+
+
+                <div class="CategorySlider" style="display: block">
+
+                  <div class="item CategorySliderTop" *ngFor="let ite of cat">
+                    <div class="image" >
+                      <a (click)="catRfp(ite.category)">
+                        <img title={{ite.category}} style="border: none;width: 100%; " class="img" src="https://storage.rfpgurus.com/bplrfpgurus/{{ite.icon_image}}">
+                      </a>
+                    </div>
+                    <div class="slide-overlay">
+                      <h4 class="card-title elipsis-cat-slider" >
+                        <a (click)="catRfp(ite.category)" class=".pclass" title={{ite.category}} style="color: #ffffff !important;font-size: 14px;font-weight: bold;">{{ ite.category }}</a>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+
+
               </div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 last-3-para padding-zero">
