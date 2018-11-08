@@ -227,23 +227,18 @@ console.log(this.default)
           timer: 1500
         })      
         this.getCards();
-<<<<<<< HEAD
-        // this.form.controls['city'].setValue('');
-        //   this.form.controls['state'].setValue('');
-=======
-        this.form.reset({
-          'cardnickname':'',
-          'address': "",
-          'zip':"",
-          'state': "",
-          'country': "",
-          'cardnumber':"",
-           'ccv':"",
-           'default':this.default=false
+        // this.form.reset({
+        //   'cardnickname':'',
+        //   'address': "",
+        //   'zip':"",
+        //   'state': "",
+        //   'country': "",
+        //   'cardnumber':"",
+        //    'ccv':"",
+        //    'default':this.default=false
            
-         });
-         this.form.updateValueAndValidity();
->>>>>>> 198c887270feff21a3bd704118e15baee33a29b7
+        //  });
+        //  this.form.updateValueAndValidity();
       },
         error => {
           if (error.status == 404) {
