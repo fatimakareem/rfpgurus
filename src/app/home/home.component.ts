@@ -17,6 +17,34 @@ declare var $:any;
 export class HomeComponent implements OnInit, AfterContentInit,OnDestroy {
   @ViewChild('openModal') openModal: ElementRef;
   endRequest;
+  slideConfig = {
+  "slidesToShow": 6, 
+  "slidesToScroll": 6,
+  prevArrow: '<button class="leftRsBanner">&lt;</button>',
+  nextArrow: '<button class="rightRsBanner">&lt;</button>',
+  responsive: [
+    {
+        breakpoint: 1199,
+        settings: {
+            slidesToShow: 5,
+            infinite: true
+        }
+    },
+    {
+        breakpoint: 778,
+        settings: {
+            slidesToShow: 3,
+        }
+    },
+    {
+        breakpoint: 639,
+        settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+        }
+    }
+
+]};
   loaded = false;
   CategoryCheck=false;
   public query: any;
@@ -152,7 +180,7 @@ export class HomeComponent implements OnInit, AfterContentInit,OnDestroy {
    this.endRequest= this._serv.rfpcategory().subscribe(
       data => {
         this.cat = data;
-        this.CategorySlider();
+        // this.CategorySlider();
         this.CategoryCheck=true;
         console.log(data);
 
@@ -242,43 +270,43 @@ export class HomeComponent implements OnInit, AfterContentInit,OnDestroy {
     // must use feature to all carousel
   }
 
-  CategorySlider(){
-      $('.CategorySlider').fadeOut(0);
-          setTimeout(function () {
-              $('.CategorySlider').slick({
-                  infinite: true,
-                  slidesToShow: 6,
-                  slidesToScroll: 3,
-                  autoplay: true,
-                  prevArrow: '<button class="leftRsBanner">&lt;</button>',
-                  nextArrow: '<button class="rightRsBanner">&lt;</button>',
-                  responsive: [
-                      {
-                          breakpoint: 1199,
-                          settings: {
-                              slidesToShow: 5,
-                              infinite: true
-                          }
-                      },
-                      {
-                          breakpoint: 778,
-                          settings: {
-                              slidesToShow: 3,
-                          }
-                      },
-                      {
-                          breakpoint: 639,
-                          settings: {
-                              slidesToShow: 1,
-                              slidesToScroll: 1
-                          }
-                      }
+  // CategorySlider(){
+  //     $('.CategorySlider').fadeOut(0);
+  //         setTimeout(function () {
+  //             $('.CategorySlider').slick({
+  //                 infinite: true,
+  //                 slidesToShow: 6,
+  //                 slidesToScroll: 3,
+  //                 autoplay: true,
+  //                 prevArrow: '<button class="leftRsBanner">&lt;</button>',
+  //                 nextArrow: '<button class="rightRsBanner">&lt;</button>',
+  //                 responsive: [
+  //                     {
+  //                         breakpoint: 1199,
+  //                         settings: {
+  //                             slidesToShow: 5,
+  //                             infinite: true
+  //                         }
+  //                     },
+  //                     {
+  //                         breakpoint: 778,
+  //                         settings: {
+  //                             slidesToShow: 3,
+  //                         }
+  //                     },
+  //                     {
+  //                         breakpoint: 639,
+  //                         settings: {
+  //                             slidesToShow: 1,
+  //                             slidesToScroll: 1
+  //                         }
+  //                     }
 
-                  ]
-              });
-          }, 100);
-      $('.CategorySlider').fadeIn(500).delay(200);
-  }
+  //                 ]
+  //             });
+  //         }, 100);
+  //     $('.CategorySlider').fadeIn(500).delay(200);
+  // }
 
     subscriber() {
         if (localStorage.getItem('currentUser')) {

@@ -38,7 +38,7 @@ export class HomeService {
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http5.get('http://192.168.30.231:8000/rf_p/allcategory/',
+    return this._http5.get('https://apis.rfpgurus.com/rf_p/allcategory/',
       { headers: headers }).map((response: Response) => response.json());
 
   }
