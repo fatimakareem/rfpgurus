@@ -227,6 +227,8 @@ console.log(this.default)
           timer: 1500
         })
         this.getCards();
+        // this.form.controls['city'].setValue('');
+        //   this.form.controls['state'].setValue('');
       },
         error => {
           if (error.status == 404) {

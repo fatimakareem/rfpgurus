@@ -7,7 +7,7 @@
                  id="textsearch">
           <i class="fa fa-close" id="iconClose" (click)="closeSearch()"></i>
         </div>
-        <div class="search-results" *ngIf="Rfp" style="">
+        <div class="search-results" *ngIf="Rfp">
           <ul class="list-normal">
   
             <li *ngIf="!Rfp">
@@ -70,21 +70,29 @@
               </div>
               <div class="container" id="CategoryDiv" *ngIf="CategoryCheck">
                 <div class="col-md-12" >
-                    <ngx-slick class="sh-top-cat-slider"  style="display: block" #slickModal="slick-modal" [config]="slideConfig">
-                      <div class="item CategorySliderTop t" *ngFor="let ite of cat" ngxSlickItem >
-                        <div class="image" >
-                          <a (click)="catRfp(ite.category)">
-                            <img title={{ite.category}} style="border: none;margin:0 auto; " class="img" src="https://storage.rfpgurus.com/bplrfpgurus/{{ite.icon_image}}">
-                          </a>
-                        </div>
-                        <div class="slide-overlay">
-                          <h4 class="card-title elipsis-cat-slider" >
-                            <a (click)="catRfp(ite.category)" class=".pclass" title={{ite.category}} style="color: #fff !important;font-size: 14px;font-weight: bold;">{{ ite.category }}</a>
-                          </h4>
+                    <div class="container" id="CategoryDiv" *ngIf="CategoryCheck">
+                        <div class="col-md-12" >
+          
+          
+                          <div class="CategorySlider" style="display: block">
+          
+                            <div class="item CategorySliderTop" *ngFor="let ite of cat">
+                              <div class="image" >
+                                <a (click)="catRfp(ite.category)">
+                                  <img title={{ite.category}} style="border: none;width: 100%; " class="img" src="https://storage.rfpgurus.com/bplrfpgurus/{{ite.icon_image}}">
+                                </a>
+                              </div>
+                              <div class="slide-overlay">
+                                <h4 class="card-title elipsis-cat-slider" >
+                                  <a (click)="catRfp(ite.category)" class=".pclass" title={{ite.category}} style="color: #ffffff !important;font-size: 14px;font-weight: bold;">{{ ite.category }}</a>
+                                </h4>
+                              </div>
+                            </div>
+                          </div>
+          
+          
                         </div>
                       </div>
-                    <!-- </div> -->
-                      </ngx-slick>
                   
   
   
@@ -1065,21 +1073,29 @@
 
 
                 <!-- <div class="CategorySlider" style="display: block"> -->
-                  <ngx-slick  style="display: block" #slickModal="slick-modal" [config]="slideConfig">
-                  <div class="item CategorySliderTop sh-mid-cat" *ngFor="let ite of cat" ngxSlickItem >
-                    <div class="image" >
-                      <a (click)="catRfp(ite.category)">
-                        <img title={{ite.category}} style="border: none;margin:0 auto; " class="img" src="https://storage.rfpgurus.com/bplrfpgurus/{{ite.icon_image}}">
-                      </a>
-                    </div>
-                    <div class="slide-overlay">
-                      <h4 class="card-title elipsis-cat-slider sh" >
-                        <a (click)="catRfp(ite.category)" class=".pclass mid-cat" title={{ite.category}}>{{ ite.category }}</a>
-                      </h4>
-                    </div>
-                  </div>
-                <!-- </div> -->
-                  </ngx-slick>
+                    <div class="container" id="CategoryDiv" *ngIf="CategoryCheck">
+                        <div class="col-md-12" >
+          
+          
+                          <div class="CategorySlider" style="display: block">
+          
+                            <div class="item CategorySliderTop" *ngFor="let ite of cat">
+                              <div class="image">
+                                <a (click)="catRfp(ite.category)">
+                                  <img title={{ite.category}} style="border: none;width: 100%; " class="img" src="https://storage.rfpgurus.com/bplrfpgurus/{{ite.icon_image}}">
+                                </a>
+                              </div>
+                              <div class="slide-overlay">
+                                <h4 class="card-title elipsis-cat-slider" >
+                                  <a (click)="catRfp(ite.category)" class=".pclass" title={{ite.category}} style="color: #ffffff !important;font-size: 14px;font-weight: bold;">{{ ite.category }}</a>
+                                </h4>
+                              </div>
+                            </div>
+                          </div>
+          
+          
+                        </div>
+                      </div>
 
               </div>
             </div>
