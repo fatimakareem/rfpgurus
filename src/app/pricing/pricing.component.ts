@@ -158,8 +158,8 @@ export class PricingComponent implements OnInit {
           '',
           'success'
         )
-        let url = 'find-bids';
-        this._nav.navigate([url]);
+        // let url = 'find-bids';
+        // this._nav.navigate([url]);
 
       },
       error => {

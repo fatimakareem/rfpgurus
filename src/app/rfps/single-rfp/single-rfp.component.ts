@@ -88,7 +88,7 @@ this._serv.downloadFile(info).subscribe(
         this.check_login()
        
     }
-total
+total;
     watchlist(){
         if(localStorage.getItem('currentUser')){
         this._serv.postWatchlist(this.id).subscribe(
@@ -97,11 +97,11 @@ total
              this.statuss=data.message;
              this.wrfp = data['result'];
             this.total=data.total
-            
+            console.log( data['result'],this.total)
         //  this.global.getGolbalWishListCourses(this.GlobalWishListCourses);
-        if(!this.statuss &&  this.wrfp){
-            this._shareData.watchtotal( this.total); 
-             this._shareData.watchInfo( this.wrfp); }
+        if(!data.message && data['result']){
+            this._shareData.watchtotal(this.total); 
+             this._shareData.watchInfo(this.wrfp); }
             if(this.statuss == "This Rfp is already in your Watch List"){
              swal({
                 type: 'info',

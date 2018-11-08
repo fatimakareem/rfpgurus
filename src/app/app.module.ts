@@ -164,14 +164,14 @@ export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestO
 }
 ////////////////////////end///////////////////////
 //////////////////////////// Live Chat ////////////////////////////
-import { LivechatWidgetModule } from '@livechat/angular-widget';
+// import { LivechatWidgetModule } from '@livechat/angular-widget';
 
 /////////////////////////// End //////////////////////////////////
 /////////////////////////Social login//////////////////////////////
 import { SocialLoginModule, AuthServiceConfig } from "angular4-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angular4-social-login";
 import { partnershipservice } from './partnership/partnership.service';
-
+import { SlickModule } from 'ngx-slick';
 let config = new AuthServiceConfig([
     {
       id: GoogleLoginProvider.PROVIDER_ID,
@@ -260,8 +260,8 @@ export class MaterialModule {}
         MatToolbarModule,
         MatTooltipModule,
         MatStepperModule,
-        SocialLoginModule,
-        LivechatWidgetModule
+        SocialLoginModule,SlickModule.forRoot()
+        // LivechatWidgetModule
     ],
     declarations: [
         AdminComponent,

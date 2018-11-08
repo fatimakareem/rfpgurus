@@ -89,8 +89,9 @@
         <img src="../../assets/img/logo.png" alt="RFPGurus" />
       </a>
     </div>
-    <div class="collapse navbar-collapse" id="menu-example">
-      <ul class="navbar-nav navbar-right">
+    <div class="collapse navbar-collapse " id="menu-example">
+      <div class="navbar-right navbar-nav">
+      <ul class="navbar-nav sh-main-options">
         <li>
           <a routerLink="/latest-rfp" routerLinkActive="Active">
             <i class="fa fa-stack-overflow" aria-hidden="true"></i>Latest RFP's
@@ -171,6 +172,9 @@
             <i class="fa fa-briefcase" aria-hidden="true"></i>RFP as a Service
           </a>
         </li>
+      </ul>
+        <!--.............-->
+      <ul class="navbar-nav sh-android-apple">
         <li class="heart-li" *ngIf="check_login()">
           <a routerLink="/" title="Watchlist">
             <i class="fa fa-heart"></i>
@@ -263,6 +267,9 @@
             <i class="material-icons">search</i>
           </a>
         </li>
+      </ul>
+        <!--............-->
+      <ul class="navbar-nav sh-signin-signup">
         <li *ngIf="check_login()" class="vanders">
           <a routerLink="/profile">
             <i class="fa fa-user" aria-hidden="true"></i> My RFPGurus
@@ -312,7 +319,9 @@
             Sign up
           </a>
         </li>
+        <!--............-->
       </ul>
+      </div>
     </div>
   </nav>
 

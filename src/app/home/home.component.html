@@ -31,27 +31,27 @@
       <section class="bannerCarousel">
         <div class="download-btns">
           <a href="" target="_blank">
-            <img src="../../assets/img/apple-store.png" alt="Apple Store" />
+            <img src="https://storage.rfpgurus.com/bplrfpgurus/apple-store.png" alt="Apple Store" />
           </a>
           <a href="https://play.google.com/store/apps/details?id=com.brainplow.rfpguruss" target="_blank">
-            <img src="../../assets/img/google-play.png" alt="Google Play Store" />
+            <img src="https://storage.rfpgurus.com/bplrfpgurus/google-play.png" alt="Google Play Store" />
           </a>
         </div>
         <ngx-carousel [inputs]="carouselOne" class="">
           <ngx-item NgxCarouselItem>
-            <img src="../../assets/slides/1.jpg" alt="image description" />
+            <img src="https://storage.rfpgurus.com/bplrfpgurus/1.jpg" alt="image description" />
           </ngx-item>
           <ngx-item NgxCarouselItem>
-            <img src="../../assets/slides/2.jpg" alt="image description" />
+            <img src="https://storage.rfpgurus.com/bplrfpgurus/2.jpg" alt="image description" />
           </ngx-item>
           <ngx-item NgxCarouselItem>
-            <img src="../../assets/slides/3.jpg" alt="image description" />
+            <img src="https://storage.rfpgurus.com/bplrfpgurus/3.jpg" alt="image description" />
           </ngx-item>
           <ngx-item NgxCarouselItem>
-            <img src="../../assets/slides/4.jpg" alt="image description" />
+            <img src="https://storage.rfpgurus.com/bplrfpgurus/4.jpg" alt="image description" />
           </ngx-item>
           <ngx-item NgxCarouselItem>
-            <img src="../../assets/slides/5.jpg" alt="image description" />
+            <img src="https://storage.rfpgurus.com/bplrfpgurus/5.jpg" alt="image description" />
           </ngx-item>
           <button NgxCarouselPrev class='leftRs buttons'>
             <i class="material-icons">keyboard_arrow_left</i>
@@ -70,23 +70,22 @@
               </div>
               <div class="container" id="CategoryDiv" *ngIf="CategoryCheck">
                 <div class="col-md-12" >
-  
-  
-                  <div class="CategorySlider" style="display: block">
-  
-                    <div class="item CategorySliderTop" *ngFor="let ite of cat">
-                      <div class="image" >
-                        <a (click)="catRfp(ite.category)">
-                          <img title={{ite.category}} style="border: none;width: 100%; " class="img" src="../../assets/Icons/{{ite.category}}@80px.png">
-                        </a>
+                    <ngx-slick class="sh-top-cat-slider"  style="display: block" #slickModal="slick-modal" [config]="slideConfig">
+                      <div class="item CategorySliderTop t" *ngFor="let ite of cat" ngxSlickItem >
+                        <div class="image" >
+                          <a (click)="catRfp(ite.category)">
+                            <img title={{ite.category}} style="border: none;margin:0 auto; " class="img" src="https://storage.rfpgurus.com/bplrfpgurus/{{ite.icon_image}}">
+                          </a>
+                        </div>
+                        <div class="slide-overlay">
+                          <h4 class="card-title elipsis-cat-slider" >
+                            <a (click)="catRfp(ite.category)" class=".pclass" title={{ite.category}} style="color: #fff !important;font-size: 14px;font-weight: bold;">{{ ite.category }}</a>
+                          </h4>
+                        </div>
                       </div>
-                      <div class="slide-overlay">
-                        <h4 class="card-title elipsis-cat-slider" >
-                          <a (click)="catRfp(ite.category)" class=".pclass" title={{ite.category}} style="color: #ffffff !important;font-size: 14px;font-weight: bold;">{{ ite.category }}</a>
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
+                    <!-- </div> -->
+                      </ngx-slick>
+                  
   
   
                 </div>
@@ -454,41 +453,41 @@
           <ngx-carousel [inputs]="carouselThree" class="s-areaCarousel" style="margin-top: 25px">
             <ngx-item NgxCarouselItem>
               <button (click)="stateInfo('California')" type="button" class="btn-primary">
-                <img src="../../assets/img/states/California@30px.png" alt="img">
+                <img src="https://storage.rfpgurus.com/bplrfpgurus/California@30px.png" alt="img">
                 California</button>
             </ngx-item>
             <ngx-item NgxCarouselItem>
               <button (click)="stateInfo('Illinois')" type="button" class="btn-success">
-                <img src="../../assets/img/states/Illinois@30px.png" alt="img">Illinois </button>
+                <img src="https://storage.rfpgurus.com/bplrfpgurus/Illinois@30px.png" alt="img">Illinois </button>
             </ngx-item>
             <ngx-item NgxCarouselItem>
               <button (click)="stateInfo('Texas')" type="button" class="btn-success">
-                <img src="../../assets/img/states/Texas@30px.png" alt="img">Texas</button>
+                <img src="https://storage.rfpgurus.com/bplrfpgurus/Texas@30px.png" alt="img">Texas</button>
             </ngx-item>
             <ngx-item NgxCarouselItem>
               <button (click)="stateInfo('Florida')" type="button" class="btn-primary">
-                <img src="../../assets/img/states/Florida@30px.png" alt="img">Florida</button>
+                <img src="https://storage.rfpgurus.com/bplrfpgurus/Florida@30px.png" alt="img">Florida</button>
             </ngx-item>
             <ngx-item NgxCarouselItem>
               <button (click)="stateInfo('Massachusetts')" type="button" class="btn-danger">
-                <img src="../../assets/img/states/Massachusetts@30px.png" alt="img">Massachusetts</button>
+                <img src="https://storage.rfpgurus.com/bplrfpgurus/Massachusetts@30px.png" alt="img">Massachusetts</button>
             </ngx-item>
             <ngx-item NgxCarouselItem>
               <button (click)="stateInfo('Georgia')" type="button" class="btn-info">
-                <img src="../../assets/img/states/Georgia@30px.png" alt="img">
+                <img src="https://storage.rfpgurus.com/bplrfpgurus/Georgia@30px.png" alt="img">
                 Georgia</button>
             </ngx-item>
             <ngx-item NgxCarouselItem>
               <button (click)="stateInfo('New Jersey')" type="button" class="btn-danger">
-                <img src="../../assets/img/states/New Jersey@30px.png" alt="img">New Jersey</button>
+                <img src="https://storage.rfpgurus.com/bplrfpgurus/New Jersey@30px.png" alt="img">New Jersey</button>
             </ngx-item>
             <ngx-item NgxCarouselItem>
               <button (click)="stateInfo('North Carolina')" type="button" class="btn-info">
-                <img src="../../assets/img/states/North Carolina@30px.png" alt="img">North Carolina</button>
+                <img src="https://storage.rfpgurus.com/bplrfpgurus/North Carolina@30px.png" alt="img">North Carolina</button>
             </ngx-item>
             <ngx-item NgxCarouselItem>
               <button (click)="stateInfo('New York')" type="button" class="btn-danger">
-                <img src="../../assets/img/states/New York, @30px.png" alt="img">New York</button>
+                <img src="https://storage.rfpgurus.com/bplrfpgurus/New York, @30px.png" alt="img">New York</button>
             </ngx-item>
           
             <button NgxCarouselPrev class='leftRs buttons btn btn-rose btn-xs'>
@@ -559,7 +558,7 @@
                 <span>Here are some of the industry verticals that we serve and aggregate data from.</span>
               </p>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background-color:#f8f8f8; padding: 20px">
+            <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background-color:#f8f8f8; padding: 20px">
               <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 bottom-lists sh">
                 <ul class="list5">
                   <li>
@@ -1059,6 +1058,29 @@
 
 
                 </ul>
+              </div>
+            </div> -->
+            <div class="container" id="CategoryDiv" *ngIf="CategoryCheck">
+              <div class="col-md-12" >
+
+
+                <!-- <div class="CategorySlider" style="display: block"> -->
+                  <ngx-slick  style="display: block" #slickModal="slick-modal" [config]="slideConfig">
+                  <div class="item CategorySliderTop sh-mid-cat" *ngFor="let ite of cat" ngxSlickItem >
+                    <div class="image" >
+                      <a (click)="catRfp(ite.category)">
+                        <img title={{ite.category}} style="border: none;margin:0 auto; " class="img" src="https://storage.rfpgurus.com/bplrfpgurus/{{ite.icon_image}}">
+                      </a>
+                    </div>
+                    <div class="slide-overlay">
+                      <h4 class="card-title elipsis-cat-slider sh" >
+                        <a (click)="catRfp(ite.category)" class=".pclass mid-cat" title={{ite.category}}>{{ ite.category }}</a>
+                      </h4>
+                    </div>
+                  </div>
+                <!-- </div> -->
+                  </ngx-slick>
+
               </div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 last-3-para padding-zero">

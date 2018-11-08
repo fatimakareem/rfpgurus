@@ -17,6 +17,7 @@ export class AllnotificationComponent implements OnInit {
   ngOnInit() {
     this.notification();
     this._shareData.notification.subscribe(message => this.notificate = message)
+    this._shareData.unreadnotification.subscribe(message => this.unread = message)
 
   }
   get(id,title){
@@ -57,9 +58,13 @@ export class AllnotificationComponent implements OnInit {
 
       data => {
         this.notificate = data['notifications'];
+        this.unread=data.unread;
         this._shareData.notifyInfo(this.notificate );
-this.unread=data.unread;
-console.log(data.unreador);
+        this._shareData.unreadnotifyInfo(this.unread );
+
+
+console.log(data.unread);
+
       //  this.total_notification=data.total
       
       },
