@@ -285,14 +285,18 @@ ex_month_value;
 ex_year_value;
 value_2;
 subscribe;
+notsubscribe;
   show_card_info() {
-    this._serv1.usersubscribe(this.uname).subscribe(
+    this._serv1.usersubscribe(JSON.parse(localStorage.getItem('currentUser')).username).subscribe(
       data =>{
         this.subscribe=data.Response
-      //   console.log(data.Response);
-       
-    
-    if (localStorage.getItem('currentUser') && this.subscribe!="Subscribe user") {
+        // console.log(data.Response);
+      },
+      error=>
+      {
+        this.notsubscribe=error.status;
+        console.log(this.notsubscribe);
+    if (localStorage.getItem('currentUser') &&  this.notsubscribe == 406) {
     return this._serv.get_card_info()
       .subscribe(response => {
         for (let i of response) {
@@ -317,7 +321,11 @@ subscribe;
         this.expmonth=this.ex_month_value;
         this.expyear=this.ex_year_value;
         this.ccv=this.status.cvc;
-      })}  });
+        
+      })}  
+    }
+      
+    );
   }
   ngOnInit() {
     this.show_card_info();

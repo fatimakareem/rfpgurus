@@ -75,7 +75,6 @@ this.query=event;
     });
     localStorage.clear();
     sessionStorage.clear();
-
     swal({
       type: 'success',
       title: 'Successfully Logged out',

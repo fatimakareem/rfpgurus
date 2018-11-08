@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { partnershipservice } from './partnership.service';
 import swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-partnership',
@@ -12,7 +13,7 @@ import swal from 'sweetalert2';
 export class PartnershipComponent implements OnInit {
   formBuilder: any;
   var_Partner_description
-  constructor(private pathnership_service : partnershipservice) { }
+  constructor(private _nav: Router,private pathnership_service : partnershipservice) { }
     var_get_data;
   partnership = new FormGroup({
     firstname: new FormControl('', [
@@ -47,12 +48,15 @@ this.var_get_data=this.pathnership_service.fun_insert_value( this.partnership.co
   this.partnership.controls.email.value,
   this.partnership.controls.cName.value,this.partnership.controls.Partner_description.value).subscribe(
   data => {    console.log(data);
+
     swal({
       type: 'success',
-      title: 'Successfully Logged in',
+      title: 'Successfully Send Your Request',
       showConfirmButton: false,
       timer: 1500
   });
+  let url = 'partnership';
+  this._nav.navigate([url]);
   })
   }
 get firstname(){
