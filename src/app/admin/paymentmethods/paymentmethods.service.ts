@@ -39,13 +39,13 @@ export class PaymentmethodsService {
   }
 
   showCards() {
-    let headers = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
+    let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
     headers.append('Content-Type', 'application/json');
     return this.http.get('https://apis.rfpgurus.com/payment/cardinfo/', { headers: headers }).map((response: Response) => response.json());
   }
  
   updateCard(status,id,name,cardno,ccv, expiryDate,address,zip,city,state,country) {
-    let header = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
+    let header = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
     header.append('Content-Type', 'application/json');
     return this.http.put('https://apis.rfpgurus.com/payment/cardinfo/',
       JSON.stringify({
@@ -68,7 +68,7 @@ export class PaymentmethodsService {
   }
 
   deleteCard(id) {
-    let headers = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
+    let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
     headers.append('Content-Type', 'application/json');
     return this.http.delete('https://apis.rfpgurus.com/payment/cardinfodelete/' + id, { headers: headers }).map((response: Response) => response.json());
   }

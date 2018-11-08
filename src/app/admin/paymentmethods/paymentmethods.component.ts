@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { noSpaceValidator } from './noSpaceValidator.component';
 import * as moment from 'moment';
 import { RegisterService } from '../../registered/register.service';
+import { empty } from 'rxjs/observable/empty';
 
 @Component({
   selector: 'app-paymentmethods',
@@ -32,8 +33,7 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
       Validators.minLength(3),
       Validators.maxLength(3),
       Validators.required,
-
-    ]),
+    ]), 
     expirydate: new FormControl('', [
       Validators.required,
       // Validators.pattern('(0[1-9]|10|11|12)/20[0-9]{2}$')
@@ -76,10 +76,11 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
 
   private productsSource;
   currentProducts;
+  destroy_value;
   vin_Data = { "city": "", "state": "" };
   private sub: Subscription;
   flipclass = 'credit-card-box';
-  constructor(private serv: PaymentmethodsService, private router: Router, private route: ActivatedRoute, private _serv: RegisterService) {
+  constructor(private _nav: Router,private serv: PaymentmethodsService, private router: Router, private route: ActivatedRoute, private _serv: RegisterService) {
 
   }
   zipcodeCheck(zipcode1) {
@@ -98,7 +99,7 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.getCards();
+    this.destroy_value=this.getCards();
     
   }
 
@@ -168,9 +169,8 @@ this.updefault=status;
           )
         }
       })
-
-
-
+      let url = 'partnership';
+      this._nav.navigate([url]);
   }
 
   deleteSingleCard(id) {
@@ -225,10 +225,25 @@ console.log(this.default)
           title: 'Payment Method Is Listed!',
           showConfirmButton: false,
           timer: 1500
-        })
+        })      
         this.getCards();
+<<<<<<< HEAD
         // this.form.controls['city'].setValue('');
         //   this.form.controls['state'].setValue('');
+=======
+        this.form.reset({
+          'cardnickname':'',
+          'address': "",
+          'zip':"",
+          'state': "",
+          'country': "",
+          'cardnumber':"",
+           'ccv':"",
+           'default':this.default=false
+           
+         });
+         this.form.updateValueAndValidity();
+>>>>>>> 198c887270feff21a3bd704118e15baee33a29b7
       },
         error => {
           if (error.status == 404) {
@@ -261,6 +276,7 @@ console.log(this.default)
               'error'
             )
           }
+          
         })
     }
     else {
@@ -299,6 +315,6 @@ console.log(this.default)
       })
   }
   ngOnDestroy() {
-    // this.endRequest.unsubscribe();
+  // this.serv.showCards();
   }
 }
