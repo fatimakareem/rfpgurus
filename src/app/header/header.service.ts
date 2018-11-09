@@ -77,7 +77,7 @@ AlldeleteWatchlist(){
     headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
     }  
   headers.append('Content-Type', 'application/json');
-  return this._http5.delete('https://apis.rfpgurus.com/rf_p/watchlistdelete', {headers: headers}).map((response: Response) => response.json());
+  return this._http5.delete('https://apis.rfpgurus.com/rf_p/Delete_all_watch_list/', {headers: headers}).map((response: Response) => response.json());
 }
   searchrecord(obj) {
     

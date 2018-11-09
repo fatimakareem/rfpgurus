@@ -30,22 +30,17 @@ export class WatchlistComponent implements OnInit {
         if(!data.message && data['result']){
           this._shareData.watchtotal(this.total); 
            this._shareData.watchInfo(this.wrfp); }
+           if(data.message == 'No Rfp in your Watch List'){
+            this._shareData.watchtotal(this.total); 
+            this._shareData.watchInfo(this.wrfp); 
+           }
         console.log( this.wrfp);
       },
       error => {
         // console.log(error);
       });
   }
-  // delallatchlist(){
-  //   this._serv.deleteallWatchlist().subscribe(
-     
-  //     data => {
-  //       this.watchlist()
-  //     },
-  //     error => {
-  //       // console.log(error);
-  //     });
-  // }
+ 
   id;
   title;
   get(id,title){
