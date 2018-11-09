@@ -1217,12 +1217,28 @@ body {
     width: 2px;
     top: -4px;
     bottom: -5px;
-    background: #616161
+    background: #616161;
+    content: ''
 }
-
 .navbar-right {
     margin-right: 0
 }
+.close.sh{
+    padding: 6px 11px;
+    margin-top: -10px;
+    size: auto;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+}
+.sh-body-slider .image a{
+    width: 80px;
+    margin: 0 auto;
+}
+
+.CategorySlider.slick-initialized { display: block !important; }
+
 
 @media (min-width:1281px) {
     .navbar-nav>li>a {
@@ -1447,5 +1463,162 @@ body {
         bottom: 0;
         margin-left: -2px;
         height: 23px
+    }
+}
+
+@media (max-width:767px){
+    .com-table>table{
+        min-width: auto;
+    }
+    .com-table table tr th {
+        padding: 5px 0!important;
+        font-size: 16px;
+    }
+    .com-table td {
+        padding: 5px !important;
+        font-size: 13px;
+    }
+    .download-btns>a img {
+        width: 100px;
+    }
+    .s-areaCarousel .buttons.rightRs{
+        right: -12px;
+    }
+    .s-areaCarousel .buttons.leftRs{
+        left: -12px;
+    }
+    .btn-group-lg .btn, .btn-group-lg .navbar .navbar-nav>li>a.btn, .btn.btn-lg, .navbar .navbar-nav>li>a.btn.btn-lg {
+        padding: 5px 20px;
+    }
+    .how-rfp-help >div >.row{
+        padding: 0 20px;
+    }
+
+
+}
+
+@media (max-width: 640px){
+    .close.sh{
+        padding: 1px 7px;
+        font-size: 20px;
+        margin-top: 0;
+    }
+    .nav-home ul{
+        padding: 0;
+    }
+    .navbar-nav>li>a {
+        font-size: 14px!important;
+        padding: 0px 10px;
+    }
+    .sh-signin-signup>li:last-child:before{
+        display: none;
+    }
+    .nav-home ul li {
+        border-top: 1px solid #333;
+    }
+    .sh-main-options  li:first-child{
+        border-top: none !important;
+    }
+    .custom-model .modal-content {
+        background-color: rgba(255, 255, 255, 0.85) !important;
+    }
+    .custom-model .modal-body {
+        padding: 5px 10px;
+        font-size: 18px;
+    }
+    .custom-popup-img img {
+         width: 50% !important;
+     }
+    .custom-model .modal-header {
+        padding: 4px 6px 0 24px !important;
+    }
+    .custom-model .modal-footer{
+        padding: 0 0 20px !important;
+    }
+    .custom-model .modal-footer button{
+        padding: 6px;
+        font-size: 12px;
+    }
+    .download-btns>a img {
+        width: 50px;
+    }
+    .CategorySlider{
+        padding: 0;
+    }
+    .bannerCarousel .buttons .material-icons {
+        font-size: 16px;
+        line-height: 29px;
+    }
+    .bannerCarousel .buttons.rightRs {
+        right: 5px;
+
+    }
+    .bannerCarousel .buttons.leftRs {
+        left: 5px;
+    }
+    .bannerCarousel .buttons {
+        width: 28px;
+        height: 28px;
+    }
+    .sh-dp-none{
+        display: none;
+    }
+    .container-wide {
+        padding: 0 10px;
+    }
+    .svg_map {
+        width: 100%;
+    }
+    .download-btns {
+        right: 2px;
+        top: 10px;
+    }
+
+    .choose-criteria ul li{
+        padding: 0 0 0 16px;
+    }
+    .choose-criteria ul li i {
+        font-size: 20px;
+        line-height: 32px;
+    }
+    .choose-criteria >div{
+        padding: 0;
+    }
+    .choose-criteria{
+        padding: 0;
+        min-height: auto;
+    }
+    .choose-criteria ul li h4 {
+        font-size: 13px;
+        line-height: 33px;
+        text-align: left;
+        padding-left: 4px;
+    }
+    .sh-f-c h2 {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .sh-f-c p {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 18px;
+    }
+    .com-table{
+        overflow-x: scroll;
+    }
+    .sh-pd-0-70 {
+        padding: 0 10px;
+    }
+    .how-rfp-help >div >.row{
+        padding: 0 10px;
+    }
+    .how-rfp-help {
+        padding: 10px 0 0;
+    }
+    .how-rfp-help >div >.row >h3 {
+        font-size: 20px!important;
+    }
+    .custom-model {
+        width: 94%;
     }
 }
