@@ -102,6 +102,7 @@ export class HomeComponent implements OnInit, AfterContentInit,OnDestroy {
   public carouselTwo: NgxCarousel;
   public carouselThree: NgxCarousel;
   public carouselFour: NgxCarousel;
+    public carouselFive: NgxCarousel;
   mainSearch = 0;
   closeSearch() {
     if (this.mainSearch == 1) {
@@ -183,7 +184,7 @@ export class HomeComponent implements OnInit, AfterContentInit,OnDestroy {
         this.CategorySlider();
         this.CategoryCheck=true;
         console.log(data);
-
+// this.CategorySliderBody()
       },
       error => {
         // console.log(error);
@@ -244,21 +245,35 @@ export class HomeComponent implements OnInit, AfterContentInit,OnDestroy {
       custom: 'banner',
       easing: 'ease'
     };
-
     this.carouselFour = {
-      grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
-      slide: 1,
-      speed: 400,
-      interval: 3000,
-      point: {
-        visible: false
-      },
-      load: 2,
-      touch: true,
-      loop: true,
-      custom: 'banner',
-      easing: 'ease'
-    }
+            grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
+            slide: 1,
+            speed: 400,
+            interval: 3000,
+            point: {
+                visible: false
+            },
+            load: 2,
+            touch: true,
+            loop: true,
+            custom: 'banner',
+            easing: 'ease'
+        }
+
+    this.carouselFive = {
+            grid: { xs: 1, sm: 3, md: 6, lg: 7, all: 0 },
+            slide: 1,
+            speed: 400,
+            interval: 3000,
+            point: {
+                visible: false
+            },
+            load: 2,
+            touch: true,
+            loop: true,
+            custom: 'banner',
+            easing: 'ease'
+        }
   }
     single(query) {
       let sth = 'rfp/'+query;
@@ -270,43 +285,83 @@ export class HomeComponent implements OnInit, AfterContentInit,OnDestroy {
     // must use feature to all carousel
   }
 
-  CategorySlider(){
-      $('.CategorySlider').fadeOut(0);
-          setTimeout(function () {
-              $('.CategorySlider').slick({
-                  infinite: true,
-                  slidesToShow: 6,
-                  slidesToScroll: 3,
-                  autoplay: true,
-                  prevArrow: '<button class="leftRsBanner">&lt;</button>',
-                  nextArrow: '<button class="rightRsBanner">&lt;</button>',
-                  responsive: [
-                      {
-                          breakpoint: 1199,
-                          settings: {
-                              slidesToShow: 5,
-                              infinite: true
-                          }
-                      },
-                      {
-                          breakpoint: 778,
-                          settings: {
-                              slidesToShow: 3,
-                          }
-                      },
-                      {
-                          breakpoint: 639,
-                          settings: {
-                              slidesToShow: 1,
-                              slidesToScroll: 1
-                          }
-                      }
+  //   CategorySliderBody(){
+  //     $('.CategorySliderBody').fadeOut(0);
+  //         setTimeout(function () {
+  //             $('.CategorySliderBody').slick({
+  //                 infinite: true,
+  //                 slidesToShow: 6,
+  //                 slidesToScroll: 3,
+  //                 autoplay: false,
+  //                 prevArrow: '<button class="leftRsBanner">&lt;</button>',
+  //                 nextArrow: '<button class="rightRsBanner">&lt;</button>',
+  //                 responsive: [
+  //                     {
+  //                         breakpoint: 1199,
+  //                         settings: {
+  //                             slidesToShow: 5,
+  //                             infinite: true
+  //                         }
+  //                     },
+  //                     {
+  //                         breakpoint: 778,
+  //                         settings: {
+  //                             slidesToShow: 3,
+  //
+  //                         }
+  //                     },
+  //                     {
+  //                         breakpoint: 639,
+  //                         settings: {
+  //                             slidesToShow: 1,
+  //                             slidesToScroll: 1
+  //                         }
+  //                     }
+  //
+  //                 ]
+  //             });
+  //         }, 100);
+  //     $('.CategorySliderBody').fadeIn(500).delay(200);
+  // }
 
-                  ]
-              });
-          }, 100);
-      $('.CategorySlider').fadeIn(500).delay(200);
-  }
+    CategorySlider(){
+        $('.CategorySlider').fadeOut(0);
+        setTimeout(function () {
+            $('.CategorySlider').slick({
+                infinite: true,
+                slidesToShow: 6,
+                slidesToScroll: 3,
+                autoplay: false,
+                prevArrow: '<button class="leftRsBanner">&lt;</button>',
+                nextArrow: '<button class="rightRsBanner">&lt;</button>',
+                responsive: [
+                    {
+                        breakpoint: 1199,
+                        settings: {
+                            slidesToShow: 5,
+                            infinite: true
+                        }
+                    },
+                    {
+                        breakpoint: 778,
+                        settings: {
+                            slidesToShow: 3,
+
+                        }
+                    },
+                    {
+                        breakpoint: 639,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+
+                ]
+            });
+        }, 100);
+        $('.CategorySlider').fadeIn(500).delay(200);
+    }
 
     subscriber() {
         if (localStorage.getItem('currentUser')) {
