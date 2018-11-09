@@ -7,7 +7,7 @@
                  id="textsearch">
           <i class="fa fa-close" id="iconClose" (click)="closeSearch()"></i>
         </div>
-        <div class="search-results" *ngIf="Rfp" style="">
+        <div class="search-results" *ngIf="Rfp">
           <ul class="list-normal">
   
             <li *ngIf="!Rfp">
@@ -68,28 +68,30 @@
                   <us-map style="cursor: pointer; " (onMapClick)="getState($event)"  strokeColor ="#00000" fillStateColor="#fff"  fillColor="black"></us-map>
                 </div>
               </div>
-              <div class="container" id="CategoryDiv" *ngIf="CategoryCheck">
-                <div class="col-md-12" >
-                    <ngx-slick class="sh-top-cat-slider"  style="display: block" #slickModal="slick-modal" [config]="slideConfig">
-                      <div class="item CategorySliderTop t" *ngFor="let ite of cat" ngxSlickItem >
-                        <div class="image" >
-                          <a (click)="catRfp(ite.category)">
-                            <img title={{ite.category}} style="border: none;margin:0 auto; " class="img" src="https://storage.rfpgurus.com/bplrfpgurus/{{ite.icon_image}}">
-                          </a>
-                        </div>
-                        <div class="slide-overlay">
-                          <h4 class="card-title elipsis-cat-slider" >
-                            <a (click)="catRfp(ite.category)" class=".pclass" title={{ite.category}} style="color: #fff !important;font-size: 14px;font-weight: bold;">{{ ite.category }}</a>
-                          </h4>
+
+                    <div class="container sh-dp-none" id="CategoryDiv" *ngIf="CategoryCheck">
+                        <div class="col-md-12" >
+          
+          
+                          <div class="CategorySlider" style="display: none">
+          
+                            <div class="item CategorySliderTop" *ngFor="let ite of cat">
+                              <div class="image" >
+                                <a (click)="catRfp(ite.category)">
+                                  <img title={{ite.category}} style="border: none;width: 100%; " class="img" src="https://storage.rfpgurus.com/bplrfpgurus/{{ite.icon_image}}">
+                                </a>
+                              </div>
+                              <div class="slide-overlay">
+                                <h4 class="card-title elipsis-cat-slider" >
+                                  <a (click)="catRfp(ite.category)" class=".pclass" title={{ite.category}} style="color: #ffffff !important;font-size: 14px;font-weight: bold;">{{ ite.category }}</a>
+                                </h4>
+                              </div>
+                            </div>
+                          </div>
+          
+          
                         </div>
                       </div>
-                    <!-- </div> -->
-                      </ngx-slick>
-                  
-  
-  
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -521,7 +523,7 @@
             </p>
   
   
-            <div style="margin-top: -15px" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 top-lists">
+            <div style="margin-top: -15px" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 top-lists">
               <ul>
                 <li>Instant Web and Mobile Access to all Government RFPs, RFIs, RFQs, RFTs and RFBs</li>
                 <li>Hundreds & Thousands RFPs. Nationwide Coverage. The most comprehensive source of Nationwide RFPs, RFIs and RFQs</li>
@@ -534,7 +536,7 @@
                 <li>RFPGurus Blog</li>
               </ul>
             </div>
-            <div style="margin-top: -15px"class="col-lg-6 col-md-6 col-sm-6 col-xs-6 top-lists">
+            <div style="margin-top: -15px"class="col-lg-6 col-md-6 col-sm-6 col-xs-12 top-lists">
               <ul>
                 <li>A passion for excellence in customer service</li>
                 <li>Daily Notifications sent on Web and Mobile</li>
@@ -549,6 +551,7 @@
   
               </ul>
             </div>
+
             <div style="margin-top: -15px;"class="col-lg-12 col-md-12 col-sm-12 col-xs-12  padding-zero">
               <p>RFPGurus provides data services to all vendors, organizations, and businesses: From startups to large mega-corporations.
                 Our success is brought about by our continuous hard work in customizing our customer’s RFP Proposals to best
@@ -558,7 +561,7 @@
                 <span>Here are some of the industry verticals that we serve and aggregate data from.</span>
               </p>
             </div>
-            <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background-color:#f8f8f8; padding: 20px">
+             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background-color:#f8f8f8; padding: 20px">
               <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 bottom-lists sh">
                 <ul class="list5">
                   <li>
@@ -806,7 +809,7 @@
                     <a (click) ="catrfp('Facilities')">Facilities Leasing</a>
                   </li>
                 </ul>
-  
+
               </div>
               <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 bottom-lists">
                 <ul>
@@ -1050,7 +1053,7 @@
                     <img src="../../assets/New%20Icons/Appliances%20&%20Electronics.png" alt="RFPGurus" />
                     <a (click) ="catrfp('Appliances')">Appliances & Electronics</a>
                   </li>
-                  
+
                   <li>
 
                     <a routerLink="/all-category">And Others</a>
@@ -1058,29 +1061,6 @@
 
 
                 </ul>
-              </div>
-            </div> -->
-            <div class="container" id="CategoryDiv" *ngIf="CategoryCheck">
-              <div class="col-md-12" >
-
-
-                <!-- <div class="CategorySlider" style="display: block"> -->
-                  <ngx-slick  style="display: block" #slickModal="slick-modal" [config]="slideConfig">
-                  <div class="item CategorySliderTop sh-mid-cat" *ngFor="let ite of cat" ngxSlickItem >
-                    <div class="image" >
-                      <a (click)="catRfp(ite.category)">
-                        <img title={{ite.category}} style="border: none;margin:0 auto; " class="img" src="https://storage.rfpgurus.com/bplrfpgurus/{{ite.icon_image}}">
-                      </a>
-                    </div>
-                    <div class="slide-overlay">
-                      <h4 class="card-title elipsis-cat-slider sh" >
-                        <a (click)="catRfp(ite.category)" class=".pclass mid-cat" title={{ite.category}}>{{ ite.category }}</a>
-                      </h4>
-                    </div>
-                  </div>
-                <!-- </div> -->
-                  </ngx-slick>
-
               </div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 last-3-para padding-zero">
@@ -1223,7 +1203,7 @@
           <div class="modal-header">
             <div style="float: top; float: right">
 
-              <button type="button" class="close" style="padding: 6px 11px;margin-top:-10px;size: auto;background-color: black;color: white;font-weight: bold;font-size: 25px;"
+              <button type="button" class="close sh"
                 data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

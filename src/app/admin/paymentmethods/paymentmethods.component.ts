@@ -234,16 +234,28 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
         // this.form.controls['country'].setValue(null);
         // this.form.controls['expirydate'].setValue(null);
         // this.form.controls['state'].setValue(null);
-        this.form.reset({
-          'cardnickname': null,
-          'address':null,
-          'zip':null,
-          'state':null,
-          'country':null,
-          'cardnumber':null,
-           'ccv':null,
-           'default':this.default=false
-         });
+        // this.form.reset({
+        //   'cardnickname': null,
+        //   'address':null,
+        //   'zip':null,
+        //   'state':null,
+        //   'country':null,
+        //   'cardnumber':null,
+        //    'ccv':null,
+        //    'default':this.default=false
+        //  });
+
+        // this.form.reset({
+        //   'cardnickname':'',
+        //   'address': "",
+        //   'zip':"",
+        //   'state': "",
+        //   'country': "",
+        //   'cardnumber':"",
+        //    'ccv':"",
+        //    'default':this.default=false
+           
+        //  });
         //  this.form.updateValueAndValidity();
       },
         error => {
