@@ -12,6 +12,7 @@ import { RfpService } from '../rfps/single-rfp/rfp.service';
 export class WatchlistComponent implements OnInit {
   wrfp;
   message;
+  total;
   constructor(private _nav: Router,private _serv: HeaderService,public _shareData: SharedData,private _serv1: RfpService) { }
 
   ngOnInit() {
@@ -24,7 +25,11 @@ export class WatchlistComponent implements OnInit {
      
       data => {
         this.wrfp = data['result'];
-        this.message=data.message
+        this.message=data.message;
+        this.total=data.total
+        if(!data.message && data['result']){
+          this._shareData.watchtotal(this.total); 
+           this._shareData.watchInfo(this.wrfp); }
         console.log( this.wrfp);
       },
       error => {
