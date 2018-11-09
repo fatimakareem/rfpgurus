@@ -21,9 +21,9 @@ import { empty } from 'rxjs/observable/empty';
 })
 export class PaymentmethodsComponent implements OnInit, OnDestroy {
   endRequest;
-  public mask = [ /[0-9]/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
-
-  form = new FormGroup({
+  public mask = [/[0-9]/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
+  cardexist:boolean=false;
+   form = new FormGroup({
     cardnumber: new FormControl('', [
 
       Validators.required,
@@ -33,21 +33,24 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
       Validators.minLength(3),
       Validators.maxLength(3),
       Validators.required,
-    ]), 
+      Validators.pattern('^[0-9]*$')
+    ]),
     expirydate: new FormControl('', [
       Validators.required,
-      // Validators.pattern('(0[1-9]|10|11|12)/20[0-9]{2}$')
+      Validators.pattern('(0[1-9]|10|11|12)/20[0-9]{2}$')
     ]),
     cardnickname: new FormControl('', [
       Validators.minLength(3),
       Validators.maxLength(50),
       Validators.required,
-      noSpaceValidator.cannotContainSpace
+      // noSpaceValidator.cannotContainSpace,
+      Validators.pattern('^[a-zA-Z _.]+$')
     ]),
     zip: new FormControl('', [
       Validators.maxLength(5),
       Validators.required,
-      noSpaceValidator.cannotContainSpace
+      noSpaceValidator.cannotContainSpace,
+      Validators.pattern('^[0-9]*$')
     ]),
     address: new FormControl('', [Validators.required
     ]),
@@ -80,13 +83,13 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
   vin_Data = { "city": "", "state": "" };
   private sub: Subscription;
   flipclass = 'credit-card-box';
-  constructor(private _nav: Router,private serv: PaymentmethodsService, private router: Router, private route: ActivatedRoute, private _serv: RegisterService) {
+  constructor(private _nav: Router, private serv: PaymentmethodsService, private router: Router, private route: ActivatedRoute, private _serv: RegisterService) {
 
   }
   zipcodeCheck(zipcode1) {
     if (zipcode1.length > 4) {
       this.endRequest = this._serv.zipcode(zipcode1).subscribe(
-        data => {          
+        data => {
           this.form.controls['city'].setValue(data.city);
           this.form.controls['state'].setValue(data.state);
           this.form.controls['country'].setValue(data.country);
@@ -99,26 +102,26 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.destroy_value=this.getCards();
-    
+    this.getCards();
+
   }
 
   cardid = "";
   card;
-  default:boolean=false;
+  default: boolean = false;
   updefault;
   name;
   cardnumber;
   ccv;
   expirydate;
-  
+
   address;
   zip;
   city;
   state;
   country;
   id;
-  get(status,id, name, number, cvc, expDate, street_address, zipcode, city, state, country) {
+  get(status, id, name, number, cvc, expDate, street_address, zipcode, city, state, country) {
     this.id = id;
     this.name = name;
     this.cardnumber = number;
@@ -130,12 +133,12 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
     this.city = city;
     this.state = state;
     this.country = country;
-this.updefault=status;
+    this.updefault = status;
   }
 
-  updateSingleCard(status,name, updatecardnumber, updateccv, date, updateaddress, updatezip, updatecity, updatestate, updatecountry) {
+  updateSingleCard(status, name, updatecardnumber, updateccv, date, updateaddress, updatezip, updatecity, updatestate, updatecountry) {
     console.log(status)
-    this.endRequest = this.serv.updateCard(status,this.id, name, updatecardnumber, updateccv, date, updateaddress, updatezip, updatecity, updatestate, updatecountry).subscribe(Data => {
+    this.endRequest = this.serv.updateCard(status, this.id, name, updatecardnumber, updateccv, date, updateaddress, updatezip, updatecity, updatestate, updatecountry).subscribe(Data => {
       swal({
         type: 'success',
         title: 'Credit Card Details Are Updated!',
@@ -169,8 +172,6 @@ this.updefault=status;
           )
         }
       })
-      let url = 'partnership';
-      this._nav.navigate([url]);
   }
 
   deleteSingleCard(id) {
@@ -210,35 +211,40 @@ this.updefault=status;
   }
 
   date;
-  changed(){
+  changed() {
     console.log(this.default)
   }
+
   add() {
     if (this.form.valid) {
-console.log(this.default)
+      console.log(this.default)
       this.date = this.form.value['expirydate'];
       // this.date = moment(this.date).format('YYYY-MM') + '-01';
       // name,pin,address,zip,city,state,country,cardno, ccv, expiryDate
-      this.endRequest = this.serv.addCard(this.default,this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber'], this.form.value['ccv'], this.date).subscribe(Data => {
+      this.endRequest = this.serv.addCard(this.default, this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber'], this.form.value['ccv'], this.date).subscribe(Data => {
         swal({
           type: 'success',
           title: 'Payment Method Is Listed!',
           showConfirmButton: false,
           timer: 1500
-        })      
+        })
         this.getCards();
+        // this.form.controls['city'].setValue(null);
+        // this.form.controls['state'].setValue(null);
+        // this.form.controls['country'].setValue(null);
+        // this.form.controls['expirydate'].setValue(null);
+        // this.form.controls['state'].setValue(null);
         this.form.reset({
-          'cardnickname':'',
-          'address': "",
-          'zip':"",
-          'state': "",
-          'country': "",
-          'cardnumber':"",
-           'ccv':"",
+          'cardnickname': null,
+          'address':null,
+          'zip':null,
+          'state':null,
+          'country':null,
+          'cardnumber':null,
+           'ccv':null,
            'default':this.default=false
-           
          });
-         this.form.updateValueAndValidity();
+        //  this.form.updateValueAndValidity();
       },
         error => {
           if (error.status == 404) {
@@ -271,7 +277,7 @@ console.log(this.default)
               'error'
             )
           }
-          
+
         })
     }
     else {
@@ -309,7 +315,39 @@ console.log(this.default)
         }
       })
   }
+  keyPresszip(event: any) {
+    const pattern = /[0-9+\-\ ]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+
+    }
+  }
+  keyPressname(event: any) {
+    const pattern = /^[a-zA-Z _.]+$/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+
+    }
+  }
+  exist_card(card1) {  
+    // console.log("sdfsdfsdfsdfsdf",email1);
+  this.serv.Atm_card_exist(card1).subscribe(
+      data => {
+      //  alert(data);
+      },
+      error => {
+        if (error.status == 302) {
+          // alert(this.cardexist)
+          this.cardexist=true;
+        }
+        //  console.log("dsadas",error)
+      }
+    );
+
+  }
   ngOnDestroy() {
-  // this.serv.showCards();
+    // this.serv.showCards();
   }
 }

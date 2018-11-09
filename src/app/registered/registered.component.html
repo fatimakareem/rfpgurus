@@ -71,7 +71,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                   <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'zipcode')">
                     <mat-form-field>
-                      <input matInput type="number" id="zipcode" (ngModelChange)="zipcodeCheck(zipcode1.value)" #zipcode1 formControlName="zipcode"
+                      <input matInput type="text" maxlength="5" id="zipcode" (ngModelChange)="zipcodeCheck(zipcode1.value)" #zipcode1 formControlName="zipcode"
                              placeholder="Zip Code" maxlength="5" required />
                       <mat-error *ngIf="register.controls.zipcode.value == ''">
                         <strong>Zipcode cannot be empty</strong>
