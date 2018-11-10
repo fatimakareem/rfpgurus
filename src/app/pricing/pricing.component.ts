@@ -287,6 +287,7 @@ value_2;
 subscribe;
 notsubscribe;
   show_card_info() {
+    if(JSON.parse(localStorage.getItem('currentUser'))) {
     this._serv1.usersubscribe(JSON.parse(localStorage.getItem('currentUser')).username).subscribe(
       data =>{
         this.subscribe=data.Response
@@ -326,7 +327,7 @@ notsubscribe;
     }
       
     );
-  }
+  }}
   ngOnInit() {
     this.show_card_info();
   }
