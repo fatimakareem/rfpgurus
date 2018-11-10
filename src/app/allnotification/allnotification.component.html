@@ -19,22 +19,21 @@
               </div>
               <div class="col-md-5  sh-notification-div" >
                   <div class="card">
-     <div  *ngFor="let item of notificate">
-        <div class="addtocart-time" (click)="deletenofication(item?.id)">
-          <i class="fa fa-times"></i>
-        </div>
+                     <div  *ngFor="let item of notificate">
+        <!--<div class="addtocart-time" (click)="deletenofication(item?.id)">-->
+          <!--<i class="fa fa-times"></i>-->
+        <!--</div>-->
         <div class="heart-main-div" *ngIf="item.read == false">
-          <div class="heart-contact sh-del-watchlist">              <a [routerLink]="['/rfp/', item.target]"> 
-                <div class="heart-heading" style="cursor:pointer">
+          <div class="heart-contact sh-del-watchlist">
+              <a class="heart-heading" [routerLink]="['/rfp/', item.target]">
                   {{item.type_of_notification}}
-               </div>
               </a>
               <span class="sh-del " (click)="deletenofication(item?.id)">
                 <i class="fas fa-trash-alt"></i>
               </span>
             <div class="heart-detail plan-detail">
               <h5 style="cursor:pointer"  (click)="single(item.target);updatenofication(item.id)"> {{item.description}}</h5>
-            </div> <hr>
+            </div>
             <!-- <div class="heart-detail plan-detail sh-notification-seen" *ngIf="item.read == true">
                 <h5 (click)="single(item.target);updatenofication(item?.id)"> {{item.description}}</h5>
               </div> -->

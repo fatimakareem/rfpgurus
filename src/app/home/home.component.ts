@@ -102,7 +102,6 @@ export class HomeComponent implements OnInit, AfterContentInit,OnDestroy {
   public carouselTwo: NgxCarousel;
   public carouselThree: NgxCarousel;
   public carouselFour: NgxCarousel;
-    public carouselFive: NgxCarousel;
   mainSearch = 0;
   closeSearch() {
     if (this.mainSearch == 1) {
@@ -260,20 +259,7 @@ export class HomeComponent implements OnInit, AfterContentInit,OnDestroy {
             easing: 'ease'
         }
 
-    this.carouselFive = {
-            grid: { xs: 1, sm: 3, md: 6, lg: 7, all: 0 },
-            slide: 1,
-            speed: 400,
-            interval: 3000,
-            point: {
-                visible: false
-            },
-            load: 2,
-            touch: true,
-            loop: true,
-            custom: 'banner',
-            easing: 'ease'
-        }
+
   }
     single(query) {
       let sth = 'rfp/'+query;

@@ -21,7 +21,6 @@
       "styles": [
           "../node_modules/bootstrap/dist/css/bootstrap.css",
           "../node_modules/sweetalert2/dist/sweetalert2.css",
-          "./assets/sass/material-dashboard.scss",
         "../node_modules/slick-carousel/slick/slick.css"
       ],
       "scripts": [

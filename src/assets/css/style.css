@@ -1211,7 +1211,9 @@ body {
 .sh-f-c h2 {
     margin: 10px 0
 }
-
+.sh-signin-signup{
+    padding-left: 5px !important;
+}
 .sh-signin-signup>li:last-child:before {
     position: absolute;
     width: 2px;
@@ -1236,9 +1238,39 @@ body {
     width: 80px;
     margin: 0 auto;
 }
-
 .CategorySlider.slick-initialized { display: block !important; }
+.interest-area >div>h3{
+    font-weight: 600!important;
+    border-bottom: 1px solid #f80000;
+    width: 211px;
+    margin: auto !important;
+}
+.sh-notification-div .heart-heading:hover{
+    color: #fff;
+}
+/*.....Scrollbar_Start......*/
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #717171;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #000;
+}
+/*.....Scroll-Bar_End......*/
 
 @media (min-width:1281px) {
     .navbar-nav>li>a {
@@ -1620,5 +1652,72 @@ body {
     }
     .custom-model {
         width: 94%;
+    }
+    .com-table .fa-check,.com-table .fa-times{
+        font-size: 16px;
+    }
+    .com-table table tr th {
+        font-size: 11px;
+    }
+    .com-table td {
+        padding: 5px 0!important;
+        font-size: 11px;
+    }
+    .carouselTwo .buttons.leftRs,.carouselTwo .buttons.rightRs{
+        display: block !important;
+        top: 34% !important;
+        width: 30px;
+        height: 30px;
+    }
+    .plan-detail {
+        padding: 0 !important;
+    }
+    .carouselTwo{
+        padding: 0 20px;
+    }
+    .carouselTwo .buttons.leftRs {
+        left: 9px;
+
+    }
+    .carouselTwo .buttons.rightRs {
+        right: 9px;
+    }
+    .carouselTwo .buttons.leftRs i,.carouselTwo .buttons.rightRs i{
+        font-size: 14px !important;
+        top: -3px !important;
+    }
+    .packages-holder .heading {
+        font-size: 24px!important;
+    }
+    .interest-area >div>h3{
+        font-size: 24px !important;
+    }
+    .success-for-business > div >h2{
+        font-size: 28px !important;
+    }
+    .success-for-business h4 {
+        font-size: 24px !important;
+    }
+    .success-for-business .icon-box {
+        padding: 10px;
+        min-height: 10px;
+    }
+    .footer-upper {
+        padding: 0 20px;
+    }
+    .footer-upper h2 {
+        text-align: left;
+    }
+    .nav-vanders{
+        top: 0;
+        left: 0;
+        min-width: 212px;
+    }
+    .why-rfp-sublist li a {
+        padding: 0px 5px;
+        font-size: 14px;
+    }
+    .mrgn-tab{
+        padding: 0;
     }
 }
