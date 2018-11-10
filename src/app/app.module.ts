@@ -15,6 +15,8 @@ import {Nl2BrPipeModule} from 'nl2br-pipe';
 import { Ng2SmartTableModule } from 'ngx-smart-table';
 
 /////////////////////////////////Service/////////////////////////////
+import { UnsubscribeService } from './unsubscribe/unsubscribe.service';
+
 import { RfpService} from './rfps/single-rfp/rfp.service';
 import { LoginService} from './login/login.service';
 import { PricingService } from './pricing/pricing.service';
@@ -98,6 +100,8 @@ import { PaymentmethodsComponent } from './admin/paymentmethods/paymentmethods.c
 import { AllnotificationComponent } from './allnotification/allnotification.component';
 
 import { AppRoutes } from './app.routing';
+import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
+
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { SingleRfpComponent } from './rfps/single-rfp/single-rfp.component';
@@ -265,7 +269,7 @@ export class MaterialModule {}
         // LivechatWidgetModule
     ],
     declarations: [
-        AdminComponent,
+        AdminComponent,UnsubscribeComponent,
         AllnotificationComponent,
         PaymentmethodsComponent,
         SidebarComponent,
@@ -356,7 +360,7 @@ export class MaterialModule {}
         BlogService,
         partnershipservice,
         SpeechRecognitionService,
-        PaymentmethodsService,
+        PaymentmethodsService,UnsubscribeService,
         {
             provide: HttpService,
             useFactory: httpServiceFactory,

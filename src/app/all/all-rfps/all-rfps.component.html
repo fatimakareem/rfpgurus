@@ -112,7 +112,7 @@
                       <div attr.id="View{{rfp.id}}" class="panel-details collapse">
                         <div  class="col-md-12" *ngIf="rfp?.descriptionTag == null">
                         
-                          <div [innerHTML]="rfp.deescription.split('\n').join('</p><p>')"></div>
+                          <div [innerHTML]="rfp.deescription"></div>
                        
                       </div>
                       <div class="col-md-12" *ngIf="rfp?.descriptionTag != null">

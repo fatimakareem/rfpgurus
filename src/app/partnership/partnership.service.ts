@@ -13,9 +13,12 @@ fun_insert_value(name,email,company_name,des) {
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http5.post('https://jsonplaceholder.typicode.com/posts',
+    return this._http5.post('https://apis.rfpgurus.com/becomePartner/',
       {
-        // 'id':var_useryid,
+        'name':name,
+        'email':email,
+        'company_name':company_name,
+        'message':des,
       }).map((res: Response) => console.log(res)) 
   }
 }

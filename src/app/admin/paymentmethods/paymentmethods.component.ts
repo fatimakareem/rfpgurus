@@ -228,35 +228,19 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
           showConfirmButton: false,
           timer: 1500
         })
-        this.getCards();
-        // this.form.controls['city'].setValue(null);
-        // this.form.controls['state'].setValue(null);
-        // this.form.controls['country'].setValue(null);
-        // this.form.controls['expirydate'].setValue(null);
-        // this.form.controls['state'].setValue(null);
-        // this.form.reset({
-        //   'cardnickname': null,
-        //   'address':null,
-        //   'zip':null,
-        //   'state':null,
-        //   'country':null,
-        //   'cardnumber':null,
-        //    'ccv':null,
-        //    'default':this.default=false
-        //  });
-
-        // this.form.reset({
-        //   'cardnickname':'',
-        //   'address': "",
-        //   'zip':"",
-        //   'state': "",
-        //   'country': "",
-        //   'cardnumber':"",
-        //    'ccv':"",
-        //    'default':this.default=false
+        this.form.reset({
+          'cardnickname':'',
+          'address': "",
+          'zip':"",
+          'state': "",
+          'country': "",
+          'cardnumber':"",
+           'ccv':"",
+           'default':this.default=false
            
-        //  });
-        //  this.form.updateValueAndValidity();
+         });
+        this.getCards();
+   
       },
         error => {
           if (error.status == 404) {

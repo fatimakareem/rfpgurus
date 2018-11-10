@@ -35,7 +35,7 @@ import { WhyRfpgurusComponent } from './why-rfpgurus/why-rfpgurus.component';
 import { OurTeamComponent } from './our-team/our-team.component';
 import { WhatWeDoComponent } from './what-we-do/what-we-do.component';
 import {AllAgenciesComponent} from './all/all-agencies/all-agencies.component';
-// import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
+import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
 import { HistoryComponent } from './admin/history/history.component';
 import {ResultsComponent} from './results/results.component';
 import {AgencyRfpComponent} from './rfps/agency-rfp/agency-rfp.component';
@@ -55,7 +55,6 @@ export const AppRoutes: Routes = [
     },
    
     { path: '', component: HomeComponent },
-  
    
    
    
@@ -102,7 +101,8 @@ export const AppRoutes: Routes = [
         path: '',
         component: AuthLayoutComponent,
         children: [
-            { path: 'base',component:BaseComponent},
+            // { path: 'base',component:BaseComponent},
+            { path: 'unsubscribe/:query1', component: UnsubscribeComponent },
             { path: 'login', component: LoginComponent },
             { path: 'rfp-as-service', component: RfpAsServiceComponent },
     { path: 'blog', component: BlogComponent },
