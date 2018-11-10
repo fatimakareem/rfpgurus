@@ -209,11 +209,11 @@
     font-weight: 700
 }
 
-body {
-    display: block!important;
-    background-color: #fafafa;
-    overflow-x: hidden
-}
+/*body {*/
+    /*display: block!important;*/
+    /*background-color: #fafafa;*/
+    /*overflow-x: hidden*/
+/*}*/
 
 .footer-upper {
     padding: 0 50px;
@@ -1271,7 +1271,14 @@ body {
     background: #000;
 }
 /*.....Scroll-Bar_End......*/
-
+.sh-notification-div .heart-detail{
+    margin: 10px 0 !important;
+}
+body {
+    display: block!important;
+    background-color: #fafafa;
+    overflow-x: hidden;
+}
 @media (min-width:1281px) {
     .navbar-nav>li>a {
         font-size: 14px!important;
@@ -1721,3 +1728,4 @@ body {
         padding: 0;
     }
 }
+
