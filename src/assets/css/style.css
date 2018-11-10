@@ -1279,6 +1279,26 @@ body {
     background-color: #fafafa;
     overflow-x: hidden;
 }
+.card [data-background-color="red"] {
+    background: #000 !important;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4) !important;
+}
+.btn.btn-rose, .btn.btn-rose:hover, .btn.btn-rose:focus, .btn.btn-rose:active, .btn.btn-rose.active, .btn.btn-rose:active:focus, .btn.btn-rose:active:hover, .btn.btn-rose.active:focus, .btn.btn-rose.active:hover, .open > .btn.btn-rose.dropdown-toggle, .open > .btn.btn-rose.dropdown-toggle:focus, .open > .btn.btn-rose.dropdown-toggle:hover, .navbar .navbar-nav > li > a.btn.btn-rose, .navbar .navbar-nav > li > a.btn.btn-rose:hover, .navbar .navbar-nav > li > a.btn.btn-rose:focus, .navbar .navbar-nav > li > a.btn.btn-rose:active, .navbar .navbar-nav > li > a.btn.btn-rose.active, .navbar .navbar-nav > li > a.btn.btn-rose:active:focus, .navbar .navbar-nav > li > a.btn.btn-rose:active:hover, .navbar .navbar-nav > li > a.btn.btn-rose.active:focus, .navbar .navbar-nav > li > a.btn.btn-rose.active:hover, .open > .navbar .navbar-nav > li > a.btn.btn-rose.dropdown-toggle, .open > .navbar .navbar-nav > li > a.btn.btn-rose.dropdown-toggle:focus, .open > .navbar .navbar-nav > li > a.btn.btn-rose.dropdown-toggle:hover {
+    background-color: #000000 !important;
+    color: #FFFFFF;
+}
+.btn.btn-lg, .btn-group-lg .btn, .navbar .navbar-nav > li > a.btn.btn-lg, .btn-group-lg .navbar .navbar-nav > li > a.btn {
+    font-size: 18px;
+    padding: 5px 20px !important;
+}
+.s-areaCarousel .buttons.rightRs,.s-areaCarousel .buttons.leftRs{
+    padding: 0 !important
+}
+.subscribe .input-group .input-group-btn {
+    padding: 0 !important;
+}
+
+
 @media (min-width:1281px) {
     .navbar-nav>li>a {
         font-size: 14px!important;

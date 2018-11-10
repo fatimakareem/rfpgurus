@@ -20,7 +20,7 @@
             </mat-form-field>
             </div>
             <div class="col-sm-12" style="margin-top: -22px">
-                <h4>Posted Date From</h4>
+                <h4>Posted Date</h4>
             <mat-form-field>
             <input  matInput (click)="picker.open()" name="enterdate" (focus)="picker.open()" [matDatepicker]="picker"
             [(ngModel)]="enterdate" (ngModelChange)="onSubmit(f)">
@@ -30,7 +30,7 @@
             </mat-form-field>
             </div>
             <div class="col-sm-12" style="margin-top: -22px">
-                <h4>Posted Date to</h4>
+                <h4> Due Date</h4>
             <mat-form-field class="example-full-width mat-size">
             <input  matInput (click)="picker2.open()" name="duedate" (focus)="picker2.open()" [matDatepicker]="picker2"
             [(ngModel)]="duedate" (ngModelChange)="onSubmit(f)">
