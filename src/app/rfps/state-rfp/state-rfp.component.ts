@@ -16,7 +16,8 @@ declare const $: any;
 @Component({
   selector: 'app-state-rfp',
   templateUrl: './state-rfp.component.html',
-  styleUrls: ['./state-rfp.component.css']
+  styleUrls: ['./state-rfp.component.css'],
+ providers: [PagerService,SharedData,StateService]
 })
 export class StateRfpComponent implements OnInit ,OnDestroy{
   item;

@@ -7,7 +7,8 @@ import { RfpService } from '../rfps/single-rfp/rfp.service';
 @Component({
   selector: 'app-watchlist',
   templateUrl: './watchlist.component.html',
-  styleUrls: ['./watchlist.component.scss']
+  styleUrls: ['./watchlist.component.scss'],
+ providers: [SharedData,HeaderService,RfpService]
 })
 export class WatchlistComponent implements OnInit {
   wrfp;

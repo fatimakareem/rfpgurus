@@ -12,7 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-data-table-cmp',
-    templateUrl: 'single-rfp.component.html'
+    templateUrl: 'single-rfp.component.html',
+ providers: [SharedData,RfpService]
 })
 
 export class SingleRfpComponent implements OnInit  {

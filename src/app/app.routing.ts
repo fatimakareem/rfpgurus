@@ -84,25 +84,32 @@ export const AppRoutes: Routes = [
             // { path: 'find-bids', component: BaseComponent },
             { path: 'find-bids', loadChildren: '../app/base/base.module#BaseModule' },
 
-            { path: 'watchlist', component: WatchlistComponent },
-            // { path: 'watchlist', loadChildren: '../app/base/base.module#BaseModule' },
+            // { path: 'watchlist', component: WatchlistComponent },
+            { path: 'watchlist', loadChildren: '../app/watchlist/watchlist.module#WatchlistModule' },
             // { path: 'find-bids',component:RfpComponent},
-            { path: 'rfp/:query', component: SingleRfpComponent },
+            // { path: 'rfp/:query', component: SingleRfpComponent },
+            { path: 'rfp/:query', loadChildren: '../app/rfps/single-rfp/single-rfp.module#SingleRfpModule'},
+            
             { path: 'searched-data', component: ResultsComponent },
-
+            // { path: 'searched-data', loadChildren: '../app/rfps/single-rfp/single-rfp.module#SingleRfpModule'},
             // { path: 'latest-rfp', component: AllRfpsComponent },
      { path: 'latest-rfp', loadChildren: '../app/all/all-rfps/all-rfps.module#AllRfpsModule' },
-            { path: 'category', component: CategoryRfpComponent },
-
-            { path: 'state', component: StateRfpComponent },
-            { path: 'agency', component: AgencyRfpComponent },
+   
+            // { path: 'category', component: CategoryRfpComponent },
+            { path: 'category', loadChildren: '../app/rfps/category-rfp/category-rfp.module#CategoryRfpModule'},
+            // { path: 'state', component: StateRfpComponent },
+            { path: 'state', loadChildren: '../app/rfps/state-rfp/state-rfp.module#StateRfpModule'},
+           
+            // { path: 'agency', component: AgencyRfpComponent },
+            { path: 'agency', loadChildren: '../app/rfps/agency-rfp/agency-rfp.module#AgencyRfpModule'},
         ]
     },
     {
         path: '',
         component: AuthLayoutComponent,
         children: [
-            { path: 'unsubscribe/:query1', component: UnsubscribeComponent },
+            // { path: 'unsubscribe/:query1', component: UnsubscribeComponent },
+            { path: 'unsubscribe/:query1', loadChildren: '../app/unsubscribe/unsubscribe.module#UnsubscribeModule' },
             // { path: 'login', loadChildren: '../app/login/login.module#LoginModule' },
             { path: 'login', component: LoginComponent },
             // { path: 'rfp-as-service', component: RfpAsServiceComponent },

@@ -6,7 +6,8 @@ import swal from 'sweetalert2';
 @Component({
   selector: 'app-unsubscribe',
   templateUrl: './unsubscribe.component.html',
-  styleUrls: ['./unsubscribe.component.scss']
+  styleUrls: ['./unsubscribe.component.scss'],
+ providers: [UnsubscribeService]
 })
 export class UnsubscribeComponent implements OnInit {
   sub;

@@ -15,7 +15,9 @@ declare const $: any;
 @Component({
   selector: 'app-agency-rfp',
   templateUrl: './agency-rfp.component.html',
-  styleUrls: ['./agency-rfp.component.css']
+  styleUrls: ['./agency-rfp.component.css'],
+  
+ providers: [PagerService,SharedData,AgencyService]
 })
 export class AgencyRfpComponent implements OnInit ,OnDestroy{
     item;

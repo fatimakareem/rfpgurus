@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SingleRfpComponent } from './single-rfp.component';
+import { AgencyRfpComponent } from './agency-rfp.component';
 import { Routes, RouterModule} from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatInputModule, MatFormFieldModule,MatSelectModule } from '@angular/material';
@@ -9,7 +9,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 const routes :Routes =[
   {
-    path:'',component:SingleRfpComponent
+    path:'',component:AgencyRfpComponent
   }
 ]
 @NgModule({
@@ -24,12 +24,12 @@ const routes :Routes =[
     TextMaskModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [SingleRfpComponent],
+  declarations: [AgencyRfpComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
 ]
 
 })
-export class SingleRfpModule { }
+export class AgencyRfpModule { }
 
 

@@ -13,7 +13,8 @@ import {PagerService} from '../rfp/paginator.service';
 @Component({
   selector: 'app-category-rfp',
   templateUrl: './category-rfp.component.html',
-  styleUrls: ['./category-rfp.component.css']
+  styleUrls: ['./category-rfp.component.css'],
+  providers: [PagerService,SharedData,CategoryRfpService]
 })
 export class CategoryRfpComponent implements OnInit {
 
