@@ -28,7 +28,8 @@ declare interface User {
 @Component({
     selector: 'app-changed-password',
     templateUrl: './changed-password.component.html',
-    styleUrls: ['./changed-password.component.css']
+    styleUrls: ['./changed-password.component.css'],
+    providers: [AuthService,ChangedPasswordService]
 })
 export class ChangedPasswordComponent implements OnInit,OnDestroy {
     local;

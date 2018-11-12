@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
 import { HeaderService } from '../header/header.service';
-import swal from 'sweetalert2';
 import {SharedData} from '../shared-service';
-import { AuthService, SocialUser } from "angular4-social-login";
 @Component({
   selector: 'app-allnotification',
   templateUrl: './allnotification.component.html',
-  styleUrls: ['./allnotification.component.scss']
+  styleUrls: ['./allnotification.component.scss'],
+  providers: [HeaderService]
 })
 export class AllnotificationComponent implements OnInit {
   id;

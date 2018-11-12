@@ -3,11 +3,11 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { partnershipservice } from './partnership.service';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-partnership',
   templateUrl: './partnership.component.html',
-  styleUrls: ['./partnership.component.css']
+  styleUrls: ['./partnership.component.css'],
+  providers: [partnershipservice]
 })
 
 export class PartnershipComponent implements OnInit {

@@ -1,15 +1,15 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BaseComponent } from './base.component';
+import { AdvanceSearchComponent } from './advance-search.component';
 import { Routes, RouterModule} from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MatInputModule, MatFormFieldModule,MatSelectModule,MatDatepickerModule } from '@angular/material';
+import { MatInputModule, MatFormFieldModule,MatSelectModule, MatDatepickerModule } from '@angular/material';
 import { TextMaskModule } from 'angular2-text-mask';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 const routes :Routes =[
   {
-    path:'',component:BaseComponent
+    path:'',component:AdvanceSearchComponent
   }
 ]
 @NgModule({
@@ -20,15 +20,12 @@ const routes :Routes =[
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatDatepickerModule,
     Ng2SearchPipeModule,
     TextMaskModule,
+    MatDatepickerModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [BaseComponent],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-]
-
+  declarations: [AdvanceSearchComponent]
 })
-export class BaseModule { }
+export class AdvanceSearchModule { }
+

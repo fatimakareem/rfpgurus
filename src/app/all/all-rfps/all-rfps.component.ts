@@ -14,7 +14,8 @@ declare const $: any;
 @Component({
     selector: 'app-all-rfps',
     templateUrl: './all-rfps.component.html',
-    styleUrls: ['./all-rfps.component.css']
+    styleUrls: ['./all-rfps.component.css'],
+    providers: [PagerService,AllRfpsService,SharedData]
 })
 export class AllRfpsComponent implements OnInit {
     item;

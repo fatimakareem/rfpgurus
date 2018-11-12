@@ -8,14 +8,12 @@ import {  Router } from '@angular/router';
 import { ViewChild } from '@angular/core';
 import {RecaptchaComponent} from '../recaptcha/recaptcha.component';
 import {isPlatformBrowser} from '@angular/common';
-
 export class errorMatcher implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
         const isSubmitted = form && form.submitted;
         return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
     }
 }
-
 declare interface ValidatorFn {
     (c: AbstractControl): {
         [key: string]: any;
@@ -33,11 +31,11 @@ declare interface User {
     optionsCheckboxes?: boolean;
     // firstname?: string;
 }
-
 @Component({
     selector: 'app-registered',
     templateUrl: './registered.component.html',
-    styleUrls: ['./registered.component.css']
+    styleUrls: ['./registered.component.css'],
+    // providers: [RegisterService]
 })
 
 export class RegisteredComponent implements OnInit,OnDestroy {

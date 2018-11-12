@@ -21,6 +21,7 @@ import * as moment from 'moment';
   selector: 'app-advance-search',
   templateUrl: './advance-search.component.html',
   styleUrls: ['./advance-search.component.css'],
+  providers: [PagerService,AdvanceService,SharedData,HeaderService,SpeechRecognitionService]
 })
 
 export class AdvanceSearchComponent implements OnInit,OnDestroy {  

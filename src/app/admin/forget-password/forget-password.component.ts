@@ -27,7 +27,8 @@ declare interface User {
 @Component({
   selector: 'app-forget-password',
   templateUrl: './forget-password.component.html',
-  styleUrls: ['./forget-password.component.css']
+  styleUrls: ['./forget-password.component.css'],
+  providers: [ForgetPasswordService]
 })
 export class ForgetPasswordComponent implements OnInit,OnDestroy {
   public typeValidation: User;

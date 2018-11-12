@@ -6,7 +6,8 @@ import {SharedData} from '../../shared-service';
 @Component({
   selector: 'app-agencies',
   templateUrl: './all-agencies.component.html',
-  styleUrls: ['./all-agencies.component.css']
+  styleUrls: ['./all-agencies.component.css'],
+  providers: [AllAgenciesService,SharedData]
 })
 export class AllAgenciesComponent implements OnInit,OnDestroy {
     endRequest;
