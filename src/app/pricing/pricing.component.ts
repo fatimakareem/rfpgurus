@@ -8,7 +8,7 @@ import { RfpService } from '../rfps/single-rfp/rfp.service';
   selector: 'app-pricing',
   templateUrl: './pricing.component.html',
   styleUrls: ['./pricingsteps.component.scss'],
-  providers: [PricingService,RfpService]
+  providers: [PricingService, RfpService]
 })
 export class PricingComponent implements OnInit {
   /////////////////////////////card///////////////////////////
@@ -60,19 +60,15 @@ export class PricingComponent implements OnInit {
   pkg;
   local;
   uname;
-
   /////////////////////////////end///////////////////////////
-
-  constructor(private _serv1: RfpService,private _nav: Router, private _serv: PricingService, private http: Http) { }
+  constructor(private _serv1: RfpService, private _nav: Router, private _serv: PricingService, private http: Http) { }
   //
   next_stepdetail(event: any) {
     if (event.target.value == "BM") {
       this.prv_stepdetail("B", "M")
-
     } else if (event.target.value == "PY") {
       this.prv_stepdetail("P", "Y")
     }
-
   }
   valuee = '';
   firststep(value) {
@@ -80,35 +76,26 @@ export class PricingComponent implements OnInit {
     this.valuee = value;
     if (value == "BM") {
       this.prv_stepdetail("B", "M")
-
     }
     else if (value == "PY") {
       this.prv_stepdetail("P", "Y")
     }
   }
-
   prv_stepdetail(type, dur) {
     this.pkg_detail['type'] = type
     this.pkg_detail['dur'] = dur
     this.pkgsub = true;
-
   }
-
   ////////////////////////////////////Card Module//////////////////////////////////
-
   proceedstep1() {
     this.loading = true;
   }
-
   flip() {
     this.flipclass = 'credit-card-box hover';
   }
-
   flipagain() {
     this.flipclass = 'credit-card-box';
   }
-
-
   pay() {
     if (this.free) {
       const headers = new Headers();
@@ -119,7 +106,6 @@ export class PricingComponent implements OnInit {
           duration: this.pricepackage[1]
         }), { headers: headers })
         .map((response: Response) => {
-
         });
     } else {
       const headers = new Headers();
@@ -133,13 +119,11 @@ export class PricingComponent implements OnInit {
           duration: this.pricepackage[1]
         }), { headers: headers })
         .map((response: Response) => {
-
           this.payment_result = response.json();
           console.log(this.payment_result);
         });
     }
   }
-
   proceed() {
     this.pkg_detail['credit'] = this.cardnumber1 + this.cardnumber2 +
       this.cardnumber3 + this.cardnumber4
@@ -150,25 +134,19 @@ export class PricingComponent implements OnInit {
     this.uname = pars.username
     this._serv.package_free(this.uname, this.pkg_detail).subscribe(
       data => {
-
         swal(
           'Your payment has been transferred',
           '',
           'success'
         )
-        // let url = 'find-bids';
-        // this._nav.navigate([url]);
-
       },
       error => {
-        // console.log(error);
         swal(
           'Oops...',
           'Something went wrong!',
           'error'
         )
       });
-
   }
   gotocreditcard() {
     this.emailconfirmerror = false;
@@ -179,7 +157,6 @@ export class PricingComponent implements OnInit {
           this.step2 = true;
           this.step1class = '';
           this.step2class = 'active';
-
         },
         error => {
           console.log(error);
@@ -187,7 +164,6 @@ export class PricingComponent implements OnInit {
           this.emailconfirmerror = true;
         });
   }
-
   checkcode(key) {
     console.log(key);
     const headers = new Headers();
@@ -198,10 +174,8 @@ export class PricingComponent implements OnInit {
         key: key
       }), { headers: headers })
       .map((response: Response) => {
-
       });
   }
-
   saveaccountdetail() {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -217,7 +191,6 @@ export class PricingComponent implements OnInit {
         console.log(this.user_id);
       });
   }
-
   // step 2 done
   gotocheckout() {
     if (this.pass === this.retypepass) {
@@ -244,25 +217,21 @@ export class PricingComponent implements OnInit {
               // this.loading = false;
             });
       }
-
     } else {
       this.passnotequal = true;
     }
   }
-
   chkpass() {
     if (this.pass === this.retypepass) {
       this.passnotequal = false;
     }
   }
-
   ///////////////////////////////////END//////////////////////////////////////////
   check_login() {
     if (localStorage.getItem('currentUser')) {
       this.local = localStorage.getItem('currentUser');
       let pars = JSON.parse(this.local);
       this.uname = pars.username
-
       return false
     }
     else {
@@ -270,62 +239,61 @@ export class PricingComponent implements OnInit {
     }
   }
   res;
-status;
-get_card_number:number;
-file;
-get_card_value1;
-get_card_value2;
-get_card_value3;
-get_card_value4;
-ex_value1=[];
-ex_get_value;
-ex_month_value;
-ex_year_value;
-value_2;
-subscribe;
-notsubscribe;
+  status;
+  get_card_number: number;
+  file;
+  get_card_value1;
+  get_card_value2;
+  get_card_value3;
+  get_card_value4;
+  ex_value1 = [];
+  ex_get_value;
+  ex_month_value;
+  ex_year_value;
+  value_2;
+  subscribe;
+  notsubscribe;
   show_card_info() {
-    if(JSON.parse(localStorage.getItem('currentUser'))) {
-    this._serv1.usersubscribe(JSON.parse(localStorage.getItem('currentUser')).username).subscribe(
-      data =>{
-        this.subscribe=data.Response
-        // console.log(data.Response);
-      },
-      error=>
-      {
-        this.notsubscribe=error.status;
-        console.log(this.notsubscribe);
-    if (localStorage.getItem('currentUser') &&  this.notsubscribe == 406) {
-    return this._serv.get_card_info()
-      .subscribe(response => {
-        for (let i of response) {
-          if (i.default) {
-            this.status = i;
+    if (JSON.parse(localStorage.getItem('currentUser'))) {
+      this._serv1.usersubscribe(JSON.parse(localStorage.getItem('currentUser')).username).subscribe(
+        data => {
+          this.subscribe = data.Response
+          // console.log(data.Response);
+        },
+        error => {
+          this.notsubscribe = error.status;
+          console.log(this.notsubscribe);
+          if (localStorage.getItem('currentUser') && this.notsubscribe == 406) {
+            return this._serv.get_card_info()
+              .subscribe(response => {
+                for (let i of response) {
+                  if (i.default) {
+                    this.status = i;
+                  }
+                }
+                this.get_card_number = this.status.number.toString();
+                this.get_card_value1 = this.get_card_number.toString().slice(0, 4);
+                this.get_card_value2 = this.get_card_number.toString().slice(4, 8);
+                this.get_card_value3 = this.get_card_number.toString().slice(8, 12);
+                this.get_card_value4 = this.get_card_number.toString().slice(12, 16);
+                this.cardnumber1 = this.get_card_value1;
+                this.cardnumber2 = this.get_card_value2;
+                this.cardnumber3 = this.get_card_value3;
+                this.cardnumber4 = this.get_card_value4;
+                this.ex_get_value = this.status.expDate;
+                this.ex_value1 = this.ex_get_value.split("/");
+                this.ex_month_value = this.ex_value1[0];
+                this.ex_year_value = this.ex_value1[1];
+                this.cardholdername = this.status.name;
+                this.expmonth = this.ex_month_value;
+                this.expyear = this.ex_year_value;
+                this.ccv = this.status.cvc;
+              })
           }
         }
-        this.get_card_number=this.status.number.toString();
-        this.get_card_value1=this.get_card_number.toString().slice(0,4);
-        this.get_card_value2=this.get_card_number.toString().slice(4,8);
-        this.get_card_value3=this.get_card_number.toString().slice(8,12);
-        this.get_card_value4=this.get_card_number.toString().slice(12,16);      
-        this.cardnumber1=this.get_card_value1;
-        this.cardnumber2=this.get_card_value2;
-        this.cardnumber3=this.get_card_value3;
-        this.cardnumber4=this.get_card_value4;     
-        this.ex_get_value=this.status.expDate;
-        this.ex_value1=this.ex_get_value.split("/");
-        this.ex_month_value=this.ex_value1[0];
-        this.ex_year_value=this.ex_value1[1];
-        this.cardholdername=this.status.name;
-        this.expmonth=this.ex_month_value;
-        this.expyear=this.ex_year_value;
-        this.ccv=this.status.cvc;
-        
-      })}  
+      );
     }
-      
-    );
-  }}
+  }
   ngOnInit() {
     this.show_card_info();
   }

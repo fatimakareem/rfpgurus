@@ -17,7 +17,6 @@ export enum NavItemType {
   NavbarLeft = 2, // Left-aligned icon-only link on navbar in desktop mode, shown above sidebar items on collapsed sidebar in mobile mode
   NavbarRight = 3 // Right-aligned link on navbar in desktop mode, shown above sidebar items on collapsed sidebar in mobile mode
 }
-
 export interface NavItem {
   type: NavItemType;
   title: string;
@@ -26,7 +25,6 @@ export interface NavItem {
   numNotifications?: number;
   dropdownItems?: (DropdownLink | 'separator')[];
 }
-
 @NgModule({
   imports: [
     CommonModule,

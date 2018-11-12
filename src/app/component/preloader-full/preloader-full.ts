@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { PreloaderService } from '../../serv/preloader-service';
-
 @Component({
   selector: 'preloader-full',
   styleUrls: [

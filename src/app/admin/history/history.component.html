@@ -1,80 +1,70 @@
 <div class="row margin-0">
     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 center-admin-form" id="display_advance" style="min-height: 500px;">
-
-        <div  *ngIf ="!pkgsub" class=" history-heading">
+        <div *ngIf="!pkgsub" class=" history-heading">
             <div class="history-header">
                 <h2>Subscription</h2>
             </div>
-
             <table class="table table-striped history-table">
-                                <thead *ngIf="!nofound">
-                                <tr>
-                                    <th> Subscription Name</th>
-                                    <th>Price</th>
-                                    <th>Start Date</th>
-                                    <th>Expiry Date</th>
-                                    <th>Status</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr *ngIf="!nofound">
-                                    <td *ngIf="pkgList.duration == 'M' "> MONTHLY PLAN</td>
-                                    <td *ngIf="pkgList.duration == 'Q'">Quater PLAN</td>
-                                    <td *ngIf="pkgList.duration== 'S'"> SixMonths PLAN</td>
-                                    <td *ngIf="pkgList.duration == 'Y'"> Yearly PLAN</td>
-                                    <td><span>$</span>{{pkgList.pkg_price}} </td>
-                                    <td>{{record.pay_date | date:'MMM-d-y'}}</td>
-                                    <td>{{record.end_date | date:'MMM-d-y'}}</td>
-                                    <td *ngIf="record.is_paid == true"><button style="cursor:text" class="btn btn-success" title="Active">Active </button></td>
-                                    <td *ngIf="record.is_paid == false" ><button (click)=" prv_stepdetail( pkgList.pkg_type,pkgList.duration)" title="Subscribe Package" class="btn btn-primary">Subscribe Now <i class="fa fa-thumbtack"></i></button></td>
-                                </tr>
-                                <tr *ngIf="nofound" style="text-align:center;font-size:24px">
-                                    <td  colspan="4"> <h2><span class="no-pkg">Packages</span> you subscribe will appear here.</h2></td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-
+                <thead *ngIf="!nofound">
+                    <tr>
+                        <th> Subscription Name</th>
+                        <th>Price</th>
+                        <th>Start Date</th>
+                        <th>Expiry Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="!nofound">
+                        <td *ngIf="pkgList.duration == 'M' "> MONTHLY PLAN</td>
+                        <td *ngIf="pkgList.duration == 'Q'">Quater PLAN</td>
+                        <td *ngIf="pkgList.duration== 'S'"> SixMonths PLAN</td>
+                        <td *ngIf="pkgList.duration == 'Y'"> Yearly PLAN</td>
+                        <td><span>$</span>{{pkgList.pkg_price}} </td>
+                        <td>{{record.pay_date | date:'MMM-d-y'}}</td>
+                        <td>{{record.end_date | date:'MMM-d-y'}}</td>
+                        <td *ngIf="record.is_paid == true"><button style="cursor:text" class="btn btn-success" title="Active">Active
+                            </button></td>
+                        <td *ngIf="record.is_paid == false"><button (click)=" prv_stepdetail( pkgList.pkg_type,pkgList.duration)"
+                                title="Subscribe Package" class="btn btn-primary">Subscribe Now <i class="fa fa-thumbtack"></i></button></td>
+                    </tr>
+                    <tr *ngIf="nofound" style="text-align:center;font-size:24px">
+                        <td colspan="4">
+                            <h2><span class="no-pkg">Packages</span> you subscribe will appear here.</h2>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <!--2nd step-->
-        <div  *ngIf ="pkgsub" data-wow-delay=".5s">
+        <div *ngIf="pkgsub" data-wow-delay=".5s">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 container">
-
                     <div class="dropdown mydropdown">
-
                         <select (change)="next_stepdetail($event)" class="btn btn-success record-btn-mail dropdown-toggle text-left"
-                                data-toggle="dropdown" placeholder="Select Package">
+                            data-toggle="dropdown" placeholder="Select Package">
                             <option value="" disabled selected>Select Package</option>
                             <option value="BM">Basic - Monthly</option>
                             <option value="PY">Professional - Yearly</option>
                         </select>
-
                     </div>
                     <div class="clearfix"></div>
-
-                    <div  class="package-detail">
+                    <div class="package-detail">
                         <h2>PACKAGE DETAILS</h2>
                         <table class="table projects table-bordered table-responsive">
                             <tbody>
-                            <tr>
-                                <td>Package Type</td>
+                                <tr>
+                                    <td>Package Type</td>
 
-                                <td>{{pkg_detail['type']}}</td>
-                            </tr>
-                            <tr>
-                                <td>Duration</td>
-                                <td>{{pkg_detail['dur']}}</td>
-                            </tr>
-                            <!--<tr>-->
-                                <!--<td>Price</td>-->
-                                <!--<td><span>$</span>{{pkgList.pkg_price}}</td>-->
-                            <!--</tr>-->
-
+                                    <td>{{pkg_detail['type']}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Duration</td>
+                                    <td>{{pkg_detail['dur']}}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
-
                 </div>
                 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                     <div class="checkout">
@@ -83,15 +73,17 @@
                                 <div class="front">
                                     <div class="chip"></div>
                                     <div class="logo">
-                                        <svg version="1.1" id="visa" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                             width="47.834px" height="47.834px" viewBox="0 0 47.834 47.834" style="enable-background:new 0 0 47.834 47.834;">
+                                        <svg version="1.1" id="visa" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                            x="0px" y="0px" width="47.834px" height="47.834px" viewBox="0 0 47.834 47.834"
+                                            style="enable-background:new 0 0 47.834 47.834;">
                                             <g>
                                                 <g>
                                                 </g>
                                             </g>
                                         </svg>
                                     </div>
-                                    <div class="number"> {{cardnumber1}} {{cardnumber2}} {{cardnumber3}} {{cardnumber4}}</div>
+                                    <div class="number"> {{cardnumber1}} {{cardnumber2}} {{cardnumber3}}
+                                        {{cardnumber4}}</div>
                                     <div class="card-holder">
                                         <label>Card holder</label>
                                         <div>{{cardholdername}}</div>
@@ -104,15 +96,15 @@
                                 <div class="back">
                                     <div class="strip"></div>
                                     <div class="logo">
-                                        <svg version="1.1" id="visa" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                             width="47.834px" height="47.834px" viewBox="0 0 47.834 47.834" style="enable-background:new 0 0 47.834 47.834;">
+                                        <svg version="1.1" id="visa" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                            x="0px" y="0px" width="47.834px" height="47.834px" viewBox="0 0 47.834 47.834"
+                                            style="enable-background:new 0 0 47.834 47.834;">
                                             <g>
                                                 <g>
 
                                                 </g>
                                             </g>
                                         </svg>
-
                                     </div>
                                     <div class="ccv">
                                         <label>CCV</label>
@@ -124,14 +116,14 @@
                         <form class="form" autocomplete="off" novalidate>
                             <fieldset>
                                 <label for="card-number" style="font-size:20px;">Card Number</label>
-                                <input type="num" id="card-number" class="input-cart-number" name="cardnumber1" [(ngModel)]="cardnumber1" [textMask]="{mask: mask}"
-                                />
-                                <input type="num" id="card-number-1" class="input-cart-number" name="cardnumber2" [(ngModel)]="cardnumber2" [textMask]="{mask: mask}"
-                                />
-                                <input type="num" id="card-number-2" class="input-cart-number" name="cardnumber3" [(ngModel)]="cardnumber3" [textMask]="{mask: mask}"
-                                />
-                                <input type="num" id="card-number-3" class="input-cart-number" name="cardnumber4" [(ngModel)]="cardnumber4" [textMask]="{mask: mask}"
-                                />
+                                <input type="num" id="card-number" class="input-cart-number" name="cardnumber1"
+                                    [(ngModel)]="cardnumber1" [textMask]="{mask: mask}" />
+                                <input type="num" id="card-number-1" class="input-cart-number" name="cardnumber2"
+                                    [(ngModel)]="cardnumber2" [textMask]="{mask: mask}" />
+                                <input type="num" id="card-number-2" class="input-cart-number" name="cardnumber3"
+                                    [(ngModel)]="cardnumber3" [textMask]="{mask: mask}" />
+                                <input type="num" id="card-number-3" class="input-cart-number" name="cardnumber4"
+                                    [(ngModel)]="cardnumber4" [textMask]="{mask: mask}" />
                             </fieldset>
                             <fieldset>
                                 <label for="card-holder" style="font-size:20px;">Card holder</label>
@@ -174,7 +166,8 @@
                             </fieldset>
                             <fieldset class="fieldset-ccv">
                                 <label for="card-ccv" style="font-size:20px;">CCV</label>
-                                <input type="text" id="card-ccv" maxlength="3" name="ccv" (focusout)="flipagain()" (focus)="flip()" [(ngModel)]="ccv" />
+                                <input type="text" id="card-ccv" maxlength="3" name="ccv" (focusout)="flipagain()"
+                                    (focus)="flip()" [(ngModel)]="ccv" />
                             </fieldset>
                             <button class="btn" (click)="proceed()" title="Submit">
                                 <i class="fa fa-lock"></i> Submit</button>

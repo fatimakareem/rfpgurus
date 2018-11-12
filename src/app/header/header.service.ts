@@ -18,7 +18,6 @@ export class HeaderService {
     {headers: headers}).map((response: Response) => response.json());
   }
   deletenotify(id){
-  
     let headers = new Headers();
     if(localStorage.getItem('currentUser')){
       headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
@@ -28,7 +27,6 @@ export class HeaderService {
     {headers: headers}).map((response: Response) => response.json());
   }
   Updatenotify(id){
-  
     let headers = new Headers();
     if(localStorage.getItem('currentUser')){
       headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
@@ -37,7 +35,6 @@ export class HeaderService {
     return this._http5.put('https://apis.rfpgurus.com/read_delete/'+id +'/', JSON.stringify({}),
     {headers: headers}).map((response: Response) => response.json());
   }
-
 Watchlist(){
   let headers = new Headers();
   if(localStorage.getItem('currentUser')){
@@ -47,9 +44,7 @@ Watchlist(){
   return this._http5.get('https://apis.rfpgurus.com/rf_p/watchlist/',
   {headers: headers}).map((response: Response) => response.json());
 }
-
 deleteallnotify(){
-  
   let headers = new Headers();
   if(localStorage.getItem('currentUser')){
     headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
@@ -58,10 +53,7 @@ deleteallnotify(){
   return this._http5.delete('https://apis.rfpgurus.com/rf_p/delete_all_notification/',
   {headers: headers}).map((response: Response) => response.json());
 }
-
-
 deleteWatchlist(rfpid){
-  
   let headers = new Headers();
   if(localStorage.getItem('currentUser')){
     headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
@@ -71,7 +63,6 @@ deleteWatchlist(rfpid){
   {headers: headers}).map((response: Response) => response.json());
 }
 AlldeleteWatchlist(){
-  
   let headers = new Headers();
   if(localStorage.getItem('currentUser')){
     headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
@@ -80,45 +71,33 @@ AlldeleteWatchlist(){
   return this._http5.delete('https://apis.rfpgurus.com/rf_p/Delete_all_watch_list/', {headers: headers}).map((response: Response) => response.json());
 }
   searchrecord(obj) {
-    
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this._http5.get('https://apis.rfpgurus.com/rf_p/search_id/'+obj+'/10?page=1',
     {headers: headers}).map((response: Response) => response.json());
-    
     }
     searchSuggestions(obj) {
-
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         return this._http5.get('https://apis.rfpgurus.com/rf_p/search_key/'+obj+'/-1?page=1',
             {headers: headers}).map((response: Response) => response.json());
-
     }
-
     record(obj){
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         return this._http5.get('https://apis.rfpgurus.com/rf_p/search_id/'+obj+'/',
             {headers: headers}).map((response: Response) => response.json());
-
     }
     rfpstate() {
-      
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       return this._http5.get('https://apis.rfpgurus.com/rf_p/allstate/',
       {headers: headers}).map((response: Response) => response.json());
-      
       }
-
       rfpcategory() {
-        
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         return this._http5.get('https://apis.rfpgurus.com/rf_p/allcategory/',
         {headers: headers}).map((response: Response) => response.json());
-        
         }  
-    
 }

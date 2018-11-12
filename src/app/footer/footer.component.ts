@@ -1,19 +1,15 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { FooterService } from './footer.service';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
 
-
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
 @Component({
     selector: 'app-footer-cmp',
     templateUrl: 'footer.component.html'
 })
-
 export class FooterComponent {
     test: Date = new Date();
-
     constructor(private _serv: FooterService) { }
     form;
     ngOnInit() {
@@ -24,7 +20,6 @@ export class FooterComponent {
             ]))
         });
     }
-
     onSubmit(email) {
         this._serv.subcribe(email).subscribe(
             data => {

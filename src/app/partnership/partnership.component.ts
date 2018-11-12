@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./partnership.component.css'],
   providers: [partnershipservice]
 })
-
 export class PartnershipComponent implements OnInit {
   formBuilder: any;
   var_Partner_description

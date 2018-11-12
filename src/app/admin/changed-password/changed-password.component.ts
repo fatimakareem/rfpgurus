@@ -1,11 +1,11 @@
-import { Component, OnInit,OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { PasswordValidation } from './password-validator.component';
 import { ChangedPasswordService } from './changed-password.service';
 import swal from 'sweetalert2';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from "angular4-social-login";
-declare const $ :any;
+declare const $: any;
 declare interface ValidatorFn {
     (c: AbstractControl): {
         [key: string]: any;
@@ -21,17 +21,14 @@ declare interface User {
     idSource?: string;
     idDestination?: string;
     optionsCheckboxes?: boolean;
-
-
 }
-
 @Component({
     selector: 'app-changed-password',
     templateUrl: './changed-password.component.html',
     styleUrls: ['./changed-password.component.css'],
-    providers: [AuthService,ChangedPasswordService]
+    providers: [AuthService, ChangedPasswordService]
 })
-export class ChangedPasswordComponent implements OnInit,OnDestroy {
+export class ChangedPasswordComponent implements OnInit, OnDestroy {
     local;
     uname;
     public typeValidation: User;
@@ -41,26 +38,22 @@ export class ChangedPasswordComponent implements OnInit,OnDestroy {
     options: FormGroup;
     endRequest;
     shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
-    constructor(private authService: AuthService,private _nav:Router,private router: Router, private _serv: ChangedPasswordService, private formBuilder: FormBuilder) {
+    constructor(private authService: AuthService, private _nav: Router, private router: Router, private _serv: ChangedPasswordService, private formBuilder: FormBuilder) {
         if (localStorage.getItem('currentUser')) {
             this.local = localStorage.getItem('currentUser');
-            let pars = JSON.parse(this.local) ;
+            let pars = JSON.parse(this.local);
             this.uname = pars.username
-            console.log("zain",this.uname)
+            console.log("zain", this.uname)
         }
-
         this.options = formBuilder.group({
             bottom: 0,
             fixed: false,
             top: 0
         });
-
     }
-
     isFieldValid(form: FormGroup, field: string) {
         return !form.get(field).valid && form.get(field).touched;
     }
-
     displayFieldCss(form: FormGroup, field: string) {
         return {
             'has-error': this.isFieldValid(form, field),
@@ -69,8 +62,7 @@ export class ChangedPasswordComponent implements OnInit,OnDestroy {
     }
     changedPassword() {
         if (this.register.valid && this.register.value.oldpassword != this.register.value.password) {
-
-         this.endRequest= this._serv.user_change_password(this.register.value.oldpassword, this.register.value.password, this.register.value.confirmPassword, ).subscribe(
+            this.endRequest = this._serv.user_change_password(this.register.value.oldpassword, this.register.value.password, this.register.value.confirmPassword).subscribe(
                 data => {
                     swal({
                         type: 'success',
@@ -78,8 +70,6 @@ export class ChangedPasswordComponent implements OnInit,OnDestroy {
                         showConfirmButton: false,
                         timer: 1500
                     })
-                    // let url = 'find-bids';
-                    // this.router.navigate([url]);
                 },
                 error => {
                     swal(
@@ -93,8 +83,6 @@ export class ChangedPasswordComponent implements OnInit,OnDestroy {
             this.validateAllFormFields(this.register);
         }
     }
-
-
     validateAllFormFields(formGroup: FormGroup) {
         Object.keys(formGroup.controls).forEach(field => {
             // console.log(field);
@@ -106,25 +94,21 @@ export class ChangedPasswordComponent implements OnInit,OnDestroy {
             }
         });
     }
-
     ngOnInit() {
-
         this.register = this.formBuilder.group({
             // To add a validator, we must first convert the string value into an array. The first item in the array is the default value if any, then the next item in the array is the validator. Here we are adding a required validator meaning that the firstName attribute must have a value in it.
             oldpassword: ['', Validators.required],
             password: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(100)])],
             confirmPassword: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(100)])],
         }, {
-            validator: PasswordValidation.MatchPassword // your validation method
-        });
-
-        $('#click_advance').click(function() {
+                validator: PasswordValidation.MatchPassword // your validation method
+            });
+        $('#click_advance').click(function () {
             $("i", this).toggleClass("fa-arrow-left fa-arrow-right");
         });
-
     }
     logout() {
-        this.authService.signOut();        
+        this.authService.signOut();
         localStorage.clear();
         swal({
             type: 'success',
@@ -132,13 +116,8 @@ export class ChangedPasswordComponent implements OnInit,OnDestroy {
             showConfirmButton: false,
             timer: 1500
         });
-
         this._nav.navigate(['/']);
-
     }
-    ngOnDestroy(){
-        // this.endRequest.unsubscribe();
+    ngOnDestroy() {
     }
-
-
 }

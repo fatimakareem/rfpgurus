@@ -1,20 +1,16 @@
-import { Component, OnInit,OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ContactUsService } from './contact-us.service';
 import swal from 'sweetalert2';
-const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const NAME_REGEX = /^[a-zA-Z _.]+$/;
-const PHONE_REGEX = /^[0-9]+$/;
 const normalPattern = /^[a-zA-Z0-9_.-]+?/;
-
 @Component({
   selector: 'app-contact-us',
   templateUrl: './contact-us.component.html',
   styleUrls: ['./contact-us.component.css'],
   providers: [ContactUsService]
-  
 })
-export class ContactUsComponent implements OnInit,OnDestroy {
+export class ContactUsComponent implements OnInit, OnDestroy {
   form;
   public phoneMask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   emailonly = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
@@ -32,7 +28,6 @@ export class ContactUsComponent implements OnInit,OnDestroy {
       ])),
       phone: new FormControl("", Validators.compose([
         Validators.required,
-       
       ])),
       message: new FormControl("", Validators.compose([
         Validators.required,
@@ -42,23 +37,18 @@ export class ContactUsComponent implements OnInit,OnDestroy {
   }
   onSubmit(name, email, phone, message) {
     console.log(name, email, phone, message);
-
-  this.endRequest= this._serv.contact(name, email, phone, message).subscribe(data => {
+    this.endRequest = this._serv.contact(name, email, phone, message).subscribe(data => {
       console.log(data)
-
     })
   }
-  fun_send_message()
-  {
+  fun_send_message() {
     swal({
       type: 'success',
       title: 'Thank You For Contacting Us, We Will Reply Soon On Our E-mail',
       showConfirmButton: true,
       confirmButtonColor: "#090200",
-
-  });
+    });
   }
-  ngOnDestroy(){
-    // this.endRequest.unsubscribe();
-}
+  ngOnDestroy() {
+  }
 }
