@@ -66,7 +66,7 @@ this.query=event;
     setTimeout(this.focusInput(), 5000);
   }
 
-  constructor( private speech: SpeechRecognitionService,private authService: AuthService,private _nav: Router, public _shareData: SharedData,private _serv: HeaderService,private _serv1: RfpService) {}
+  constructor( private speech: SpeechRecognitionService,private authService: AuthService,private _nav: Router, public _shareData: SharedData,private _serv: HeaderService,private _serv1: RfpService) { this. check_login1();}
   logout() {
     this.authService.signOut().then( success =>{
     console.log("true",success)
@@ -136,7 +136,7 @@ this.query=event;
       });
   }
   ngOnInit() {
-    this. check_login1();
+   
     this._shareData.notification.subscribe(message => this.notificate = message)
     this._shareData.unreadnotification.subscribe(message => this.unread = message)
 

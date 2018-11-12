@@ -90,7 +90,7 @@ import {
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { PaymentmethodsComponent } from './admin/paymentmethods/paymentmethods.component';
+// import { PaymentmethodsComponent } from './admin/paymentmethods/paymentmethods.component';
 // import { AllnotificationComponent } from './allnotification/allnotification.component';
 import { AppRoutes } from './app.routing';
 // import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
@@ -246,7 +246,7 @@ export class MaterialModule {}
         AdminComponent,
         // UnsubscribeComponent,
         // AllnotificationComponent,
-        PaymentmethodsComponent,
+        // PaymentmethodsComponent,
         SidebarComponent,
         AppComponent,
         AuthLayoutComponent,
