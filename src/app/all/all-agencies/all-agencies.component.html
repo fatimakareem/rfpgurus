@@ -3,13 +3,8 @@
     <i (click)="focusInput()">focus</i>
     <div class="container">
       <div class="search-holder">
-<<<<<<< HEAD
         <input ngAutoFocus  type="search" name=querysearch [(ngModel)]="query" #querysearch="ngModel" (keydown)=filter(query)
                placeholder="Search Agencies" id="textsearch" >
-=======
-        <input ngAutoFocus type="search" name=querysearch [(ngModel)]="query" #querysearch="ngModel" (keydown)=filter(query)
-          placeholder="Search RFPs" id="textsearch">
->>>>>>> 3a909d6a3722d80c34387a9a05c48bcd108e37b1
         <i class="fa fa-close" id="iconClose" (click)="closeSearch()"></i>
       </div>
       <div class="search-results" *ngIf="Rfp">
