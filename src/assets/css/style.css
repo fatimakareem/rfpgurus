@@ -210,9 +210,9 @@
 }
 
 /*body {*/
-    /*display: block!important;*/
-    /*background-color: #fafafa;*/
-    /*overflow-x: hidden*/
+/*display: block!important;*/
+/*background-color: #fafafa;*/
+/*overflow-x: hidden*/
 /*}*/
 
 .footer-upper {
@@ -1279,6 +1279,10 @@ body {
     background-color: #fafafa;
     overflow-x: hidden;
 }
+.card [data-background-color="purple"] {
+    background: #000 !important;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(176, 39, 39, 0.4) !important;
+}
 .card [data-background-color="red"] {
     background: #000 !important;
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4) !important;
@@ -1297,11 +1301,58 @@ body {
 .subscribe .input-group .input-group-btn {
     padding: 0 !important;
 }
+.sidebar-user .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-placeholder, .mat-form-field-empty.mat-form-field-placeholder, mat-form-field.mat-form-field{
+    font-weight: 400 !important;
+}
+.mat-option:hover {
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4) !important;
+    background: #c00 !important;
+    color: #FFFFFF !important;
+}
+.btn.btn-primary, .btn.btn-primary:hover, .btn.btn-primary:focus, .btn.btn-primary:active, .btn.btn-primary.active, .btn.btn-primary:active:focus, .btn.btn-primary:active:hover, .btn.btn-primary.active:focus, .btn.btn-primary.active:hover, .open > .btn.btn-primary.dropdown-toggle, .open > .btn.btn-primary.dropdown-toggle:focus, .open > .btn.btn-primary.dropdown-toggle:hover, .navbar .navbar-nav > li > a.btn.btn-primary, .navbar .navbar-nav > li > a.btn.btn-primary:hover, .navbar .navbar-nav > li > a.btn.btn-primary:focus, .navbar .navbar-nav > li > a.btn.btn-primary:active, .navbar .navbar-nav > li > a.btn.btn-primary.active, .navbar .navbar-nav > li > a.btn.btn-primary:active:focus, .navbar .navbar-nav > li > a.btn.btn-primary:active:hover, .navbar .navbar-nav > li > a.btn.btn-primary.active:focus, .navbar .navbar-nav > li > a.btn.btn-primary.active:hover, .open > .navbar .navbar-nav > li > a.btn.btn-primary.dropdown-toggle, .open > .navbar .navbar-nav > li > a.btn.btn-primary.dropdown-toggle:focus, .open > .navbar .navbar-nav > li > a.btn.btn-primary.dropdown-toggle:hover{
+    background-color: #000 !important;
+}
+.carouselTwo .buttons.leftRs{
+    left: 0 ;
+}
+.carouselTwo .buttons.rightRs{
+    right: 0 ;
+}
+.carouselTwo .ngxcarousel-inner {
+    margin: 0px 20px;
+}
+.sh-f-c{
+    background-color: #fff;
+}
+.com-table .table > thead > tr > th {
+    font-size: 22px;
+    font-weight: 500;
+}
+.plan-detail{
+    padding: 0 5px !important;
+}
+.nav-home ul a i {
+    margin: 0 3px 0 0;
+    width: auto;
+}
+body{
+    display: block !important;
+}
+@media (min-width: 1680px) {
+    .navbar-nav > li > a {
+        font-size: 18px !important;
+    }
+}
 
+@media (min-width:1440px) and (max-width:1679px)  {
+    .navbar-nav > li > a {
+        font-size: 16px !important;
+    }
+}
 
-@media (min-width:1281px) {
+@media (min-width:1281px) and (max-width:1439px) {
     .navbar-nav>li>a {
-        font-size: 14px!important;
+        font-size: 15px!important;
     }
     .sh-android-apple {
         padding-right: 8px ;
@@ -1517,6 +1568,9 @@ body {
         right: 10px;
         top: 0
     }
+    .nav-home ul a i {
+        margin: 0 2px 0 0;
+    }
     .sh-signin-signup>li:last-child:before {
         top: 9px;
         bottom: 0;
@@ -1586,8 +1640,8 @@ body {
         font-size: 18px;
     }
     .custom-popup-img img {
-         width: 50% !important;
-     }
+        width: 50% !important;
+    }
     .custom-model .modal-header {
         padding: 4px 6px 0 24px !important;
     }
@@ -1748,4 +1802,5 @@ body {
         padding: 0;
     }
 }
+
 
