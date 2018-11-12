@@ -1,39 +1,33 @@
-import { Component, OnInit, AfterContentInit, ElementRef, ViewChild,Output, EventEmitter,Input } from '@angular/core';
-import { Router} from '@angular/router';
+import { Component, OnInit, AfterContentInit, ElementRef, ViewChild, Output, EventEmitter, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { HeaderService } from './header.service';
 import swal from 'sweetalert2';
-import {SharedData} from '../shared-service';
+import { SharedData } from '../shared-service';
 import { AuthService, SocialUser } from "angular4-social-login";
 import { Meta } from '@angular/platform-browser';
 import { SpeechRecognitionService } from './speechservice';
 import { RfpService } from '../rfps/single-rfp/rfp.service';
 import { Observable, Subject } from 'rxjs/Rx';
-
 declare var $: any;
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
-
 })
-
 export class HeaderComponent implements OnInit {
-    // @ViewChild('openModal') openModal: ElementRef;
-   
-    public blink = false;
-    @Output() spokenText = new EventEmitter<string>();
-    @Output() error = new EventEmitter<string>();
-    @Input() showInput = true;
-    text;
-    onError(event){
-console.log(event,"error")
-    }
-    response(event){
-console.log(event,'text')
-this.query=event;
-    }
-   
+  // @ViewChild('openModal') openModal: ElementRef;
+  public blink = false;
+  @Output() spokenText = new EventEmitter<string>();
+  @Output() error = new EventEmitter<string>();
+  @Input() showInput = true;
+  text;
+  onError(event) {
+    console.log(event, "error")
+  }
+  response(event) {
+    console.log(event, 'text')
+    this.query = event;
+  }
   uname;
   local;
   name;
@@ -65,13 +59,12 @@ this.query=event;
     this.mainSearch = 1;
     setTimeout(this.focusInput(), 5000);
   }
-
-  constructor( private speech: SpeechRecognitionService,private authService: AuthService,private _nav: Router, public _shareData: SharedData,private _serv: HeaderService,private _serv1: RfpService) {}
+  constructor(private speech: SpeechRecognitionService, private authService: AuthService, private _nav: Router, public _shareData: SharedData, private _serv: HeaderService, private _serv1: RfpService) { }
   logout() {
-    this.authService.signOut().then( success =>{
-    console.log("true",success)
-    },error =>{
-    console.log("error",error)
+    this.authService.signOut().then(success => {
+      console.log("true", success)
+    }, error => {
+      console.log("error", error)
     });
     localStorage.clear();
     sessionStorage.clear();
@@ -81,128 +74,98 @@ this.query=event;
       showConfirmButton: false,
       confirmButtonColor: "#090200",
       timer: 1500
-      });
-
+    });
     this._nav.navigate(['/']);
   }
   triggerMike() {
     if (!('webkitSpeechRecognition' in window)) {
       console.log('please upgrade');
     } else {
-     
       this.blink = true;
       this.search();
     }
   }
   search(): void {
     this.speech.record().subscribe((text) => {
-        this.query = text;
-        this.blink = false;
-        this.spokenText.emit(this.query);
-        this.speech.stop();
-      },
-      // (err) => {
-      //   this.error.emit('Failed in Fetching');
-      //   if (err.error === 'no-speech') {
-      //     this.search();
-      //   }
-      // }
+      this.query = text;
+      this.blink = false;
+      this.spokenText.emit(this.query);
+      this.speech.stop();
+    },
     );
   }
   single(query) {
-    let sth = 'rfp/'+query;
+    let sth = 'rfp/' + query;
     this._nav.navigate([sth]);
   }
-  deletenofication(id){
+  deletenofication(id) {
     this._serv.deletenotify(id).subscribe(
-
       data => {
-    
-      this.notification();
+        this.notification();
       },
       error => {
-        // console.log(error);
       });
   }
-  updatenofication(id){
+  updatenofication(id) {
     this._serv.Updatenotify(id).subscribe(
-
       data => {
-    
-      this.notification();
+        this.notification();
       },
       error => {
-        // console.log(error);
       });
   }
   ngOnInit() {
-    this. check_login1();
+    this.check_login1();
     this._shareData.notification.subscribe(message => this.notificate = message)
     this._shareData.unreadnotification.subscribe(message => this.unread = message)
-
     this._shareData.currentMessage.subscribe(message => this.wrfp = message)
     this._shareData.currentMessagetotal.subscribe(message => this.total = message)
     this.watchlist();
     let timer = Observable.timer(0, 60000);
-    timer.subscribe(() =>  this.notification());
-    
+    timer.subscribe(() => this.notification());
     $('#search').click(function () {
       setTimeout(function () {
         $('#textsearch').focus();
       }, 350);
     });
-
-    
-
-  $("#box").click(function(){
-    $("#box").toggleClass("animation-blink");
-}); 
-
+    $("#box").click(function () {
+      $("#box").toggleClass("animation-blink");
+    });
   }
   notificate;
   unread;
   total_notification;
-  notification(){
-    
+  notification() {
     this._serv.notify().subscribe(
-
       data => {
         this.notificate = data['notifications'];
-        this.unread=data.unread;
-        this._shareData.notifyInfo(this.notificate );
-        this._shareData.unreadnotifyInfo(this.unread );
-
-      //  this.total_notification=data.total
-      
+        this.unread = data.unread;
+        this._shareData.notifyInfo(this.notificate);
+        this._shareData.unreadnotifyInfo(this.unread);
       },
       error => {
-        // console.log(error);
       });
   }
   total;
-  watchlist(){
+  watchlist() {
     this._serv.Watchlist().subscribe(
-
       data => {
         this.wrfp = data['result'];
-       this.total=data.total
-       this._shareData.watchInfo( this.wrfp); 
-       this._shareData.watchtotal(this.total);
+        this.total = data.total
+        this._shareData.watchInfo(this.wrfp);
+        this._shareData.watchtotal(this.total);
       },
       error => {
-        // console.log(error);
       });
   }
-  get(id,title){
-    this.id=id;
-    this.title=title
+  get(id, title) {
+    this.id = id;
+    this.title = title
   }
-  deletewatchlist(){
+  deletewatchlist() {
     this._serv.deleteWatchlist(this.id).subscribe(
-
       data => {
         this.watchlist();
-      
       },
       error => {
         // console.log(error);
@@ -217,16 +180,13 @@ this.query=event;
     } else {
       return false;
     }
-
   }
-  fund(event){
-     console.log(this.query)
-      this._shareData.catInfo(this.query);
-      let requiredUrl='searched-data'
-      this._nav.navigate([requiredUrl], { queryParams: { keyword: this.query }});
-      this.closeSearch();
-
-
+  fund(event) {
+    console.log(this.query)
+    this._shareData.catInfo(this.query);
+    let requiredUrl = 'searched-data'
+    this._nav.navigate([requiredUrl], { queryParams: { keyword: this.query } });
+    this.closeSearch();
   }
   filter(query) {
     if (this.query !== "") {
@@ -237,7 +197,6 @@ this.query=event;
       });
     }
   }
-
   select(item) {
     this.selected = item;
     this.mainSearch = 0;
@@ -245,7 +204,7 @@ this.query=event;
     this.Rfp = '';
   }
   singlerfp(query) {
-    let sth = 'rfp/'+query;
+    let sth = 'rfp/' + query;
     this._nav.navigate([sth]);
     this.mainSearch = 0;
     this.query = '';
@@ -255,20 +214,19 @@ this.query=event;
   check_login1() {
     if (localStorage.getItem('currentUser')) {
       this.local = localStorage.getItem('currentUser');
-     let pars = JSON.parse(this.local) ;
-     this.uname = pars.username
-    this._serv1.usersubscribe(this.uname).subscribe(
-        data =>{
-        //   console.log(data.Response);
-          if(data.Response == "Subscribe user"){
-             this.subscribe = data.Response
+      let pars = JSON.parse(this.local);
+      this.uname = pars.username
+      this._serv1.usersubscribe(this.uname).subscribe(
+        data => {
+          //   console.log(data.Response);
+          if (data.Response == "Subscribe user") {
+            this.subscribe = data.Response
             return false
           }
         },
-        error =>{
-        // console.log(error);
+        error => {
+          // console.log(error);
         });
-     
     }
     else {
       return true

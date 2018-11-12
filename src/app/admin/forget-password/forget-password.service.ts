@@ -4,14 +4,10 @@ import { Injectable } from '@angular/core';
 import { Headers, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { HttpService } from '../../serv/http-service';
-
 @Injectable()
 export class ForgetPasswordService {
-
     constructor(private _http5: HttpService) { }
-
     loaded: boolean = false;
-
     change_password(pass1, pass2, code) {
         const headers = new Headers({
             'Accept': 'application/json',

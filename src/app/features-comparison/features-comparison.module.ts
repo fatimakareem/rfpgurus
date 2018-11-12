@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FeaturesComparisonComponent } from '../features-comparison/features-comparison.component';
-import { Routes, RouterModule} from '@angular/router';
-const routes :Routes =[
+import { Routes, RouterModule } from '@angular/router';
+const routes: Routes = [
   {
-    path:'',component:FeaturesComparisonComponent
+    path: '', component: FeaturesComparisonComponent
   }
 ]
 @NgModule({
@@ -15,4 +15,3 @@ const routes :Routes =[
   declarations: [FeaturesComparisonComponent]
 })
 export class FeaturesComparisonModule { }
-

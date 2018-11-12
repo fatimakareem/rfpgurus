@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HowItWorksComponent } from './how-it-works.component';
-import { Routes, Router, RouterModule} from '@angular/router';
-
-
-const routes :Routes =[
+import { Routes, Router, RouterModule } from '@angular/router';
+const routes: Routes = [
   {
-    path:'',component:HowItWorksComponent
+    path: '', component: HowItWorksComponent
   }
 ]
 @NgModule({

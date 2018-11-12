@@ -15,4 +15,3 @@ const routes :Routes =[
   declarations: [AboutComponent]
 })
 export class AboutModule { }
-

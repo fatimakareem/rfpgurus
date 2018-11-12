@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PrivacyPolicyComponent } from '../privacy-policy/privacy-policy.component';
-import { Routes, RouterModule} from '@angular/router';
-const routes :Routes =[
+import { Routes, RouterModule } from '@angular/router';
+const routes: Routes = [
   {
-    path:'',component:PrivacyPolicyComponent
+    path: '', component: PrivacyPolicyComponent
   }
 ]
 @NgModule({
@@ -15,4 +15,3 @@ const routes :Routes =[
   declarations: [PrivacyPolicyComponent]
 })
 export class PrivacyPolicyModule { }
-

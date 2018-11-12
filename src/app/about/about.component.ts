@@ -1,18 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {NgxCarousel} from 'ngx-carousel';
-
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html'
 })
 export class AboutComponent implements OnInit {
-
   constructor() { }
-
     public clientCarousel: NgxCarousel;
-
   ngOnInit() {
-
       this.clientCarousel = {
           grid: {xs: 1, sm: 3, md: 4, lg: 5, all: 0},
           slide: 1,
@@ -33,5 +28,4 @@ export class AboutComponent implements OnInit {
         // it is helps to load the data by parts to increase the performance of the app
         // must use feature to all carousel
     }
-
 }
