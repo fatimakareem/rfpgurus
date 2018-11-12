@@ -10,7 +10,9 @@ const normalPattern = /^[a-zA-Z0-9_.-]+?/;
 @Component({
   selector: 'app-contact-us',
   templateUrl: './contact-us.component.html',
-  styleUrls: ['./contact-us.component.css']
+  styleUrls: ['./contact-us.component.css'],
+  providers: [ContactUsService]
+  
 })
 export class ContactUsComponent implements OnInit,OnDestroy {
   form;

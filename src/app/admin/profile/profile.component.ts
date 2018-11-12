@@ -29,7 +29,8 @@ declare interface User {
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.css']
+    styleUrls: ['./profile.component.css'],
+ providers: [AdvanceService,AuthService,ProfileService,MainService]
 })
 export class ProfileComponent implements OnInit,OnDestroy {
     endRequest;

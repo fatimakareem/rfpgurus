@@ -5,7 +5,8 @@ import {SharedData} from '../../shared-service';
 @Component({
   selector: 'app-all-state',
   templateUrl: './all-state.component.html',
-  styleUrls: ['./all-state.component.css']
+  styleUrls: ['./all-state.component.css'],
+  providers: [AllStateService,SharedData]
 })
 export class AllStateComponent implements OnInit,OnDestroy {
   endRequest;

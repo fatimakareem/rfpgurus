@@ -19,23 +19,23 @@ import { UnsubscribeService } from './unsubscribe/unsubscribe.service';
 
 import { RfpService} from './rfps/single-rfp/rfp.service';
 import { LoginService} from './login/login.service';
-import { PricingService } from './pricing/pricing.service';
+// import { PricingService } from './pricing/pricing.service';
 import { RegisterService} from './registered/register.service';
-import { ForgetPasswordService } from './admin/forget-password/forget-password.service';
-import { ChangedPasswordService } from './admin/changed-password/changed-password.service';
+// import { ForgetPasswordService } from './admin/forget-password/forget-password.service';
+// import { ChangedPasswordService } from './admin/changed-password/changed-password.service';
 import { SidebarService } from './user-sidebar/sidebar.service';
 // import { CategoryService } from './categories/category.service';
-import {AllAgenciesService} from './all/all-agencies/all-agencies.service';
+// import {AllAgenciesService} from './all/all-agencies/all-agencies.service';
 import { StateService } from './rfps/state-rfp/state.service';
 import { CategoryRfpService } from './rfps/category-rfp/category-rfp.service';
-import { AllCategoryService } from './all/all-category/all-category.service';
-import { AllStateService } from './all/all-state/all-state.service';
-import { ProfileService } from './admin/profile/profile.service';
+// import { AllCategoryService } from './all/all-category/all-category.service';
+// import { AllStateService } from './all/all-state/all-state.service';
+// import { ProfileService } from './admin/profile/profile.service';
 import { HeaderService } from './header/header.service';
 import { HomeService } from './home/home.service';
 import { AdvanceService } from './advance-search/advance.service';
 import { BlogService } from'./blog/blog.service'
-import { ContactUsService } from './contact-us/contact-us.service';
+// import { ContactUsService } from './contact-us/contact-us.service';
 import { FooterService } from './footer/footer.service';
 import { PaymentmethodsService } from './admin/paymentmethods/paymentmethods.service';
 
@@ -50,7 +50,7 @@ import {BaseRequestOptions} from '@angular/http';
 import {PreloaderService} from './serv/preloader-service';
 import {XHRBackend, RequestOptions} from '@angular/http';
 import {HttpService} from './serv/http-service';
-import { MainService } from './serv/main.service'
+// import { MainService } from './serv/main.service'
 // import {AlertService} from './serv/alert.service';
 //////////////////////////////////////////////////////////End//////////////////////////////////////////////
 import 'hammerjs';
@@ -90,58 +90,39 @@ import {
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
-
-// import { SidebarModule } from './sidebar/sidebar.module';
-// import { FooterModule } from './shared/footer/footer.module';
-// import { NavbarModule} from './shared/navbar/navbar.module';
-// import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
-// import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { PaymentmethodsComponent } from './admin/paymentmethods/paymentmethods.component';
-import { AllnotificationComponent } from './allnotification/allnotification.component';
-
+// import { AllnotificationComponent } from './allnotification/allnotification.component';
 import { AppRoutes } from './app.routing';
 import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
-
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { SingleRfpComponent } from './rfps/single-rfp/single-rfp.component';
 import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
-import { PricingComponent } from './pricing/pricing.component';
+// import { PricingComponent } from './pricing/pricing.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { RfpComponent } from './rfps/rfp/rfp.component';
 import { RegisteredComponent } from './registered/registered.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { LoginComponent } from './login/login.component';
-import { ForgetPasswordComponent } from './admin/forget-password/forget-password.component';
-import { AboutComponent } from './about/about.component';
-// import { CategoriesComponent } from './categories/categories.component';
+// import { ForgetPasswordComponent } from './admin/forget-password/forget-password.component';
 import { StateRfpComponent } from './rfps/state-rfp/state-rfp.component';
 import { CategoryRfpComponent } from './rfps/category-rfp/category-rfp.component';
-import { AllCategoryComponent } from './all/all-category/all-category.component';
-import { AllStateComponent } from './all/all-state/all-state.component';
+// import { AllCategoryComponent } from './all/all-category/all-category.component';
+// import { AllStateComponent } from './all/all-state/all-state.component';
 import { DialogOverviewExample } from './residential/residential.component';
-import { ProfileComponent } from './admin/profile/profile.component';
+// import { ProfileComponent } from './admin/profile/profile.component';
 import { AuthGuard } from './_guards/auth.guard';
-import { ContactUsComponent } from './contact-us/contact-us.component';
+// import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AgmCoreModule } from '@agm/core';
 import { FooterComponent } from './footer/footer.component';
-import { ChangedPasswordComponent } from './admin/changed-password/changed-password.component';
-import { AdvanceSearchComponent } from './advance-search/advance-search.component';
-import { RfpAsServiceComponent } from './rfp-as-service/rfp-as-service.component';
-import { BlogComponent } from './blog/blog.component';
-import { SingleblogComponent } from './singleblog/singleblog.component';
+// import { ChangedPasswordComponent } from './admin/changed-password/changed-password.component';
+// import { AdvanceSearchComponent } from './advance-search/advance-search.component';
+// import { RfpAsServiceComponent } from './rfp-as-service/rfp-as-service.component';
+// import { BlogComponent } from './blog/blog.component';
+// import { SingleblogComponent } from './singleblog/singleblog.component';
 import {RecaptchaModule} from 'ng-recaptcha';
-import { HowItWorksComponent } from './how-it-works/how-it-works.component';
-import { WhatIsRfpComponent } from './what-is-rfp/what-is-rfp.component';
-import { FeaturesComparisonComponent } from './features-comparison/features-comparison.component';
-import { TermsComponent } from './terms/terms.component';
-import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import { PartnershipComponent } from './partnership/partnership.component';
-import {WhyRfpgurusComponent} from './why-rfpgurus/why-rfpgurus.component';
-import {OurTeamComponent} from './our-team/our-team.component';
-import {WhatWeDoComponent} from './what-we-do/what-we-do.component';
-// import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
-import { HistoryComponent } from './admin/history/history.component';
+// import { PartnershipComponent } from './partnership/partnership.component';
+// import { HistoryComponent } from './admin/history/history.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {SharedData } from './shared-service'
 import {DatePipe} from '@angular/common';
@@ -149,13 +130,13 @@ import {BlackgeeksRecaptchaModule} from './recaptcha/recaptcha.module';
 import {RecaptchaComponent} from './recaptcha/recaptcha.component';
 import {ResultsComponent} from './results/results.component';
 import {ResultsService} from './results/results.service';
-import {PagerService} from './rfps/rfp/paginator.service';
-import {AllAgenciesComponent} from './all/all-agencies/all-agencies.component';
+// import {PagerService} from './rfps/rfp/paginator.service';
+// import {AllAgenciesComponent} from './all/all-agencies/all-agencies.component';
 import {AgencyRfpComponent} from './rfps/agency-rfp/agency-rfp.component';
 import {AgencyService} from './rfps/agency-rfp/agency.service';
-import {BaseComponent} from './base/base.component';
-import {AllRfpsComponent} from './all/all-rfps/all-rfps.component';
-import {AllRfpsService} from './all/all-rfps/all-rfps.service';
+// import {BaseComponent} from './base/base.component';
+// import {AllRfpsComponent} from './all/all-rfps/all-rfps.component';
+// import {AllRfpsService} from './all/all-rfps/all-rfps.service';
 import { AdminLayoutComponent } from './layouts/lyout/admin-layout.component';
 import {AuthLayoutComponent} from './layouts/auth/auth-layout.component';
 import{AdminComponent} from './layouts/superadmin/admin-layout.component'
@@ -174,7 +155,7 @@ export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestO
 /////////////////////////Social login//////////////////////////////
 import { SocialLoginModule, AuthServiceConfig } from "angular4-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angular4-social-login";
-import { partnershipservice } from './partnership/partnership.service';
+// import { partnershipservice } from './partnership/partnership.service';
 // import { SlickModule } from 'ngx-slick';
 let config = new AuthServiceConfig([
     {
@@ -194,7 +175,7 @@ let config = new AuthServiceConfig([
 
 @NgModule({
     exports: [
-        
+      
         MatAutocompleteModule,
         MatButtonModule,
         MatButtonToggleModule,
@@ -233,11 +214,9 @@ let config = new AuthServiceConfig([
 
 })
 export class MaterialModule {}
-
 @NgModule({
     imports:      [
         Nl2BrPipeModule,
-  
         Ng2SmartTableModule,
         CommonModule,
         UsMapModule,
@@ -250,11 +229,8 @@ export class MaterialModule {}
         MatNativeDateModule,
         ProgressHttpModule,
         Ng2SearchPipeModule,
-        // SidebarModule,
-        // NavbarModule,
-        // FooterModule,
         NgxCarouselModule,
-        // InputModule,
+   
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyDPnJ0zatoiPOI1GOeeS7HCj7AxIW183tg'
         }),
@@ -265,24 +241,20 @@ export class MaterialModule {}
         MatTooltipModule,
         MatStepperModule,
         SocialLoginModule,
-        // SlickModule.forRoot(),
-        // LivechatWidgetModule
     ],
     declarations: [
         AdminComponent,UnsubscribeComponent,
-        AllnotificationComponent,
+        // AllnotificationComponent,
         PaymentmethodsComponent,
         SidebarComponent,
         AppComponent,
-        // AdminLayoutComponent,
-        // AuthLayoutComponent,
         AuthLayoutComponent,
         AdminLayoutComponent,
         HomeComponent,
         HeaderComponent,
         SingleRfpComponent,
         UserSidebarComponent,
-        PricingComponent,
+        // PricingComponent,
         RfpComponent,
         PreloaderFull,
         PreloaderSmall,
@@ -290,37 +262,26 @@ export class MaterialModule {}
         RegisteredComponent,
         AuthenticateComponent,
         LoginComponent,
-        ForgetPasswordComponent,
-        AboutComponent,
+        // ForgetPasswordComponent,
         RecaptchaComponent,
-        // CategoriesComponent,
         StateRfpComponent,
         CategoryRfpComponent,
-        AllCategoryComponent,
-        AllStateComponent,
+        // AllCategoryComponent,
+        // AllStateComponent,
         DialogOverviewExample,
-        ProfileComponent,
-        AllRfpsComponent,
+        // ProfileComponent,
+        // AllRfpsComponent,
         FooterComponent,
-        ChangedPasswordComponent,
-        AdvanceSearchComponent,
-        ContactUsComponent,
-        RfpAsServiceComponent,
-        BlogComponent,
-        SingleblogComponent,
-        HowItWorksComponent,
-        WhatIsRfpComponent,
-        FeaturesComparisonComponent,
-        TermsComponent,
-        PrivacyPolicyComponent,
-        PartnershipComponent,
-        WhyRfpgurusComponent,
-        OurTeamComponent,
-        WhatWeDoComponent,
-        BaseComponent,
+        // ChangedPasswordComponent,
+        // AdvanceSearchComponent,
+        // BlogComponent,
+        // BlogComponent,
+        // SingleblogComponent,
+        // PartnershipComponent,
+        // BaseComponent,
         ResultsComponent,
-        HistoryComponent,
-        AllAgenciesComponent,
+        // HistoryComponent,
+        // AllAgenciesComponent,
         AgencyRfpComponent,WatchlistComponent
     ],
     providers: [
@@ -329,36 +290,35 @@ export class MaterialModule {}
             useFactory: provideConfig
           },
         DatePipe,
-        MainService,
-        AllStateService,
+        // MainService,
+        // AllStateService,
         SharedData,
         AdvanceService,
         HomeService,
         HeaderService,
-        ChangedPasswordService,
-        AllCategoryService,
+        // ChangedPasswordService,
+        // AllCategoryService,
         CategoryRfpService,
         StateService,
         RfpService,
         SidebarService,
         LoginService,
-        PricingService,
+        // PricingService,
         RegisterService,
-        AllRfpsService,
-        ForgetPasswordService,
+        // AllRfpsService,
+        // ForgetPasswordService,
         PreloaderService,
-        PagerService,
+        // PagerService,
         AuthGuard,
-        // CategoryService,
         BaseRequestOptions,
-        ProfileService,
-        ContactUsService,
+        // ProfileService,
+        // ContactUsService,
         FooterService,
         ResultsService,
-        AllAgenciesService,
+        // AllAgenciesService,
         AgencyService,
         BlogService,
-        partnershipservice,
+        // partnershipservice,
         SpeechRecognitionService,
         PaymentmethodsService,UnsubscribeService,
         {

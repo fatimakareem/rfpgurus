@@ -5,7 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-singleblog',
   templateUrl: './singleblog.component.html',
-  styleUrls: ['./singleblog.component.css']
+  styleUrls: ['./singleblog.component.css'],
+  providers: [BlogService]
 })
 export class SingleblogComponent implements OnInit {
   blog:any=[];

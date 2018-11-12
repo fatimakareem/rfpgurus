@@ -12,6 +12,7 @@ import { JwtHelper } from 'angular2-jwt';
 import {Http ,Headers } from '@angular/http';
 import {ActivatedRoute} from '@angular/router';
 
+
 declare interface ValidatorFn {
     (c: AbstractControl): {
         [key: string]: any;
@@ -33,7 +34,8 @@ declare interface User {
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+    styleUrls: ['./login.component.css'],
+    providers: [LoginService,AuthService]
 })
 export class LoginComponent implements OnInit,OnDestroy {
     @ViewChild(RecaptchaComponent) captcha: RecaptchaComponent;

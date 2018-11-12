@@ -3,14 +3,12 @@ import { Http, Headers, Response } from '@angular/http';
 import { PricingService } from './pricing.service';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
-
 import { RfpService } from '../rfps/single-rfp/rfp.service';
-
-
 @Component({
   selector: 'app-pricing',
   templateUrl: './pricing.component.html',
   styleUrls: ['./pricingsteps.component.scss'],
+  providers: [PricingService,RfpService]
 })
 export class PricingComponent implements OnInit {
   /////////////////////////////card///////////////////////////

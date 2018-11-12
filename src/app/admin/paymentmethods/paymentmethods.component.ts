@@ -2,22 +2,18 @@ import { Component, Inject, OnInit, PLATFORM_ID, OnDestroy } from '@angular/core
 import { PaymentmethodsService } from './paymentmethods.service';
 import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
-
-import { HttpClient } from "@angular/common/http";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
-import { isPlatformBrowser } from '@angular/common';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subscription } from 'rxjs/Subscription';
 import { noSpaceValidator } from './noSpaceValidator.component';
-import * as moment from 'moment';
 import { RegisterService } from '../../registered/register.service';
-import { empty } from 'rxjs/observable/empty';
+
 
 @Component({
   selector: 'app-paymentmethods',
   templateUrl: './paymentmethods.component.html',
-  styleUrls: ['./paymentmethods.component.scss']
+  styleUrls: ['./paymentmethods.component.scss'],
+  // providers: [RegisterService,PaymentmethodsService]
 })
 export class PaymentmethodsComponent implements OnInit, OnDestroy {
   endRequest;
@@ -83,7 +79,7 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
   vin_Data = { "city": "", "state": "" };
   private sub: Subscription;
   flipclass = 'credit-card-box';
-  constructor(private _nav: Router, private serv: PaymentmethodsService, private router: Router, private route: ActivatedRoute, private _serv: RegisterService) {
+  constructor(private _nav: Router,  private serv: PaymentmethodsService, private router: Router, private route: ActivatedRoute, private _serv: RegisterService) {
 
   }
   zipcodeCheck(zipcode1) {

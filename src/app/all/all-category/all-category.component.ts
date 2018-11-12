@@ -6,7 +6,8 @@ import {SharedData} from '../../shared-service';
 @Component({
   selector: 'app-all-category',
   templateUrl: './all-category.component.html',
-  styleUrls: ['./all-category.component.css']
+  styleUrls: ['./all-category.component.css'],
+  providers: [AllCategoryService,SharedData]
 })
 export class AllCategoryComponent implements OnInit,OnDestroy {
   endRequest;

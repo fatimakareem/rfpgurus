@@ -9,8 +9,8 @@ declare const $:any;
 @Component({
     selector: 'app-history',
     templateUrl: './history.component.html',
-    styleUrls: ['./history.component.scss']
-
+    styleUrls: ['./history.component.scss'],
+    providers: [AuthService,MainService]
 })
 
 export class HistoryComponent implements OnInit,OnDestroy {
