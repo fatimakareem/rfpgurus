@@ -26,10 +26,22 @@
                                 <strong class="error-block">Password cannot be empty</strong>
                             </mat-error>
                         </mat-form-field>
+<<<<<<< HEAD
                         <div>
                             <span style="font-weight:700">No Account Yet?
                                 <a routerLink="/sign-up">Signup</a>
                             </span>
+=======
+                        <div class="pull-left">
+                        <span style="font-weight:700">No Account Yet?
+                            <a routerLink="/sign-up">Signup</a>
+                        </span>
+>>>>>>> 8e0c96ae1fc6155509cfa0e3a1e7699c64685446
+                        </div>
+                        <div class="pull-right">
+                            <label>
+                                <a style="cursor:pointer;text-decoration:underline" (click)="foremail()">Forgot your password?</a>
+                            </label>
                         </div>
                     </div>
                     <div class="checkbox pull-left">
@@ -37,19 +49,25 @@
                             <input type="checkbox" value="" name="remember" checked> Keep me logged in
                         </label>
                     </div>
+<<<<<<< HEAD
                     <div class="pull-right">
                         <label>
                             <a style="cursor:pointer;text-decoration:underline" (click)="foremail()">Forgot your
                                 password?</a>
                         </label>
                     </div>
+=======
+                   
+>>>>>>> 8e0c96ae1fc6155509cfa0e3a1e7699c64685446
                     <div class="clearfix"></div>
                     <div class="form-footer text-right">
-                        <div class="form-group">
-                            <blackgeeks-recaptcha style="float: left;"></blackgeeks-recaptcha>
+                        <div class="form-group text-center">
+                            <blackgeeks-recaptcha >
+                            </blackgeeks-recaptcha>
                             <div class="error-block" *ngIf="isequal==false" style="float: left;">
                                 <span>*Please Enter Valid Answer</span>
                             </div>
+<<<<<<< HEAD
                             <button type="submit" style="width: 100%;font-size: 24px !important;" class="btn btn-rose btn-fill btn-wd"
                                 (click)="onLogin()">Sign in</button>
                             <p class="" data-reactid="40" style="margin-top: -7px;margin-bottom:3px;overflow:hidden;text-align:center;color:#555;font-weight:bold;">OR</p>
@@ -61,6 +79,21 @@
                                 <button (click)="signInWithGoogle()" class="btn btn-rose btn-fill btn-wd" style="background-color: #d34836;width: 100%;margin-top: -2px">
                                     <i class="fa fa-google-plus"></i>
                                     <span>Continue with Google</span>
+=======
+                            <button type="submit" style="width: 100%;font-size: 22px !important;" class="btn btn-rose btn-fill btn-wd" (click)="onLogin()">Sign in</button>
+
+                            <p  class="" data-reactid="40" style="margin-bottom:3px;overflow:hidden;text-align:center;color:#555;font-weight:bold;">OR</p>
+
+
+                            <div class="other-logins">
+                                <button  (click)="signInWithFB()" class="btn btn-rose btn-fill btn-wd" style="background-color: #204d74;width: 48%;">
+                                    <i  class="fa fa-facebook"></i>
+                                    <span >Facebook</span>
+                                </button>
+                                <button (click)="signInWithGoogle()"  class="btn btn-rose btn-fill btn-wd" style="background-color: #d34836;width: 48%;">
+                                    <i  class="fa fa-google-plus"></i>
+                                    <span>Google</span>
+>>>>>>> 8e0c96ae1fc6155509cfa0e3a1e7699c64685446
                                 </button>
                             </div>
                         </div>

@@ -2212,7 +2212,8 @@ mat-form-field.mat-form-field {
 }
 
 .plan-detail>h5 {
-    margin: 10px 0 0
+    margin: 10px 0 0;
+    font-size: 13px;
 }
 
 .plan-detail i {
@@ -2472,8 +2473,9 @@ text tspan {
 .sh-sidebar-user h4 {
     margin: 0;
     padding: 15px 0 0;
-    font-size: 15px;
-    color: #c00
+    font-size: .9em;
+    color: #c00;
+    font-weight: 400 !important;
 }
 
 .sh-sidebar-user .mat-input-infix {
@@ -2886,7 +2888,7 @@ label {
     color: #c00
 }
 
-.sh-table .table>tbody>tr>td::hover {
+.sh-table .table>tbody>tr>td:hover {
     text-decoration: underline;
     cursor: pointer
 }

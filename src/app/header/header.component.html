@@ -36,6 +36,7 @@
     </div>
     <div class="collapse navbar-collapse " id="menu-example">
       <div class="navbar-right navbar-nav">
+<<<<<<< HEAD
         <ul class="navbar-nav sh-main-options">
           <li>
             <a routerLink="/latest-rfp" routerLinkActive="Active">
@@ -117,6 +118,89 @@
             </a>
           </li>
         </ul>
+      <ul class="navbar-nav sh-main-options">
+        <li>
+          <a routerLink="/latest-rfp" routerLinkActive="Active">
+            <i class="fa fa-stack-overflow" aria-hidden="true"></i>Latest RFP's
+          </a>
+        </li>
+        <li >
+          <a routerLink="/advanced-search" routerLinkActive="Active">
+            <i class="fab fa-searchengin"></i>Advanced Search
+          </a>
+        </li>
+
+        <li class="">
+          <a routerLink="/find-bids" routerLinkActive="Active">
+            <i class="fa fa-user-plus" aria-hidden="true"></i> Find RFP's
+          </a>
+        </li>
+        <li class="" *ngIf="!subscribe">
+          <a routerLink="/pricing" routerLinkActive="Active">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Pricing
+          </a>
+        </li>
+        <li>
+          <a routerLink="/all-agencies">
+            <i class="fa fa-building-o" aria-hidden="true"></i>Agencies
+          </a>
+        </li>
+        <li>
+          <a routerLink="/features-comparison" routerLinkActive="Active">
+            <i class="fa fa-bar-chart" aria-hidden="true"></i>Comparison
+          </a>
+        </li>
+        <li class="vanders">
+          <a href="javascript:void(0)" routerLinkActive="Active">
+            <i class="fa fa-question-circle-o"></i> Why RFPGurus?
+          </a>
+          <div class="drop-downs sh-why">
+            <ul class="nav-vanders  why-rfp-sublist">
+              <li>
+                <a routerLink="/why-rfpgurus">
+                  <i class="fa fa-question-circle-o"></i> Why RFPGurus?
+                </a>
+              </li>
+              <li>
+                <a routerLink="/how-it-works">
+                  <i class="fa fa-fire"></i> How it Works?
+                </a>
+              </li>
+              <li>
+                <a routerLink="/our-team">
+                  <i class="fa fa-flask"></i> Our Expert Team
+                </a>
+              </li>
+              <li>
+                <a routerLink="/what-we-do">
+                  <i class="fa fa-cube"></i> What We Do?
+                </a>
+              </li>
+              <li>
+                <a routerLink="/faqs">
+                  <i class="fa fa-leanpub"></i> FAQs
+                </a>
+              </li>
+              <li>
+                <a routerLink="/what-is-rfp">
+                  <i class="fa fa-leaf"></i> What is RFPGurus?
+                </a>
+              </li>
+              <li>
+                <a routerLink="/who-are-we">
+                  <i class="fa fa-plus"></i> Who are We?
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <a routerLink="/rfp-as-service" routerLinkActive="Active">
+            <i class="fa fa-briefcase" aria-hidden="true"></i>RFP as a Service
+          </a>
+        </li>
+      </ul>
+>>>>>>> 8e0c96ae1fc6155509cfa0e3a1e7699c64685446
         <!--.............-->
         <ul class="navbar-nav sh-android-apple">
           <li class="heart-li" *ngIf="check_login()">
@@ -189,6 +273,7 @@
             </div>
             <!-- </a> -->
           </li>
+<<<<<<< HEAD
           <li>
             <a routerLink="">
               <i class="fa fa-android"></i>
@@ -205,6 +290,75 @@
             </a>
           </li>
         </ul>
+=======
+        <li>
+          <a routerLink="">
+            <i class="fa fa-android"></i>
+          </a>
+        </li>
+        <li>
+          <a routerLink="">
+            <i class="fa fa-apple"></i>
+          </a>
+        </li>
+        <li class="dropdown cartmenu searchmenu hasmenu">
+          <a id="search" style="cursor:pointer" (click)="openSearch()" class="dropdown-toggle">
+            <i class="material-icons">search</i>
+          </a>
+        </li>
+      </ul>
+        <!--............-->
+      <ul class="navbar-nav sh-signin-signup">
+        <li *ngIf="check_login()" class="vanders">
+          <a routerLink="/profile">
+            <i class="fa fa-user" aria-hidden="true"></i> My RFPGurus
+          </a>
+          <div class="profile-name drop-downs" style="right:206%;">
+            <ul class="nav-vanders  why-rfp-sublist">
+              <li *ngIf="check_login()">
+                <a routerLink="/profile">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                  Edit Profile</a>
+              </li>
+              <li *ngIf="check_login()">
+                <a routerLink="/change-password">
+                  <i class="fa fa-key" aria-hidden="true"></i>
+                  Change Password</a>
+              </li>
+              <li *ngIf="check_login()">
+                <a routerLink="/purchase-history">
+                  <i class="fa fa-history" aria-hidden="true"></i>
+                  Subscription History</a>
+              </li>
+              <li *ngIf="check_login()">
+                <a routerLink="/payment">
+                  <i class="fa fa-money" aria-hidden="true"></i>
+                  Payment Methods</a>
+              </li>
+              <li *ngIf="check_login()">
+                <a routerLink="/contact-us">
+                  <i class="fa fa-comment" aria-hidden="true"></i>
+                  Feedback</a>
+              </li>
+              <li *ngIf="check_login()" class="">
+                <a (click)="logout()" style="cursor:pointer">
+                  <i class="fa fa-lock" aria-hidden="true"></i> Sign out</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li *ngIf="!check_login()" class="">
+          <a routerLink="/login" routerLinkActive="Active">
+            <i class="fas fa-fingerprint"></i> Sign in
+          </a>
+        </li>
+        <li *ngIf="!check_login()" class="">
+          <a routerLink="/sign-up" routerLinkActive="Active">
+            <i class="fa fa-unlock" aria-hidden="true"></i>
+            Sign up
+          </a>
+        </li>
+>>>>>>> 8e0c96ae1fc6155509cfa0e3a1e7699c64685446
         <!--............-->
         <ul class="navbar-nav sh-signin-signup">
           <li *ngIf="check_login()" class="vanders">
