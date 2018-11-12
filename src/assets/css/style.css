@@ -1288,7 +1288,7 @@ body {
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4) !important;
 }
 .btn.btn-rose, .btn.btn-rose:hover, .btn.btn-rose:focus, .btn.btn-rose:active, .btn.btn-rose.active, .btn.btn-rose:active:focus, .btn.btn-rose:active:hover, .btn.btn-rose.active:focus, .btn.btn-rose.active:hover, .open > .btn.btn-rose.dropdown-toggle, .open > .btn.btn-rose.dropdown-toggle:focus, .open > .btn.btn-rose.dropdown-toggle:hover, .navbar .navbar-nav > li > a.btn.btn-rose, .navbar .navbar-nav > li > a.btn.btn-rose:hover, .navbar .navbar-nav > li > a.btn.btn-rose:focus, .navbar .navbar-nav > li > a.btn.btn-rose:active, .navbar .navbar-nav > li > a.btn.btn-rose.active, .navbar .navbar-nav > li > a.btn.btn-rose:active:focus, .navbar .navbar-nav > li > a.btn.btn-rose:active:hover, .navbar .navbar-nav > li > a.btn.btn-rose.active:focus, .navbar .navbar-nav > li > a.btn.btn-rose.active:hover, .open > .navbar .navbar-nav > li > a.btn.btn-rose.dropdown-toggle, .open > .navbar .navbar-nav > li > a.btn.btn-rose.dropdown-toggle:focus, .open > .navbar .navbar-nav > li > a.btn.btn-rose.dropdown-toggle:hover {
-    background-color: #000000 !important;
+    background-color: #000000 ;
     color: #FFFFFF;
 }
 .btn.btn-lg, .btn-group-lg .btn, .navbar .navbar-nav > li > a.btn.btn-lg, .btn-group-lg .navbar .navbar-nav > li > a.btn {
@@ -1338,6 +1338,224 @@ body {
 body{
     display: block !important;
 }
+.heart-li {
+    position: relative!important
+}
+
+.heart-li sup {
+    top: -10px;
+    left: -5px
+}
+
+.heart-li:hover .heart-sub-meun {
+    opacity: 1;
+    visibility: visible
+}
+
+.heart-sub-meun {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    background: #fff;
+    color: #000;
+    width: 350px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .4), 0 6px 20px 0 rgba(0, 0, 0, .2)
+}
+
+.heart-full-div {
+    max-height: 300px;
+    padding: 10px 0 0;
+    overflow: auto
+}
+
+.heart {
+    padding: 0px 5px;
+    border-bottom: none;
+    position: relative
+}
+
+.heart-time {
+    justify-content: flex-end
+}
+
+.heart-time i {
+    color: #c00
+}
+
+.heart-time i:hover {
+    color: #a00
+}
+
+.heart:hover {
+    background: #f2f3f5
+}
+
+.heart-img {
+    height: 94px;
+    width: 21%
+}
+
+.heart-contact {
+    margin-left: 0;
+    width: 100%
+}
+
+.heart-heading {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6509803921568628);
+    width: 100%;
+    padding: 0px 25px 0px 5px;
+    border-radius: 0;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: 400 !important;
+    white-space: nowrap
+}
+
+.heart-detail {
+    color: #767676;
+    overflow: hidden;
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-weight: 600
+}
+
+.heart-new-price {
+    color: #c00;
+    font-size: 22px
+}
+
+.heart-old-price {
+    color: #767676;
+    font-size: 20px;
+    margin-right: 5px;
+    text-decoration: line-through;
+    font-weight: 500
+}
+
+.heart-card-btn {
+    padding: 8px 10px;
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 8px;
+    color: #000
+}
+
+.addtocart-btn,
+.wishlist-btn {
+    display: block;
+    border-radius: 5px;
+    text-align: center
+}
+
+.heart-card-btn:focus,
+.heart-card-btn:hover {
+    background: #000;
+    color: #fff
+}
+
+.wishlist-btn-div {
+    background: #f2f3f5;
+    padding: 10px;
+    margin: 0;
+}
+
+.wishlist-btn {
+    color: #fff;
+    background: #c00;
+    padding: 15px
+}
+
+.wishlist-btn:hover {
+    color: #fff;
+    background: #a00
+}
+
+.wishlist-btn:focus {
+    color: #fff
+}
+
+.addtocart-btn {
+    color: #fff!important;
+    background: #c00;
+    padding: 3px;
+    font-size: 17px;
+    border-radius: 50px;
+    font-weight: 600;
+}
+.addtocart-btn:hover {
+    box-shadow: 0 0 10px #6d6969;
+    background-color: #000;
+    transition: 0.3s ease-in-out;
+}
+.addtocart-time {
+    position: absolute;
+    right: 14px;
+    z-index: 9999
+}
+
+.addtocart-time i {
+    color: #fff;
+    font-size: 14px;
+    margin-top: 0px;
+    vertical-align: middle;
+    cursor: pointer
+}
+
+.addtocart-time i:hover {
+    color: #fff
+}
+
+.modal-buttons {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center
+}
+
+.modal-buttons button {
+    background: #000!important
+}
+
+.btn-dismiss {
+    font-size: 22px!important;
+    color: #000;
+    position: absolute;
+    z-index: 9;
+    right: 4px;
+    top: 6px
+}
+.why-rfp-sublist{
+    left: 60px!important;
+}
+.checkbox label, .form-group.is-focused .checkbox label {
+    color: rgba(0, 0, 0, 0.79);
+}
+.other-logins button{
+    font-size: 15px;
+}
+.form .btn.sh{
+    margin-top: 10px !important;
+}
+.sh-plan-form .btn.btn-success.dropdown-toggle{
+    padding: 10px 15px;
+}
+.sh-plan-form .package-detail h2 {
+    font-size: 22px;
+    background-color: #c51414;
+    color: white;
+    padding: 5px 5px;
+}
+.sh-plan-form .checkout{
+    margin: 120px auto 30px;
+    padding: 140px 45px 10px;
+}
+
+.sh-plan-form .form fieldset {
+    padding: 5px 0;
+}
 @media (min-width: 1680px) {
     .navbar-nav > li > a {
         font-size: 18px !important;
@@ -1352,7 +1570,7 @@ body{
 
 @media (min-width:1281px) and (max-width:1439px) {
     .navbar-nav>li>a {
-        font-size: 15px!important;
+        font-size: 14px!important;
     }
     .sh-android-apple {
         padding-right: 8px ;
@@ -1576,6 +1794,20 @@ body{
         bottom: 0;
         margin-left: -2px;
         height: 23px
+    }
+    .why-rfp-sublist{
+        left: 0 !important;
+    }
+    .profile-name ul li{
+        display: block !important;
+    }
+    .why-rfp-sublist li a {
+        padding: 3px 10px;
+        display: block;
+        font-size: 14px;
+    }
+    .sh-why ul li{
+        display: block !important;
     }
 }
 

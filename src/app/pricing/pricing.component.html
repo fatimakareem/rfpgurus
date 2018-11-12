@@ -1,7 +1,7 @@
 <app-loader></app-loader>
 
 
-<section *ngIf="!pkgsub" class="section pricing2-section" style="padding: 50px;">
+<section *ngIf="!pkgsub" class="section pricing2-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center; padding-bottom: 20px;">
@@ -160,6 +160,7 @@
 
 <!--3rd step-->
 <div *ngIf="pkgsub" data-wow-delay=".5s" >
+    <div class="container-fluid">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 container">
 
@@ -196,8 +197,8 @@
             </div>
 
         </div>
-        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-            <div class="checkout">
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12  sh-plan-form">
+            <div class="checkout ">
         <div [className]="flipclass">
             <div class="flip">
                 <div class="front">
@@ -241,9 +242,9 @@
                 </div>
             </div>
         </div>
-        <form class="form" autocomplete="off" novalidate>
+        <form class="form " autocomplete="off" novalidate>
             <fieldset>
-                <label for="card-number" style="font-size:20px;">Card Number</label>
+                <label for="card-number" style="font-size:16px;">Card Number</label>
                 <input type="num" id="card-number" class="input-cart-number" name="cardnumber1" [(ngModel)]="cardnumber1" [textMask]="{mask: mask}"
                 />
                 <input type="num" id="card-number-1" class="input-cart-number" name="cardnumber2" [(ngModel)]="cardnumber2" [textMask]="{mask: mask}"
@@ -254,11 +255,11 @@
                 />
             </fieldset>
             <fieldset>
-                <label for="card-holder" style="font-size:20px;">Card holder</label>
+                <label for="card-holder" style="font-size:16px;">Card holder</label>
                 <input type="text" name="cardholdername" [(ngModel)]="cardholdername" id="card-holder" />
             </fieldset>
             <fieldset class="fieldset-expiration">
-                <label for="card-expiration-month" style="font-size:20px;">Expiration date</label>
+                <label for="card-expiration-month" style="font-size:16px;">Expiration date</label>
                 <div class="select text-center">
                     <select id="card-expiration-month" name="expmonth" [(ngModel)]="expmonth">
                         <option value="" disabled selected>Month</option>
@@ -293,12 +294,13 @@
                 </div>
             </fieldset>
             <fieldset class="fieldset-ccv">
-                <label for="card-ccv" style="font-size:20px;">CCV</label>
+                <label for="card-ccv" style="font-size:16px;">CCV</label>
                 <input type="text" id="card-ccv" maxlength="3" name="ccv" (focusout)="flipagain()" (focus)="flip()" [(ngModel)]="ccv" />
             </fieldset>
-            <button class="btn" (click)="proceed()">
+            <button class="btn sh" (click)="proceed()">
                 <i class="fa fa-lock"></i> submit</button>
         </form>
+    </div>
     </div>
     </div>
     </div>
