@@ -227,7 +227,6 @@
   <div class="heart-sub-meun">
   <div class="heart-full-div">
   
-<<<<<<< HEAD
                 <div class="heart" *ngFor="let item of notificate">
                   <div class="addtocart-time" (click)="deletenofication(item?.id)">
                     <i class="fa fa-times"></i>
@@ -324,104 +323,6 @@
       </ul>
       </div>
     </div>
-=======
-  <div class="heart" *ngFor="let item of notificate">
-  <div class="addtocart-time" (click)="deletenofication(item?.id)">
-  <i class="fa fa-times"></i>
-  </div>
-  <div class="heart-main-div">
-  <div class="heart-contact">
-  <a [routerLink]="['/rfp/', item.target]"> <div class="heart-heading" style="cursor:pointer">
-  {{item.type_of_notification}}
-  </div></a>
-  <div class="heart-detail plan-detail"*ngIf="item.read == false">
-  <h5 style="cursor:pointer" (click)="single(item.target);updatenofication(item.id)"> {{item.description}}</h5>
-  </div>
-  <div class="heart-detail plan-detail sh-notification-seen" *ngIf="item.read == true">
-  <h5 (click)="single(item.target);updatenofication(item?.id)"> {{item.description}}</h5>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  <div class="wishlist-btn-div" *ngIf="check_login()">
-  <a routerLink="/All-notifications" class="addtocart-btn">All Notifications</a>
-  </div>
-  </div>
-  <!-- </a> -->
-  </li>
-  <li>
-  <a routerLink="">
-  <i class="fa fa-android"></i>
-  </a>
-  </li>
-  <li>
-  <a routerLink="">
-  <i class="fa fa-apple"></i>
-  </a>
-  </li>
-  <li class="dropdown cartmenu searchmenu hasmenu">
-  <a id="search" style="cursor:pointer" (click)="openSearch()" class="dropdown-toggle">
-  <i class="material-icons">search</i>
-  </a>
-  </li>
-  </ul>
-  <!--............-->
-  <ul class="navbar-nav sh-signin-signup">
-  <li *ngIf="check_login()" class="vanders">
-  <a routerLink="/profile">
-  <i class="fa fa-user" aria-hidden="true"></i> My RFPGurus
-  </a>
-  <div class="profile-name drop-downs" style="right:206%;">
-  <ul class="nav-vanders why-rfp-sublist">
-  <li *ngIf="check_login()">
-  <a routerLink="/profile">
-  <i class="fa fa-pencil" aria-hidden="true"></i>
-  Edit Profile</a>
-  </li>
-  <li *ngIf="check_login()">
-  <a routerLink="/change-password">
-  <i class="fa fa-key" aria-hidden="true"></i>
-  Change Password</a>
-  </li>
-  <li *ngIf="check_login()">
-  <a routerLink="/purchase-history">
-  <i class="fa fa-history" aria-hidden="true"></i>
-  Subscription History</a>
-  </li>
-  <li *ngIf="check_login()">
-  <a routerLink="/payment">
-  <i class="fa fa-money" aria-hidden="true"></i>
-  Payment Methods</a>
-  </li>
-  <li *ngIf="check_login()">
-  <a routerLink="/contact-us">
-  <i class="fa fa-comment" aria-hidden="true"></i>
-  Feedback</a>
-  </li>
-  <li *ngIf="check_login()" class="">
-  <a (click)="logout()" style="cursor:pointer">
-  <i class="fa fa-lock" aria-hidden="true"></i> Sign out</a>
-  </li>
-  </ul>
-  </div>
-  </li>
-  <li *ngIf="!check_login()" class="">
-  <a routerLink="/login" routerLinkActive="Active">
-  <i class="fas fa-fingerprint"></i> Sign in
-  </a>
-  </li>
-  <li *ngIf="!check_login()" class="">
-  <a routerLink="/sign-up" routerLinkActive="Active">
-  <i class="fa fa-unlock" aria-hidden="true"></i>
-  Sign up
-  </a>
-  </li>
-  <!--............-->
-  </ul>
-  </div>
-  </div>
->>>>>>> c68729d47bfceb98d2d11e9d4eb3768379d14d78
   </nav>
  </div>
  
