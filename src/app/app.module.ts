@@ -91,12 +91,12 @@ import {
 
 import { AppComponent } from './app.component';
 // import { PaymentmethodsComponent } from './admin/paymentmethods/paymentmethods.component';
-// import { AllnotificationComponent } from './allnotification/allnotification.component';
+import { AllnotificationComponent } from './allnotification/allnotification.component';
 import { AppRoutes } from './app.routing';
 // import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
-// import { SingleRfpComponent } from './rfps/single-rfp/single-rfp.component';
+import { SingleRfpComponent } from './rfps/single-rfp/single-rfp.component';
 import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
 // import { PricingComponent } from './pricing/pricing.component';
 import { TextMaskModule } from 'angular2-text-mask';
@@ -141,7 +141,7 @@ import { AdminLayoutComponent } from './layouts/lyout/admin-layout.component';
 import {AuthLayoutComponent} from './layouts/auth/auth-layout.component';
 import{AdminComponent} from './layouts/superadmin/admin-layout.component'
 import {SidebarComponent} from './sidebar/sidebar.component';
-// import { WatchlistComponent } from './watchlist/watchlist.component';
+import { WatchlistComponent } from './watchlist/watchlist.component';
 
 ////////////////////////for loader/////////////////////////
 export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestOptions, preloaderService: PreloaderService) {
@@ -245,7 +245,7 @@ export class MaterialModule {}
     declarations: [
         AdminComponent,
         // UnsubscribeComponent,
-        // AllnotificationComponent,
+        AllnotificationComponent,
         // PaymentmethodsComponent,
         SidebarComponent,
         AppComponent,
@@ -253,7 +253,7 @@ export class MaterialModule {}
         AdminLayoutComponent,
         HomeComponent,
         HeaderComponent,
-        // SingleRfpComponent,
+        SingleRfpComponent,
         UserSidebarComponent,
         // PricingComponent,
         RfpComponent,
@@ -284,7 +284,7 @@ export class MaterialModule {}
         // HistoryComponent,
         // AllAgenciesComponent,
         // AgencyRfpComponent,
-        // WatchlistComponent
+        WatchlistComponent
     ],
     providers: [
         {

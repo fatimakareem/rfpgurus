@@ -8,13 +8,12 @@ import swal from 'sweetalert2';
 import 'rxjs/Rx' ;
 import {SharedData } from '../../shared-service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HeaderService } from 'app/header/header.service';
 
 
 @Component({
     selector: 'app-data-table-cmp',
-    templateUrl: 'single-rfp.component.html',
- providers: [SharedData,RfpService]
-})
+    templateUrl: 'single-rfp.component.html'})
 
 export class SingleRfpComponent implements OnInit  {
     rfpid:string;
@@ -29,14 +28,7 @@ export class SingleRfpComponent implements OnInit  {
     constructor(private _nav:Router,public _shareData: SharedData,private _http: Http,private route: ActivatedRoute,private _serv: RfpService) {
         
      }
-    // rfprecord(id) {
-    //     console.log("dddd");
-    //         let headers = new Headers();
-    //         headers.append('Content-Type', 'application/json');
-    //         return this._http.get('http://127.0.0.1:8000/rf_p/rfpdata/'+id,
-    //         {headers: headers}).map((response: Response) => response.json());
-        
-    //     }
+  
 
     status: boolean = false;
     navbarClass(){
@@ -102,7 +94,8 @@ total;
         //  this.global.getGolbalWishListCourses(this.GlobalWishListCourses);
         if(!data.message && data['result']){
             this._shareData.watchtotal(this.total); 
-             this._shareData.watchInfo(this.wrfp); }
+             this._shareData.watchInfo(this.wrfp);
+            }
             if(this.statuss == "This Rfp is already in your Watch List"){
              swal({
                 type: 'info',

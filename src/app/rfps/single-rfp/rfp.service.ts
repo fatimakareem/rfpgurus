@@ -20,7 +20,7 @@ export class RfpService {
    postWatchlist(rfpid){
     let headers = new Headers();
     if(this.currentUser){
-      headers = new Headers({'Authorization': 'JWT ' + this.currentUser.token});
+      headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
       }  
     headers.append('Content-Type', 'application/json');
     return this._http5.post('https://apis.rfpgurus.com/rf_p/watchlist/', JSON.stringify({
@@ -31,7 +31,7 @@ export class RfpService {
   rfprecord(id){
     let headers = new Headers();
     if(this.currentUser){
-    headers = new Headers({'Authorization': 'JWT ' + this.currentUser.token});
+    headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
     }  
     headers.append('Content-Type', 'application/json');
   
@@ -43,7 +43,7 @@ export class RfpService {
   downloadFile(id){
     let headers = new Headers();
     if(this.currentUser){
-    headers = new Headers({'Authorization': 'JWT ' + this.currentUser.token});
+    headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
     }  
     headers.append('Content-Type', 'application/json');
   

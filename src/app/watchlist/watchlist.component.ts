@@ -7,8 +7,7 @@ import { RfpService } from '../rfps/single-rfp/rfp.service';
 @Component({
   selector: 'app-watchlist',
   templateUrl: './watchlist.component.html',
-  styleUrls: ['./watchlist.component.scss'],
- providers: [SharedData,HeaderService,RfpService]
+  styleUrls: ['./watchlist.component.scss']
 })
 export class WatchlistComponent implements OnInit {
   wrfp;
@@ -29,6 +28,7 @@ export class WatchlistComponent implements OnInit {
         this.message=data.message;
         this.total=data.total
         if(!data.message && data['result']){
+          
           this._shareData.watchtotal(this.total); 
            this._shareData.watchInfo(this.wrfp); }
            if(data.message == 'No Rfp in your Watch List'){
