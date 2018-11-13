@@ -62,7 +62,7 @@ export class WatchlistComponent implements OnInit {
   All_deletewatchlist(){
     this._serv.AlldeleteWatchlist().subscribe(
 
-      data => {
+      data => {                                                                                               
         this.watchlist();
       
       },

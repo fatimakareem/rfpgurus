@@ -7,7 +7,7 @@ import { AuthService, SocialUser } from "angular4-social-login";
 import { Meta } from '@angular/platform-browser';
 import { SpeechRecognitionService } from './speechservice';
 import { RfpService } from '../rfps/single-rfp/rfp.service';
-// import { Observable, Subject } from 'rxjs/Rx';
+import { Observable, Subject } from 'rxjs/Rx';
 declare var $: any;
 @Component({
   selector: 'app-header',
@@ -123,9 +123,9 @@ export class HeaderComponent implements OnInit {
     this._shareData.currentMessage.subscribe(message => this.wrfp = message)
     this._shareData.currentMessagetotal.subscribe(message => this.total = message)
     // this.watchlist();
-    this.notification()
-    // let timer = Observable.timer(0, 60000);
-    // timer.subscribe(() => this.notification());
+    // this.notification()
+    let timer = Observable.timer(0, 60000);
+    timer.subscribe(() => this.notification());
     $('#search').click(function () {
       setTimeout(function () {
         $('#textsearch').focus();

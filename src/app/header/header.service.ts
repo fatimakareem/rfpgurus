@@ -50,7 +50,7 @@ deleteallnotify(){
     headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
     }  
   headers.append('Content-Type', 'application/json');
-  return this._http5.delete('https://apis.rfpgurus.com/rf_p/delete_all_notification/',
+  return this._http5.delete('https://apis.rfpgurus.com/delete_all_notification/',
   {headers: headers}).map((response: Response) => response.json());
 }
 deleteWatchlist(rfpid){

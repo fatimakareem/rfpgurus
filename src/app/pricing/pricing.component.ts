@@ -271,6 +271,7 @@ export class PricingComponent implements OnInit {
                     this.status = i;
                   }
                 }
+                if(this.status){
                 this.get_card_number = this.status.number.toString();
                 this.get_card_value1 = this.get_card_number.toString().slice(0, 4);
                 this.get_card_value2 = this.get_card_number.toString().slice(4, 8);
@@ -287,7 +288,7 @@ export class PricingComponent implements OnInit {
                 this.cardholdername = this.status.name;
                 this.expmonth = this.ex_month_value;
                 this.expyear = this.ex_year_value;
-                this.ccv = this.status.cvc;
+                this.ccv = this.status.cvc;}
               })
           }
         }

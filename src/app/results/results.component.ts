@@ -14,7 +14,8 @@ declare const $: any;
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
-  styleUrls: ['./results.component.scss']
+  styleUrls: ['./results.component.scss'],
+  providers: [PagerService]
 })
 
 export class ResultsComponent implements OnInit,OnDestroy {
