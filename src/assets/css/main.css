@@ -166,7 +166,7 @@ ul li {
 
 .pw-solutions ul li .holder,
 .sidebar.custom {
-    -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .3)
+    ms-webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .3)
 }
 
 .header-home,
@@ -3270,7 +3270,4 @@ mat-form-field.mat-form-field {
 }
 .btn-group-lg .btn, .btn-group-lg .navbar .navbar-nav>li>a.btn, .btn.btn-lg, .navbar .navbar-nav>li>a.btn.btn-lg{
     padding: 10px 20px;
-}
-#pg .cdk-overlay-backdrop, .cdk-overlay-pane{
-
 }
