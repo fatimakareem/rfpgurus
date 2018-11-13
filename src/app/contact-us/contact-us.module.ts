@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContactUsComponent } from './contact-us.component';
-import { Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MatInputModule, MatFormFieldModule,MatSelectModule } from '@angular/material';
+import { MatInputModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
 import { TextMaskModule } from 'angular2-text-mask';
-const routes :Routes =[
+const routes: Routes = [
   {
-    path:'',component:ContactUsComponent
+    path: '', component: ContactUsComponent
   }
 ]
 @NgModule({
@@ -24,4 +24,3 @@ const routes :Routes =[
   declarations: [ContactUsComponent]
 })
 export class ContactUsModule { }
-

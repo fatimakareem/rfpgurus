@@ -4,38 +4,28 @@
     <div class="container">
       <div class="search-holder">
         <input ngAutoFocus  type="search" name=querysearch [(ngModel)]="query" #querysearch="ngModel" (keydown)=filter(query)
-               placeholder="Search RFPs" id="textsearch" >
+               placeholder="Search Agencies" id="textsearch" >
         <i class="fa fa-close" id="iconClose" (click)="closeSearch()"></i>
-
       </div>
-
       <div class="search-results" *ngIf="Rfp">
-        <ul class="list-normal" >
-
-          <li  *ngIf="!Rfp" >
+        <ul class="list-normal">
+          <li *ngIf="!Rfp">
             <p>No results found. Please use keywords.</p>
           </li>
           <span *ngFor="let item of Rfp">
-            <li *ngIf ="item.agency != '' ">
-              <a style="cursor:pointer" [routerLink]="['/agency']" [queryParams]="{ agency: item.agency}"> <i class="material-icons">arrow_forward</i> {{item.agency}} </a>
-
+            <li *ngIf="item.agency != '' ">
+              <a style="cursor:pointer" [routerLink]="['/agency']" [queryParams]="{ agency: item.agency}"> <i class="material-icons">arrow_forward</i>
+                {{item.agency}} </a>
             </li>
           </span>
         </ul>
-
-
       </div>
-
     </div>
   </div>
 </div>
-
 <app-loader></app-loader>
-
 <div class="main-content">
-
   <div class="container">
-
     <div class="row">
       <div class="all-cats">
         <div class="head col-sm-12">
@@ -44,21 +34,19 @@
               <h3><i class="fa fa-list-alt" aria-hidden="true"></i>All Agencies</h3>
             </div>
             <div class="col-sm-4 text-right">
-              <!--<button  (click)="openSearch()" type="button" class="btn  btn-round"><i class="material-icons">search</i> Search</button>-->
-              <input type="text"  [(ngModel)]="agensearch" [ngModelOptions]="{standalone: true}" placeholder="Search RFPs" class="search-allstates">
-              <i class="fa fa-search s-icon-all-states" area-hidden="true" ></i>
+              <input type="text" [(ngModel)]="agensearch" [ngModelOptions]="{standalone: true}" placeholder="Search RFPs"
+                class="search-allstates">
+              <i class="fa fa-search s-icon-all-states" area-hidden="true"></i>
             </div>
           </div>
         </div>
         <div *ngFor="let rfpagency of agency | filter:agensearch" class="col-sm-4 col">
-           <div class="col-sm-1"><i class="fa fa-superpowers" aria-hidden="true"></i></div> 
-          <div class="col-sm-11"><a  style = "cursor:pointer" [routerLink]="['/agency']" [queryParams]="{ agency: rfpagency.agency}">
+          <div class="col-sm-1"><i class="fa fa-superpowers" aria-hidden="true"></i></div>
+          <div class="col-sm-11"><a style="cursor:pointer" [routerLink]="['/agency']" [queryParams]="{ agency: rfpagency.agency}">
               {{rfpagency.agency}}({{rfpagency.total}})
             </a></div>
         </div>
-
         <div class="clearfix"></div>
-
       </div>
     </div>
   </div>

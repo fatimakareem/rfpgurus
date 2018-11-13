@@ -18,10 +18,9 @@ import { RegisterService } from '../../registered/register.service';
 export class PaymentmethodsComponent implements OnInit, OnDestroy {
   endRequest;
   public mask = [/[0-9]/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
-  cardexist:boolean=false;
-   form = new FormGroup({
+  cardexist: boolean = false;
+  form = new FormGroup({
     cardnumber: new FormControl('', [
-
       Validators.required,
       Validators.pattern('^[0-9]*$')
     ]),
@@ -51,18 +50,13 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
     address: new FormControl('', [Validators.required
     ]),
     state: new FormControl('', [
-
       Validators.required,
-
     ]),
     city: new FormControl('', [
-
       Validators.required,
-
     ]),
     country: new FormControl('', [
       Validators.required,
-
     ]),
     // pin: new FormControl('', [
     //   Validators.maxLength(4),
@@ -71,16 +65,13 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
     //   noSpaceValidator.cannotContainSpace
     // ]),
   });
-
-
   private productsSource;
   currentProducts;
   destroy_value;
   vin_Data = { "city": "", "state": "" };
   private sub: Subscription;
   flipclass = 'credit-card-box';
-  constructor(private _nav: Router,  private serv: PaymentmethodsService, private router: Router, private route: ActivatedRoute, private _serv: RegisterService) {
-
+  constructor(private _nav: Router, private serv: PaymentmethodsService, private router: Router, private route: ActivatedRoute, private _serv: RegisterService) {
   }
   zipcodeCheck(zipcode1) {
     if (zipcode1.length > 4) {
@@ -95,13 +86,9 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
         });
     }
   }
-
   ngOnInit() {
-
     this.getCards();
-
   }
-
   cardid = "";
   card;
   default: boolean = false;
@@ -110,7 +97,6 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
   cardnumber;
   ccv;
   expirydate;
-
   address;
   zip;
   city;
@@ -131,7 +117,6 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
     this.country = country;
     this.updefault = status;
   }
-
   updateSingleCard(status, name, updatecardnumber, updateccv, date, updateaddress, updatezip, updatecity, updatestate, updatecountry) {
     console.log(status)
     this.endRequest = this.serv.updateCard(status, this.id, name, updatecardnumber, updateccv, date, updateaddress, updatezip, updatecity, updatestate, updatecountry).subscribe(Data => {
@@ -142,7 +127,6 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
         timer: 1500
       })
       this.getCards();
-
     },
       error => {
         if (error.status == 400) {
@@ -169,7 +153,6 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
         }
       })
   }
-
   deleteSingleCard(id) {
     this.endRequest = this.serv.deleteCard(id).subscribe(Data => {
       swal({
@@ -205,12 +188,10 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
         }
       })
   }
-
   date;
   changed() {
     console.log(this.default)
   }
-
   add() {
     if (this.form.valid) {
       console.log(this.default)
@@ -225,18 +206,16 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
           timer: 1500
         })
         this.form.reset({
-          'cardnickname':'',
+          'cardnickname': '',
           'address': "",
-          'zip':"",
+          'zip': "",
           'state': "",
           'country': "",
-          'cardnumber':"",
-           'ccv':"",
-           'default':this.default=false
-           
-         });
+          'cardnumber': "",
+          'ccv': "",
+          'default': this.default = false
+        });
         this.getCards();
-   
       },
         error => {
           if (error.status == 404) {
@@ -269,7 +248,6 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
               'error'
             )
           }
-
         })
     }
     else {
@@ -281,7 +259,6 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
       })
     }
   }
-
   res;
   message;
   getCards() {
@@ -307,32 +284,16 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
         }
       })
   }
-  keyPresszip(event: any) {
-    const pattern = /[0-9+\-\ ]/;
-    let inputChar = String.fromCharCode(event.charCode);
-    if (event.keyCode != 8 && !pattern.test(inputChar)) {
-      event.preventDefault();
-
-    }
-  }
-  keyPressname(event: any) {
-    const pattern = /^[a-zA-Z _.]+$/;
-    let inputChar = String.fromCharCode(event.charCode);
-    if (event.keyCode != 8 && !pattern.test(inputChar)) {
-      event.preventDefault();
-
-    }
-  }
-  exist_card(card1) {  
+  exist_card(card1) {
     // console.log("sdfsdfsdfsdfsdf",email1);
-  this.serv.Atm_card_exist(card1).subscribe(
+    this.serv.Atm_card_exist(card1).subscribe(
       data => {
-      //  alert(data);
+        //  alert(data);
       },
       error => {
         if (error.status == 302) {
           // alert(this.cardexist)
-          this.cardexist=true;
+          this.cardexist = true;
         }
         //  console.log("dsadas",error)
       }

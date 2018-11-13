@@ -1,11 +1,10 @@
-import { Component, OnInit,OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { PasswordValidation } from './password-validator.component';
-import { Http} from '@angular/http';
+import { Http } from '@angular/http';
 import swal from 'sweetalert2';
 import { ForgetPasswordService } from './forget-password.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-
 declare interface ValidatorFn {
   (c: AbstractControl): {
     [key: string]: any;
@@ -21,8 +20,6 @@ declare interface User {
   idSource?: string;
   idDestination?: string;
   optionsCheckboxes?: boolean;
-
-  // firstname?: string;
 }
 @Component({
   selector: 'app-forget-password',
@@ -30,7 +27,7 @@ declare interface User {
   styleUrls: ['./forget-password.component.css'],
   providers: [ForgetPasswordService]
 })
-export class ForgetPasswordComponent implements OnInit,OnDestroy {
+export class ForgetPasswordComponent implements OnInit, OnDestroy {
   public typeValidation: User;
   register: FormGroup;
   login: FormGroup;
@@ -43,12 +40,9 @@ export class ForgetPasswordComponent implements OnInit,OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private http5: Http) { }
-
-
   isFieldValid(form: FormGroup, field: string) {
     return !form.get(field).valid && form.get(field).touched;
   }
-
   displayFieldCss(form: FormGroup, field: string) {
     return {
       'has-error': this.isFieldValid(form, field),
@@ -57,7 +51,7 @@ export class ForgetPasswordComponent implements OnInit,OnDestroy {
   }
   onForget() {
     if (this.register.valid) {
-    this.endRequest=  this._serv.change_password(this.register.value.password, this.register.value.confirmPassword, this.code).subscribe(
+      this.endRequest = this._serv.change_password(this.register.value.password, this.register.value.confirmPassword, this.code).subscribe(
         data => {
           swal({
             type: 'success',
@@ -73,7 +67,6 @@ export class ForgetPasswordComponent implements OnInit,OnDestroy {
       this.validateAllFormFields(this.register);
     }
   }
-
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       // console.log(field);
@@ -85,13 +78,11 @@ export class ForgetPasswordComponent implements OnInit,OnDestroy {
       }
     });
   }
-
   ngOnInit() {
-    this.endRequest=  this.param = this.route.params.subscribe(params => {
+    this.endRequest = this.param = this.route.params.subscribe(params => {
       this.code = params['query2']
-      console.log('params', params['query2'], )
+      console.log('params', params['query2'])
     });
-
     this.register = this.formBuilder.group({
       // To add a validator, we must first convert the string value into an array. The first item in the array is the default value if any, then the next item in the array is the validator. Here we are adding a required validator meaning that the firstName attribute must have a value in it.
       password: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(100)])],
@@ -100,7 +91,6 @@ export class ForgetPasswordComponent implements OnInit,OnDestroy {
         validator: PasswordValidation.MatchPassword // your validation method
       });
   }
-  ngOnDestroy(){
-    // this.endRequest.unsubscribe();
-}
+  ngOnDestroy() {
+  }
 }

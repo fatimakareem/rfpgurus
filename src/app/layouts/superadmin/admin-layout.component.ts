@@ -1,33 +1,26 @@
 import { Component, OnInit, OnDestroy, ViewChild, HostListener, AfterViewInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
+import { Location } from '@angular/common';
 import 'rxjs/add/operator/filter';
-
 declare const $: any;
-
 @Component({
-  selector: 'app-layout',
-  templateUrl: './admin-layout.component.html'
+    selector: 'app-layout',
+    templateUrl: './admin-layout.component.html'
 })
-
 export class AdminComponent implements OnInit, AfterViewInit {
     private _router: Subscription;
     url: string;
     location: Location;
-
     @ViewChild('sidebar') sidebar: any;
-    constructor( private router: Router, location: Location ) {
-      this.location = location;
+    constructor(private router: Router, location: Location) {
+        this.location = location;
     }
     ngOnInit() {
         const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
         const elemSidebar = <HTMLElement>document.querySelector('.sidebar .sidebar-wrapper');
-
         this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {
-        
         });
-
     }
     ngAfterViewInit() {
         this.runOnRouteChange();
@@ -40,10 +33,9 @@ export class AdminComponent implements OnInit, AfterViewInit {
         }
     }
     runOnRouteChange(): void {
-      if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
-        const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
-      
-      }
+        if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
+            const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
+        }
     }
     isMac(): boolean {
         let bool = false;

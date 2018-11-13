@@ -1,59 +1,43 @@
 <div class="row margin-0">
     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 center-admin-form" id="display_advance">
-        <!-- <div class="alert alert-rose alert-with-icon" data-notify="container">
-            <i class="material-icons" data-notify="icon">notifications</i>
-            <span data-notify="message">The information below is intended for internal use only and will not be shared with other site members. The information
-gathered will help us serve you better.
-</span>
-        </div> -->
         <div class="card">
             <form [formGroup]="register" class="sh-signup-form-fix edit-profile">
                 <div class="card-header card-header-icon" data-background-color="rose">
                     <i class="fas fa-user-alt"></i>
                 </div>
-
-
                 <div class="card-content">
                     <h4 class="card-title">Edit Profile</h4>
                     <div class="row">
                         <div class="col-sm-6">
-
                             <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'firstname')">
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="First Name" type="text" id="firstname" formControlName="firstname" [(ngModel)]="profile.first_name"
-                                           value="{{profile.first_name}}" required>
+                                    <input matInput placeholder="First Name" type="text" id="firstname" formControlName="firstname"
+                                        [(ngModel)]="profile.first_name" value="{{profile.first_name}}" required>
                                     <mat-error *ngIf="register.controls.firstname.value == ''">
                                         <strong>First name cannot be empty</strong>
                                     </mat-error>
-
                                 </mat-form-field>
-
                             </div>
                         </div>
-
                         <div class="col-sm-6">
                             <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'lastname')">
-
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Last Name" type="text" id="lastname" formControlName="lastname" [(ngModel)]="profile.last_name"
-                                           value="{{profile.last_name}}" required>
+                                    <input matInput placeholder="Last Name" type="text" id="lastname" formControlName="lastname"
+                                        [(ngModel)]="profile.last_name" value="{{profile.last_name}}" required>
                                     <mat-error *ngIf="register.controls.lastname.value == ''">
                                         <strong>Last name cannot be empty</strong>
                                     </mat-error>
-
                                 </mat-form-field>
-
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'companyname')">
-
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Company Name" type="text" id="companyname" formControlName="companyname" [(ngModel)]="personal.company"
-                                           value="{{personal.company}}" required>
+                                    <input matInput placeholder="Company Name" type="text" id="companyname"
+                                        formControlName="companyname" [(ngModel)]="personal.company" value="{{personal.company}}"
+                                        required>
                                     <mat-error *ngIf="register.controls.companyname.value == ''">
                                         <strong>Company name cannot be empty</strong>
                                     </mat-error>
@@ -62,10 +46,9 @@ gathered will help us serve you better.
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'address')">
-
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Address" type="text" id="address" formControlName="address" [(ngModel)]="personal.address" value="{{personal.address}}"
-                                           required>
+                                    <input matInput placeholder="Address" type="text" id="address" formControlName="address"
+                                        [(ngModel)]="personal.address" value="{{personal.address}}" required>
                                     <mat-error *ngIf="register.controls.address.value == ''">
                                         <strong>Address cannot be empty</strong>
                                     </mat-error>
@@ -75,30 +58,11 @@ gathered will help us serve you better.
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            <!--<div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'zipcode')">-->
-
-                                <!--<mat-form-field class="example-full-width">-->
-                                    <!--<input matInput placeholder="Zipcode" type="text" id="zipcode" formControlName="zipcode" [(ngModel)]="personal.zipcode" value="{{personal.zipcode}}"-->
-                                           <!--required>-->
-                                    <!--<mat-error *ngIf="register.controls.zipcode.value == ''">-->
-                                        <!--<strong>Zipcode cannot be empty</strong>-->
-                                    <!--</mat-error>-->
-                                    <!--<mat-error *ngIf="register.controls.zipcode.dirty && !register.controls.zipcode.value ">Only Number</mat-error>-->
-                                <!--</mat-form-field>-->
-                            <!--</div>-->
                             <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'zipcode')">
                                 <mat-form-field>
-                                    <input matInput type="text" id="zipcode" (ngModelChange)="zipcodeCheck(zipcode1.value)" #zipcode1 [(ngModel)]="personal.zipcode" formControlName="zipcode"  value="{{personal.zipcode}}"
-                                           placeholder="Zip Code" maxlength="5" required />
-                                    <!-- <mat-error *ngIf="register.controls.zipcode.value == ''">
-                                        <strong>Zipcode cannot be empty</strong>
-                                    </mat-error>
-                                    <mat-error *ngIf="register.controls.zipcode.hasError('pattern')">
-                                        Only Numbers
-                                    </mat-error>
-                                    <mat-error *ngIf="register.controls.zipcode.errors?.minlength">
-                                        Only 5 Numbers.
-                                    </mat-error> -->
+                                    <input matInput type="text" id="zipcode" (ngModelChange)="zipcodeCheck(zipcode1.value)"
+                                        #zipcode1 [(ngModel)]="personal.zipcode" formControlName="zipcode" value="{{personal.zipcode}}"
+                                        placeholder="Zip Code" maxlength="5" required />
                                     <mat-error *ngIf="register.controls.zipcode.value == ''">
                                         <strong>Zip Code cannot be empty</strong>
                                     </mat-error>
@@ -108,8 +72,8 @@ gathered will help us serve you better.
                         <div class="col-sm-6">
                             <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'city')">
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="City" type="text" id="city" formControlName="city" [(ngModel)]="personal.city" value="{{personal.city}}"
-                                           required>
+                                    <input matInput placeholder="City" type="text" id="city" formControlName="city"
+                                        [(ngModel)]="personal.city" value="{{personal.city}}" required>
                                     <mat-error *ngIf="register.controls.city.value == ''">
                                         <strong>City cannot be empty</strong>
                                     </mat-error>
@@ -121,8 +85,8 @@ gathered will help us serve you better.
                         <div class="col-sm-6">
                             <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'country')">
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Country" type="text" id="country" formControlName="country" [(ngModel)]="personal.country" value="{{personal.country}}"
-                                           required>
+                                    <input matInput placeholder="Country" type="text" id="country" formControlName="country"
+                                        [(ngModel)]="personal.country" value="{{personal.country}}" required>
                                     <mat-error *ngIf="register.controls.country.value == ''">
                                         <strong>Country cannot be empty</strong>
                                     </mat-error>
@@ -132,8 +96,8 @@ gathered will help us serve you better.
                         <div class="col-sm-6">
                             <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'state')">
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="State" type="text" id="state" formControlName="state" [(ngModel)]="personal.state" value="{{personal.state}}"
-                                           required>
+                                    <input matInput placeholder="State" type="text" id="state" formControlName="state"
+                                        [(ngModel)]="personal.state" value="{{personal.state}}" required>
                                     <mat-error *ngIf="register.controls.state.value == ''">
                                         <strong>State cannot be empty</strong>
                                     </mat-error>
@@ -145,8 +109,9 @@ gathered will help us serve you better.
                         <div class="col-sm-6">
                             <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'phone')">
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Phone No" type="text" [textMask]="{mask: phoneMask}" id="phone" formControlName="phone" [(ngModel)]="personal.phone_no" value="{{personal.phone_no}}"
-                                           required>
+                                    <input matInput placeholder="Phone No" type="text" [textMask]="{mask: phoneMask}"
+                                        id="phone" formControlName="phone" [(ngModel)]="personal.phone_no" value="{{personal.phone_no}}"
+                                        required>
                                     <mat-error *ngIf="register.controls.phone.value == ''">
                                         <strong>Phone# cannot be empty</strong>
                                     </mat-error>
@@ -156,92 +121,76 @@ gathered will help us serve you better.
                         <div class="col-sm-6">
                             <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'email')">
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Email" type="text" id="email" formControlName="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                           [(ngModel)]="profile.email" value="{{profile.email}}" disabled>
+                                    <input matInput placeholder="Email" type="text" id="email" formControlName="email"
+                                        pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="profile.email"
+                                        value="{{profile.email}}" disabled>
                                 </mat-form-field>
                                 <app-field-error-display [displayError]="isFieldValid(register, 'email')" errorMsg="Email is required and format should be john@doe.com.">
                                 </app-field-error-display>
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'username')">
 
-                                <input matInput type="text" id="username" formControlName="username" [(ngModel)]="profile.username" value="{{profile.username}}"
-                                       hidden>
+                                <input matInput type="text" id="username" formControlName="username" [(ngModel)]="profile.username"
+                                    value="{{profile.username}}" hidden>
                                 <app-field-error-display [displayError]="isFieldValid(register, 'username')" errorMsg="Enter a valid First Name.">
                                 </app-field-error-display>
                             </div>
                         </div>
                     </div>
-
-
                     <div class="panel-group" id="accordion">
                         <div class="panel panel-default">
                             <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
                                 <h4 class="panel-title">
-                                    <span>Please select the RFP category, for which you would like to receive RFP (Bids Alerts)</span>
+                                    <span>Please select the RFP category, for which you would like to receive RFP (Bids
+                                        Alerts)</span>
                                     <i class="glyphicon pull-right glyphicon-chevron-down"></i>
                                 </h4>
                             </div>
-
                             <div id="collapse1" class="panel-collapse collapse in">
                                 <div class="panel-body">
                                     <ul class="rfp-cat">
                                         <div class="form-group label-floating">
-
                                             <div *ngFor="let list of cat">
-
-                                                <!--<li *ngIf="UserPreference.length==0">-->
-                                                <!--<input type="checkbox" value="1" checked="">-->
-                                                <!--<label>{{list.category}}</label>-->
-                                                <!--</li>-->
                                                 <li>
                                                     <!--<ng-container *ngIf="UserPreference.length > 0 ; else checkall">-->
                                                     <ng-container *ngIf="UserPreference.indexOf(list.category) >=0 ; else elseblock">
-                                                        <input type="checkbox" id="{{list.category}}" value="1"  (change)="valueSelected(list.category, $event)" checked >
+                                                        <input type="checkbox" id="{{list.category}}" value="1"
+                                                            (change)="valueSelected(list.category, $event)" checked>
                                                         <label for="{{list.category}}">{{list.category}}</label>
                                                     </ng-container>
                                                     <ng-template #elseblock>
-                                                        <input type="checkbox" id="{{list.category}}" value="1" (change)="valueSelected(list.category, $event)">
+                                                        <input type="checkbox" id="{{list.category}}" value="1"
+                                                            (change)="valueSelected(list.category, $event)">
                                                         <label for="{{list.category}}">{{list.category}}</label>
                                                     </ng-template>
-                                                    <!--</ng-container>-->
-
-                                                    <!--<ng-template #checkall>-->
-                                                    <!--<input type="checkbox"  value="1" (change)="valueSelected(list.category,$event)"  checked>-->
-                                                    <!--<label>{{list.category}}</label>-->
-                                                    <!--</ng-template>-->
-
                                                 </li>
                                             </div>
                                         </div>
-
-
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="form-footer text-right">
                         <div class="checkbox pull-left">
                             <label style="font-size: 20px">
-                                <input type="checkbox" [(ngModel)]="personal.newsletter" value="{{personal.newsletter}}" name="newsletter" formControlName="newsletter"> Subscribe to Newsletter
+                                <input type="checkbox" [(ngModel)]="personal.newsletter" value="{{personal.newsletter}}"
+                                    name="newsletter" formControlName="newsletter"> Subscribe to Newsletter
                             </label>
                         </div>
                         <div *ngIf="!pkgsub">
-
                         </div>
                         <div class="form-group text-center">
-                            <button type="submit" style="width:30%;" class="btn btn-lrg btn-rose btn-fill btn-wd" (click)="onRegister()">Update</button>
+                            <button type="submit" style="width:30%;" class="btn btn-lrg btn-rose btn-fill btn-wd"
+                                (click)="onRegister()">Update</button>
                         </div>
                     </div>
                 </div>
             </form>
-
         </div>
     </div>
 </div>

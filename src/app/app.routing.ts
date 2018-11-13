@@ -69,8 +69,8 @@ export const AppRoutes: Routes = [
             { path: 'change-password', loadChildren: '../app/admin/changed-password/changed-password.module#ChangedPasswordModule',canActivate: [AuthGuard] },
                     // { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
             { path: 'profile', loadChildren: '../app/admin/profile/profile.module#ProfileModule',canActivate: [AuthGuard] },
-            { path: 'payment', component: PaymentmethodsComponent, canActivate: [AuthGuard] },
-            // { path: 'payment', loadChildren: '../app/admin/paymentmethods/paymentmethods.module#PaymentmethodsModule',canActivate: [AuthGuard] }
+            // { path: 'payment', component: PaymentmethodsComponent, canActivate: [AuthGuard] },
+            { path: 'payment', loadChildren: '../app/admin/paymentmethods/paymentmethods.module#PaymentmethodsModule',canActivate: [AuthGuard] }
         ]
             
     },

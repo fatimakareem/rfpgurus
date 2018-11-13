@@ -1,15 +1,14 @@
-import { Component, OnInit,OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Http } from "@angular/http"
 import { RegisterService } from "../registered/register.service";
 import swal from 'sweetalert2';
-
 @Component({
   selector: 'app-authenticate',
   templateUrl: './authenticate.component.html',
   styleUrls: ['./authenticate.component.css']
 })
-export class AuthenticateComponent implements OnInit,OnDestroy {
+export class AuthenticateComponent implements OnInit, OnDestroy {
   endRequest;
   sub;
   constructor(
@@ -17,15 +16,13 @@ export class AuthenticateComponent implements OnInit,OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private http5: Http) { }
-
   ngOnInit() {
-  this.endRequest= this.sub = this.route.params.subscribe ( params => {
+    this.endRequest = this.sub = this.route.params.subscribe(params => {
       this.authenticate(params['query1'])
-  });
+    });
   }
-
   authenticate(uid) {
-   this.endRequest=this._serv.authenticate_service(uid)
+    this.endRequest = this._serv.authenticate_service(uid)
       .subscribe(
         data => {
           swal({
@@ -41,8 +38,6 @@ export class AuthenticateComponent implements OnInit,OnDestroy {
           this.router.navigate(['/login']);
         });
   }
-  ngOnDestroy(){
-    // this.endRequest.unsubscribe();
-}
-
+  ngOnDestroy() {
+  }
 }

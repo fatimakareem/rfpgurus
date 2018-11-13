@@ -3,9 +3,8 @@ import { PricingComponent } from './pricing.component';
 
 export const PricingRoutes: Routes = [
     {
-
         path: '',
-        children: [ {
+        children: [{
             path: 'pricing',
             component: PricingComponent
         }]

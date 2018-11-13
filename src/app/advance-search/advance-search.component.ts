@@ -1,39 +1,33 @@
-import { Component, OnInit, Input,OnDestroy,AfterContentInit, ElementRef, ViewChild,Output, EventEmitter } from '@angular/core';
-
+import { Component, OnInit, Input, OnDestroy, AfterContentInit, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AdvanceService } from './advance.service';
 import { MatPaginatorModule } from '@angular/material';
 import { PageEvent } from '@angular/material';
-import { MatDatepickerModule } from '@angular/material';
-import { FormControl, NgForm, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
-import { empty } from 'rxjs/observable/empty';
 // import {DatePipe} from '@angular/common';
 declare var $: any;
 import { HeaderService } from '../header/header.service';
 import { SpeechRecognitionService } from '../header/speechservice';
-
-import {SharedData} from '../shared-service';
-import {PagerService} from '../rfps/rfp/paginator.service';
+import { SharedData } from '../shared-service';
+import { PagerService } from '../rfps/rfp/paginator.service';
 import * as moment from 'moment';
 @Component({
   selector: 'app-advance-search',
   templateUrl: './advance-search.component.html',
   styleUrls: ['./advance-search.component.css'],
-  providers: [PagerService,AdvanceService,SharedData,HeaderService,SpeechRecognitionService]
+  providers: [PagerService, AdvanceService, SharedData, HeaderService, SpeechRecognitionService]
 })
-
-export class AdvanceSearchComponent implements OnInit,OnDestroy {  
+export class AdvanceSearchComponent implements OnInit, OnDestroy {
   public blink = false;
-    @Output() spokenText = new EventEmitter<string>();
-    @Output() error = new EventEmitter<string>();
-    @Input() showInput = true;
+  @Output() spokenText = new EventEmitter<string>();
+  @Output() error = new EventEmitter<string>();
+  @Input() showInput = true;
   endRequest;
-  pager: any = {};  
+  pager: any = {};
   state: any = [];
   cat: any = [];
-  agency: any=[];
+  agency: any = [];
   startIndex;
   catValue = '';
   stateValue = '';
@@ -65,8 +59,7 @@ export class AdvanceSearchComponent implements OnInit,OnDestroy {
   ];
   datashow: boolean = false;
   filtertext;
-  constructor( private speech: SpeechRecognitionService, public _shareData: SharedData,private _serv1: HeaderService,private pagerService: PagerService,private route: ActivatedRoute, private _nav: Router, private _serv: AdvanceService) {
-
+  constructor(private speech: SpeechRecognitionService, public _shareData: SharedData, private _serv1: HeaderService, private pagerService: PagerService, private route: ActivatedRoute, private _nav: Router, private _serv: AdvanceService) {
   }
   // MatPaginator Inputs
   length = 0;
@@ -77,9 +70,8 @@ export class AdvanceSearchComponent implements OnInit,OnDestroy {
   title;
   // MatPaginator Output
   pageEvent: PageEvent;
-
   download(info) {
-   this.endRequest= this._serv.downloadFile(info).subscribe(
+    this.endRequest = this._serv.downloadFile(info).subscribe(
       data => {
         if (data.status = "200") {
           swal(
@@ -90,10 +82,8 @@ export class AdvanceSearchComponent implements OnInit,OnDestroy {
         }
       },
       error => {
-
       });
   }
-
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
@@ -107,112 +97,98 @@ export class AdvanceSearchComponent implements OnInit,OnDestroy {
     this.stateval = this.stateValue
   }
   onSubmit(page) {
-if(this.states){
-  if(this.enterdate == 'Invalid Date'){
-    delete this.postedDate;
-   }
-   else if(this.enterdate){
-this.postedDate= moment(this.enterdate).format('YYYY/MM/DD');
-  }
-   if(this.duedate == 'Invalid Date'){
-    delete this.DueDate;
-   }
-   else if(this.duedate){
-    this.DueDate= moment(this.duedate).format('YYYY/MM/DD');
-        }
-      
-  this.search = false;
-
-  this._serv.searchrfprecord(this.Rfpnum,this.title,this.status,this.postedDate,this.DueDate, this.states,this.agencies, this.cates, this.pageSize, page).subscribe(
-    data => {
-      this.record = "";
-      this.item = "";
-
-      this.record = data.Results;
-      this.item = data.TotalResult;
-      this.length = this.item;
-      this.pager = this.pagerService.getPager(this.item, page);
-    },
-    error => {
-      this.search = true;        
-      this.datashow = true;
-      this.record.splice(0, this.record.length);
-      this.length = 0;
-
-    });
-
-}
-   else{
-    this.route.queryParams
-    .subscribe(params => {
-      this.states = params.state
-   
-    if(!params.state){
-    this.status='active';}
-    console.log("sdsdfffff",this.enterdate,this.duedate)
-     if(this.enterdate == 'Invalid Date'){
-      delete this.postedDate;
-     }
-     else if(this.enterdate){
-this.postedDate= moment(this.enterdate).format('YYYY/MM/DD');
+    if (this.states) {
+      if (this.enterdate == 'Invalid Date') {
+        delete this.postedDate;
+      }
+      else if (this.enterdate) {
+        this.postedDate = moment(this.enterdate).format('YYYY/MM/DD');
+      }
+      if (this.duedate == 'Invalid Date') {
+        delete this.DueDate;
+      }
+      else if (this.duedate) {
+        this.DueDate = moment(this.duedate).format('YYYY/MM/DD');
+      }
+      this.search = false;
+      this._serv.searchrfprecord(this.Rfpnum, this.title, this.status, this.postedDate, this.DueDate, this.states, this.agencies, this.cates, this.pageSize, page).subscribe(
+        data => {
+          this.record = "";
+          this.item = "";
+          this.record = data.Results;
+          this.item = data.TotalResult;
+          this.length = this.item;
+          this.pager = this.pagerService.getPager(this.item, page);
+        },
+        error => {
+          this.search = true;
+          this.datashow = true;
+          this.record.splice(0, this.record.length);
+          this.length = 0;
+        });
     }
-     if(this.duedate == 'Invalid Date'){
-      delete this.DueDate;
-     }
-     else if(this.duedate){
-      this.DueDate= moment(this.duedate).format('YYYY/MM/DD');
-          }
-        
-    this.search = false;
-  
-    this._serv.searchrfprecord(this.Rfpnum,this.title,this.status,this.postedDate,this.DueDate, this.states,this.agencies, this.cates, this.pageSize, page).subscribe(
-      data => {
-        this.record = "";
-        this.item = "";
+    else {
+      this.route.queryParams
+        .subscribe(params => {
+          this.states = params.state
 
+          if (!params.state) {
+            this.status = 'active';
+          }
+          console.log("sdsdfffff", this.enterdate, this.duedate)
+          if (this.enterdate == 'Invalid Date') {
+            delete this.postedDate;
+          }
+          else if (this.enterdate) {
+            this.postedDate = moment(this.enterdate).format('YYYY/MM/DD');
+          }
+          if (this.duedate == 'Invalid Date') {
+            delete this.DueDate;
+          }
+          else if (this.duedate) {
+            this.DueDate = moment(this.duedate).format('YYYY/MM/DD');
+          }
+          this.search = false;
+          this._serv.searchrfprecord(this.Rfpnum, this.title, this.status, this.postedDate, this.DueDate, this.states, this.agencies, this.cates, this.pageSize, page).subscribe(
+            data => {
+              this.record = "";
+              this.item = "";
+              this.record = data.Results;
+              this.item = data.TotalResult;
+              this.length = this.item;
+              this.pager = this.pagerService.getPager(this.item, page);
+            },
+            error => {
+              this.search = true;
+              this.datashow = true;
+              this.record.splice(0, this.record.length);
+              this.length = 0;
+            });
+
+        })
+    }
+  }
+  page(pageSize) {
+    if (pageSize) {
+      console.log(pageSize);
+      this.pageSize = pageSize;
+      this.onSubmit(1);
+    }
+    else {
+      console.log()
+      delete this.pageSize;
+      console.log(this.pageSize)
+    }
+  }
+  onPaginateChange(page: number) {
+    this.endRequest = this._serv.searchrfprecord(this.Rfpnum, this.title, this.status, this.postedDate, this.DueDate, this.states, this.agencies, this.cates, this.pageSize, page).subscribe(
+      data => {
         this.record = data.Results;
         this.item = data.TotalResult;
         this.length = this.item;
         this.pager = this.pagerService.getPager(this.item, page);
       },
       error => {
-        this.search = true;        
-        this.datashow = true;
-        this.record.splice(0, this.record.length);
-        this.length = 0;
-
-      });
-
-    })
-  }}
-  
-  page(pageSize){
-    if (pageSize) {
-      console.log(pageSize);
-      this.pageSize = pageSize;
-      this.onSubmit(1);
-  }
-  else {
-      console.log()
-      delete this.pageSize;
-      console.log(this.pageSize)
-  }
-  }
-  onPaginateChange(page:number) {
-   
-   
-    this.endRequest=this._serv.searchrfprecord(this.Rfpnum,this.title,this.status, this.postedDate, this.DueDate, this.states,this.agencies, this.cates, this.pageSize, page).subscribe(
-
-      data => {
-        this.record = data.Results;
-        this.item = data.TotalResult;
-        this.length = this.item;
-       this.pager = this.pagerService.getPager(this.item, page);
-        //  console.log(length);
-        // console.log(data);
-      },
-      error => {
-        // console.log(error);
       });
   }
   formclear() {
@@ -220,100 +196,63 @@ this.postedDate= moment(this.enterdate).format('YYYY/MM/DD');
     this.enterdate = undefined;
     this.duedate = undefined;
     this.states = undefined;
-    this.agencies=undefined;
+    this.agencies = undefined;
     this.cates = undefined;
     this.search = false;
     delete this.postedDate;
     delete this.DueDate;
-
   }
   single(query) {
-    let sth = 'rfp/'+query;
+    let sth = 'rfp/' + query;
     this._nav.navigate([sth]);
   }
   query;
   Rfp;
   loaded = false;
-  
-  fund(event){
+  fund(event) {
     console.log(this.query)
-     this._shareData.catInfo(this.query);
-     let requiredUrl='searched-data'
-     this._nav.navigate([requiredUrl], { queryParams: { keyword: this.query }});
-    
-
-
- }
- triggerMike() {
-  if (!('webkitSpeechRecognition' in window)) {
-    console.log('please upgrade');
-  } else {
-   
-    this.blink = true;
-    this.search1();
+    this._shareData.catInfo(this.query);
+    let requiredUrl = 'searched-data'
+    this._nav.navigate([requiredUrl], { queryParams: { keyword: this.query } });
   }
-}
-/////////voice to text/////////
-search1(): void {
-  this.speech.record().subscribe((text) => {
+  triggerMike() {
+    if (!('webkitSpeechRecognition' in window)) {
+      console.log('please upgrade');
+    } else {
+      this.blink = true;
+      this.search1();
+    }
+  }
+  /////////voice to text/////////
+  search1(): void {
+    this.speech.record().subscribe((text) => {
       this.query = text;
       this.blink = false;
       this.spokenText.emit(this.query);
       this.speech.stop();
     },
-    
-  );
-}
- filter(query) {
-   if (this.query !== "") {
-     this._serv1.searchSuggestions(this.query).subscribe(response => {
-       this.Rfp = response.results;
-       // console.log(this.Rfp);
-       this.loaded = true;
-     });
-   }
- }
- /////////////////////
-// setpage(page:number){
- 
-//     this.status = 'active';
-    
-//   this.endRequest=  this._serv.searchrfprecord(this.Rfpnum,this.title,this.status,this.postedDate,this.DueDate, this.states,this.agencies, this.cates, this.pageSize, 1).subscribe(
-//       data => {
-//         this.record = data.Results;
-//         this.item = data.TotalResult;
-//         this.length = this.item;
-//        this.endRequest= this.pager = this.pagerService.getPager(this.item, page);
-      
-//       },
-//       error => {
-//         this.search = true;
-        
-//         if (error.status == "404") {              
-//           this.record.splice(0, this.record.length);
-//           this.length = 0;
-//           this.status = undefined;
-//           this.enterdate = undefined;
-//           this.duedate = undefined;
-//           this.states = undefined;
-//           this.agencies=undefined;
-//           this.cates = undefined;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-//         }
-//       });
- 
-// }
+    );
+  }
+  filter(query) {
+    if (this.query !== "") {
+      this._serv1.searchSuggestions(this.query).subscribe(response => {
+        this.Rfp = response.results;
+        // console.log(this.Rfp);
+        this.loaded = true;
+      });
+    }
+  }
   ngOnInit() {
     // this.onPaginateChange(1);
     this.onSubmit(1);
-  this.endRequest= this._serv.rfpstate().subscribe(
+    this.endRequest = this._serv.rfpstate().subscribe(
       data => {
         this.state = data.Result;
-
       },
       error => {
         // console.log(error);
       });
-   this.endRequest= this._serv.rfpcategory().subscribe(
+    this.endRequest = this._serv.rfpcategory().subscribe(
       data => {
         this.cat = data;
       },
@@ -321,24 +260,23 @@ search1(): void {
         // console.log(error);
       }
     )
-     this.endRequest= this._serv.rfpagency().subscribe(
-          data=>{
-            this.agency=data.Result;
-          }
-      )
+    this.endRequest = this._serv.rfpagency().subscribe(
+      data => {
+        this.agency = data.Result;
+      }
+    )
     this.check_login();
-    $("#box").click(function(){
+    $("#box").click(function () {
       $("#box").toggleClass("animation-blink");
-  }); 
-  
-  }
+    });
 
+  }
   check_login() {
     if (localStorage.getItem('currentUser')) {
       this.local = localStorage.getItem('currentUser');
       let pars = JSON.parse(this.local);
       this.uname = pars.username
-     this.endRequest= this._serv.usersubscribe(this.uname).subscribe(
+      this.endRequest = this._serv.usersubscribe(this.uname).subscribe(
         data => {
           // console.log(data.Response);
           if (data.Response == "Subscribe user") {
@@ -354,7 +292,7 @@ search1(): void {
       return true
     }
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     // this.endRequest.unsubscribe();
-}
+  }
 }
