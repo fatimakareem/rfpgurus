@@ -1922,17 +1922,7 @@ hr {
     z-index: 9
 }
 
-.nav-vanders {
-    display: none!important;
-    position: absolute;
-    background: #fff;
-    padding: 10px 0!important;
-    top: 19px;
-    left: -30px;
-    border-radius: 8px;
-    min-width: 234px;
-    margin-top: 8px!important
-}
+
 
 .nav-vanders li,
 .vanders:hover .drop-downs {
@@ -2212,8 +2202,9 @@ mat-form-field.mat-form-field {
 }
 
 .plan-detail>h5 {
-    margin: 10px 0 0;
-    font-size: 13px;
+    margin: 5px 0 0;
+    font-weight: 600 !important;
+    font-size: 16px;
 }
 
 .plan-detail i {
@@ -2222,8 +2213,8 @@ mat-form-field.mat-form-field {
 }
 
 .plan-detail span {
-    font-size: 16px;
-    color: #3d3d3d
+    font-size: 14px;
+    color: #3d3d3d;
 }
 
 .our-team-l-4-d {

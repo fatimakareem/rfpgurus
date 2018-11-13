@@ -132,17 +132,17 @@
                             <div class="error-block" *ngIf="isequal==false" style="float: left;">
                                 <span>*Please Enter Valid Answer</span>
                             </div>
-                            <button type="submit" style="width: 100%;font-size: 22px !important;" class="btn btn-rose btn-fill btn-wd" (click)="onLogin()">Sign in</button>
+                            <button type="submit"  class="btn btn-rose btn-fill btn-wd sh-signin-btn" (click)="onLogin()">Sign in</button>
 
-                            <p  class="" data-reactid="40" style="margin-bottom:3px;overflow:hidden;text-align:center;color:#555;font-weight:bold;">OR</p>
+                            <p  class="sh-OR" data-reactid="40">OR</p>
 
 
                             <div class="other-logins">
-                                <button  (click)="signInWithFB()" class="btn btn-rose btn-fill btn-wd" style="background-color: #204d74;width: 48%;">
+                                <button  (click)="signInWithFB()" class="btn btn-rose btn-fill btn-wd s-l-fb" >
                                     <i  class="fa fa-facebook"></i>
                                     <span >Facebook</span>
                                 </button>
-                                <button (click)="signInWithGoogle()"  class="btn btn-rose btn-fill btn-wd" style="background-color: #d34836;width: 48%;">
+                                <button (click)="signInWithGoogle()"  class="btn btn-rose btn-fill btn-wd  s-l-google" >
                                     <i  class="fa fa-google-plus"></i>
                                     <span>Google</span>
                                 </button>

@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+*:not(i):not(.fa):not(.fas):not(.far):not(.mat-form-field-suffix):not(.mat-icon){
+    font-family: 'Open Sans', sans-serif;
+  }
 .list-contact,
 .list-social li,
 .list-tick {
@@ -1274,10 +1278,12 @@
 .sh-notification-div .heart-detail{
     margin: 10px 0 !important;
 }
+
 body {
     display: block!important;
     background-color: #fafafa;
     overflow-x: hidden;
+    font-family: 
 }
 .card [data-background-color="purple"] {
     background: #000 !important;
@@ -1539,14 +1545,12 @@ body{
 .form .btn.sh{
     margin-top: 10px !important;
 }
-.sh-plan-form .btn.btn-success.dropdown-toggle{
-    padding: 10px 15px;
+ .btn.btn-success.dropdown-toggle{
+    padding: 10px 15px !important;
 }
-.sh-plan-form .package-detail h2 {
-    font-size: 22px;
-    background-color: #c51414;
-    color: white;
-    padding: 5px 5px;
+.package-detail h2 {
+    font-size: 22px !important;
+    padding: 5px 5px !important;
 }
 .sh-plan-form .checkout{
     margin: 120px auto 30px;
@@ -1555,6 +1559,58 @@ body{
 
 .sh-plan-form .form fieldset {
     padding: 5px 0;
+}
+.center-admin-form .sh-notification-div{
+    margin: 0 auto;
+    float: none;
+}
+.sh-del{
+    position: absolute;
+    right: 10px;
+    top: 0;
+    color: #fff
+}
+.sh-notification-div.sh  .heart-main-div{
+    position: relative;
+}
+.profile-name ul li a i {
+    margin:0;
+    width: 20px;
+}
+.nav-vanders {
+    display: none!important;
+    position: absolute;
+    background: #fff;
+    padding: 10px 0!important;
+    top: 19px;
+    left: 0 !important;
+    border-radius: 0 0 8px 8px;
+    min-width: 200px;
+    margin-top: 8px!important;
+}
+.sh-signin-btn{
+    width: 100%;
+    font-size: 22px !important;
+    margin-top: 20px;
+}
+.sh-OR{
+    margin-bottom:3px;
+    overflow:hidden;
+    text-align:center;
+    color:#555;
+    font-weight:bold;
+}
+.s-l-fb{
+    background-color: #204d74 !important;
+    width: 48%;
+}
+.s-l-google{
+    background-color: #d34836 !important;
+    width: 48%;
+}
+.sh-rfp-dates{
+    font-size: 16px;
+    font-weight: 600 !important;
 }
 @media (min-width: 1680px) {
     .navbar-nav > li > a {
