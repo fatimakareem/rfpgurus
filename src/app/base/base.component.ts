@@ -125,7 +125,7 @@ export class BaseComponent implements OnInit {
       this.http.get('https://apis.rfpgurus.com/rf_p/rfp/date_entered/asc/' + this.pageSize + '?page=' + page, { headers: headers })
         .subscribe(Res => {
           this.items = Res.json()['results'];
-          console.log(this.items,Res.json()['totalItems'], 'eee')
+          console.log(this.items, Res.json()['totalItems'], 'eee')
           this.pager = this.pagerService.getPager(Res.json()['totalItems'], page);
           this.search = false;
         });

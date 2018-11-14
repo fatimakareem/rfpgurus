@@ -4,7 +4,7 @@
             <h2>Advanced Search</h2>
         </div>
         <div class="card-content">
-            <form (ngSubmit)="onSubmit(1)" class="sh-form-spaces-fix  sh-more-condense-spaces sh">
+            <form  (ngSubmit)="onSubmit(1)" class="sh-form-spaces-fix  sh-more-condense-spaces sh">
                 <div class="row">
                     <div class="col-sm-4">
                         <mat-form-field>
@@ -17,19 +17,19 @@
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">
-                        <mat-form-field>
-                            <input matInput [matDatepicker]="startPicker" name="enterdate" [(ngModel)]="enterdate"
+                        <mat-form-field color="warn">
+                            <input matInput [matDatepicker]="startPicker" (focus)="startPicker.open()" name="enterdate" [(ngModel)]="enterdate"
                                 placeholder="From Date" (ngModelChange)="onSubmit(1)" />
                             <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-                            <mat-datepicker #startPicker></mat-datepicker>
+                            <mat-datepicker #startPicker color="warn"></mat-datepicker>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">
-                        <mat-form-field class="example-full-width mat-size">
-                            <input matInput [matDatepicker]="startPicker1" name="duedate" [(ngModel)]="duedate"
+                        <mat-form-field color="warn" class="example-full-width mat-size">
+                            <input matInput [matDatepicker]="startPicker1" (focus)="startPicker1.open()" name="duedate" [(ngModel)]="duedate"
                                 placeholder="To Date" (ngModelChange)="onSubmit(1)" />
                             <mat-datepicker-toggle matSuffix [for]="startPicker1"></mat-datepicker-toggle>
-                            <mat-datepicker #startPicker1></mat-datepicker>
+                            <mat-datepicker #startPicker1 color="warn"></mat-datepicker>
                         </mat-form-field>
                     </div>
                 </div>
