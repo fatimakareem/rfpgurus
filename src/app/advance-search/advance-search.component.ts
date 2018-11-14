@@ -46,7 +46,7 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
   states;
   agencies;
   cates;
-  status;
+  status="active";
   catsearch;
   agensearch;
   statsearch;
@@ -96,6 +96,10 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
   state_value() {
     this.stateval = this.stateValue
   }
+  chang(status){
+this.status=status;
+this.onSubmit(1);
+  }
   onSubmit(page) {
     if (this.states) {
       if (this.enterdate == 'Invalid Date') {
@@ -130,11 +134,7 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
     else {
       this.route.queryParams
         .subscribe(params => {
-          this.states = params.state
-
-          if (!params.state) {
-            this.status = 'active';
-          }
+          this.states = params.state;
           console.log("sdsdfffff", this.enterdate, this.duedate)
           if (this.enterdate == 'Invalid Date') {
             delete this.postedDate;
