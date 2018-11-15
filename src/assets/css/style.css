@@ -1,5 +1,7 @@
 
-
+*:not(i):not(.fa):not(.fas):not(.far):not(.mat-form-field-suffix):not(.mat-icon):not(.material-icons){
+    font-family: 'Hind Madurai', sans-serif;
+}
 .list-contact,
 .list-social li,
 .list-tick {
@@ -1672,10 +1674,22 @@ body{
     margin: 6px 10px 0px 0px;
 }
 .plan-detail >div>h5{
-    font-size: 20px;
+    font-size: 18px;
 }
 .plan-detail >div {
     padding: 0;
+}
+.sh-subscribe .mat-input-underline{
+    display:none;
+}
+.sh-subscribe .mat-input-placeholder.mat-empty {
+    top: 2.28125em !important;
+    padding: 0 0 0 20px !important;
+    color:#000 !important;
+    z-index: 9 !important;
+}
+.sh-subscribe .form-group {
+    padding: 0px 0 3px 0;
 }
 @media (min-width:1440px) and (max-width:1679px)  {
     .navbar-nav > li > a {
@@ -1685,7 +1699,7 @@ body{
 
 @media (min-width:1281px) and (max-width:1439px) {
     .navbar-nav>li>a {
-        font-size: 14px!important;
+        font-size: 15px!important;
     }
     .sh-android-apple {
         padding-right: 8px ;
