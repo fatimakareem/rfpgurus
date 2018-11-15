@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderService } from '../header/header.service';
 import { SharedData } from '../shared-service';
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-allnotification',
   templateUrl: './allnotification.component.html',
@@ -28,6 +29,7 @@ export class AllnotificationComponent implements OnInit {
   deletenofication(id) {
     this._serv.deletenotify(id).subscribe(
       data => {
+
         this.notification();
       },
       error => {
@@ -61,8 +63,13 @@ export class AllnotificationComponent implements OnInit {
   }
   deleteallnotification() {
     this._serv.deleteallnotify().subscribe(
-
       data => {
+        swal({
+          type: 'success',
+          title: 'All Notifications Successfully Deleted.',
+          showConfirmButton: false,
+          timer: 2500
+        });
         this.notification()
       },
       error => {
