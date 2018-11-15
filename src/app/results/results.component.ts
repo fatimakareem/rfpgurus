@@ -27,7 +27,7 @@ export class ResultsComponent implements OnInit,OnDestroy {
     local;
     uname;
     subscribe;
-
+    sorted;
     constructor(private pagerService:PagerService,public _shareData: SharedData,private _nav:Router,private _serv: ResultsService ,private route: ActivatedRoute) { }
     // MatPaginator Inputs
     endRequest;
@@ -64,7 +64,21 @@ export class ResultsComponent implements OnInit,OnDestroy {
 
             });
     }
-
+    order="asc"
+    sort(sorted,page){
+        this.route.queryParams
+        .subscribe(params => {
+            this.cat = params.keyword
+        console.log(sorted)
+        this._serv.sortby(sorted, this.order,this.cat,page).subscribe(
+            data => {
+                this.record = data.results;
+                console.log(data.results)
+                this.item = data.totalItems
+                this.pager = this.pagerService.getPager(data['totalItems'], page,this.pageSize);
+            })
+        })
+    }
     ngOnInit() {
         this.onPaginateChange(1);
        

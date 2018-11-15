@@ -1677,6 +1677,24 @@ body{
 .plan-detail >div {
     padding: 0;
 }
+.sh-sort .mat-form-field{
+    max-width: 210px;
+}
+.sh-sort label {
+    font-size: 18px;
+    font-weight: normal !important;
+}
+.sh-sort .mat-option .mat-option-text {
+    font-size: 18px !important;
+}
+.sh-sort .mat-input-ripple{
+    display: none;
+}
+.sh-sort mat-option{
+    font-size: 18px;
+    font-weight: 400;
+}
+
 @media (min-width:1440px) and (max-width:1679px)  {
     .navbar-nav > li > a {
         font-size: 16px !important;
