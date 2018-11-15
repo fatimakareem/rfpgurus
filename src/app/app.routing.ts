@@ -84,11 +84,11 @@ export const AppRoutes: Routes = [
             // { path: 'find-bids', component: BaseComponent },
             { path: 'find-bids', loadChildren: '../app/base/base.module#BaseModule' },
 
-            // { path: 'watchlist', component: WatchlistComponent },
-            { path: 'watchlist', loadChildren: '../app/watchlist/watchlist.module#WatchlistModule' },
+            { path: 'watchlist', component: WatchlistComponent },
+            // { path: 'watchlist', loadChildren: '../app/watchlist/watchlist.module#WatchlistModule' },
             // { path: 'find-bids',component:RfpComponent},
-            // { path: 'rfp/:query', component: SingleRfpComponent },
-            { path: 'rfp/:query', loadChildren: '../app/rfps/single-rfp/single-rfp.module#SingleRfpModule'},
+            { path: 'rfp/:query', component: SingleRfpComponent },
+            // { path: 'rfp/:query', loadChildren: '../app/rfps/single-rfp/single-rfp.module#SingleRfpModule'},
             
             { path: 'searched-data', component: ResultsComponent },
             // { path: 'searched-data', loadChildren: '../app/rfps/single-rfp/single-rfp.module#SingleRfpModule'},
@@ -116,8 +116,8 @@ export const AppRoutes: Routes = [
             { path: 'rfp-as-service', loadChildren: '../app/rfp-as-service/rfp-as-service.module#RfpAsServiceModule' },
             { path: 'blog', loadChildren: '../app/blog/blog.module#BlogModule' },
             // { path: 'blog', component: BlogComponent },
-            // { path: 'All-notifications', component: AllnotificationComponent },
-            { path: 'All-notifications', loadChildren: '../app/allnotification/allnotification.module#AllnotificationModule' },
+            { path: 'All-notifications', component: AllnotificationComponent },
+            // { path: 'All-notifications', loadChildren: '../app/allnotification/allnotification.module#AllnotificationModule' },
         
             // { path: 'single-blog', component: SingleblogComponent },
               { path: 'single-blog', loadChildren: '../app/singleblog/singleblog.module#SingleblogModule' },

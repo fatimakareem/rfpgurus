@@ -27,11 +27,15 @@ export class SharedData {
   unreadnotifyInfo(message) {
     this.unreadnotiSubject.next(message)
   }
+  
   watchtotal(message) {
     this.watchtotalSubject.next(message)
+    console.log( message)
+
   }
   watchInfo(message) {
     this.watchSubject.next(message)
+    console.log( message)
   }
   returnCategory(){
     return this.categorySubject;

@@ -60,7 +60,8 @@ export class HeaderComponent implements OnInit {
     setTimeout(this.focusInput(), 5000);
   }
 
-  constructor( private speech: SpeechRecognitionService,private authService: AuthService,private _nav: Router, public _shareData: SharedData,private _serv: HeaderService,private _serv1: RfpService) { this. check_login1();}
+  constructor( private speech: SpeechRecognitionService,private authService: AuthService,private _nav: Router, public _shareData: SharedData,private _serv: HeaderService,private _serv1: RfpService) { this. check_login1();
+    this.check_login();}
   logout() {
     this.authService.signOut().then(success => {
       console.log("true", success)
@@ -116,12 +117,13 @@ export class HeaderComponent implements OnInit {
       });
   }
   ngOnInit() {
-   
+    this.watchlist();
     this._shareData.notification.subscribe(message => this.notificate = message)
     this._shareData.unreadnotification.subscribe(message => this.unread = message)
     this._shareData.currentMessage.subscribe(message => this.wrfp = message)
     this._shareData.currentMessagetotal.subscribe(message => this.total = message)
-    this.watchlist();
+    // this.watchlist();
+    // this.notification()
     let timer = Observable.timer(0, 60000);
     timer.subscribe(() => this.notification());
     $('#search').click(function () {

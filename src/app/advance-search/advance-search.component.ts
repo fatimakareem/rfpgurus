@@ -11,6 +11,7 @@ import { HeaderService } from '../header/header.service';
 import { SpeechRecognitionService } from '../header/speechservice';
 import { SharedData } from '../shared-service';
 import { PagerService } from '../rfps/rfp/paginator.service';
+// import { DateFormat } from './date-format';
 import * as moment from 'moment';
 @Component({
   selector: 'app-advance-search',
@@ -46,7 +47,7 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
   states;
   agencies;
   cates;
-  status;
+  status = "active";
   catsearch;
   agensearch;
   statsearch;
@@ -61,6 +62,7 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
   filtertext;
   constructor(private speech: SpeechRecognitionService, public _shareData: SharedData, private _serv1: HeaderService, private pagerService: PagerService, private route: ActivatedRoute, private _nav: Router, private _serv: AdvanceService) {
   }
+ 
   // MatPaginator Inputs
   length = 0;
   // click = 1;
@@ -96,6 +98,10 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
   state_value() {
     this.stateval = this.stateValue
   }
+  chang(status) {
+    this.status = status;
+    this.onSubmit(1);
+  }
   onSubmit(page) {
     if (this.states) {
       if (this.enterdate == 'Invalid Date') {
@@ -118,7 +124,7 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
           this.record = data.Results;
           this.item = data.TotalResult;
           this.length = this.item;
-          this.pager = this.pagerService.getPager(this.item, page);
+          this.pager = this.pagerService.getPager(this.item, page,this.pageSize);
         },
         error => {
           this.search = true;
@@ -130,11 +136,7 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
     else {
       this.route.queryParams
         .subscribe(params => {
-          this.states = params.state
-
-          if (!params.state) {
-            this.status = 'active';
-          }
+          this.states = params.state;
           console.log("sdsdfffff", this.enterdate, this.duedate)
           if (this.enterdate == 'Invalid Date') {
             delete this.postedDate;
@@ -156,7 +158,7 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
               this.record = data.Results;
               this.item = data.TotalResult;
               this.length = this.item;
-              this.pager = this.pagerService.getPager(this.item, page);
+              this.pager = this.pagerService.getPager(this.item, page,this.pageSize);
             },
             error => {
               this.search = true;
@@ -180,13 +182,14 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
       console.log(this.pageSize)
     }
   }
+  
   onPaginateChange(page: number) {
     this.endRequest = this._serv.searchrfprecord(this.Rfpnum, this.title, this.status, this.postedDate, this.DueDate, this.states, this.agencies, this.cates, this.pageSize, page).subscribe(
       data => {
         this.record = data.Results;
         this.item = data.TotalResult;
         this.length = this.item;
-        this.pager = this.pagerService.getPager(this.item, page);
+        this.pager = this.pagerService.getPager(this.item, page,this.pageSize);
       },
       error => {
       });

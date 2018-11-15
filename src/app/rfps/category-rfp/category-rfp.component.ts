@@ -78,7 +78,7 @@ setpage(page:number){
           this.record = data.Results;
          this.item = data.totalItems
          this.length = this.item;
-         this.pager = this.pagerService.getPager(data['totalItems'], page);
+         this.pager = this.pagerService.getPager(data['totalItems'], page,this.pageSize);
       },
       error => {
           console.log(error);

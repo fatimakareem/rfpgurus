@@ -82,7 +82,7 @@ else {
                 this.record = data.Results;
                 this.item = data.totalItems
                 this.length = this.item;
-                this.pager = this.pagerService.getPager(this.item, page);
+                this.pager = this.pagerService.getPager(this.item, page,this.pageSize);
 
                 //  console.log(length);
                 //   console.log(data);

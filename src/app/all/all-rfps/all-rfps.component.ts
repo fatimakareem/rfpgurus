@@ -22,7 +22,7 @@ export class AllRfpsComponent implements OnInit {
     constructor(private pagerService: PagerService, public _shareData: SharedData, private _nav: Router, private _serv: AllRfpsService, private route: ActivatedRoute) { }
     // MatPaginator Inputs
     // length
-    pageSize = '10';
+    pageSize = "10";
     matpageSizeOptions = [10, 20, 35, 50];
     pager: any = {};
     end;
@@ -58,7 +58,7 @@ export class AllRfpsComponent implements OnInit {
                 // this.length = this.item;
                 console.log(this.record, 'jjjjjjjjjjjjjjj');
                 console.log(data.totalItems);
-                this.pager = this.pagerService.getPager(this.item, page);
+                this.pager = this.pagerService.getPager(this.item, page,this.pageSize);
                 console.log(this.pager)
             },
             error => {

@@ -69,22 +69,24 @@ export class BaseComponent implements OnInit {
   setpage(page: number) {
   }
   onPaginateChange(page: number) {
-    //  alert(page)
+    
     this.route.queryParams
       .subscribe(params => {
+        console.log( params.enterdate)
         if (params.status || params.enterdate || params.duedate || params.state || params.agency || params.cat) {
-          this.status = params.status;
-          this.enterdate = new Date(params.enterdate);
-          this.duedate = new Date(params.duedate);
-          this.states = params.state;
-          this.agencies = params.agency;
-          this.cates = params.cat;
+          // alert(page)
+          // this.status = params.status;
+          // this.enterdate = new Date(params.enterdate);
+          // this.duedate = new Date(params.duedate);
+          // this.states = params.state;
+          // this.agencies = params.agency;
+          // this.cates = params.cat;
           this._adserv.searchrfprecord(this.Rfpnum, this.title, params.status, params.enterdate, params.duedate, params.state, params.agency, params.cat, this.pageSize, 1).subscribe(
             data => {
               this.items = data.Results;
               this.item = data.TotalResult;
               this.length = this.item;
-              this.pager = this.pagerService.getPager(this.item, page);
+              this.pager = this.pagerService.getPager(data['TotalResult'], page,this.pageSize);
               this.search = false;
             },
             error => {
@@ -101,34 +103,35 @@ export class BaseComponent implements OnInit {
                 this.cates = undefined;
               }
             });
+        }else if (this.Rfpnum || this.title || this.states || this.cates || this.duedate || this.enterdate) {
+          this._adserv.searchrfprecord(this.Rfpnum, this.title, this.status, this.enterdate, this.duedate, this.states, this.agencies, this.cates, this.pageSize, page).subscribe(
+    
+            data => {
+              this.items = data.Results
+              this.item = data.TotalResult;
+              this.pager = this.pagerService.getPager(data['TotalResult'], page,this.pageSize);
+              this.search = false;
+            },
+            error => {
+              this.search = true;
+              if (error.status == "400") {
+                this.length = 0;
+              }
+            });
+        }
+        else {
+      
+          let headers = new Headers();
+          headers.append('Content-Type', 'application/json');
+          this.http.get('https://apis.rfpgurus.com/rf_p/rfp/date_entered/asc/' + this.pageSize + '?page=' + page, { headers: headers })
+            .subscribe(Res => {
+              this.items = Res.json()['results'];
+              console.log(this.items, Res.json()['totalItems'], 'eee')
+              this.pager = this.pagerService.getPager(Res.json()['totalItems'], page,this.pageSize);
+              this.search = false;
+            });
         }
       });
-    if (this.Rfpnum || this.title || this.states || this.cates || this.duedate || this.enterdate) {
-      this._adserv.searchrfprecord(this.Rfpnum, this.title, this.status, this.enterdate, this.duedate, this.states, this.agencies, this.cates, this.pageSize, page).subscribe(
-
-        data => {
-          this.items = data.Results
-          this.item = data.TotalResult;
-          this.pager = this.pagerService.getPager(this.item, page);
-          this.search = false;
-        },
-        error => {
-          this.search = true;
-          if (error.status == "400") {
-            this.length = 0;
-          }
-        });
-    }
-    else {
-      let headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      this.http.get('https://apis.rfpgurus.com/rf_p/rfp/date_entered/asc/' + this.pageSize + '?page=' + page, { headers: headers })
-        .subscribe(Res => {
-          this.items = Res.json()['results'];
-          console.log(this.items, 'eee')
-          this.pager = this.pagerService.getPager(Res.json()['totalItems'], page);
-          this.search = false;
-        });
-    }
+    
   }
 }

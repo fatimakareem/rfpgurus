@@ -77,7 +77,7 @@ export class AgencyRfpComponent implements OnInit ,OnDestroy{
                         this.length = this.item;
                         //  console.log(length);
                         //   console.log(data);
-                        this.pager = this.pagerService.getPager(data['totalItems'], page);
+                        this.pager = this.pagerService.getPager(data['totalItems'], page,this.pageSize);
                     },
                     error => {
                         //   console.log(error);

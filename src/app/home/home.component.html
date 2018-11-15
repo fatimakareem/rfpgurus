@@ -29,7 +29,7 @@
         <a href="" target="_blank">
           <img src="https://storage.rfpgurus.com/bplrfpgurus/apple-store.png" alt="Apple Store" />
         </a>
-        <a href="https://play.google.com/store/apps/details?id=com.brainplow.rfpguruss" target="_blank">
+        <a href="https://play.google.com/store/apps/details?id=com.brainplow.rfpgurus" target="_blank">
           <img src="https://storage.rfpgurus.com/bplrfpgurus/google-play.png" alt="Google Play Store" />
         </a>
       </div>
@@ -70,13 +70,13 @@
                 <div class="CategorySlider" style="display: none">
                   <div class="item CategorySliderTop" *ngFor="let ite of cat">
                     <div class="image">
-                      <a (click)="catRfp(ite.category)">
+                      <a [routerLink]="['/category']" [queryParams]="{ cat:ite.category}">
                         <img title={{ite.category}} style="border: none;width: 100%; " class="img" src="https://storage.rfpgurus.com/bplrfpgurus/{{ite.icon_image}}">
                       </a>
                     </div>
                     <div class="slide-overlay">
                       <h4 class="card-title elipsis-cat-slider">
-                        <a (click)="catRfp(ite.category)" class=".pclass" title={{ite.category}} style="color: #ffffff !important;font-size: 14px;font-weight: bold;">{{
+                        <a  [routerLink]="['/category']" [queryParams]="{ cat: ite.category}" class=".pclass" title={{ite.category}} style="color: #ffffff !important;font-size: 14px;font-weight: bold;">{{
                           ite.category }}</a>
                       </h4>
                     </div>
@@ -392,10 +392,10 @@
                       </h5>
                       <h5>
                         <i class="glyphicon glyphicon-calendar"></i> Posted Date :
-                        <span>{{rfp.date_entered | date:'MMM-d-y'}}</span>
+                        <span>{{rfp.date_entered | date:'MMM-dd-y'}}</span>
                         <br>
                         <i class="glyphicon glyphicon-calendar"></i> Submission Deadline :
-                        <span>{{rfp.due_date | date:'MMM-d-y'}}</span>
+                        <span>{{rfp.due_date | date:'MMM-dd-y'}}</span>
                       </h5>
                     </div>
                   </div>
@@ -411,10 +411,11 @@
           </button>
         </ngx-carousel>
         <div class="btn-holder text-center" style="margin-top:-30px">
-          <button routerLink="/latest-rfp" type="button" class="btn btn-lg btn-rose" title="View All Latest RFPs" style="background-color: black;border-radius: 30px">VIEW
-            ALL LATEST RFPs
+        <a routerLink="/latest-rfp"><button  type="button" class="btn btn-lg btn-rose" title="View All Latest RFPs" style="background-color: black;border-radius: 30px">VIEW
+            ALL LATEST RFPS
             <i class="fa fa-arrow-right" aria-hidden="true"></i>
           </button>
+        </a> 
         </div>
       </div>
     </section>
@@ -468,10 +469,10 @@
           </button>
         </ngx-carousel>
         <div class="btn-holder text-center" style="margin-top:18px">
-          <button routerLink="/all-state" type="button" class="btn btn-lg btn-rose" title="View All States" style="background-color: black;border-radius: 30px">VIEW
+        <a routerLink="/all-state">  <button  type="button" class="btn btn-lg btn-rose" title="View All States" style="background-color: black;border-radius: 30px">VIEW
             ALL STATES
             <i class="fa fa-arrow-right" aria-hidden="true"></i>
-          </button>
+          </button></a>
         </div>
       </div>
     </section>
@@ -534,123 +535,124 @@
               <ul class="list5">
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Agriculture.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Agriculture')" style="cursor:pointer">Agriculture</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Agriculture'}" style="cursor:pointer">Agriculture</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Banking%20and%20Accounting.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Banking')">Banking and Accounting</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Banking and Accounting'}">Banking and Accounting</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Call%20Center.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Call')">Call Centers</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Call Centers'}">Call Centers</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Chemical.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Chemical')">Chemical</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Chemical'}">Chemical</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Technology.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Technology')">Technology</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Technology'}">Technology</a>
+                  <!-- <a ([routerLink]="['/categxory']" [queryParams]="{ cat:'Technology'}">Technology</a> -->
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Education.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Education')">Education</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Education'}">Education</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Food%20and%20Beverage.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Food')">Food and Beverage</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Food and Beverage'}">Food and Beverage</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Non%20Profit.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Non Profit')">Non Profit</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Non Profit'}">Non Profit</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Manufacturing.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Manufacturing')">Manufacturing</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Manufacturing'}">Manufacturing</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Construction.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Construction')">Construction</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Construction'}">Construction</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Computer-Networks.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Computer')">Computer Networks</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Computer Networks'}">Computer Networks</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Internet.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Internet')">Internet</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Internet'}">Internet</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/GIS%20&%20GPS.png" alt="RFPGurus" />
-                  <a (click)="catrfp('GIS')">GIS & GPS</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'GIS & GPS'}">GIS & GPS</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Audio-Visual.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Audio-Visual')">Audio-Visual</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Audio-Visual'}">Audio-Visual</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/CCTV.png" alt="RFPGurus" />
-                  <a (click)="catrfp('CCTV')">CCTV</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'CCTV'}">CCTV</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/IT,%20Information%20Technolog.png" alt="RFPGurus" />
-                  <a (click)="catrfp('IT')"> IT, Information Technology</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'IT, Information Technology'}"> IT, Information Technology</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/IT%20Software%20Programming.png" alt="RFPGurus" />
-                  <a (click)="catrfp('IT Software Programming')">IT Software Programming</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'IT Software Programming'}">IT Software Programming</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Website%20Design.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Website Design')">Website Design</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Website Design'}">Website Design</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Computer%20Hardware.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Computer Hardware')">Computer Hardware</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Computer Hardware'}">Computer Hardware</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Database%20Backup.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Database')">Database Backup</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Database Backup'}">Database Backup</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Computer-Networks.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Computer')">Computer Network Security</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Computer Network Security'}">Computer Network Security</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Janitorial%20&%20Custodial%20Services.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Janitorial')">Janitorial & Custodial Services</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Janitorial & Custodial Services'}">Janitorial & Custodial Services</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Janitorial%20&%20Custodial%20Supplies.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Janitorial')">Janitorial & Custodial Supplies</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Janitorial & Custodial Supplies'}">Janitorial & Custodial Supplies</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Waste%20Removal%20&%20Recycling.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Waste Removal & Recycling')">Waste Removal & Recycling</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Waste Removal & Recycling'}">Waste Removal & Recycling</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Building%20Maintenance.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Building Maintenance')">Building Maintenance</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Building Maintenance'}">Building Maintenance</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Food%20Services.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Food Services')">Food Services</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Food Services'}">Food Services</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Food%20Suppl.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Food Supply')">Food Supply</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Food Supply'}">Food Supply</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Food%20Equipment.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Food')">Food Equipment</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Food Equipment'}">Food Equipment</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Facility%20Management.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Facility')">Facility & Equipment</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Facility & Equipment'}">Facility & Equipment</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Office%20Equipment.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Office Equipment')">Office Equipment</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Office Equipment'}">Office Equipment</a>
                 </li>
               </ul>
             </div>
@@ -658,123 +660,123 @@
               <ul>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Property%20Management.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Property Management')">Property Management</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Property Management'}">Property Management</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Laundry%20&%20Dry%20Cleaning.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Laundry')">Laundry & Dry Cleaning</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Laundry & Dry Cleaning'}">Laundry & Dry Cleaning</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Landscaping.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Landscaping')">Landscaping</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Landscaping'}">Landscaping</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Land%20Architect.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Landscape Architecture')">Landscape Architecture</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Landscape Architecture'}">Landscape Architecture</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Tree%20Trimming.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Tree Trimming')">Tree Trimming</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Tree Trimming'}">Tree Trimming</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Irrigation.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Irrigation')">Irrigation</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Irrigation'}">Irrigation</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Snow%20Plow%20&%20Snow%20Removal.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Snow Plow')">Snow Plow & Snow Removal</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Snow Plow & Snow Removal'}">Snow Plow & Snow Removal</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Lawn%20Care%20&%20Landscaping.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Lawn Care')">Lawn Care & Landscaping</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Lawn Care & Landscaping'}">Lawn Care & Landscaping</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Medical,%20Healthcare.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Medical')">Medical, Healthcare</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Medical, Healthcare'}">Medical, Healthcare</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Medical%20Staffing.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Medical Staffing')">Medical Staffing</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Medical Staffing'}">Medical Staffing</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Medical%20Billing.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Medical Billing')">Medical Billing</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Medical Billing'}">Medical Billing</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Medical%20Equipment.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Medical Equipment')">Medical Equipment</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Medical Equipment'}">Medical Equipment</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Dentistry.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Dentistry')">Dentistry</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Dentistry'}">Dentistry</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Mental%20Health.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Mental Health')">Mental Health</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Mental Health'}">Mental Health</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Pharmacy.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Pharmacy')">Pharmacy</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Pharmacy'}">Pharmacy</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Laboratory%20Drug%20Testing.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Laboratory')">Laboratory Drug Testing</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Laboratory Drug Testing'}">Laboratory Drug Testing</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Medical%20Supplies.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Medical Supplies')">Medical Supplies</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Medical Supplies'}">Medical Supplies</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Ambulance.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Ambulance')">Ambulance</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Ambulance'}">Ambulance</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Employment%20Staffing.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Employment')">Employment Staffing</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Employment Staffing'}">Employment Staffing</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Insurance%20&%20workers%20compensation.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Insurance')">Insurance & workers compensation</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Insurance & workers compensation'}">Insurance & workers compensation</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Travel%20Management.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Travel Management')">Travel Management</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Travel Management'}">Travel Management</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Human%20Resources%20&%20Payroll.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Human Resources')">Human Resources & Payroll</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Human Resources & Payroll'}">Human Resources & Payroll</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Time%20and%20Attendance.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Time and Attendance')">Time and Attendance</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Time and Attendance'}">Time and Attendance</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Quality%20Control.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Quality Control')">Quality Control</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Quality Control'}">Quality Control</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Manufacturing.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Manufacturing')">Manufacturing</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Manufacturing'}">Manufacturing</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Automatic%20Vehicle%20Location.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Automatic Vehicle Location')">Automatic Vehicle Location</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Automatic Vehicle Location'}">Automatic Vehicle Location</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Packing%20Supplies.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Packing Supplies')">Packing Supplies</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Packing Supplies'}">Packing Supplies</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Metal%20Fabrication%20&%20Weldin.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Metal Fabrication')">Metal Fabrication & Welding</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Metal Fabrication & Welding'}">Metal Fabrication & Welding</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Plastics.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Plastics')">Plastics</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Plastics'}">Plastics</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Facilities%20Leasing.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Facilities')">Facilities Leasing</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Facilities Leasing'}">Facilities Leasing</a>
                 </li>
               </ul>
             </div>
@@ -782,123 +784,123 @@
               <ul>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Social%20Services.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Social Services')">Social Services</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Social Services'}">Social Services</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Printing%20&%20Binding.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Printing & Binding')">Printing & Binding</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Printing & Binding'}">Printing & Binding</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Transcription.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Transcription')">Transcription</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Transcription'}">Transcription</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Court%20Reporting.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Court Reporting')">Court Reporting</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Court Reporting'}">Court Reporting</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Appraisal.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Appraisal')">Appraisal</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Appraisal'}">Appraisal</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Document%20Management.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Document Management')">Document Management</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Document Management'}">Document Management</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Document%20Shreddin.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Document Shredding')">Document Shredding</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Document Shredding'}">Document Shredding</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Debt%20Collection.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Debt Collection')">Debt Collection & Accounts</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Debt Collection & Accounts'}">Debt Collection & Accounts</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Parking%20&%20Valet%20Services.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Parking')">Parking & Valet Services</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Parking & Valet Services'}">Parking & Valet Services</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Management%20&%20Leadership%20Consulting.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Management')">Management & Leadership Consulting</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Management & Leadership Consulting'}">Management & Leadership Consulting</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Legal%20Services.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Legal Services')">Legal Services</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Legal Services'}">Legal Services</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Auctioning%20&%20Liquidation.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Auctioning & Liquidation')">Auctioning & Liquidation</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Auctioning & Liquidation'}">Auctioning & Liquidation</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Cultural%20Resources.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Cultural')">Cultural Resources</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Cultural Resources'}">Cultural Resources</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Mass%20Notification.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Mass Notification')">Mass Notification</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Mass Notification'}">Mass Notification</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Financial%20Investment.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Financial')">Financial Investment</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Financial Investment'}">Financial Investment</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Accounting%20&%20Audit.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Accounting & Audit')">Accounting & Audit</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Accounting & Audit'}">Accounting & Audit</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Lobbying%20and%20Public%20Affairs.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Lobbying')">Lobbying and Public Affairs</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Lobbying and Public Affairs'}">Lobbying and Public Affairs</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Administrative%20&%20Secretary.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Administrative')">Administrative & Secretary</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Administrative & Secretary'}">Administrative & Secretary</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Data%20Processing.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Data Processing')">Data Processing</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Data Processing'}">Data Processing</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Security%20&%20Safety.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Security')">Security & Safety</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Security & Safety'}">Security & Safety</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Security%20Guard.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Security Guard')">Security Guard</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Security Guard'}">Security Guard</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Background%20Checks.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Background Checks')">Background Checks</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Background Checks'}">Background Checks</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Security%20System.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Security System')">Security System</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Security System'}">Security System</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Fire%20Fighting%20&%20Rescu.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Fire Fighting')">Fire Fighting & Rescue</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Fire Fighting & Rescue'}">Fire Fighting & Rescue</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Weapons%20&%20Ammunitions.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Weapons')">Weapons & Ammunition</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Weapons & Ammunition'}">Weapons & Ammunition</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Police%20Equipmen.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Police Equipment')">Police Equipment</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Police Equipment'}">Police Equipment</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Equipment%20Rental.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Equipment Rental')">Equipment Rental</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Equipment Rental'}">Equipment Rental</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Facility%20Management.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Facility Management')">Facility Management</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Facility Management'}">Facility Management</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Shipping%20&%20Warehousing.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Shipping')">Shipping & Warehousing</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Shipping & Warehousing'}">Shipping & Warehousing</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Food.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Food')">Food</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Food'}">Food</a>
                 </li>
               </ul>
             </div>
@@ -906,120 +908,120 @@
               <ul>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Disaster%20Recovery.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Disaster Recovery')">Disaster Recovery</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Disaster Recovery'}">Disaster Recovery</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Canine.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Canine')">Canine</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Canine'}">Canine</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Biometrics%20&%20Fingerprint.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Biometrics')">Biometrics & Fingerprint</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Biometrics & Fingerprint'}">Biometrics & Fingerprint</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Identification%20Smart%20Cards%20Architecture,%20Engineering.png"
                     alt="RFPGurus" />
-                  <a (click)="catrfp('Identification')">Identification Smart Cards</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Identification Smart Cards'}">Identification Smart Cards</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Architecture.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Architecture')">Architecture</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Architecture'}">Architecture</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Land%20Architect.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Land')">Land Architect</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Land Architect'}">Land Architect</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Design%20Build.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Design Build')">Design Build</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Design Build'}">Design Build</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Civil%20Engineer.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Civil Engineer')">Civil Engineer</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Civil Engineer'}">Civil Engineer</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Surveying.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Surveying')">Surveying</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Surveying'}">Surveying</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Mapping%20&%20GIS.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Mapping')">Mapping & GIS</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Mapping & GIS'}">Mapping & GIS</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Utility%20Location.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Utility Location')">Utility Location</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Utility Location'}">Utility Location</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Agricultural,%20Environmenta.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Agricultural')">Agricultural, Environmental</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Agricultural, Environmental'}">Agricultural, Environmental</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Environmental.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Environmental')">Environmental</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Environmental'}">Environmental</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Water%20Purification%20Treatment.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Water Purification')">Water Purification Treatment</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Water Purification Treatment'}">Water Purification Treatment</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Pest%20Control.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Pest Control')">Pest Control</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Pest Control'}">Pest Control</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Portable%20Restroom%20(Porta%20Poty).png" alt="RFPGurus" />
-                  <a (click)="catrfp('Portable Restroom')">Portable Restroom(Porta Potty)</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Portable Restroom(Porta Potty)'}">Portable Restroom(Porta Potty)</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Transportation.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Transportation')">Transportation, Warehouse</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Transportation, Warehouse'}">Transportation, Warehouse</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Fleet%20&%20Bus.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Fleet')">Fleet & Bus</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Fleet & Bus'}">Fleet & Bus</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Train%20&%20Railroad.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Train')">Train & Railroad</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Train & Railroad'}">Train & Railroad</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Boats%20&%20Ferry.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Boats')">Boats & Ferry</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Boats & Ferry'}">Boats & Ferry</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Aircraft%20&%20Aviation.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Aircraft')">Aircraft & Aviation</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Aircraft & Aviation'}">Aircraft & Aviation</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Courier%20Services.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Courier Services')">Courier Services</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Courier Services'}">Courier Services</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Freight%20&%20Trucking.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Freight')">Freight & Trucking</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Freight & Trucking'}">Freight & Trucking</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Transportation.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Transportation')">Transportation</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Transportation'}">Transportation</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Moving%20&%20Relocation.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Moving')">Moving & Relocation</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Moving & Relocation'}">Moving & Relocation</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Towing.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Towing')">Towing</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Towing'}">Towing</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Clothing%20&%20Uniforms.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Clothing & Uniforms')">Clothing & Uniforms</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Clothing & Uniforms'}">Clothing & Uniforms</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Furniture.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Furniture')">Furniture</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Furniture'}">Furniture</a>
                 </li>
                 <li>
                   <img src="https://storage.rfpgurus.com/bplrfpgurus/Appliances%20&%20Electronics.png" alt="RFPGurus" />
-                  <a (click)="catrfp('Appliances')">Appliances & Electronics</a>
+                  <a [routerLink]="['/category']" [queryParams]="{ cat:'Appliances & Electronics'}">Appliances & Electronics</a>
                 </li>
                 <li>
                   <a routerLink="/all-category">And Others</a>

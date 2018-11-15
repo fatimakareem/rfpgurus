@@ -6,6 +6,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatInputModule, MatFormFieldModule, MatSelectModule, MatDatepickerModule } from '@angular/material';
 import { TextMaskModule } from 'angular2-text-mask';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { MatNativeDateModule, DateAdapter } from '@angular/material';
 const routes: Routes = [
   {
     path: '', component: BaseComponent
@@ -21,7 +22,9 @@ const routes: Routes = [
     MatSelectModule,
     MatDatepickerModule,
     Ng2SearchPipeModule,
+    MatNativeDateModule,
     TextMaskModule,
+    MatNativeDateModule,
     RouterModule.forChild(routes)
   ],
   declarations: [BaseComponent],
@@ -29,4 +32,9 @@ const routes: Routes = [
     CUSTOM_ELEMENTS_SCHEMA
   ]
 })
-export class BaseModule { }
+export class BaseModule {
+  constructor(private dateAdapter: DateAdapter<Date>) {
+    dateAdapter.setLocale('fr'); // DD/MM/YYYY
+  }
+
+}

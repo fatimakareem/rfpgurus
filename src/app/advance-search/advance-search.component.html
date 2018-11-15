@@ -4,11 +4,11 @@
             <h2>Advanced Search</h2>
         </div>
         <div class="card-content">
-            <form (ngSubmit)="onSubmit(1)" class="sh-form-spaces-fix  sh-more-condense-spaces sh">
+            <form  (ngSubmit)="onSubmit(1)" class="sh-form-spaces-fix  sh-more-condense-spaces sh">
                 <div class="row">
                     <div class="col-sm-4">
                         <mat-form-field>
-                            <mat-select [(ngModel)]="status" name="status" placeholder="Status" (change)="onSubmit(1)">
+                            <mat-select [(ngModel)]="status" name="status"value="status" placeholder="Status" (change)=" chang(status)">
 
                                 <mat-option *ngFor="let food of foods" [value]="food.value">
                                     {{ food.viewValue }}
@@ -17,26 +17,26 @@
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">
-                        <mat-form-field>
-                            <input matInput [matDatepicker]="startPicker" name="enterdate" [(ngModel)]="enterdate"
+                        <mat-form-field color="warn">
+                            <input matInput [matDatepicker]="startPicker" (focus)="startPicker.open()" name="enterdate" [(ngModel)]="enterdate"
                                 placeholder="From Date" (ngModelChange)="onSubmit(1)" />
                             <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-                            <mat-datepicker #startPicker></mat-datepicker>
+                            <mat-datepicker #startPicker color="warn"></mat-datepicker>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">
-                        <mat-form-field class="example-full-width mat-size">
-                            <input matInput [matDatepicker]="startPicker1" name="duedate" [(ngModel)]="duedate"
+                        <mat-form-field color="warn" class="example-full-width mat-size">
+                            <input matInput [matDatepicker]="startPicker1" (focus)="startPicker1.open()" name="duedate" [(ngModel)]="duedate"
                                 placeholder="To Date" (ngModelChange)="onSubmit(1)" />
                             <mat-datepicker-toggle matSuffix [for]="startPicker1"></mat-datepicker-toggle>
-                            <mat-datepicker #startPicker1></mat-datepicker>
+                            <mat-datepicker #startPicker1 color="warn"></mat-datepicker>
                         </mat-form-field>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
                         <mat-form-field>
-                            <mat-select [(ngModel)]="states" name="states" placeholder="Search By State" (change)="onSubmit(1)">
+                            <mat-select [(ngModel)]="states" name="states"  placeholder="Search By State" (change)="onSubmit(1)">
                                 <input class="inp" type="text" [(ngModel)]="statsearch" [ngModelOptions]="{standalone: true}"
                                     class="search-allstates" placeholder="Search By State" style="width: 100%; border-radius: 7px;">
                                 <i class="fa fa-search s-icon-all-states" area-hidden="true"></i>
@@ -186,8 +186,8 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>{{rfp.date_entered | date:'MMM-d-y'}}</td>
-                                                    <td>{{rfp.due_date | date:'MMM-d-y'}}</td>
+                                                    <td>{{rfp.date_entered | date:'MMM-dd-y'}}</td>
+                                                    <td>{{rfp.due_date | date:'MMM-dd-y'}}</td>
                                                 </tr>
 
                                             </tbody>

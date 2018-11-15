@@ -1,4 +1,4 @@
-import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
@@ -11,16 +11,14 @@ import { LoaderComponent } from './loader/loader.component';
 import { ProgressHttpModule } from "angular-progress-http";
 import { UsMapModule } from 'angular-us-map';
 // import { InputModule } from 'voice-to-text';
-import {Nl2BrPipeModule} from 'nl2br-pipe';
+import { Nl2BrPipeModule } from 'nl2br-pipe';
 import { Ng2SmartTableModule } from 'ngx-smart-table';
-
 /////////////////////////////////Service/////////////////////////////
 import { UnsubscribeService } from './unsubscribe/unsubscribe.service';
-
-import { RfpService} from './rfps/single-rfp/rfp.service';
-import { LoginService} from './login/login.service';
+import { RfpService } from './rfps/single-rfp/rfp.service';
+import { LoginService } from './login/login.service';
 // import { PricingService } from './pricing/pricing.service';
-import { RegisterService} from './registered/register.service';
+import { RegisterService } from './registered/register.service';
 // import { ForgetPasswordService } from './admin/forget-password/forget-password.service';
 // import { ChangedPasswordService } from './admin/changed-password/changed-password.service';
 import { SidebarService } from './user-sidebar/sidebar.service';
@@ -34,22 +32,22 @@ import { CategoryRfpService } from './rfps/category-rfp/category-rfp.service';
 import { HeaderService } from './header/header.service';
 import { HomeService } from './home/home.service';
 import { AdvanceService } from './advance-search/advance.service';
-import { BlogService } from'./blog/blog.service'
+import { BlogService } from './blog/blog.service'
 // import { ContactUsService } from './contact-us/contact-us.service';
 import { FooterService } from './footer/footer.service';
 import { PaymentmethodsService } from './admin/paymentmethods/paymentmethods.service';
-
+// import { DateFormat } from './advance-search/date-format';
 // import { UnsubscribeService } from './unsubscribe/unsubscribe.service';
 import { SpeechRecognitionService } from './header/speechservice';
 
 /////////////////////////////////End////////////////////////////////
 ///////////////////for loader//////////////////////////////
-import {PreloaderFull} from './component/preloader-full/preloader-full';
-import {PreloaderSmall} from './component/preloader-small/preloader-small';
-import {BaseRequestOptions} from '@angular/http';
-import {PreloaderService} from './serv/preloader-service';
-import {XHRBackend, RequestOptions} from '@angular/http';
-import {HttpService} from './serv/http-service';
+import { PreloaderFull } from './component/preloader-full/preloader-full';
+import { PreloaderSmall } from './component/preloader-small/preloader-small';
+import { BaseRequestOptions } from '@angular/http';
+import { PreloaderService } from './serv/preloader-service';
+import { XHRBackend, RequestOptions } from '@angular/http';
+import { HttpService } from './serv/http-service';
 // import { MainService } from './serv/main.service'
 // import {AlertService} from './serv/alert.service';
 //////////////////////////////////////////////////////////End//////////////////////////////////////////////
@@ -86,17 +84,18 @@ import {
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    
+    DateAdapter,
+
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
 // import { PaymentmethodsComponent } from './admin/paymentmethods/paymentmethods.component';
-// import { AllnotificationComponent } from './allnotification/allnotification.component';
+import { AllnotificationComponent } from './allnotification/allnotification.component';
 import { AppRoutes } from './app.routing';
 // import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
-// import { SingleRfpComponent } from './rfps/single-rfp/single-rfp.component';
+import { SingleRfpComponent } from './rfps/single-rfp/single-rfp.component';
 import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
 // import { PricingComponent } from './pricing/pricing.component';
 import { TextMaskModule } from 'angular2-text-mask';
@@ -120,28 +119,28 @@ import { FooterComponent } from './footer/footer.component';
 // import { RfpAsServiceComponent } from './rfp-as-service/rfp-as-service.component';
 // import { BlogComponent } from './blog/blog.component';
 // import { SingleblogComponent } from './singleblog/singleblog.component';
-import {RecaptchaModule} from 'ng-recaptcha';
+import { RecaptchaModule } from 'ng-recaptcha';
 // import { PartnershipComponent } from './partnership/partnership.component';
 // import { HistoryComponent } from './admin/history/history.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import {SharedData } from './shared-service'
-import {DatePipe} from '@angular/common';
-import {BlackgeeksRecaptchaModule} from './recaptcha/recaptcha.module';
-import {RecaptchaComponent} from './recaptcha/recaptcha.component';
-import {ResultsComponent} from './results/results.component';
-import {ResultsService} from './results/results.service';
+import { SharedData } from './shared-service'
+import { DatePipe } from '@angular/common';
+import { BlackgeeksRecaptchaModule } from './recaptcha/recaptcha.module';
+import { RecaptchaComponent } from './recaptcha/recaptcha.component';
+import { ResultsComponent } from './results/results.component';
+import { ResultsService } from './results/results.service';
 // import {PagerService} from './rfps/rfp/paginator.service';
 // import {AllAgenciesComponent} from './all/all-agencies/all-agencies.component';
 // import {AgencyRfpComponent} from './rfps/agency-rfp/agency-rfp.component';
-import {AgencyService} from './rfps/agency-rfp/agency.service';
+import { AgencyService } from './rfps/agency-rfp/agency.service';
 // import {BaseComponent} from './base/base.component';
 // import {AllRfpsComponent} from './all/all-rfps/all-rfps.component';
 // import {AllRfpsService} from './all/all-rfps/all-rfps.service';
 import { AdminLayoutComponent } from './layouts/lyout/admin-layout.component';
-import {AuthLayoutComponent} from './layouts/auth/auth-layout.component';
-import{AdminComponent} from './layouts/superadmin/admin-layout.component'
-import {SidebarComponent} from './sidebar/sidebar.component';
-// import { WatchlistComponent } from './watchlist/watchlist.component';
+import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
+import { AdminComponent } from './layouts/superadmin/admin-layout.component'
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { WatchlistComponent } from './watchlist/watchlist.component';
 
 ////////////////////////for loader/////////////////////////
 export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestOptions, preloaderService: PreloaderService) {
@@ -159,23 +158,23 @@ import { GoogleLoginProvider, FacebookLoginProvider } from "angular4-social-logi
 // import { SlickModule } from 'ngx-slick';
 let config = new AuthServiceConfig([
     {
-      id: GoogleLoginProvider.PROVIDER_ID,
-      provider: new GoogleLoginProvider("210115018603-187b6essbhk7booo33ab36d1u8cn3jpp.apps.googleusercontent.com")
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider("210115018603-187b6essbhk7booo33ab36d1u8cn3jpp.apps.googleusercontent.com")
     },
     {
-      id: FacebookLoginProvider.PROVIDER_ID,
-      provider: new FacebookLoginProvider("692540294438102")
+        id: FacebookLoginProvider.PROVIDER_ID,
+        provider: new FacebookLoginProvider("692540294438102")
     }
-  ]);
-  export function provideConfig() {
+]);
+export function provideConfig() {
     return config;
-  }
-  
+}
+
 ///////////////////////// END ////////////////////////////////////
 
 @NgModule({
     exports: [
-      
+
         MatAutocompleteModule,
         MatButtonModule,
         MatButtonToggleModule,
@@ -213,9 +212,9 @@ let config = new AuthServiceConfig([
     declarations: [],
 
 })
-export class MaterialModule {}
+export class MaterialModule { }
 @NgModule({
-    imports:      [
+    imports: [
         Nl2BrPipeModule,
         Ng2SmartTableModule,
         CommonModule,
@@ -230,7 +229,6 @@ export class MaterialModule {}
         ProgressHttpModule,
         Ng2SearchPipeModule,
         NgxCarouselModule,
-   
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyDPnJ0zatoiPOI1GOeeS7HCj7AxIW183tg'
         }),
@@ -245,7 +243,7 @@ export class MaterialModule {}
     declarations: [
         AdminComponent,
         // UnsubscribeComponent,
-        // AllnotificationComponent,
+        AllnotificationComponent,
         // PaymentmethodsComponent,
         SidebarComponent,
         AppComponent,
@@ -253,7 +251,7 @@ export class MaterialModule {}
         AdminLayoutComponent,
         HomeComponent,
         HeaderComponent,
-        // SingleRfpComponent,
+        SingleRfpComponent,
         UserSidebarComponent,
         // PricingComponent,
         RfpComponent,
@@ -284,13 +282,13 @@ export class MaterialModule {}
         // HistoryComponent,
         // AllAgenciesComponent,
         // AgencyRfpComponent,
-        // WatchlistComponent
+        WatchlistComponent
     ],
     providers: [
         {
             provide: AuthServiceConfig,
             useFactory: provideConfig
-          },
+        },
         DatePipe,
         // MainService,
         // AllStateService,
@@ -322,16 +320,21 @@ export class MaterialModule {}
         BlogService,
         // partnershipservice,
         SpeechRecognitionService,
-        PaymentmethodsService,UnsubscribeService,
+        PaymentmethodsService, UnsubscribeService,
         {
             provide: HttpService,
             useFactory: httpServiceFactory,
             deps: [XHRBackend, RequestOptions, PreloaderService]
         },
     ],
-    bootstrap:    [ AppComponent ],
+    bootstrap: [AppComponent],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
     ]
 })
-export class AppModule { }
+export class AppModule {
+    constructor(private dateAdapter: DateAdapter<Date>) {
+        dateAdapter.setLocale('fr'); // DD/MM/YYYY
+      }
+    
+}
