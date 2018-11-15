@@ -125,7 +125,7 @@ total;
                 showConfirmButton: true,
                 confirmButtonColor: "#090200",
             }); 
-            this._nav.navigate(['login']);
+            // this._nav.navigate(['login']);
         }
        
        

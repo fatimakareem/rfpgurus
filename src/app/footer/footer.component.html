@@ -146,8 +146,16 @@
                     in Government RFP Bidding.</p>
                 <!-- <div > -->
                 <form class="input-group" [formGroup]="form" name="form" (ngSubmit)="onSubmit(form.controls.email.value)">
-                    <input class="form-control" placeholder="Subscribe to RFP Gurus" name="newsletterEmail" id="newsletterEmail"
+                 
+                            <mat-form-field>
+                    <input matInput class="form-control" placeholder="Subscribe to RFP Gurus" name="newsletterEmail" id="newsletterEmail"
                         type="text" formControlName="email">
+                        <mat-error *ngIf="form.controls.email.value == ''">
+                                <strong>Email cannot be empty</strong>
+                              </mat-error>
+                              <mat-error *ngIf="form.controls.email.hasError('pattern')">
+                                Please enter a valid email address
+                              </mat-error> </mat-form-field>
                     <span class="input-group-btn">
                         <button class="btn btn-rose " type="submit" [disabled]="!form.valid" style="border-radius: 0 50px 50px 0 !important;background-color: #c00 !important;padding: 12px;">
                             <i class="fa fa-paper-plane" aria-hidden="true"></i>
