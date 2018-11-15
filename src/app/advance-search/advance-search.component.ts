@@ -124,7 +124,7 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
           this.record = data.Results;
           this.item = data.TotalResult;
           this.length = this.item;
-          this.pager = this.pagerService.getPager(this.item, page);
+          this.pager = this.pagerService.getPager(this.item, page,this.pageSize);
         },
         error => {
           this.search = true;
@@ -158,7 +158,7 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
               this.record = data.Results;
               this.item = data.TotalResult;
               this.length = this.item;
-              this.pager = this.pagerService.getPager(this.item, page);
+              this.pager = this.pagerService.getPager(this.item, page,this.pageSize);
             },
             error => {
               this.search = true;
@@ -189,7 +189,7 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
         this.record = data.Results;
         this.item = data.TotalResult;
         this.length = this.item;
-        this.pager = this.pagerService.getPager(this.item, page);
+        this.pager = this.pagerService.getPager(this.item, page,this.pageSize);
       },
       error => {
       });

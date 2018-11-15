@@ -100,7 +100,7 @@ export class ResultsComponent implements OnInit,OnDestroy {
                this.endRequest= this._serv.searchrfprecord(this.cat, this.pageSize,page).subscribe(
                     data => {
                         this.record = data.results;
-                        this.pager = this.pagerService.getPager(data['totalItems'], page);
+                        this.pager = this.pagerService.getPager(data['totalItems'], page,this.pageSize);
                        this.endRequest= this._serv.toalsearchrecord(this.cat).subscribe(
                             data => {
                                 this.item = data.totalItems
