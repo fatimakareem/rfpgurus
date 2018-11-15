@@ -145,10 +145,10 @@
                     Partner
                     in Government RFP Bidding.</p>
                 <!-- <div > -->
-                <form class="input-group" [formGroup]="form" name="form" (ngSubmit)="onSubmit(form.controls.email.value)">
+                <form class="input-group sh-subscribe  sh-signup-form-fix" [formGroup]="form" name="form" (ngSubmit)="onSubmit(form.controls.email.value)">
                  
                             <mat-form-field>
-                    <input matInput class="form-control" placeholder="Subscribe to RFP Gurus" name="newsletterEmail" id="newsletterEmail"
+                    <input matInput class="form-control " placeholder="Subscribe to RFP Gurus" name="newsletterEmail" id="newsletterEmail"
                         type="text" formControlName="email">
                         <mat-error *ngIf="form.controls.email.value == ''">
                                 <strong>Email cannot be empty</strong>

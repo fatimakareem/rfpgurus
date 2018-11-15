@@ -949,9 +949,9 @@ h3 {
     margin: 0 0 0 5px
 }
 
-.products-area h4 {
+/* .products-area h4 {
     margin: 0 0 10px
-}
+} */
 
 .products-area p {
     margin: 0 0 15px;
@@ -993,7 +993,7 @@ h3 {
 
 .products-area .panel-details h5 {
     padding: 0 0 5px;
-    margin: 0 0 10px
+    margin:0;
 }
 
 .products-area .panel-details .list-group {
@@ -1949,7 +1949,7 @@ hr {
 .navbar-nav>li>a {
     font-size: 20px;
     padding: 25px 5px;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
 }
 
 .why-rfp-sublist li a {
