@@ -110,7 +110,9 @@
         </div>
       </div>
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sh-pg-container">
-        <ul class="  col-lg-6 col-md-6 col-sm-6 col-xs-12 pagination" *ngIf="pager.pages && pager.pages.length">
+
+          <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12 text-right">
+        <ul class="pagination" *ngIf="pager.pages && pager.pages.length">
           <li [ngClass]="{hide:pager.currentPage === 1}">
             <a (click)="setPage(pager.currentPage - 1)" class="view-1s" class="btn btn-fill">
               <i class="fa fa-angle-left"></i>
@@ -139,8 +141,9 @@
             </a>
           </li>
         </ul>
-        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 prod-select-list sec-list sh-select-list" *ngIf="pager.pages && pager.pages.length">
-          <label class="product-label" style="margin: 9px 10px 0px 0px;">Items per page:
+      </div>
+        <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12 prod-select-list sec-list sh-select-list" *ngIf="pager.pages && pager.pages.length">
+          <label class="product-label" >Items per page:
           </label>
           <mat-form-field>
             <mat-select class="width-sec" placeholder="" selected="10" (change)="page(pageSize)" value="pageSize"

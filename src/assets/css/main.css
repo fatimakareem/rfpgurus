@@ -166,7 +166,7 @@ ul li {
 
 .pw-solutions ul li .holder,
 .sidebar.custom {
-    ms-webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .3)
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .3)
 }
 
 .header-home,
@@ -1050,7 +1050,7 @@ h3 {
 
 .table-normal thead {
     background: #505050;
-    font-weight: 500;
+    font-weight: normal;
     color: #fefefe
 }
 
@@ -1753,9 +1753,9 @@ dialog-overview-example-dialog .forgot-pass {
 }
 
 .card .card-title {
-    font-size: 22px;
-    line-height: 26px;
-    font-weight: 500
+    font-size: 18px;
+    line-height: 19px;
+    font-weight: normal !important;
 }
 
 .btn {
@@ -1948,7 +1948,8 @@ hr {
 
 .navbar-nav>li>a {
     font-size: 20px;
-    padding: 25px 5px
+    padding: 25px 5px;
+    font-weight: 500 !important;
 }
 
 .why-rfp-sublist li a {
@@ -2049,7 +2050,7 @@ hr {
 .login-form-1 {
     background: #fff;
     width: 100%;
-    padding: 30px;
+    padding: 30px 30px 10px;
     border-radius: 5px;
     box-shadow: 0 0 25px #ccc
 }
@@ -2198,7 +2199,8 @@ mat-form-field.mat-form-field {
 }
 
 .plan-detail>h3>a {
-    color: #c00
+    color: #c00;
+    font-weight: normal;
 }
 
 .plan-detail>h5 {
@@ -2422,7 +2424,7 @@ text tspan {
 
 .sh-products-area .plan-detail>h5 {
     margin: 5px 0 0;
-    font-size: 18px
+    font-size: 16px;
 }
 
 .sh-products-area .card [data-background-color] {
@@ -2439,7 +2441,9 @@ text tspan {
 }
 
 .sh-products-area .sub {
-    padding: 5px 20px
+    padding: 1px 10px;
+    font-size: 14px !important;
+    font-weight: normal !important;
 }
 
 .sh-carousel-fix .plan-detail>h3>a {
@@ -2465,8 +2469,8 @@ text tspan {
     margin: 0;
     padding: 15px 0 0;
     font-size: .9em;
-    color: #c00;
-    font-weight: 400 !important;
+    color: #000;
+    font-weight: normal !important;
 }
 
 .sh-sidebar-user .mat-input-infix {
@@ -2482,7 +2486,8 @@ text tspan {
 .sh-btn-fixed {
     padding: 5px 0!important;
     text-transform: capitalize;
-    font-size: 20px!important
+    font-size: 20px!important;
+    font-weight: normal !important;
 }
 
 .sh-form-spaces-fix .mat-input-infix {
@@ -2531,13 +2536,21 @@ text tspan {
 }
 
 .sh-pg-container mat-form-field.mat-form-field {
-    max-width: 130px;
+    max-width: 70px;
     border: 1px solid #ccc
 }
-
+.sh-pg-container .mat-select {
+    background: #fff;
+}
+.sh-pg-container .mat-input-underline {
+    display: none !important;
+}
 .sh-pg-container .mat-input-infix {
     border-top: 0 solid transparent;
     padding: 0
+}
+.sh-pg-container .mat-select-value-text span{
+font-size: 15px;
 }
 
 .navbar .navbar-nav>li>a.btn:not(.btn-just-icon):not(.btn-fab) .fa,
@@ -3143,7 +3156,7 @@ a.sort.desc::after {
     color: #fff;
     text-align: center;
     border-right: 1px solid;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 20px;
     padding: 8px 0
 }
@@ -3152,8 +3165,8 @@ a.sort.desc::after {
     width: 300px;
     padding: 5px 10px;
     vertical-align: middle;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: .9em;
+    font-weight: normal;
     color: #000;
     border: none!important;
     border-bottom: 1px solid #ccc!important
@@ -3261,7 +3274,7 @@ mat-form-field.mat-form-field {
 }
 
 .sh-n-table .mat-input-placeholder.mat-empty {
-    top: 2.28125em!important
+    top: 2.78126em!important;
 }
 
 .interest-area.sh button .fa.fa-arrow-left,

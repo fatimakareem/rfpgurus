@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-*:not(i):not(.fa):not(.fas):not(.far):not(.mat-form-field-suffix):not(.mat-icon){
-    font-family: 'Open Sans', sans-serif;
-  }
+
+
 .list-contact,
 .list-social li,
 .list-tick {
@@ -1184,10 +1182,7 @@
 }
 
 .subscribe>p {
-    display: -webkit-box;
-    max-height: 285px;
     line-height: 18px;
-    -webkit-line-clamp: 16
 }
 
 .footer-stores-img h2 {
@@ -1296,10 +1291,10 @@ body {
     background-color: #000000 ;
     color: #FFFFFF;
 }
-.btn.btn-lg, .btn-group-lg .btn, .navbar .navbar-nav > li > a.btn.btn-lg, .btn-group-lg .navbar .navbar-nav > li > a.btn {
+/* .btn.btn-lg, .btn-group-lg .btn, .navbar .navbar-nav > li > a.btn.btn-lg, .btn-group-lg .navbar .navbar-nav > li > a.btn {
     font-size: 18px;
     padding: 5px 20px !important;
-}
+} */
 .s-areaCarousel .buttons.rightRs,.s-areaCarousel .buttons.leftRs{
     padding: 0 !important
 }
@@ -1611,12 +1606,77 @@ body{
     font-size: 16px;
     font-weight: 600 !important;
 }
+.sh-why-rfpgurus{
+    background:url(../../assets/img/banner/Why-RFPGurus.jpg) no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.sh-why-rfpgurus h2,.sh-why-rfpgurus p{
+    color:#fff !important;
+}
+.sh-why-rfpgurus::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 61px;
+    z-index: -1;
+    background: rgba(0,0,0,0.3);
+}
+.sh-how-it-works{
+    background:url(../../assets/img/banner/FAQs.jpg) no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.sh-how-it-works h2,.sh-how-it-works p{
+    color: #fff  !important;
+}
+.sh-btn-fixed{
+    font-size: 14px !important;
+}
+
 @media (min-width: 1680px) {
     .navbar-nav > li > a {
         font-size: 18px !important;
     }
 }
-
+.sh-refresh-res{
+    font-weight: normal !important;
+    font-size: 17px !important;
+    padding: 0px !important;
+    width: 178px !important;
+  }
+.sh-n-table .mat-input-placeholder.mat-empty {
+    font-size: 15px;
+}
+.checkbox input[type=checkbox]:checked+.checkbox-material .check {
+    background: #000000;
+}
+.sh-state-img{
+    max-width: 30px;
+}
+.sh-advnce-search >.card.one{
+    margin-bottom: 0;
+    border-radius: 0;
+}
+.sh-advnce-search >.card.two{
+    margin-top: 0px;
+    border-radius: 0;
+    box-shadow: 0px 6px 6px #ccc;
+}
+.term > .col-md-6{
+    padding: 0;
+}
+.sh-pg-container .product-label{
+    margin: 6px 10px 0px 0px;
+}
+.plan-detail >div>h5{
+    font-size: 20px;
+}
+.plan-detail >div {
+    padding: 0;
+}
 @media (min-width:1440px) and (max-width:1679px)  {
     .navbar-nav > li > a {
         font-size: 16px !important;
@@ -1702,10 +1762,7 @@ body{
     .choose-criteria ul li h4 {
         font-size: 26px
     }
-    .subscribe>p {
-        max-height: 217px;
-        -webkit-line-clamp: 12
-    }
+
     .footer-upper h2 {
         font-size: 24px
     }
@@ -1863,6 +1920,9 @@ body{
     }
     .sh-why ul li{
         display: block !important;
+    }
+    .login-form-1-center {
+        width: 53%;
     }
 }
 
@@ -2087,6 +2147,9 @@ body{
     }
     .mrgn-tab{
         padding: 0;
+    }
+    .login-form-1-center {
+        width: 100%;
     }
 }
 

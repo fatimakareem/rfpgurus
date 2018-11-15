@@ -31,6 +31,7 @@ export class ForgetPasswordComponent implements OnInit, OnDestroy {
   public typeValidation: User;
   register: FormGroup;
   login: FormGroup;
+  hide=true;
   type: FormGroup;
   endRequest;
   model: any = {};
