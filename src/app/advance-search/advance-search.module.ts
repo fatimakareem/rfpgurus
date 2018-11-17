@@ -32,9 +32,9 @@ const routes: Routes = [
   declarations: [AdvanceSearchComponent]
 })
 export class AdvanceSearchModule {
-  constructor(private dateAdapter: DateAdapter<Date>) {
-    dateAdapter.setLocale('fr'); // DD/MM/YYYY
-  }
+  // constructor(private dateAdapter: DateAdapter<Date>) {
+  //   dateAdapter.setLocale('fr'); // DD/MM/YYYY
+  // }
 
 }
 

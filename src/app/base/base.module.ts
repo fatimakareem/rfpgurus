@@ -33,8 +33,8 @@ const routes: Routes = [
   ]
 })
 export class BaseModule {
-  constructor(private dateAdapter: DateAdapter<Date>) {
-    dateAdapter.setLocale('fr'); // DD/MM/YYYY
-  }
+  // constructor(private dateAdapter: DateAdapter<Date>) {
+  //   dateAdapter.setLocale('fr'); // DD/MM/YYYY
+  // }
 
 }

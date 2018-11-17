@@ -271,28 +271,46 @@ export class PricingComponent implements OnInit {
                     this.status = i;
                   }
                 }
-                if(this.status){
-                this.get_card_number = this.status.number.toString();
-                this.get_card_value1 = this.get_card_number.toString().slice(0, 4);
-                this.get_card_value2 = this.get_card_number.toString().slice(4, 8);
-                this.get_card_value3 = this.get_card_number.toString().slice(8, 12);
-                this.get_card_value4 = this.get_card_number.toString().slice(12, 16);
-                this.cardnumber1 = this.get_card_value1;
-                this.cardnumber2 = this.get_card_value2;
-                this.cardnumber3 = this.get_card_value3;
-                this.cardnumber4 = this.get_card_value4;
-                this.ex_get_value = this.status.expDate;
-                this.ex_value1 = this.ex_get_value.split("/");
-                this.ex_month_value = this.ex_value1[0];
-                this.ex_year_value = this.ex_value1[1];
-                this.cardholdername = this.status.name;
-                this.expmonth = this.ex_month_value;
-                this.expyear = this.ex_year_value;
-                this.ccv = this.status.cvc;}
+                if (this.status) {
+                  this.get_card_number = this.status.number.toString();
+                  this.get_card_value1 = this.get_card_number.toString().slice(0, 4);
+                  this.get_card_value2 = this.get_card_number.toString().slice(4, 8);
+                  this.get_card_value3 = this.get_card_number.toString().slice(8, 12);
+                  this.get_card_value4 = this.get_card_number.toString().slice(12, 16);
+                  this.cardnumber1 = this.get_card_value1;
+                  this.cardnumber2 = this.get_card_value2;
+                  this.cardnumber3 = this.get_card_value3;
+                  this.cardnumber4 = this.get_card_value4;
+                  this.ex_get_value = this.status.expDate;
+                  this.ex_value1 = this.ex_get_value.split("/");
+                  this.ex_month_value = this.ex_value1[0];
+                  this.ex_year_value = this.ex_value1[1];
+                  this.cardholdername = this.status.name;
+                  this.expmonth = this.ex_month_value;
+                  this.expyear = this.ex_year_value;
+                  this.ccv = this.status.cvc;
+                }
               })
           }
         }
       );
+    }
+    
+  }
+ keyPresszip(event: any) {
+    const pattern = /[0-9+\-\ ]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+
+    }
+  }
+  keyPressnamezip(event: any) {
+    const pattern = /^[a-zA-Z _.]+$/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+
     }
   }
   ngOnInit() {

@@ -333,8 +333,8 @@ export class MaterialModule { }
     ]
 })
 export class AppModule {
-    constructor(private dateAdapter: DateAdapter<Date>) {
-        dateAdapter.setLocale('fr'); // DD/MM/YYYY
-      }
+    // constructor(private dateAdapter: DateAdapter<Date>) {
+    //     dateAdapter.setLocale('fr'); // DD/MM/YYYY
+    //   }
     
 }
