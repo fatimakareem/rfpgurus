@@ -16,14 +16,14 @@ export class ResultsService {
         this.currentUser=JSON.parse(localStorage.getItem('currentUser'));
 
     }
-sortby(obj,order,cat,page){
+sortby(obj,order,cat,page,pageSize){
     let headers = new Headers();
     if(localStorage.getItem('currentUser')){
         headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
     }
     headers.append('Content-Type', 'application/json');
     // http://192.168.30.132:8000/rf_p/search_with_sort/roo/-1/state/asc?page=1
-    return this._http5.get('http://192.168.30.132:8000/rf_p/search_with_sort/'+cat +'/-1/'+obj+'/'+order+'?page='+page,
+    return this._http5.get('http://192.168.30.132:8000/rf_p/search_with_sort/'+cat +'/'+pageSize+'/'+obj+'/'+order+'?page='+page,
         {headers: headers}).map((response: Response) => response.json());
 }
     searchrfprecord(obj,items, page) {

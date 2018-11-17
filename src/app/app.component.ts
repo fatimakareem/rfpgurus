@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     private _router: Subscription;
 
     constructor( private router: Router, @Inject(DOCUMENT,) private document: any) {}
-    
+   
     ngOnInit() {
         $.material.options.autofill = true;
         $.material.init();
@@ -29,5 +29,10 @@ export class AppComponent implements OnInit {
                 window.document.activeElement.scrollTop = 0;
             }
         });
+       
+        window.onbeforeunload = function () {
+            $(this).scrollTop(0);
+          }
+        //   .animate({ scrollTop: 0 }, 800);
     }
 }

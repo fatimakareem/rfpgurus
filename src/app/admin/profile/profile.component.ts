@@ -8,6 +8,9 @@ import { DatePipe } from '@angular/common';
 import { AuthService } from "angular4-social-login";
 import { AdvanceService } from '../../advance-search/advance.service';
 declare const $: any;
+import {MatChipInputEvent} from '@angular/material';
+
+
 declare interface ValidatorFn {
     (c: AbstractControl): {
         [key: string]: any;
@@ -32,10 +35,78 @@ declare interface User {
     providers: [AdvanceService, AuthService, ProfileService, MainService]
 })
 export class ProfileComponent implements OnInit, OnDestroy {
+    
+    catess = new FormControl();
+    cities = new FormControl();
+    agencies = new FormControl();
+    counties= new FormControl();
+    states= new FormControl();
+    selectedValue: string;
+    visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+    valueSelected(preference, status) {
+      console.log(preference)
+            this.tempUserPreference.push(preference.toString());
+            console.log('zikikiki', this.tempUserPreference);
+    }
+    valueSelected1(preference, status) {
+        console.log(preference)
+              this.tempstatePreference.push(preference.toString());
+              console.log('zikikiki', this.tempstatePreference);
+      }
+      valueSelected2(preference, status) {
+        console.log(preference)
+              this.tempcityPreference.push(preference.toString());
+              console.log('zikikiki', this.tempcityPreference);
+      }
+      valueSelected3(preference, status) {
+        console.log(preference)
+              this.tempcountyPreference.push(preference.toString());
+              console.log('zikikiki', this.tempcountyPreference);
+      }
+      valueSelected4(preference, status) {
+        console.log(preference)
+              this.tempagencyPreference.push(preference.toString());
+              console.log('zikikiki', this.tempagencyPreference);
+      }
+    remove(preference,index: number) {
+        console.log(preference);
+        this.tempUserPreference.splice(index, 1);
+      }
+      remove1(preference,index: number) {
+        console.log(preference);
+        this.tempstatePreference.splice(index, 1);
+
+      }
+      remove2(preference,index: number) {
+        console.log(preference);
+        this.tempcityPreference.splice(index, 1);
+
+      }
+      remove3(preference,index: number) {
+        console.log(preference);
+        this.tempcountyPreference.splice(index, 1);
+
+      }
+      remove4(preference,index: number) {
+        console.log(preference);
+        this.tempagencyPreference.splice(index, 1);
+
+      }
     endRequest;
     today: number = Date.now();
     UserPreference: any = [];
     tempUserPreference: any = [];
+    tempstatePreference:any=[];
+    statePreference: any = [];
+    tempcityPreference:any=[];
+    cityPreference: any = [];
+    tempcountyPreference:any=[];
+    countyPreference: any = [];
+    tempagencyPreference:any=[];
+    agencyPreference: any = [];
     record = [];
     result: boolean = false;
     public typeValidation: User;
@@ -48,12 +119,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
     personal: any = [];
     local;
     options: FormGroup;
-    cat;
+    cat:any=[];
+    city:any=[];
+    state:any=[];
+    county:any=[];
+    agency:any=[];
+
     uname;
     usernameexist;
     vin_Data = { "city": "", "state": "" };
     emailexist;
     digitsOnly = '^[0-9,-]+$';
+    
     public phoneMask = ['(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
     shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
     constructor(private authService: AuthService, private _nav: Router, private _serv: ProfileService, private datePipe: DatePipe, private formBuilder: FormBuilder, private _adserv: AdvanceService, private _ser: MainService) {
@@ -72,6 +149,30 @@ export class ProfileComponent implements OnInit, OnDestroy {
                     } else {
                         this.UserPreference = data['user_preference'];
                         this.tempUserPreference = this.UserPreference.slice();
+                    }
+                    if (data['state_preference'] == null) {
+                        this.statePreference = [];
+                    } else {
+                        this.statePreference = data['state_preference'];
+                        this.tempstatePreference = this.statePreference.slice();
+                    }
+                    if (data['city_preference'] == null) {
+                        this.cityPreference = [];
+                    } else {
+                        this.cityPreference = data['city_preference'];
+                        this.tempcityPreference = this.cityPreference.slice();
+                    }
+                    if (data['county_preference'] == null) {
+                        this.countyPreference = [];
+                    } else {
+                        this.countyPreference = data['county_preference'];
+                        this.tempcountyPreference = this.countyPreference.slice();
+                    }
+                    if (data['agency_preference'] == null) {
+                        this.agencyPreference = [];
+                    } else {
+                        this.agencyPreference = data['agency_preference'];
+                        this.tempagencyPreference = this.agencyPreference.slice();
                     }
                     console.log('UserPreference isss', this.UserPreference);
                 },
@@ -133,12 +234,32 @@ export class ProfileComponent implements OnInit, OnDestroy {
     onRegister() {
         if (this.register.valid) {
             let nulllist;
+            let nullcounty;
+            let nullagency;
+            let nullstate;
+            let nullcity;
             this.UserPreference = this.tempUserPreference;
             if (this.UserPreference.length == 0) {
                 nulllist = null
             }
+            this.statePreference=this.tempstatePreference
+            if (this.statePreference.length == 0) {
+                nullstate = null
+            }
+            this.countyPreference=this.tempcountyPreference
+            if (this.countyPreference.length == 0) {
+                nullcounty = null
+            }
+            this.cityPreference=this.tempcityPreference
+            if (this.cityPreference.length == 0) {
+                nullcity = null
+            }
+            this.agencyPreference=this.tempagencyPreference
+            if (this.agencyPreference.length == 0) {
+                nullagency = null
+            }
             console.log("ajakkkkkk", this.UserPreference, nulllist)
-            this.endRequest = this._serv.ProfileUpdate(this.register.value, this.UserPreference, nulllist).subscribe(
+            this.endRequest = this._serv.ProfileUpdate(this.register.value, this.UserPreference,this.statePreference,this.countyPreference,this.cityPreference,this.agencyPreference,nulllist,nullstate,nullcounty,nullcity,nullagency).subscribe(
                 data => {
                     swal({
                         type: 'success',
@@ -227,7 +348,43 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.endRequest = this._adserv.rfpcategory().subscribe(
             data => {
                 this.cat = data;
-                // console.log(data);
+                console.log( this.cat);
+            },
+            error => {
+                // console.log(error);
+            }
+        )
+        this.endRequest = this._adserv.rfpcity().subscribe(
+            data => {
+                this.city = data;
+                console.log( this.city);
+            },
+            error => {
+                // console.log(error);
+            }
+        )
+        this.endRequest = this._adserv.rfpcounty().subscribe(
+            data => {
+                this.county = data;
+                console.log( this.county);
+            },
+            error => {
+                // console.log(error);
+            }
+        )
+        this.endRequest = this._adserv.rfpagency().subscribe(
+            data => {
+                this.agency = data.Result;
+                console.log( this.agency);
+            },
+            error => {
+                // console.log(error);
+            }
+        )
+        this.endRequest = this._adserv.rfpstate().subscribe(
+            data => {
+                this.state = data.Result;
+                console.log( this.state);
             },
             error => {
                 // console.log(error);
@@ -237,16 +394,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
             $("i", this).toggleClass("fa-arrow-left fa-arrow-right");
         });
     }
-    valueSelected(preference, status) {
-        console.log(status.currentTarget.checked);
-        if (status.currentTarget.checked) {
-            this.tempUserPreference.push(preference);
-            console.log('zikikiki', this.tempUserPreference);
-        } else {
-            this.tempUserPreference.pop(preference);
-            console.log('zak', this.tempUserPreference);
-        }
-    }
+   
     logout() {
         this.authService.signOut();
         localStorage.clear();

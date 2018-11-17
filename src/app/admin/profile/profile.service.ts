@@ -27,11 +27,11 @@ export class ProfileService {
             { headers: headers }).map((response: Response) => response.json());
 
     }
-    ProfileUpdate(obj, catlist, nulllist) {
+    ProfileUpdate(obj,catlist,statePreference,countyPreference,cityPreference,agencyPreference,nulllist,nullstate,nullcounty,nullcity,nullagency) {
         let userlist: any = [];
         let emplist;
         let jsonlist = {};
-        if (catlist.length == 0) {
+        if (catlist.length == 0 || statePreference.length == 0 || countyPreference.length == 0 || cityPreference.length == 0 || agencyPreference.length == 0) {
             emplist = null
             jsonlist = {
                 "zipcode": obj.zipcode,
@@ -47,6 +47,10 @@ export class ProfileService {
                 "username": obj.username,
                 "newsletter": obj.newsletter,
                 "usercat": null,
+                "preferagency":null,
+                "prefercities":null,
+                "prefercounty":null,
+                "prefersate":null
             }
         }
         else {
@@ -65,6 +69,10 @@ export class ProfileService {
                 "username": obj.username,
                 "newsletter": obj.newsletter,
                 "usercat": catlist,
+                "preferagency":agencyPreference,
+                "prefercities":cityPreference,
+                "prefercounty":countyPreference,
+                "prefersate":statePreference
             }
         }
         console.log(userlist)

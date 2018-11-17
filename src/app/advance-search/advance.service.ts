@@ -29,6 +29,20 @@ export class AdvanceService {
     return this._http5.get('https://apis.rfpgurus.com/rf_p/allcategory/',
       { headers: headers }).map((response: Response) => response.json());
   }
+  rfpcity() {
+
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http5.get('https://apis.rfpgurus.com/allcites/',
+      { headers: headers }).map((response: Response) => response.json());
+  }
+  rfpcounty() {
+
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http5.get('https://apis.rfpgurus.com/allcounty/',
+      { headers: headers }).map((response: Response) => response.json());
+  }
   rfpagency() {
 
     let headers = new Headers();

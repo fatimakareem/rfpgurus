@@ -70,7 +70,7 @@ export class ResultsComponent implements OnInit,OnDestroy {
         .subscribe(params => {
             this.cat = params.keyword
         console.log(sorted)
-        this._serv.sortby(sorted, this.order,this.cat,page).subscribe(
+        this._serv.sortby(sorted, this.order,this.cat,page,this.pageSize).subscribe(
             data => {
                 this.record = data.results;
                 console.log(data.results)
