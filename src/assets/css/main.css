@@ -54,7 +54,8 @@ app-header.inner .logo {
 
 p,
 ul {
-    font-size: 18px
+    font-size: 18px;
+    font-weight: 500 !important;
 }
 
 .clearfix,
@@ -1016,7 +1017,8 @@ h3 {
 .list-normal li a {
     color: #000;
     text-decoration: none;
-    padding: 20px 0
+    padding: 10px 0;
+    font-size: 16px;
 }
 
 .list-normal li a i {
@@ -1768,7 +1770,7 @@ h2,
 h3,
 h4,
 h5 {
-    font-weight: 500!important
+    font-weight: 600!important
 }
 
 h3 {
@@ -1953,13 +1955,15 @@ hr {
 }
 
 .why-rfp-sublist li a {
-    padding: 6px 10px;
+    padding: 6px 10px 0;
     display: block;
-    font-size: 16px
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .why-rfp-sublist>li>a>i {
-    font-size: 15px
+    font-size: 15px;
+    width: 15px !important;
 }
 
 .mat-column-rfp_number>a,
@@ -2195,7 +2199,8 @@ mat-form-field.mat-form-field {
     color: #c00;
     text-align: left;
     font-size: 22px!important;
-    line-height: 28px
+    line-height: 28px;
+    font-weight: 500 !important;
 }
 
 .plan-detail>h3>a {
@@ -2206,7 +2211,7 @@ mat-form-field.mat-form-field {
 .plan-detail>h5 {
     margin: 5px 0 0;
     font-weight: 600 !important;
-    font-size: 16px;
+    font-size: .9em;
 }
 
 .plan-detail i {
@@ -2311,7 +2316,7 @@ mat-form-field.mat-form-field {
     text-align: center;
     padding: 5px 40px;
     font-size: 22px;
-    color: #000;
+    /* color: #000; */
     font-weight: 600
 }
 
@@ -2371,8 +2376,8 @@ text tspan {
 }
 
 .sidebar-user .mat-select-value-text {
-    font-size: 18px;
-    color: #000
+    font-size: 15px;
+    color: #000;
 }
 
 #pg .cdk-overlay-backdrop,
@@ -3187,7 +3192,8 @@ a.sort.desc::after {
 
 .sh-table-date .mat-form-field-flex,
 .sh-tb-select .mat-select {
-    background: #fff
+    background: #fff;
+    box-shadow: none;
 }
 
 .sh-n-table .form-group {

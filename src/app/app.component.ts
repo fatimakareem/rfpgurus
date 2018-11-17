@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     private _router: Subscription;
 
     constructor( private router: Router, @Inject(DOCUMENT,) private document: any) {}
-    
+
     ngOnInit() {
         $.material.options.autofill = true;
         $.material.init();
