@@ -261,34 +261,34 @@
 
                         </fieldset>
                         <div *ngIf="cardnumbercard2.touched && cardnumbercard2.invalid">
-                            <div *ngIf="cardnumbercard2.errors.required">
+                            <div *ngIf="cardnumbercard2.errors.required"  class="card-error">
                                 Card number cannot be empty
                             </div>
-                            <div *ngIf="cardnumbercard2.errors.minlength">
+                            <div *ngIf="cardnumbercard2.errors.minlength" class="card-error">
                                 Number must be at least 4 digits
                             </div>
                         </div>
                         <div *ngIf="cardnumbercard3.touched && cardnumbercard3.invalid">
-                            <div *ngIf="cardnumbercard3.errors.required">
+                            <div *ngIf="cardnumbercard3.errors.required" class="card-error">
                                 Card number cannot be empty
                             </div>
-                            <div *ngIf="cardnumbercard3.errors.minlength">
+                            <div *ngIf="cardnumbercard3.errors.minlength" class="card-error">
                                 Number must be at least 4 digits
                             </div>
                         </div>
                         <div *ngIf="cardnumbercard4.touched && cardnumbercard4.invalid">
-                            <div *ngIf="cardnumbercard4.errors.required">
+                            <div *ngIf="cardnumbercard4.errors.required" class="card-error">
                                 Card number cannot be empty
                             </div>
-                            <div *ngIf="cardnumbercard4.errors.minlength">
+                            <div *ngIf="cardnumbercard4.errors.minlength" class="card-error">
                                 Number must be at least 4 digits
                             </div>
                         </div>
-                        <div *ngIf="cardnumber.touched && cardnumber.invalid">
-                            <div *ngIf="cardnumber.errors.required">
+                        <div *ngIf="cardnumber.touched && cardnumber.invalid" >
+                            <div *ngIf="cardnumber.errors.required"  class="card-error">
                                 Card number cannot be empty
                             </div>
-                            <div *ngIf="cardnumber.errors.minlength">
+                            <div *ngIf="cardnumber.errors.minlength" class="card-error">
                                 Number must be at least 4 digits
                             </div>
                         </div>
@@ -297,11 +297,13 @@
                             <input (keypress)="keyPressnamezip($event)" type="text" name="cardholdername" maxlength="20"
                                 required #cardholde1="ngModel" [(ngModel)]="cardholdername" id="card-holder" />
                             <div *ngIf="cardholde1.touched && cardholde1.invalid">
-                                <div *ngIf="cardholde1.errors.required">
+                                <div *ngIf="cardholde1.errors.required" class="card-error">
                                     Card Holder Name cannot be empty
                                 </div>
                             </div>
                         </fieldset>
+
+
                         <fieldset class="fieldset-expiration">
                             <label for="card-expiration-month" style="font-size:16px;">Expiration date</label>
                             <div class="select text-center">
@@ -321,12 +323,6 @@
                                     <option>11</option>
                                     <option>12</option>
                                 </select>
-
-                            </div>
-                            <div *ngIf="expmonth1.touched && expmonth1.invalid">
-                                <div *ngIf="expmonth1.errors.required">
-                                    Month Filed Cannot be empty
-                                </div>
                             </div>
                             <div class="select text-center">
                                 <select id="card-expiration-year" required #expyear1="ngModel" name="expyear"
@@ -345,12 +341,21 @@
                                 </select>
 
                             </div>
+<br><br>
                             <div *ngIf="expyear1.touched && expyear1.invalid">
-                                <div *ngIf="expyear1.errors.required">
+                                <div *ngIf="expyear1.errors.required" class="card-error">
                                     Year Filed Cannot be empty
                                 </div>
                             </div>
+                            <div *ngIf="expmonth1.touched && expmonth1.invalid">
+                                    <div *ngIf="expmonth1.errors.required" class="card-error">
+                                        Month Filed Cannot be empty
+                                    </div>
+                                </div>
                         </fieldset>
+
+
+
                         <fieldset class="fieldset-ccv">
                             <label for="card-ccv" style="font-size:16px;">CCV</label>
                             <input type="text" (keypress)="keyPresszip($event)" id="card-ccv" minlength="3" maxlength="4" required
@@ -364,6 +369,7 @@
                                 </div>
                             </div>
                         </fieldset>
+
 
                         <button class="btn sh" (click)="proceed()">
 

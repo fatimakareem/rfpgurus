@@ -1741,7 +1741,9 @@ line-height: 27px;
 .sh-tb-select .mat-input-underline{
     bottom: 16px;
 }
-
+.card-error{
+ color: #c00;
+}
 @media (min-width:1440px) and (max-width:1679px)  {
     .navbar-nav > li > a {
         font-size: 16px !important;
