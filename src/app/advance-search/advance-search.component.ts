@@ -102,21 +102,62 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
     this.status = status;
     this.onSubmit(1);
   }
+  entereddate(enterdate){
+    // if (enterdate == 'Invalid Date') {
+    //   delete this.enterdate;
+    //   delete this.postedDate
+    //   this.onSubmit(1);
+    // }
+   if(enterdate) {
+      this.postedDate = moment(enterdate).format('YYYY-MM-DD');
+      this.onSubmit(1);
+    }
+    else{
+      delete this.enterdate;
+   delete this.postedDate;
+   this.onSubmit(1);
+    }
+  }
+  dueddate(duedate){
+    // if (duedate == 'Invalid Date') {
+    //   delete this.DueDate;
+    //   delete this.duedate;
+    //   this.onSubmit(1);
+    // }
+    if(duedate) {
+      this.DueDate = moment(duedate).format('YYYY-MM-DD');
+      this.onSubmit(1);
+    }else{
+      delete this.DueDate;
+     delete this.duedate;
+     this.onSubmit(1);
+    }
+
+  }
   onSubmit(page) {
     if (this.states) {
-      if (this.enterdate == 'Invalid Date') {
-        delete this.postedDate;
-      }
-      else if (this.enterdate) {
-        this.postedDate = moment(this.enterdate).format('YYYY/MM/DD');
-      }
-      if (this.duedate == 'Invalid Date') {
-        delete this.DueDate;
-      }
-      else if (this.duedate) {
-        this.DueDate = moment(this.duedate).format('YYYY/MM/DD');
-      }
-      this.search = false;
+  //     if (this.enterdate == 'Invalid Date') {
+  //       delete this.enterdate;
+  //       delete this.postedDate
+  //     }
+  // if (this.enterdate) {
+  //       this.postedDate = moment(this.enterdate).format('YYYY-MM-DD');
+  //     }
+      // if (this.duedate == 'Invalid Date') {
+      //   delete this.DueDate;
+      //   delete this.duedate;
+      // }
+      // if (this.duedate) {
+      //   this.DueDate = moment(this.duedate).format('YYYY-MM-DD');
+      // }
+      // this.search = false;
+      // if( this.DueDate == null){
+      //   delete this.DueDate
+      // }
+      // if(this.postedDate == null){
+      //   delete this.postedDate
+      // }
+     
       this._serv.searchrfprecord(this.Rfpnum, this.title, this.status, this.postedDate, this.DueDate, this.states, this.agencies, this.cates, this.pageSize, page).subscribe(
         data => {
           this.record = "";
@@ -138,19 +179,28 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
         .subscribe(params => {
           this.states = params.state;
           console.log("sdsdfffff", this.enterdate, this.duedate)
-          if (this.enterdate == 'Invalid Date') {
-            delete this.postedDate;
-          }
-          else if (this.enterdate) {
-            this.postedDate = moment(this.enterdate).format('YYYY/MM/DD');
-          }
-          if (this.duedate == 'Invalid Date') {
-            delete this.DueDate;
-          }
-          else if (this.duedate) {
-            this.DueDate = moment(this.duedate).format('YYYY/MM/DD');
-          }
+        //   if (this.enterdate == 'Invalid Date') {
+        //     delete this.postedDate;
+        //     delete this.enterdate;
+        //   }
+        //   if (this.enterdate) {
+        //     this.postedDate = moment(this.enterdate).format('YYYY-MM-DD');
+        //   }
+        //   if (this.duedate == 'Invalid Date') {
+        //     delete this.DueDate;
+        //     delete this.duedate;
+        //   }
+        //  if (this.duedate) {
+        //     this.DueDate = moment(this.duedate).format('YYYY-MM-DD');
+        //   }
+        //   if( this.DueDate == null){
+        //     delete this.DueDate
+        //   }
+        //   if(this.postedDate == null){
+        //     delete this.postedDate
+        //   }
           this.search = false;
+         
           this._serv.searchrfprecord(this.Rfpnum, this.title, this.status, this.postedDate, this.DueDate, this.states, this.agencies, this.cates, this.pageSize, page).subscribe(
             data => {
               this.record = "";
@@ -195,15 +245,16 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
       });
   }
   formclear() {
-    this.status = undefined;
-    this.enterdate = undefined;
-    this.duedate = undefined;
+    this.status = "active";
+    this.enterdate = null;
+    this.duedate = null;
     this.states = undefined;
     this.agencies = undefined;
     this.cates = undefined;
     this.search = false;
-    delete this.postedDate;
-    delete this.DueDate;
+    
+   this.postedDate = null;
+   this.DueDate =null;
   }
   single(query) {
     let sth = 'rfp/' + query;

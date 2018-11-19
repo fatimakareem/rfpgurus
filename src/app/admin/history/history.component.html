@@ -21,8 +21,8 @@
                         <td *ngIf="pkgList.duration== 'S'"> SixMonths PLAN</td>
                         <td *ngIf="pkgList.duration == 'Y'"> Yearly PLAN</td>
                         <td><span>$</span>{{pkgList.pkg_price}} </td>
-                        <td>{{record.pay_date | date:'MMM-d-y'}}</td>
-                        <td>{{record.end_date | date:'MMM-d-y'}}</td>
+                        <td>{{record.pay_date | date:'MMM-dd-y'}}</td>
+                        <td>{{record.end_date | date:'MMM-dd-y'}}</td>
                         <td *ngIf="record.is_paid == true"><button style="cursor:text" class="btn btn-success" title="Active">Active
                             </button></td>
                         <td *ngIf="record.is_paid == false"><button (click)=" prv_stepdetail( pkgList.pkg_type,pkgList.duration)"
