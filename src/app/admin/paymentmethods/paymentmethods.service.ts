@@ -13,7 +13,7 @@ export class PaymentmethodsService {
   addCard(status, name, address, zip, city, state, country, cardno, ccv, expiryDate) {
     let header = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
     header.append('Content-Type', 'application/json');
-    return this.http.post('http://192.168.30.132:8000/payment/cardinfo/',
+    return this.http.post('https://apis.rfpgurus.com/payment/cardinfo/',
       JSON.stringify({
         "default": status,
         "name": name,
@@ -32,12 +32,12 @@ export class PaymentmethodsService {
   showCards() {
     let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://192.168.30.132:8000/payment/cardinfo/', { headers: headers }).map((response: Response) => response.json());
+    return this.http.get('https://apis.rfpgurus.com/payment/cardinfo/', { headers: headers }).map((response: Response) => response.json());
   }
   updateCard(status, id, name, cardno, ccv, expiryDate, address, zip, city, state, country) {
     let header = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
     header.append('Content-Type', 'application/json');
-    return this.http.put('http://192.168.30.132:8000/payment/cardinfo/',
+    return this.http.put('https://apis.rfpgurus.com/payment/cardinfo/',
       JSON.stringify({
         // "cardNumber": cardno,
         "default": status,
@@ -58,13 +58,13 @@ export class PaymentmethodsService {
   deleteCard(id) {
     let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
     headers.append('Content-Type', 'application/json');
-    return this.http.delete('http://192.168.30.132:8000/payment/cardinfodelete/' + id, { headers: headers }).map((response: Response) => response.json());
+    return this.http.delete('https://apis.rfpgurus.com/payment/cardinfodelete/' + id, { headers: headers }).map((response: Response) => response.json());
   }
   Atm_card_exist(card) {
     let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
     // alert(JSON.parse(localStorage.getItem('currentUser')).token });
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://192.168.30.132:8000/payment/cardnoexist/',
+    return this.http.post('https://apis.rfpgurus.com/payment/cardnoexist/',
       JSON.stringify({
         'number': card
       }),

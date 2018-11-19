@@ -239,27 +239,27 @@ export class ProfileComponent implements OnInit, OnDestroy {
             let nullstate;
             let nullcity;
             this.UserPreference = this.tempUserPreference;
-            // if (this.UserPreference.length == 0) {
-            //     nulllist = null
-            // }
+            if (this.UserPreference.length == 0) {
+                nulllist = null
+            }
             this.statePreference=this.tempstatePreference
-            // if (this.statePreference.length == 0) {
-            //     nullstate = null
-            // }
+            if (this.statePreference.length == 0) {
+                nullstate = null
+            }
             this.countyPreference=this.tempcountyPreference
-            // if (this.countyPreference.length == 0) {
-            //     nullcounty = null
-            // }
+            if (this.countyPreference.length == 0) {
+                nullcounty = null
+            }
             this.cityPreference=this.tempcityPreference
-            // if (this.cityPreference.length == 0) {
-            //     nullcity = null
-            // }
+            if (this.cityPreference.length == 0) {
+                nullcity = null
+            }
             this.agencyPreference=this.tempagencyPreference
-            // if (this.agencyPreference.length == 0) {
-            //     nullagency = null
-            // }
+            if (this.agencyPreference.length == 0) {
+                nullagency = null
+            }
             console.log("ajakkkkkk", this.UserPreference, nulllist)
-            this.endRequest = this._serv.ProfileUpdate(this.register.value, this.tempUserPreference,this.tempstatePreference,this.tempcountyPreference,this.tempcityPreference,this.tempagencyPreference).subscribe(
+            this.endRequest = this._serv.ProfileUpdate(this.register.value, this.UserPreference,this.statePreference,this.countyPreference,this.cityPreference,this.agencyPreference,nulllist,nullstate,nullcounty,nullcity,nullagency).subscribe(
                 data => {
                     swal({
                         type: 'success',

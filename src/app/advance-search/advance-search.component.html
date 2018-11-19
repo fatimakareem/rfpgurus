@@ -19,7 +19,7 @@
                     <div class="col-sm-4">
                         <mat-form-field color="warn">
                             <input matInput [matDatepicker]="startPicker" (focus)="startPicker.open()" name="enterdate" [(ngModel)]="enterdate"
-                                placeholder="From Date" (ngModelChange)="onSubmit(1)" />
+                                placeholder="From Date" (ngModelChange)="entereddate(enterdate)" />
                             <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
                             <mat-datepicker #startPicker color="warn"></mat-datepicker>
                         </mat-form-field>
@@ -27,7 +27,7 @@
                     <div class="col-sm-4">
                         <mat-form-field color="warn" class="example-full-width mat-size">
                             <input matInput [matDatepicker]="startPicker1" (focus)="startPicker1.open()" name="duedate" [(ngModel)]="duedate"
-                                placeholder="To Date" (ngModelChange)="onSubmit(1)" />
+                                placeholder="To Date" (ngModelChange)="dueddate(duedate)" />
                             <mat-datepicker-toggle matSuffix [for]="startPicker1"></mat-datepicker-toggle>
                             <mat-datepicker #startPicker1 color="warn"></mat-datepicker>
                         </mat-form-field>

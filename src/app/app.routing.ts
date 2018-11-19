@@ -65,12 +65,15 @@ export const AppRoutes: Routes = [
             // { path: 'purchase-history', component: HistoryComponent, canActivate: [AuthGuard] },
             { path: 'purchase-history', loadChildren: '../app/admin/history/history.module#HistoryModule',canActivate: [AuthGuard] },
             // { path: 'change-password', component: ChangedPasswordComponent, canActivate: [AuthGuard] },
-         
+            { path: 'Preferences', loadChildren: '../app/admin/Preferences/profile.module#ProfileModule', canActivate: [AuthGuard] },
+
             { path: 'change-password', loadChildren: '../app/admin/changed-password/changed-password.module#ChangedPasswordModule',canActivate: [AuthGuard] },
                     // { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
             { path: 'profile', loadChildren: '../app/admin/profile/profile.module#ProfileModule',canActivate: [AuthGuard] },
             // { path: 'payment', component: PaymentmethodsComponent, canActivate: [AuthGuard] },
-            { path: 'payment', loadChildren: '../app/admin/paymentmethods/paymentmethods.module#PaymentmethodsModule',canActivate: [AuthGuard] }
+            { path: 'payment', loadChildren: '../app/admin/paymentmethods/paymentmethods.module#PaymentmethodsModule',canActivate: [AuthGuard] },
+            { path: 'bid-notifications', component: AllnotificationComponent },
+            { path: 'my-watchlist', component: WatchlistComponent },
         ]
             
     },

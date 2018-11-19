@@ -276,25 +276,39 @@
           </a>
           <div class="profile-name drop-downs" style="right:163%;">
             <ul class="nav-vanders  why-rfp-sublist">
+                <li *ngIf="check_login()">
+                    <a routerLink="/Preferences">
+                      <i class="far fa-newspaper"></i> RFP Preferences</a>
+                  </li>
+                  <li *ngIf="check_login()">
+                      <a routerLink="/bid-notifications">
+                          <i class="fa fa-bell"></i>
+                        Bid Notifications</a>
+                    </li>
+                    <li *ngIf="check_login()">
+                        <a routerLink="/my-watchlist">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                          My Watchlist</a>
+                      </li>                 
               <li *ngIf="check_login()">
                 <a routerLink="/profile">
                   <i class="fa fa-pencil" aria-hidden="true"></i>
-                  Edit Profile</a>
+               Profile</a>
               </li>
+              <li *ngIf="check_login()">
+                  <a routerLink="/purchase-history">
+                    <i class="fa fa-history" aria-hidden="true"></i>
+                    Subscription History</a>
+                </li>   
+                <li *ngIf="check_login()">
+                    <a routerLink="/payment">
+                      <i class="fa fa-money" aria-hidden="true"></i>
+                      Payment Methods</a>
+                  </li>
               <li *ngIf="check_login()">
                 <a routerLink="/change-password">
-                  <i class="fa fa-key" aria-hidden="true"></i>
+                  <i class="fas fa-key" ria-hidden="true"></i>
                   Change Password</a>
-              </li>
-              <li *ngIf="check_login()">
-                <a routerLink="/purchase-history">
-                  <i class="fa fa-history" aria-hidden="true"></i>
-                  Subscription History</a>
-              </li>
-              <li *ngIf="check_login()">
-                <a routerLink="/payment">
-                  <i class="fa fa-money" aria-hidden="true"></i>
-                  Payment Methods</a>
               </li>
               <li *ngIf="check_login()">
                 <a routerLink="/contact-us">
@@ -303,7 +317,7 @@
               </li>
               <li *ngIf="check_login()" class="">
                 <a (click)="logout()" style="cursor:pointer">
-                  <i class="fa fa-lock" aria-hidden="true"></i> Sign out</a>
+                    <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Sign out</a>
               </li>
             </ul>
           </div>

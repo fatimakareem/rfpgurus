@@ -53,7 +53,7 @@ export class AdvanceService {
   downloadFile(id) {
     let headers = new Headers();
     if (this.currentUser) {
-      headers = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
+      headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
     }
     headers.append('Content-Type', 'application/json');
     return this._http5.get('https://apis.rfpgurus.com/rf_p/download_file/' + id + '/',
@@ -62,7 +62,7 @@ export class AdvanceService {
   searchrfprecord(Rfpnum, title, status, enterdate, duedate, state, agency, cat, items, page) {
     let headers = new Headers();
     if (this.currentUser) {
-      headers = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
+      headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
     }
     headers.append('Content-Type', 'application/json');
     return this._http.put('https://apis.rfpgurus.com/rf_p/filters/' + items + '/?page=' + page,

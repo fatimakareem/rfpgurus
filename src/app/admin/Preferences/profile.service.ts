@@ -21,35 +21,40 @@ export class ProfileService {
     loaded: boolean = false;
     get_profile(uid) {
 
-        let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
+        let headers = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
         headers.append('Content-Type', 'application/json');
         return this._http5.get('https://apis.rfpgurus.com/user_information/' + uid + '/',
             { headers: headers }).map((response: Response) => response.json());
 
     }
-    ProfileUpdate(obj,catlist,statePreference,countyPreference,cityPreference,agencyPreference) {
-        console.log(catlist,statePreference,countyPreference,cityPreference,agencyPreference)
+    ProfileUpdate(obj,catlist,statePreference,countyPreference,cityPreference,agencyPreference,nulllist,nullstate,nullcounty,nullcity,nullagency) {
         let userlist: any = [];
         let emplist;
-        if(catlist.length == 0){
-            catlist = null;
-        }
-        if(statePreference.length == 0){
-            statePreference = null;
-        }
-        if(countyPreference.length == 0){
-            countyPreference = null;
-        }
-        if(cityPreference.length == 0){
-            cityPreference = null;
-        }
-        if(agencyPreference.length == 0){
-            agencyPreference = null;
-        }
         let jsonlist = {};
-        // if (catlist.length == 0 || statePreference.length == 0 || countyPreference.length == 0 || cityPreference.length == 0 || agencyPreference.length == 0) {
+        if (catlist.length == 0 || statePreference.length == 0 || countyPreference.length == 0 || cityPreference.length == 0 || agencyPreference.length == 0) {
             emplist = null
-
+            jsonlist = {
+                "zipcode": obj.zipcode,
+                "city": obj.city,
+                "address": obj.address,
+                "company": obj.companyname,
+                "country": obj.country,
+                "state": obj.state,
+                "phone": obj.phone,
+                "email": obj.email,
+                "first_name": obj.firstname,
+                "last_name": obj.lastname,
+                "username": obj.username,
+                "newsletter": obj.newsletter,
+                "usercat": null,
+                "preferagency":null,
+                "prefercities":null,
+                "prefercounty":null,
+                "prefersate":null
+            }
+        }
+        else {
+            userlist == catlist;
             jsonlist = {
                 "zipcode": obj.zipcode,
                 "city": obj.city,
@@ -69,31 +74,9 @@ export class ProfileService {
                 "prefercounty":countyPreference,
                 "prefersate":statePreference
             }
-        // }
-        // else {
-        //     userlist == catlist;
-        //     jsonlist = {
-        //         "zipcode": obj.zipcode,
-        //         "city": obj.city,
-        //         "address": obj.address,
-        //         "company": obj.companyname,
-        //         "country": obj.country,
-        //         "state": obj.state,
-        //         "phone": obj.phone,
-        //         "email": obj.email,
-        //         "first_name": obj.firstname,
-        //         "last_name": obj.lastname,
-        //         "username": obj.username,
-        //         "newsletter": obj.newsletter,
-        //         "usercat": catlist,
-        //         "preferagency":agencyPreference,
-        //         "prefercities":cityPreference,
-        //         "prefercounty":countyPreference,
-        //         "prefersate":statePreference
-        //     }
-        // }
+        }
         console.log(userlist)
-        let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
+        let headers = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
         headers.append('Content-Type', 'application/json');
         return this._http5.put('https://apis.rfpgurus.com/profile_update/' + obj.username + '/',
             JSON.stringify(jsonlist),
