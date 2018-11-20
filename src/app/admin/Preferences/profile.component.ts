@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import swal from 'sweetalert2';
-import { ProfileService } from './profile.service';
+import { ProfileService } from '../profile/profile.service';
 import { Router } from '@angular/router';
 import { MainService } from '../../serv/main.service';
 import { DatePipe } from '@angular/common';
 import { AuthService } from "angular4-social-login";
 import { AdvanceService } from '../../advance-search/advance.service';
 declare const $: any;
-import {MatChipInputEvent} from '@angular/material';
+import { MatChipInputEvent } from '@angular/material';
 
 
 declare interface ValidatorFn {
@@ -35,77 +35,103 @@ declare interface User {
     providers: [AdvanceService, AuthService, ProfileService, MainService]
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-    
+
     catess = new FormControl();
     cities = new FormControl();
     agencies = new FormControl();
-    counties= new FormControl();
-    states= new FormControl();
+    counties = new FormControl();
+    states = new FormControl();
     selectedValue: string;
     visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
+    selectable = true;
+    removable = true;
+    addOnBlur = true;
     valueSelected(preference, status) {
-      console.log(preference)
-            this.tempUserPreference.push(preference.toString());
+
+        console.log(preference)
+        if (preference != "") {
             console.log('zikikiki', this.tempUserPreference);
+            // this.tempUserPreference.push(preference.toString());
+            // console.log('zikikiki', this.tempUserPreference);
+        }
+        else if (preference == "") {
+            this.tempUserPreference.splice(status, 1);
+        }
+        console.log('zikikiki', this.tempUserPreference);
     }
     valueSelected1(preference, status) {
+        if (preference != "") {
+            console.log(preference)
+            // this.tempstatePreference.push(preference.toString());
+
+        } else if (preference == "") {
+            this.tempstatePreference.splice(status, 1);
+        } console.log('zikikiki', this.tempstatePreference);
+    }
+    valueSelected2(preference, status) {
+        if (preference != "") {
+            console.log(preference)
+            // this.tempcityPreference.push(preference.toString());
+
+        } else if (preference == "") {
+            this.tempcityPreference.splice(status, 1);
+        } console.log('zikikiki', this.tempcityPreference);
+    }
+    valueSelected3(preference, status) {
+        if (preference != "") {
         console.log(preference)
-              this.tempstatePreference.push(preference.toString());
-              console.log('zikikiki', this.tempstatePreference);
-      }
-      valueSelected2(preference, status) {
+        // this.tempcountyPreference.push(preference.toString());
+    }
+        else if (preference == "") {
+            this.tempcountyPreference.splice(status, 1);
+        } 
+        console.log('zikikiki', this.tempcountyPreference);
+    }
+    valueSelected4(preference, status) {
+        if (preference != "") {
         console.log(preference)
-              this.tempcityPreference.push(preference.toString());
-              console.log('zikikiki', this.tempcityPreference);
-      }
-      valueSelected3(preference, status) {
-        console.log(preference)
-              this.tempcountyPreference.push(preference.toString());
-              console.log('zikikiki', this.tempcountyPreference);
-      }
-      valueSelected4(preference, status) {
-        console.log(preference)
-              this.tempagencyPreference.push(preference.toString());
-              console.log('zikikiki', this.tempagencyPreference);
-      }
-    remove(preference,index: number) {
+        // this.tempagencyPreference.push(preference.toString());
+    }
+        else if (preference == "") {
+            this.tempagencyPreference.splice(status, 1);
+        } 
+        console.log('zikikiki', this.tempagencyPreference);
+    }
+    remove(preference, index: number) {
         console.log(preference);
         this.tempUserPreference.splice(index, 1);
-      }
-      remove1(preference,index: number) {
+    }
+    remove1(preference, index: number) {
         console.log(preference);
         this.tempstatePreference.splice(index, 1);
 
-      }
-      remove2(preference,index: number) {
+    }
+    remove2(preference, index: number) {
         console.log(preference);
         this.tempcityPreference.splice(index, 1);
 
-      }
-      remove3(preference,index: number) {
+    }
+    remove3(preference, index: number) {
         console.log(preference);
         this.tempcountyPreference.splice(index, 1);
 
-      }
-      remove4(preference,index: number) {
+    }
+    remove4(preference, index: number) {
         console.log(preference);
         this.tempagencyPreference.splice(index, 1);
 
-      }
+    }
     endRequest;
     today: number = Date.now();
     UserPreference: any = [];
     tempUserPreference: any = [];
-    tempstatePreference:any=[];
+    tempstatePreference: any = [];
     statePreference: any = [];
-    tempcityPreference:any=[];
+    tempcityPreference: any = [];
     cityPreference: any = [];
-    tempcountyPreference:any=[];
+    tempcountyPreference: any = [];
     countyPreference: any = [];
-    tempagencyPreference:any=[];
+    tempagencyPreference: any = [];
     agencyPreference: any = [];
     record = [];
     result: boolean = false;
@@ -119,18 +145,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
     personal: any = [];
     local;
     options: FormGroup;
-    cat:any=[];
-    city:any=[];
-    state:any=[];
-    county:any=[];
-    agency:any=[];
+    cat: any = [];
+    city: any = [];
+    state: any = [];
+    county: any = [];
+    agency: any = [];
 
     uname;
     usernameexist;
     vin_Data = { "city": "", "state": "" };
     emailexist;
     digitsOnly = '^[0-9,-]+$';
-    
+
     public phoneMask = ['(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
     shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
     constructor(private authService: AuthService, private _nav: Router, private _serv: ProfileService, private datePipe: DatePipe, private formBuilder: FormBuilder, private _adserv: AdvanceService, private _ser: MainService) {
@@ -138,12 +164,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
             this.local = localStorage.getItem('currentUser');
             let pars = JSON.parse(this.local);
             this.uname = pars.username
-            this.endRequest = this._serv.get_profile(this.uname).subscribe(
+            this.endRequest = this._serv.get_preferances(this.uname).subscribe(
                 data => {
                     console.log('Profile Data issssss', data);
                     console.log(data.user);
                     this.personal = data;
-                    this.profile = data.user;
+                    // this.profile = data.user;
                     if (data['user_preference'] == null) {
                         this.UserPreference = [];
                     } else {
@@ -232,53 +258,46 @@ export class ProfileComponent implements OnInit, OnDestroy {
             );
     }
     onRegister() {
-        if (this.register.valid) {
-            let nulllist;
-            let nullcounty;
-            let nullagency;
-            let nullstate;
-            let nullcity;
-            this.UserPreference = this.tempUserPreference;
-            if (this.UserPreference.length == 0) {
-                nulllist = null
-            }
-            this.statePreference=this.tempstatePreference
-            if (this.statePreference.length == 0) {
-                nullstate = null
-            }
-            this.countyPreference=this.tempcountyPreference
-            if (this.countyPreference.length == 0) {
-                nullcounty = null
-            }
-            this.cityPreference=this.tempcityPreference
-            if (this.cityPreference.length == 0) {
-                nullcity = null
-            }
-            this.agencyPreference=this.tempagencyPreference
-            if (this.agencyPreference.length == 0) {
-                nullagency = null
-            }
-            console.log("ajakkkkkk", this.UserPreference, nulllist)
-            this.endRequest = this._serv.ProfileUpdate(this.register.value, this.UserPreference,this.statePreference,this.countyPreference,this.cityPreference,this.agencyPreference,nulllist,nullstate,nullcounty,nullcity,nullagency).subscribe(
-                data => {
-                    swal({
-                        type: 'success',
-                        title: 'Updated Your Profile',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                },
-                error => {
-                    // console.log(error)
-                });
-        } else {
-            this.validateAllFormFields(this.register);
-            swal(
-                'Oops...',
-                'Failed to Update Profile. Inccorrect Information!',
-                'error'
-            )
+
+        let nulllist;
+        let nullcounty;
+        let nullagency;
+        let nullstate;
+        let nullcity;
+        this.UserPreference = this.tempUserPreference;
+        if (this.UserPreference.length == 0) {
+            nulllist = null
         }
+        this.statePreference = this.tempstatePreference
+        if (this.statePreference.length == 0) {
+            nullstate = null
+        }
+        this.countyPreference = this.tempcountyPreference
+        if (this.countyPreference.length == 0) {
+            nullcounty = null
+        }
+        this.cityPreference = this.tempcityPreference
+        if (this.cityPreference.length == 0) {
+            nullcity = null
+        }
+        this.agencyPreference = this.tempagencyPreference
+        if (this.agencyPreference.length == 0) {
+            nullagency = null
+        }
+        console.log("ajakkkkkk", this.UserPreference, nulllist)
+        this.endRequest = this._serv.peraferanceUpdate(this.register.value, this.UserPreference, this.statePreference, this.countyPreference, this.cityPreference, this.agencyPreference).subscribe(
+            data => {
+                swal({
+                    type: 'success',
+                    title: 'Updated Your RFP Preferances',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            },
+            error => {
+                // console.log(error)
+            });
+
     }
     validateAllFormFields(formGroup: FormGroup) {
         Object.keys(formGroup.controls).forEach(field => {
@@ -326,16 +345,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
             code: ['', Validators.required]
         });
         this.register = this.formBuilder.group({
-            firstname: ['', Validators.compose([Validators.required])],
-            lastname: ['', Validators.compose([Validators.required])],
-            companyname: ['', Validators.compose([Validators.required])],
-            address: ['', Validators.compose([Validators.required])],
-            username: ['', Validators.required],
-            zipcode: ['', Validators.compose([Validators.required])],
-            city: ['', Validators.compose([Validators.required])],
-            country: ['', Validators.compose([Validators.required])],
-            state: ['', Validators.compose([Validators.required])],
-            phone: ['', Validators.compose([Validators.required])],
+            // firstname: ['', Validators.compose([Validators.required])],
+            // lastname: ['', Validators.compose([Validators.required])],
+            // companyname: ['', Validators.compose([Validators.required])],
+            // address: ['', Validators.compose([Validators.required])],
+            // username: ['', Validators.required],
+            // zipcode: ['', Validators.compose([Validators.required])],
+            // city: ['', Validators.compose([Validators.required])],
+            // country: ['', Validators.compose([Validators.required])],
+            // state: ['', Validators.compose([Validators.required])],
+            // phone: ['', Validators.compose([Validators.required])],
             newsletter: ['', Validators.required],
             // To add a validator, we must first convert the string value into an array. The first item in the array is the default value if any, then the next item in the array is the validator. Here we are adding a required validator meaning that the firstName attribute must have a value in it.
             email: [{ value: '', disabled: true }, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
@@ -348,7 +367,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.endRequest = this._adserv.rfpcategory().subscribe(
             data => {
                 this.cat = data;
-                console.log( this.cat);
+                console.log(this.cat);
             },
             error => {
                 // console.log(error);
@@ -357,7 +376,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.endRequest = this._adserv.rfpcity().subscribe(
             data => {
                 this.city = data;
-                console.log( this.city);
+                console.log(this.city);
             },
             error => {
                 // console.log(error);
@@ -366,7 +385,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.endRequest = this._adserv.rfpcounty().subscribe(
             data => {
                 this.county = data;
-                console.log( this.county);
+                console.log(this.county);
             },
             error => {
                 // console.log(error);
@@ -375,7 +394,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.endRequest = this._adserv.rfpagency().subscribe(
             data => {
                 this.agency = data.Result;
-                console.log( this.agency);
+                console.log(this.agency);
             },
             error => {
                 // console.log(error);
@@ -384,7 +403,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.endRequest = this._adserv.rfpstate().subscribe(
             data => {
                 this.state = data.Result;
-                console.log( this.state);
+                console.log(this.state);
             },
             error => {
                 // console.log(error);
@@ -394,7 +413,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
             $("i", this).toggleClass("fa-arrow-left fa-arrow-right");
         });
     }
-   
+
     logout() {
         this.authService.signOut();
         localStorage.clear();

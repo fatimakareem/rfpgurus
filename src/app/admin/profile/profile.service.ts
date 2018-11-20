@@ -19,6 +19,14 @@ export class ProfileService {
 
     }
     loaded: boolean = false;
+    get_preferances(uid) {
+
+        let headers = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
+        headers.append('Content-Type', 'application/json');
+        return this._http5.get('https://apis.rfpgurus.com/preferance_Updates/' + uid + '/',
+            { headers: headers }).map((response: Response) => response.json());
+
+    }
     get_profile(uid) {
 
         let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
@@ -86,7 +94,7 @@ export class ProfileService {
         console.log(userlist)
         let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
         headers.append('Content-Type', 'application/json');
-        return this._http5.put('https://apis.rfpgurus.com/profile_update/' + JSON.parse(localStorage.getItem('currentUser')).username + '/',
+        return this._http5.put('https://apis.rfpgurus.com/preferance_Updates/' + JSON.parse(localStorage.getItem('currentUser')).username + '/',
             JSON.stringify(jsonlist),
             { headers: headers }).map((data: Response) => data.json());
     }
