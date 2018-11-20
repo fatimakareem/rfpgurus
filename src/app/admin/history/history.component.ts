@@ -81,7 +81,29 @@ export class HistoryComponent implements OnInit, OnDestroy {
         });
     }
    
-    userdetail
+    userdetail;
+    valuee = '';
+    firststep(value) {
+        console.log(value)
+        this.valuee = value;
+        if (value == "BM") {
+          this.prv_stepdetail("B", "M")
+        }
+        else if (value == "PY") {
+          this.prv_stepdetail("P", "Y")
+        }
+      }
+    check_login() {
+        if (localStorage.getItem('currentUser')) {
+          this.local = localStorage.getItem('currentUser');
+          let pars = JSON.parse(this.local);
+          this.uname = pars.username
+          return false
+        }
+        else {
+          return true
+        }
+      }
     mainFunction() {
         this.endRequest = this._serv.purchaseHistory().subscribe(
             data => {
