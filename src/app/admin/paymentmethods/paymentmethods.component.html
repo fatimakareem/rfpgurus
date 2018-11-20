@@ -51,12 +51,16 @@
       <!-- <input type="checkbox" [(ngModel)]="check_value" name="check_value"  (change)="ShowButton(check_value,$event)"> -->
      
       <form class=" sh-signup-form-fix edit-profile" [formGroup]="form">
-     
+        <div class="col-md-12 padding-0">
+        <div class="col-md-4">
           <mat-form-field>
-              <mat-select placeholder="Type Card" [formControl]="var_type_atm" (change)="ShowButton(var_type_atm.value,$event)">
-                <mat-option *ngFor="let card_get_datat of card_opeation" [value]="card_get_datat.value">{{card_get_datat.viewValue}}</mat-option>
-              </mat-select>
-      </mat-form-field>
+            <mat-select placeholder="Type Card" [formControl]="var_type_atm" (change)="ShowButton(var_type_atm.value,$event)">
+              <mat-option *ngFor="let card_get_datat of card_opeation" [value]="card_get_datat.value">{{card_get_datat.viewValue}}</mat-option>
+            </mat-select>
+    </mat-form-field>
+        </div>
+      </div>
+         
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" *ngIf="cardnumber">
           <mat-form-field>
             <input matInput type="text" minlength="16" maxlength="16" placeholder="Credit Card Number" formControlName="cardnumber">
