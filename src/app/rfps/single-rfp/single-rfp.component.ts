@@ -107,7 +107,7 @@ total;
         else{
             swal({
                 type: 'success',
-                title: 'Successfully Add In Your Watchlist',
+                title: 'RFP succesfully added to your watch list',
                 showConfirmButton: true,
                 confirmButtonColor: "#090200",
             });
