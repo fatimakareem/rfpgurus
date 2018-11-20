@@ -1318,6 +1318,7 @@ body {
 }
 .btn.btn-primary, .btn.btn-primary:hover, .btn.btn-primary:focus, .btn.btn-primary:active, .btn.btn-primary.active, .btn.btn-primary:active:focus, .btn.btn-primary:active:hover, .btn.btn-primary.active:focus, .btn.btn-primary.active:hover, .open > .btn.btn-primary.dropdown-toggle, .open > .btn.btn-primary.dropdown-toggle:focus, .open > .btn.btn-primary.dropdown-toggle:hover, .navbar .navbar-nav > li > a.btn.btn-primary, .navbar .navbar-nav > li > a.btn.btn-primary:hover, .navbar .navbar-nav > li > a.btn.btn-primary:focus, .navbar .navbar-nav > li > a.btn.btn-primary:active, .navbar .navbar-nav > li > a.btn.btn-primary.active, .navbar .navbar-nav > li > a.btn.btn-primary:active:focus, .navbar .navbar-nav > li > a.btn.btn-primary:active:hover, .navbar .navbar-nav > li > a.btn.btn-primary.active:focus, .navbar .navbar-nav > li > a.btn.btn-primary.active:hover, .open > .navbar .navbar-nav > li > a.btn.btn-primary.dropdown-toggle, .open > .navbar .navbar-nav > li > a.btn.btn-primary.dropdown-toggle:focus, .open > .navbar .navbar-nav > li > a.btn.btn-primary.dropdown-toggle:hover{
     background-color: #000 !important;
+    font-weight: 600 !important;
 }
 .carouselTwo .buttons.leftRs{
     left: 0 ;
@@ -1743,6 +1744,44 @@ line-height: 27px;
 }
 .card-error{
  color: #c00;
+}
+.pagination{
+    margin-right: 18% !important;
+}
+.sh-select-list{
+    text-align: right !important;
+}
+.sh-sidebar-more-condense .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-placeholder, .sh-sidebar-more-condense .mat-form-field-empty.mat-form-field-placeholder, .sh-sidebar-more-condense mat-form-field.mat-form-field {
+    font-size: 13px!important;
+    top: 19px;
+    left: 5px;
+}
+.sh-sidebar-more-condense{
+    padding: 0 0 22px;
+}
+.sh-sidebar-date .mat-form-field-empty.mat-form-field-placeholder{
+    top: 12px !important;
+}
+.sh-sidebar-more-condense .mat-select{
+    box-shadow:none !important;
+    border-bottom: 1px solid #e6e6e6;
+}
+.sh-sidebar-user .mat-form-field-flex {
+    border-radius: 5px;
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #e6e6e6;
+}
+.sidebar-user .mat-select-value-text {
+    font-size: 13px;
+}
+.sh-map-desc{
+    font-size: 14px;
+    color: #fff;
+    text-shadow: 0 3px 10px #000;
+    margin: 5px 0 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: inline;
 }
 @media (min-width:1440px) and (max-width:1679px)  {
     .navbar-nav > li > a {
