@@ -26,6 +26,6 @@ const routes: Routes = [
   declarations: [HistoryComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
-  ]
+  ],
 })
 export class HistoryModule { }

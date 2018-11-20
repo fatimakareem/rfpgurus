@@ -142,7 +142,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-group" id="accordion">
+                    <!-- <div class="panel-group" id="accordion">
                         <div class="panel panel-default">
                             <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
                                 <h4 class="panel-title">
@@ -277,42 +277,20 @@
                                                     </div>
             
                                             </div>
-                                                <!-- <mat-form-field>
-                                                        <mat-select placeholder="Category" multiple (change)="valueSelected(category, $event)" >
-                                                          <mat-option *ngFor="let food of cat" [value]="food.category">
-                                                            {{food.category}}
-                                                          </mat-option>
-                                                        </mat-select>
-                                                      </mat-form-field> -->
-
-                                            <!-- <div *ngFor="let list of cat">
-                                                <li>
-                                                   
-                                                    <ng-container *ngIf="UserPreference.indexOf(list.category) >=0 ; else elseblock">
-                                                        <input type="checkbox" id="{{list.category}}" value="1"
-                                                            (change)="valueSelected(list.category, $event)" checked>
-                                                        <label for="{{list.category}}">{{list.category}}</label>
-                                                    </ng-container>
-                                                    <ng-template #elseblock>
-                                                        <input type="checkbox" id="{{list.category}}" value="1"
-                                                            (change)="valueSelected(list.category, $event)">
-                                                        <label for="{{list.category}}">{{list.category}}</label>
-                                                    </ng-template>
-                                                </li>
-                                            </div> -->
+                                              
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="form-footer text-right">
-                        <div class="checkbox pull-left">
+                        <!-- <div class="checkbox pull-left">
                             <label style="font-size: 18px">
                                 <input type="checkbox" [(ngModel)]="personal.newsletter" value="{{personal.newsletter}}"
                                     name="newsletter" formControlName="newsletter"> Subscribe to Newsletter
                             </label>
-                        </div>
+                        </div> -->
                         <div *ngIf="!pkgsub">
                         </div>
                         <div class="form-group text-center">

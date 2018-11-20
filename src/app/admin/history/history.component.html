@@ -4,10 +4,11 @@
             <div class="history-header">
                 <h2>Subscription</h2>
             </div>
+           
             <table class="table table-striped history-table">
                 <thead *ngIf="!nofound">
                     <tr>
-                        <th> Subscription Name</th>
+                        <th>Subscription Name</th>
                         <th>Price</th>
                         <th>Start Date</th>
                         <th>Expiry Date</th>
@@ -34,7 +35,14 @@
                         </td>
                     </tr>
                 </tbody>
+
+
+
             </table>
+            <button  data-target="#myModal5" data-toggle="modal">
+                   
+            </button>
+           
         </div>
         <!--2nd step-->
         <div *ngIf="pkgsub" data-wow-delay=".5s">
@@ -178,3 +186,107 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+<!-- ---------------------------- Template ---------------------------- -->
+
+<div id="myModal5" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+       
+        <!-- Modal content-->
+        <div class="modal-content">
+                <div class="invoice overflow-auto">
+                        <div style="min-width: 600px">
+                            <header>
+                                <div class="row">
+                                    <div class="col">
+                                        <a target="_blank" >
+                                            <img src="../../assets/img/logo.png" alt="RFPGurus" />
+                                            </a>
+                                    </div>
+                                    <div class="col company-details">
+                                            <h2>HEADQUARTERS</h2>
+                                            <h5 style="line-height: 30px;">5050 Quorum Drive,
+                                              Dallas, TX 75254, USA</h5>
+                                              <h5 class="phone-contact">
+                                                    <i class="fa fa-envelope-o"></i>&nbsp;&nbsp;<span>Email: </span> contact@rfpgurus.com<br>
+                                                    <i class="fa fa-phone"></i>&nbsp;&nbsp; <span>Voice: </span> +1 (888) 764-0100<br>
+                                                    <i class="fa fa-fax"></i>&nbsp;&nbsp; <span>Fax: </span> +1 (469) 250-6600
+                                                  </h5>
+                                    </div>
+                                </div>
+                            </header>
+                            <main>
+                                <div class="row contacts">
+                                    <div class="col invoice-to">
+                                        <div class="text-gray-light">INVOICE TO:</div>
+                                        <h2 class="to">John Doe</h2>
+                                        <div class="address">796 Silver Harbour, TX 79273, US</div>
+                                        <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
+                                    </div>
+                                    <div class="col invoice-details">
+                                        <h1 class="invoice-id">INVOICE 3-2-1</h1>
+                                        <div class="date">Date of Invoice: 01/10/2018</div>
+                                        <div class="date">Due Date: 30/10/2018</div>
+                                    </div>
+                                </div>
+                                <table border="0" cellspacing="0" cellpadding="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Subscription Name</th>
+                                            <th>Price</th>
+                                            <th>Start Date</th>
+                                            <th>Expiry Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr *ngIf="!nofound">
+                                                    <td *ngIf="pkgList.duration == 'M' "> MONTHLY PLAN</td>
+                                                    <td *ngIf="pkgList.duration == 'Q'">Quater PLAN</td>
+                                                    <td *ngIf="pkgList.duration== 'S'"> SixMonths PLAN</td>
+                                                    <td *ngIf="pkgList.duration == 'Y'"> Yearly PLAN</td>
+                                                    <td><span>$</span>{{pkgList.pkg_price}} </td>
+                                                    <td>{{record.pay_date | date:'MMM-dd-y'}}</td>
+                                                    <td>{{record.end_date | date:'MMM-dd-y'}}</td>
+                                                    <td *ngIf="record.is_paid == true"><button style="cursor:text" class="btn btn-success" title="Active">Active
+                                                        </button></td>
+                                                    <td *ngIf="record.is_paid == false"><button (click)=" prv_stepdetail( pkgList.pkg_type,pkgList.duration)"
+                                                            title="Subscribe Package" class="btn btn-primary">Subscribe Now <i class="fa fa-thumbtack"></i></button></td>
+                                                </tr>
+                                      
+                                        
+                                        
+                                    </tbody>
+                                   
+                                </table>
+                                <div class="thanks">Thank you!</div>
+                                <div class="notices">
+                                    <div>NOTICE:</div>
+                                    <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+                                </div>
+                            </main>
+                            <footer>
+                                Invoice was created on a computer and is valid without the signature and seal.
+                            </footer>
+                        </div>
+                        <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+                        <div></div>
+                    </div>
+        <div class="modal-footer">
+        <div class="modal-buttons">
+                <!-- <div>
+                        <input type="button" value="CPTURE" (click)="captureScreen()" />
+                    </div> -->
+        <button type="button" class="btn btn-default" value="CPTURE" (click)="captureScreen()" data-dismiss="modal">Yes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        </div>
+        </div>
+        </div>
+       
+        </div>
+       </div>
+    
