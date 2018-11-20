@@ -358,8 +358,9 @@
 
                         <fieldset class="fieldset-ccv">
                             <label for="card-ccv" style="font-size:16px;">CCV</label>
-                            <input type="text" (keypress)="keyPresszip($event)" id="card-ccv" minlength="3" maxlength="4" required
-                                name="ccv" #ccv1="ngModel" (focusout)="flipagain()" (focus)="flip()" [(ngModel)]="ccv" />
+                            <input type="text" (keypress)="keyPresszip($event)" id="card-ccv" minlength="3" maxlength="4"
+                                required name="ccv" #ccv1="ngModel" (focusout)="flipagain()" (focus)="flip()"
+                                [(ngModel)]="ccv" />
                             <div *ngIf="ccv1.touched && ccv1.invalid">
                                 <div *ngIf="ccv1.errors.required">
                                     CCV number cannot be empty
@@ -369,15 +370,88 @@
                                 </div>
                             </div>
                         </fieldset>
-
-
+                             <h5> Enroll in Autopay <mat-slide-toggle name="default" data-target="#myModal4" data-toggle="modal"  class="py-toggle"></mat-slide-toggle>  set as recurring payment method </h5>   
+                                          
                         <button class="btn sh" (click)="proceed()">
 
                             <i class="fa fa-lock"></i> submit</button>
 
                     </form>
+                  
+             
+
+                    
+ <!-- Modal -->
+ <div id="myModal4" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+       
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="setdefault()"><i class="fa fa-times btn-dismiss"></i></button>
+        <!-- <h4 class="modal-title heading-modal">Set as recurring payment method </h4> -->
+        </div>
+        <div class="modal-body text-center padding-zero">
+        <h4>I Agree to terms and condition.</h4>
+        </div>
+        <div class="modal-footer">
+        <div class="modal-buttons">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="setautopay(status.default,status.id,status.name,status.number,status.cvc,status.expDate,status.street_address,status.zipcode,status.city,status.state,status.country,status.autopay)">Yes</button>
+        <button type="button" class="btn btn-default" (click)="setdefault()" data-dismiss="modal">No</button>
+        </div>
+        </div>
+        </div>
+       
+        </div>
+       </div>
+          
                 </div>
             </div>
+            
         </div>
+        <div class="sh-container-paymnt" *ngIf="message!='No Credit card detail in your list'">
+                <div class="table-responsive margin-top-20">
+                  <table class="table payment-table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Card Number</th>
+                        <th>CCV</th>
+                        <th>Expiry Date</th>
+                        <!-- <th>Pin Code</th> -->
+                        <th>Street Address</th>
+                        <th>Zip Code</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Country </th>
+                        <th>Status</th>
+                        <th>Set as Defalt</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let card of res">
+                        <td>{{card.name}}</td>
+                        <td>{{card.number}}</td>
+                        <!-- <td>{{card.number | slice:0:4}}-{{card.number | slice:4:8}}-{{card.number | slice:8:12}}</td> -->
+                        <td>{{card.cvc.length > 0 ? '...' : '****' }}</td>
+                        <td>{{card.expDate }} </td>
+                        <!-- <td>{{card.pinCode.length > 0 ? '...' : '****'}} </td> -->
+                        <td>{{card.street_address }} </td>
+                        <td>{{card.zipcode }} </td>
+                        <td> {{card.city }}</td>
+                        <td>{{card.state }} </td>
+                        <td> {{card.country }}</td>
+                        <td>{{card.default}}</td>
+                        <td>
+                 <mat-slide-toggle name="atm_details" (click)="setcard(card.default,card.id,card.name,card.number,card.cvc,card.expDate,card.street_address,card.zipcode,card.city,card.state,card.country)" class="py-toggle"></mat-slide-toggle>
+
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>     
     </div>
 </div>
+<div>
+     

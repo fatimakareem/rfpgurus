@@ -4,13 +4,18 @@ import { Injectable } from '@angular/core';
 import { Headers, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { HttpService } from './../serv/http-service';
-import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms'
 @Injectable()
 export class PricingService {
     currentUser;
-    constructor(private _http5: HttpService) {
+    constructor(private _http5: HttpService ) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
+    showCards() {
+        let headers = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
+        headers.append('Content-Type', 'application/json');
+        return this._http5.get('https://apis.rfpgurus.com/payment/cardinfo/', { headers: headers }).map((response: Response) => response.json());
+      }
     get_card_info() {
         let headers = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
         headers.append('Content-Type', 'application/json');
@@ -91,4 +96,26 @@ export class PricingService {
                 { headers: headers }).map((res: Response) => res.json())
         }
     }
+    updateCard(var_status,id, name, cardno, ccv, expiryDate, address, zip, city, state, country,set_auto_pay) {
+        let header = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
+        header.append('Content-Type', 'application/json');
+        return this._http5.put('https://apis.rfpgurus.com/payment/cardinfo/',
+          JSON.stringify({
+            // "cardNumber": cardno,
+            "default": var_status,
+            "cid": id,
+            "name": name,
+            // "pinCode": pin,
+            "street_address": address,
+            "zipcode": zip,
+            "city": city,
+            "state": state,
+            "country": country,
+            "number": cardno,
+            "cvc": ccv,
+            "expDate": expiryDate,
+            "autopay": set_auto_pay
+          }),
+          { headers: header }).map((response: Response) => response.json());
+      }
 }
