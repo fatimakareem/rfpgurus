@@ -4,3 +4,10 @@
 .ng-deep .mat-input-underline {
     display: none;
 }
+.form button {
+    background: linear-gradient(180deg, #7d7776, #000000);
+}
+.credit-card-box label {
+    text-transform: capitalize;
+    opacity: 0.9;
+}
