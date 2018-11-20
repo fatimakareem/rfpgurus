@@ -4,6 +4,8 @@ import { PricingService } from './pricing.service';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { RfpService } from '../rfps/single-rfp/rfp.service';
+import { PaymentmethodsService } from 'app/admin/paymentmethods/paymentmethods.service';
+
 @Component({
   selector: 'app-pricing',
   templateUrl: './pricing.component.html',
@@ -30,6 +32,7 @@ export class PricingComponent implements OnInit {
   expmonth;
   expyear;
   ccv;
+  default: boolean = false;
   personal: any = [];
   flipclass = 'credit-card-box';
   step1 = true;
@@ -60,8 +63,11 @@ export class PricingComponent implements OnInit {
   pkg;
   local;
   uname;
+  endRequest;
+  message;
+  var_get_card_id;
   /////////////////////////////end///////////////////////////
-  constructor(private _serv1: RfpService, private _nav: Router, private _serv: PricingService, private http: Http) { }
+  constructor(private _serv1: RfpService, private _nav: Router, private _serv: PricingService, private http: Http, private _http6: PaymentmethodsService) { }
   //
   next_stepdetail(event: any) {
     if (event.target.value == "BM") {
@@ -69,6 +75,32 @@ export class PricingComponent implements OnInit {
     } else if (event.target.value == "PY") {
       this.prv_stepdetail("P", "Y")
     }
+  }
+  getCards() {
+    this.endRequest = this._serv.showCards().subscribe(Data => {
+      this.res = Data;
+      this.message = Data.message;
+    },
+      error => {
+        if (error.status == 404) {
+          swal({
+            type: 'error',
+            title: 'Credit Card Not Found!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+        else if (error.status == 500) {
+          swal(
+            'Sorry',
+            'Server Is Under Maintenance!',
+            'error'
+          )
+        }
+      })
+  }
+  setdefault() {
+    this.default = false;
   }
   valuee = '';
   firststep(value) {
@@ -295,9 +327,10 @@ export class PricingComponent implements OnInit {
         }
       );
     }
-    
+
   }
- keyPresszip(event: any) {
+
+  keyPresszip(event: any) {
     const pattern = /[0-9+\-\ ]/;
     let inputChar = String.fromCharCode(event.charCode);
     if (event.keyCode != 8 && !pattern.test(inputChar)) {
@@ -312,8 +345,105 @@ export class PricingComponent implements OnInit {
       event.preventDefault();
 
     }
+
+  }
+
+  updefault;
+  setcard(status, var_get_card_id, name, number, cvc, expDate, street_address, zipcode, city, state, country) {
+    if (status == false) {
+      this.updefault = true;
+    }
+    else if(status == true)
+     {
+      this.updefault = false;
+    }
+
+    this.endRequest = this._http6.updateCard(this.updefault, var_get_card_id, name, number, cvc, expDate, street_address, zipcode, city, state, country).subscribe(Data => {
+      swal({
+        type: 'success',
+        title: 'Credit Card Details Are Updated!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      this.show_card_info();
+      this.getCards();
+    },
+      error => {
+        if (error.status == 400) {
+          swal({
+            type: 'error',
+            title: 'Credit Card Details Are Not Correct!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+        else if (error.status == 500) {
+          swal(
+            'Sorry',
+            'Server Is Under Maintenance!',
+            'error'
+          )
+        }
+        else {
+          swal(
+            'Sorry',
+            'Some Thing Went Worrng!',
+            'error'
+          )
+        }
+      })
+  }
+  var_auto_pay;
+  setautopay(var_status,var_get_card_id, name, number, cvc, expDate, street_address, zipcode, city, state, country,setautopay) {
+    alert(setautopay);
+    if (setautopay == false )
+    {
+      this.var_auto_pay = true;
+      // alert(this.var_auto_pay);
+    }
+    else if(setautopay == true)
+     {
+      this.var_auto_pay = false;
+      // alert(this.var_auto_pay);
+    }
+
+    this.endRequest = this._serv.updateCard(var_status,var_get_card_id, name, number, cvc, expDate, street_address, zipcode, city, state, country,this.var_auto_pay).subscribe(Data => {
+      swal({
+        type: 'success',
+        title: 'Auto Pay Payment Method Is Successfully Apply On This Card',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      this.show_card_info();
+      this.getCards();
+    },
+      error => {
+        if (error.status == 400) {
+          swal({
+            type: 'error',
+            title: 'Credit Card Details Are Not Correct!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+        else if (error.status == 500) {
+          swal(
+            'Sorry',
+            'Server Is Under Maintenance!',
+            'error'
+          )
+        }
+        else {
+          swal(
+            'Sorry',
+            'Some Thing Went Worrng!',
+            'error'
+          )
+        }
+      })
   }
   ngOnInit() {
     this.show_card_info();
+    this.getCards();
   }
 }

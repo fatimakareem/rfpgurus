@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PricingComponent } from './pricing.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MatInputModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
+import { MatInputModule, MatFormFieldModule, MatSelectModule,MatSlideToggleModule } from '@angular/material';
 import { TextMaskModule } from 'angular2-text-mask';
 const routes: Routes = [
   {
@@ -16,6 +16,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
+    MatSlideToggleModule,
     MatFormFieldModule,
     MatSelectModule,
     TextMaskModule,

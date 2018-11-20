@@ -7,7 +7,10 @@ import swal from 'sweetalert2';
 import { Subscription } from 'rxjs/Subscription';
 import { noSpaceValidator } from './noSpaceValidator.component';
 import { RegisterService } from '../../registered/register.service';
-
+export interface card_opeation {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-paymentmethods',
@@ -16,9 +19,16 @@ import { RegisterService } from '../../registered/register.service';
   // providers: [RegisterService,PaymentmethodsService]
 })
 export class PaymentmethodsComponent implements OnInit, OnDestroy {
+  var_type_atm= new FormControl('');
   public show: boolean = false;
   check_value: boolean = false;
   ccv1: boolean = false;
+card_opeation=[
+{value: 'fasle', viewValue: 'Visa Card'},
+{value: 'false', viewValue: 'Master Card'},
+{value: 'true', viewValue: 'American Expressions Card'}
+
+];
   public buttonName: any = 'Show';
   public show2: boolean = false
   endRequest;
@@ -74,7 +84,10 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
     country: new FormControl('', [
       Validators.required,
     ]),
-
+    var_type_atm: new FormControl('', [
+      Validators.required,
+    ]),
+   
     // pin: new FormControl('', [
     //   Validators.maxLength(4),
     //   Validators.pattern('^[0-9]*$'),
@@ -88,6 +101,7 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
   cardnumber2;
   var_box_check: boolean = false;
   destroy_value;
+ 
   vin_Data = { "city": "", "state": "" };
   private sub: Subscription;
   flipclass = 'credit-card-box';
@@ -97,13 +111,10 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
     this.ccv = true;
     this.ccv2 = false;
   }
-  ShowButton(var_box_check, event) {
-
-    // alert(this.var_box_check)
-
-    if (event.target.checked == true) {
-      this.var_box_check = true
-      // alert(this.var_box_check)
+  ShowButton(var_type_atm) {
+    
+    if (var_type_atm == "true") {
+        var_type_atm = "true";
       this.cardnumber = false;
       this.form.controls.cardnumber.reset();
       this.cardnumber2 = true;
@@ -111,9 +122,8 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
       this.form.controls.ccv.reset();
       this.ccv2 = true;
     }
-    else if (event.target.checked == false) {
-      this.var_box_check = false;
-      // alert(this.var_box_check)
+    else  {
+      var_type_atm = "false";
       this.cardnumber2 = false;
       this.form.controls.cardnumber2.reset();
       this.cardnumber = true;
@@ -248,18 +258,20 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
     }
   }
   check_value_get: boolean = false;
-  add(check_value_get) {
+  add(var_type_atm) {
 
+    alert(var_type_atm);
     // console.log(this.default)
     this.date = this.form.value['expirydate'];
     // this.date = moment(this.date).format('YYYY-MM') + '-01';
     // name,pin,address,zip,city,state,country,cardno, ccv, expiryDate
-    // alert(this.var_box_check);
-    if (this.var_box_check == true) {
+    // alert(this.var_type_atm);
+    
+    if (var_type_atm == "true") {
       if (this.form.controls.cardnickname.valid && this.form.controls.cardnumber2.valid && this.form.controls.ccv2.valid
         && this.form.controls.expirydate.valid && this.form.controls.address.valid && this.form.controls.zip.valid
         && this.form.controls.city.valid && this.form.controls.state.valid && this.form.controls.country.valid) {
-        this.endRequest = this.serv.addCard(this.default, this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber2'], this.form.value['ccv2'], this.date).subscribe(Data => {
+        this.endRequest = this.serv.addCard(this.default, this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber2'], this.form.value['ccv2'],this.date,this.form.value['var_type_atm']).subscribe(Data => {
           swal({
             type: 'success',
             title: 'Payment Method Is Listed!',
@@ -316,7 +328,7 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
       if (this.form.controls.cardnickname.valid && this.form.controls.cardnumber.valid && this.form.controls.ccv.valid
         && this.form.controls.expirydate.valid && this.form.controls.address.valid && this.form.controls.zip.valid
         && this.form.controls.city.valid && this.form.controls.state.valid && this.form.controls.country.valid) {
-        this.endRequest = this.serv.addCard(this.default, this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber'], this.form.value['ccv'], this.date).subscribe(Data => {
+        this.endRequest = this.serv.addCard(this.default, this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber'], this.form.value['ccv'],this.date,this.form.value['var_type_atm']).subscribe(Data => {
           swal({
             type: 'success',
             title: 'Payment Method Is Listed!',
