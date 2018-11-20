@@ -1783,6 +1783,30 @@ line-height: 27px;
     background: rgba(0, 0, 0, 0.45);
     display: inline;
 }
+.sh-pref-selectlist .mat-select {
+    box-shadow: none !important;
+    border-bottom: 1px solid #e6e6e6;
+    background-color: #fff;
+}
+.mat-chip:hover .mat-chip-remove{
+    color: #c00;
+}
+.sh-pref-selectlist .card-title{
+    font-size: 24px;
+    font-weight: 600 !important;
+}
+.sh-pref-selectlist .panel-group{
+    margin-bottom: 0;
+}
+.sh-pref-selectlist .card .card-content {
+    padding: 15px 20px 0;
+}
+.sh-pref-selectlist .form-footer{
+    padding: 0 20px;
+}
+.sh-main-panel-admin .main-panel{
+    width:98% !important;
+}
 @media (min-width:1440px) and (max-width:1679px)  {
     .navbar-nav > li > a {
         font-size: 16px !important;
