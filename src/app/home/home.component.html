@@ -60,10 +60,14 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12">
+              <!-- <img src="../../assets/img/caption.png" alt="img"> -->
+                
               <div class="svg_map">
                 <us-map style="cursor: pointer; " (onMapClick)="getState($event)" strokeColor="#00000" fillStateColor="#fff"
                   fillColor="black"></us-map>
+                  
               </div>
+              <h2 class="sh-map-desc">Click on any state in the nationwide map to view Latest RFPs</h2>
             </div>
             <div class="container sh-dp-none" id="CategoryDiv" *ngIf="CategoryCheck">
               <div class="col-md-12">

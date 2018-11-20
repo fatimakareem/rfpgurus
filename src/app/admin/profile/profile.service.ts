@@ -27,10 +27,38 @@ export class ProfileService {
             { headers: headers }).map((response: Response) => response.json());
 
     }
-    ProfileUpdate(obj,catlist,statePreference,countyPreference,cityPreference,agencyPreference) {
+    ProfileUpdate(obj) {
+       
+        let userlist: any = [];
+        let jsonlist = {};
+            jsonlist = {
+                "zipcode": obj.zipcode,
+                "city": obj.city,
+                "address": obj.address,
+                "company": obj.companyname,
+                "country": obj.country,
+                "state": obj.state,
+                "phone": obj.phone,
+                "email": obj.email,
+                "first_name": obj.firstname,
+                "last_name": obj.lastname,
+                "username": obj.username,
+                // "newsletter": obj.newsletter,
+            }
+       
+        console.log(userlist)
+        let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
+        headers.append('Content-Type', 'application/json');
+        return this._http5.put('https://apis.rfpgurus.com/profile_update/' + obj.username + '/',
+            JSON.stringify(jsonlist),
+            { headers: headers }).map((data: Response) => data.json());
+    }
+
+
+
+    peraferanceUpdate(obj,catlist,statePreference,countyPreference,cityPreference,agencyPreference) {
         console.log(catlist,statePreference,countyPreference,cityPreference,agencyPreference)
         let userlist: any = [];
-        let emplist;
         if(catlist.length == 0){
             catlist = null;
         }
@@ -47,21 +75,7 @@ export class ProfileService {
             agencyPreference = null;
         }
         let jsonlist = {};
-        // if (catlist.length == 0 || statePreference.length == 0 || countyPreference.length == 0 || cityPreference.length == 0 || agencyPreference.length == 0) {
-            emplist = null
-
             jsonlist = {
-                "zipcode": obj.zipcode,
-                "city": obj.city,
-                "address": obj.address,
-                "company": obj.companyname,
-                "country": obj.country,
-                "state": obj.state,
-                "phone": obj.phone,
-                "email": obj.email,
-                "first_name": obj.firstname,
-                "last_name": obj.lastname,
-                "username": obj.username,
                 "newsletter": obj.newsletter,
                 "usercat": catlist,
                 "preferagency":agencyPreference,
@@ -69,36 +83,14 @@ export class ProfileService {
                 "prefercounty":countyPreference,
                 "prefersate":statePreference
             }
-        // }
-        // else {
-        //     userlist == catlist;
-        //     jsonlist = {
-        //         "zipcode": obj.zipcode,
-        //         "city": obj.city,
-        //         "address": obj.address,
-        //         "company": obj.companyname,
-        //         "country": obj.country,
-        //         "state": obj.state,
-        //         "phone": obj.phone,
-        //         "email": obj.email,
-        //         "first_name": obj.firstname,
-        //         "last_name": obj.lastname,
-        //         "username": obj.username,
-        //         "newsletter": obj.newsletter,
-        //         "usercat": catlist,
-        //         "preferagency":agencyPreference,
-        //         "prefercities":cityPreference,
-        //         "prefercounty":countyPreference,
-        //         "prefersate":statePreference
-        //     }
-        // }
         console.log(userlist)
         let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
         headers.append('Content-Type', 'application/json');
-        return this._http5.put('https://apis.rfpgurus.com/profile_update/' + obj.username + '/',
+        return this._http5.put('https://apis.rfpgurus.com/profile_update/' + JSON.parse(localStorage.getItem('currentUser')).username + '/',
             JSON.stringify(jsonlist),
             { headers: headers }).map((data: Response) => data.json());
     }
+
     email_exist(email) {
         return this._http1.post('https://apis.rfpgurus.com/email_exist/', {
             'email': email

@@ -5,6 +5,9 @@ import swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from "angular4-social-login";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';  
+// import { invoiceData } from './invoice-data';
 declare const $: any;
 @Component({
     selector: 'app-history',
@@ -13,6 +16,25 @@ declare const $: any;
     providers: [AuthService, MainService]
 })
 export class HistoryComponent implements OnInit, OnDestroy {
+     captureScreen()  
+    {  
+      var data = document.getElementById('contentToConvert');  
+      html2canvas(data).then(canvas => {  
+        // Few necessary setting options  
+        var imgWidth = 208;   
+        var pageHeight = 295;    
+        var imgHeight = canvas.height * imgWidth / canvas.width;  
+        // var heightLeft = imgHeight;  
+    
+        const contentDataURL = canvas.toDataURL('image/png')  
+        let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF  
+        var position = 0;  
+        pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
+        pdf.save('MYPdf.pdf'); // Generated PDF   
+      });  
+    //   document.getElementById('contentToConvert').className='hideMe';
+    //   $('contentToConvert').data('hide');
+    }  
     record = {};
     endRequest;
     nofound: boolean = false;
@@ -59,6 +81,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
             top: 0
         });
     }
+    value: any = [];
     mainFunction() {
         this.endRequest = this._serv.purchaseHistory().subscribe(
             data => {
@@ -67,9 +90,18 @@ export class HistoryComponent implements OnInit, OnDestroy {
                 this.result = true;
                 var enddate = this.record['end_date'].toString();
                 var date = new Date();
+
+                // this.value.push(this.pkgList['duration'], this.pkgList['pkg_price'], this.record['pay_date'], this.record['end_date']);
+                // console.log(this.value[0], this.value[1], this.value[2], this.value[3])
+                // this.data = [            
+                //     // new InvoiceRow('Subscription', 'Price', 'Start Date', 'Expiry Date'),
+                //     new InvoiceRow(this.value[0], this.value[1], this.value[2], this.value[3])
+                // ];
+                // console.log(this.data, 'jjj')
                 var currentDate = this.datePipe.transform(date, "yyyy-MM-dd").toString()
 
                 console.log(this.datePipe.transform(date, "yyyy-MM-dd"), this.today, this.record['end_date'])
+
             },
             error => {
                 // alert(error.status)
@@ -118,11 +150,14 @@ export class HistoryComponent implements OnInit, OnDestroy {
                 )
             });
     }
+
     ngOnInit() {
+
         this.mainFunction()
         $('#click_advance').click(function () {
             $("i", this).toggleClass("fa-arrow-left fa-arrow-right");
         });
+       
     }
     logout() {
         this.authService.signOut();
@@ -134,6 +169,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
             timer: 1500
         });
         this._nav.navigate(['/']);
+       
     }
     ngOnDestroy() {
     }

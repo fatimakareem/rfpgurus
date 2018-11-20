@@ -3,45 +3,44 @@
             <h3 style="text-align: center" class="sh-mt-70" >Search Filters</h3>
             <!-- <h3 style="text-align: center" class="sh-mt-100" *ngIf="!check_login()">Search Filters</h3> -->
             <!-- </div> -->
-            <div class="card-content sh-card-content" style="margin-top: -22px">
+            <div class="card-content sh-card-content" style="margin-top:-22px;">
             <form (ngSubmit)="onSubmit(f)" #f="ngForm" novalidate class="sh-sidebar-more-condense sh-date ">
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <button type="submit" class="btn btn-primary btn-rose btn-lg sh-btn-fixed sh-refresh-res" title="Search">Refresh Results</button>
                 </div>
             <div class="col-sm-12" style="margin-top: -10px">
-                <h4>Status</h4>
+                
             <mat-form-field >
-            <mat-select [(ngModel)]="status" name="status" (change)="onSubmit(f)">
+            <mat-select [(ngModel)]="status" placeholder="Status" name="status" (change)="onSubmit(f)">
             <mat-option *ngFor="let food of foods" [value]="food.value">
             {{ food.viewValue }}
             </mat-option>
             </mat-select>
             </mat-form-field>
             </div>
-            <div class="col-sm-12" style="margin-top: -22px">
-                <h4>Posted Date</h4>
-            <mat-form-field>
-            <input  matInput (click)="picker.open()" name="enterdate" (focus)="picker.open()" [matDatepicker]="picker"
+            <div class="col-sm-12" >
+            <mat-form-field class="sh-sidebar-date">
+            <input  matInput placeholder="Posted Date" (click)="picker.open()" name="enterdate" (focus)="picker.open()" [matDatepicker]="picker"
             [(ngModel)]="enterdate" (ngModelChange)="onSubmit(f)">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker class="sh-date-top-fix" #picker></mat-datepicker>
 
             </mat-form-field>
             </div>
-            <div class="col-sm-12" style="margin-top: -22px">
-                <h4> Due Date</h4>
-            <mat-form-field class="example-full-width mat-size">
-            <input  matInput (click)="picker2.open()" name="duedate" (focus)="picker2.open()" [matDatepicker]="picker2"
+            <div class="col-sm-12" >
+               
+            <mat-form-field class="example-full-width mat-size sh-sidebar-date">
+            <input placeholder="Due Date"  matInput (click)="picker2.open()" name="duedate" (focus)="picker2.open()" [matDatepicker]="picker2"
             [(ngModel)]="duedate" (ngModelChange)="onSubmit(f)">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2 class="sh-date-top-fix"></mat-datepicker>
             </mat-form-field>
             </div>
-            <div class="col-sm-12" style="margin-top: -22px">
-                <h4>Search By State</h4>
+            <div class="col-sm-12" >
+            
             <mat-form-field>
-            <mat-select [(ngModel)]="states" name="states" (change)="onSubmit(f)">
+            <mat-select placeholder="Search By State" [(ngModel)]="states" name="states" (change)="onSubmit(f)">
                 <input  class="inp" type="text" [(ngModel)]="statsearch" [ngModelOptions]="{standalone: true}"  class="search-allstates" placeholder="Search By State" style="width: 100%; border-radius: 7px">
                 <i class="fa fa-search s-icon-all-states" area-hidden="true" ></i>
                 <mat-option value='all'>Select All</mat-option>
@@ -50,10 +49,9 @@
             </mat-select>
             </mat-form-field>
             </div>
-                <div class="col-sm-12" style="margin-top: -22px">
-                    <h4>Search By Agency</h4>
+                <div class="col-sm-12" >
                     <mat-form-field>
-                        <mat-select [(ngModel)]="agencies" name="agency" (change)="onSubmit(f)">
+                        <mat-select placeholder="Search By Agency"  [(ngModel)]="agencies" name="agency" (change)="onSubmit(f)">
                             <input class="inp" type="text" [(ngModel)]="agensearch" [ngModelOptions]="{standalone: true}" placeholder="Search By Agency"  class="search-allstates" style="width: 100%; border-radius: 7px;position: sticky">
                             <i class="fa fa-search s-icon-all-states" area-hidden="true" ></i>
                             <mat-option value='all'>Select All</mat-option>
@@ -71,10 +69,9 @@
                     <!--</mat-form-field>-->
                 <!--</div>-->
 
-            <div class="col-sm-12" style="margin-top: -22px">
-                <h4>Search By Category</h4>
+            <div class="col-sm-12" >
             <mat-form-field>
-            <mat-select [(ngModel)]=cates name="cat" (change)="onSubmit(f)">
+            <mat-select placeholder="Search By Category" [(ngModel)]=cates name="cat" (change)="onSubmit(f)">
                 <input class="inp" type="text" [(ngModel)]="catsearch" [ngModelOptions]="{standalone: true}" placeholder="Search By Category"  class="search-allstates" style="width: 100%; border-radius: 7px">
                 <i class="fa fa-search s-icon-all-states" area-hidden="true" ></i>
                 <mat-option value='all'>Select All</mat-option>
@@ -82,8 +79,6 @@
             </mat-select>
             </mat-form-field>
             </div>
-            
-
             </div>
             </form>
             </div>
