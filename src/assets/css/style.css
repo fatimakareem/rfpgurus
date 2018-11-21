@@ -1790,6 +1790,14 @@ line-height: 27px;
 .mat-chip:hover .mat-chip-remove{
     color: #c00;
 }
+.mat-chip{
+    font-size: 12px;
+    color: #4b87a7 !important;
+    font-weight: 600 !important;
+    background-color: #e7eaf7 !important;
+    line-height: 11px;
+}
+
 .sh-pref-selectlist .card-title{
     font-size: 24px;
     font-weight: 600 !important;

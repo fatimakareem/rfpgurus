@@ -272,7 +272,7 @@
           <td>{{card.default}}</td>
           <td>
             <h3 class="edit-payment">
-              <a (click)="get(card.default,card.id,card.name,card.number,card.cvc,card.expDate,card.street_address,card.zipcode,card.city,card.state,card.country)"
+              <a class="edit" (click)="get(card.default,card.id,card.name,card.number,card.cvc,card.expDate,card.street_address,card.zipcode,card.city,card.state,card.country)"
                 data-target="#myModal2" data-toggle="modal">
                 <i class="fa fa-edit"></i>
               </a>
@@ -280,7 +280,7 @@
           </td>
           <td>
             <h3 class="edit-payment">
-              <a (click)="deleteSingleCard(card.id)">
+              <a class="delete" (click)="deleteSingleCard(card.id)">
                 <i class="fa fa-trash"></i>
               </a>
             </h3>

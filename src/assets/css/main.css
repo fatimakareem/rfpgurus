@@ -3281,7 +3281,6 @@ mat-form-field.mat-form-field {
 .invoice {
     position: relative;
     background-color: #FFF;
-    min-height: 680px;
     padding: 15px 15px 0;
 }
 
@@ -3345,7 +3344,7 @@ mat-form-field.mat-form-field {
 }
 
 .invoice main .notices .notice {
-    font-size: 1.2em
+    font-size: .9em;
 }
 
 .invoice table {
@@ -3355,7 +3354,7 @@ mat-form-field.mat-form-field {
     margin-bottom: 20px
 }
 
-.invoice table td,.invoice table th {
+.invoice table td {
     padding: 15px;
     background: #eee;
     border-bottom: 1px solid #fff
@@ -3364,7 +3363,12 @@ mat-form-field.mat-form-field {
 .invoice table th {
     white-space: nowrap;
     font-weight: 400;
-    font-size: 16px
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px;
+    background: #000;
+    border-bottom: 1px solid #fff;
+    color: #fff;
 }
 
 .invoice table td h3 {
@@ -3447,8 +3451,71 @@ mat-form-field.mat-form-field {
     }
 }
 #myModal5 .modal-dialog{
-    min-width: 65%;
+    min-width: 50%;
+}
+#myModal5 .modal-dialog .company-details >h2{
+    font-size: 22px;
+}
+#myModal5 .modal-dialog .company-details >h5{
+    line-height: 20px;
+        font-size: 14px;
+        margin: 0;
+}
+#myModal5 .modal-dialog .company-details .phone-contact{
+margin: 0;
+font-size: 14px;
+}
+#myModal5 .modal-dialog .invoice-details .date{
+    font-weight: 600;
+}
+#myModal5 .text-gray-light{
+font-size: 15px;
+font-weight: 600;
+text-transform: capitalize;
+}
+#myModal5 .to{
+font-size: 20px;
 }
 #myModal5 .modal-footer {
     padding: 0 0 15px;
+}
+.sh-btn-success{
+    padding: 0px 10px !important;
+    text-transform: capitalize;
+    cursor: text;
+}
+#myModal5 .address{
+    font-weight: 600;
+}
+.sh-text-capt{
+    text-transform: capitalize !important;
+}
+#myModal5  .modal-buttons {
+    width: 100%;
+    padding-right: 20px;
+    text-align: right;
+}
+#myModal5  .modal-dialog {
+    margin-top: 80px;
+}
+.panel-heading.sh {
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: #fff;
+    background-color: #000;
+    border-color: #ddd;
+    cursor: pointer;
+    margin: 10px auto;
+    padding: 15px;
+    width: 94%;
+}
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: rgba(204, 0, 0, 0.38);
+}
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color: #c00;
+}
+.form fieldset{
+    padding: 3px 0;
 }
