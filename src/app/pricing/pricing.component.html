@@ -166,15 +166,8 @@
 <div *ngIf="pkgsub" data-wow-delay=".5s">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 container">
-                <div class="dropdown mydropdown">
-                    <select (change)="next_stepdetail($event)" class="btn btn-success record-btn-mail dropdown-toggle text-left"
-                        data-toggle="dropdown" value="{{valuee}}">
-                        <!-- <option value="" disabled selected>Select Package</option> -->
-                        <option value="PY">Professional - Yearly</option>
-                        <option value="BM">Basic - Monthly</option>
-                    </select>
-                </div>
+            <!-- <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 container"> -->
+               
                 <!-- <div class="clearfix"></div>
                 <div class="package-detail">
                     <h2>PACKAGE DETAILS</h2>
@@ -191,8 +184,16 @@
                         </tbody>
                     </table>
                 </div> -->
-            </div>
-            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 sh-plan-form">
+            <!-- </div> -->
+            <div class="col-lg-7 col-lg-offset-3 col-md-offset-3 col-md-7 col-sm-12 col-xs-12 sh-plan-form">
+                    <div class="dropdown mydropdown">
+                            <select (change)="next_stepdetail($event)" class="btn btn-success record-btn-mail dropdown-toggle text-left"
+                                data-toggle="dropdown" value="{{valuee}}">
+                                <!-- <option value="" disabled selected>Select Package</option> -->
+                                <option value="PY">Professional - Yearly</option>
+                                <option value="BM">Basic - Monthly</option>
+                            </select>
+                        </div>
                 <div class="checkout ">
                     <div [className]="flipclass">
                         <div class="flip">
