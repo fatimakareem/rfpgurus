@@ -31,6 +31,7 @@ declare interface User {
 export class ChangedPasswordComponent implements OnInit, OnDestroy {
     local;
     uname;
+    hide=true;
     public typeValidation: User;
     register: FormGroup;
     login: FormGroup;

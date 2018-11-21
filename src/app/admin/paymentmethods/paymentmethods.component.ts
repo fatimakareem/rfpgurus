@@ -260,7 +260,6 @@ card_opeation=[
   check_value_get: boolean = false;
   add(var_type_atm) {
 
-    alert(var_type_atm);
     // console.log(this.default)
     this.date = this.form.value['expirydate'];
     // this.date = moment(this.date).format('YYYY-MM') + '-01';

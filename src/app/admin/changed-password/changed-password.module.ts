@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ChangedPasswordComponent } from './changed-password.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MatInputModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
+import { MatInputModule, MatFormFieldModule, MatSelectModule,MatIconModule } from '@angular/material';
 import { TextMaskModule } from 'angular2-text-mask';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 const routes: Routes = [
@@ -14,7 +14,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,MatIconModule,
     FormsModule,
     MatInputModule,
     MatFormFieldModule,

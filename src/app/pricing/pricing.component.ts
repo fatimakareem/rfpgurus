@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { PricingService } from './pricing.service';
 import swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { RfpService } from '../rfps/single-rfp/rfp.service';
 import { PaymentmethodsService } from 'app/admin/paymentmethods/paymentmethods.service';
 
@@ -67,7 +67,7 @@ export class PricingComponent implements OnInit {
   message;
   var_get_card_id;
   /////////////////////////////end///////////////////////////
-  constructor(private _serv1: RfpService, private _nav: Router, private _serv: PricingService, private http: Http, private _http6: PaymentmethodsService) { }
+  constructor(private route: ActivatedRoute,private _serv1: RfpService, private _nav: Router, private _serv: PricingService, private http: Http, private _http6: PaymentmethodsService) { }
   //
   next_stepdetail(event: any) {
     if (event.target.value == "BM") {
@@ -77,6 +77,7 @@ export class PricingComponent implements OnInit {
     }
   }
   getCards() {
+    if(localStorage.getItem('currentUser')){
     this.endRequest = this._serv.showCards().subscribe(Data => {
       this.res = Data;
       this.message = Data.message;
@@ -98,7 +99,7 @@ export class PricingComponent implements OnInit {
           )
         }
       })
-  }
+  }}
   setdefault() {
     this.default = false;
   }
@@ -395,7 +396,7 @@ export class PricingComponent implements OnInit {
   }
   var_auto_pay;
   setautopay(var_status,var_get_card_id, name, number, cvc, expDate, street_address, zipcode, city, state, country,setautopay) {
-    alert(setautopay);
+    //alert(setautopay);
     if (setautopay == false )
     {
       this.var_auto_pay = true;
@@ -445,5 +446,16 @@ export class PricingComponent implements OnInit {
   ngOnInit() {
     this.show_card_info();
     this.getCards();
+    this.route.queryParams
+    
+      .subscribe(params => {
+        this.firststep(params.value)
+        // if (params.value == "BM") {
+        //   this.prv_stepdetail("B", "M")
+        // }
+        // else if (params.value == "PY") {
+        //   this.prv_stepdetail("P", "Y")
+        // }
+      })
   }
 }

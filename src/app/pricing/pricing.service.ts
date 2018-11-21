@@ -12,15 +12,17 @@ export class PricingService {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
     showCards() {
-        let headers = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
+        if(localStorage.getItem('currentUser')){
+        let headers = new Headers({ 'Authorization': 'JWT ' +  JSON.parse(localStorage.getItem('currentUser')).token });
         headers.append('Content-Type', 'application/json');
         return this._http5.get('https://apis.rfpgurus.com/payment/cardinfo/', { headers: headers }).map((response: Response) => response.json());
-      }
+      }}
     get_card_info() {
-        let headers = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
+        if(localStorage.getItem('currentUser')){
+        let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
         headers.append('Content-Type', 'application/json');
         return this._http5.get('https://apis.rfpgurus.com/payment/cardinfo/', { headers: headers }).map((response: Response) => response.json());
-    }
+    }}
     loaded: boolean = false;
     login(username: string, password: string) {
         const headers = new Headers();

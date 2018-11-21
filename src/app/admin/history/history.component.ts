@@ -88,9 +88,11 @@ export class HistoryComponent implements OnInit, OnDestroy {
         this.valuee = value;
         if (value == "BM") {
           this.prv_stepdetail("B", "M")
+          this._nav.navigate(['pricing'], { queryParams: { value } });
         }
         else if (value == "PY") {
           this.prv_stepdetail("P", "Y")
+          this._nav.navigate(['pricing'], { queryParams: {  value } });
         }
       }
     check_login() {

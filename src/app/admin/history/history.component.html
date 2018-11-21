@@ -1,12 +1,12 @@
 <div class="row margin-0">
     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 center-admin-form" id="display_advance" style="min-height: 500px;">
         <div *ngIf="!pkgsub" class=" history-heading">
-            <div class="history-header" *ngIf="!nofound">
+            <div class="history-header" *ngIf="result">
                 <h2>Subscription</h2>
             </div>
            
-            <table class="table table-striped history-table" >
-                <thead *ngIf="!nofound">
+            <table class="table table-striped history-table" *ngIf="result">
+                <thead *ngIf="result">
                     <tr>
                         <th>Subscription Name</th>
                         <th>Price</th>
@@ -16,7 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngIf="!nofound">
+                    <tr *ngIf="result">
                         <td *ngIf="pkgList.duration == 'M' "> MONTHLY PLAN</td>
                         <td *ngIf="pkgList.duration == 'Q'">Quater PLAN</td>
                         <td *ngIf="pkgList.duration== 'S'"> SixMonths PLAN</td>
@@ -29,11 +29,11 @@
                         <td *ngIf="record.is_paid == false"><button (click)=" prv_stepdetail( pkgList.pkg_type,pkgList.duration)"
                                 title="Subscribe Package" class="btn btn-primary">Subscribe Now <i class="fa fa-thumbtack"></i></button></td>
                     </tr>
-                    <tr *ngIf="nofound" style="text-align:center;font-size:24px">
+                    <!-- <tr *ngIf="nofound" style="text-align:center;font-size:24px">
                         <td colspan="4">
                             <h2><span class="no-pkg">Packages</span> you subscribe will appear here.</h2>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
               
 
@@ -46,8 +46,8 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center; padding-bottom: 20px;">
-                                <h2>Our Unbeatable Pricing Model </h2>
-                                <p style="font-weight: 500;">Unbeatable Pricing. One-Package-Includes-All Features & RFPs Nationwide.
+                                <h2>Select Any Plan For Subscription </h2>
+                                <!-- <p style="font-weight: 500;">Unbeatable Pricing. One-Package-Includes-All Features & RFPs Nationwide.
                                     Subscribe to Monthly or Yearly democratized
                                     pricing packages. With a transparent and democratized pricing model, RFPGurus is the most
                                     affordable
@@ -55,7 +55,7 @@
                                     thousands
                                     and thousands of Government Agencies, States, Cities, Municipalities, Counties, Special District
                                     andx
-                                    other Agencies.</p>
+                                    other Agencies.</p> -->
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pricing-table2 featured " data-wow-delay="0.5s">
                                 <div class="single-pricing-2">
@@ -177,13 +177,13 @@
                     </div>
                 </section>
 
-            <button class="btn btn-rose pull-right"  data-target="#myModal5" data-toggle="modal" *ngIf="!nofound">
+            <button class="btn btn-rose pull-right"  data-target="#myModal5" data-toggle="modal" *ngIf="result">
                     Generate Invoice
             </button>
            
         </div>
         <!--2nd step-->
-        <div *ngIf="pkgsub" data-wow-delay=".5s">
+        <!-- <div *ngIf="pkgsub" data-wow-delay=".5s">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 container">
                     <div class="dropdown mydropdown">
@@ -321,7 +321,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 
@@ -386,7 +386,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                    <tr *ngIf="!nofound">
+                                                    <tr *ngIf="result">
                                                             <td *ngIf="pkgList.duration == 'M' "> MONTHLY PLAN</td>
                                                             <td *ngIf="pkgList.duration == 'Q'">Quater PLAN</td>
                                                             <td *ngIf="pkgList.duration== 'S'"> SixMonths PLAN</td>
