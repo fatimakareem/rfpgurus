@@ -5,7 +5,7 @@
     display: none;
 }
 .form button {
-    background: linear-gradient(180deg, #7d7776, #000000);
+    background: linear-gradient(180deg, #60aba6, #1d3d44) !important
 }
 .credit-card-box label {
     text-transform: capitalize;
