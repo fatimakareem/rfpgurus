@@ -1732,7 +1732,7 @@ line-height: 27px;
     padding: 0px 0 3px 0;
 }
 .btn-group-lg .btn, .btn-group-lg .navbar .navbar-nav>li>a.btn, .btn.btn-lg, .navbar .navbar-nav>li>a.btn.btn-lg {
-    padding: 3px 15px;
+    /* padding: 3px 15px; */
     text-transform: capitalize;
 }
 .sh-h2-resources{

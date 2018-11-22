@@ -2189,7 +2189,7 @@ mat-form-field.mat-form-field {
 
 .plan-detail>h3>a {
     color: #c00;
-    font-weight: 400
+    font-weight: 600
 }
 
 .plan-detail>h5 {
@@ -3518,4 +3518,7 @@ font-size: 20px;
 }
 .form fieldset{
     padding: 3px 0;
+}
+.credit-card-box label{
+    text-transform: capitalize !important;
 }
