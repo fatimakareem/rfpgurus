@@ -59,15 +59,15 @@
       <div class="form-home">
         <div class="container">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 mg-top-10px">
               <!-- <img src="../../assets/img/caption.png" alt="img"> -->
-                
+              <h2 class="sh-map-desc">Click on any state in the nationwide map to view Latest RFPs</h2>
               <div class="svg_map">
                 <us-map style="cursor: pointer; " (onMapClick)="getState($event)" strokeColor="#00000" fillStateColor="#fff"
                   fillColor="black"></us-map>
                   
               </div>
-              <h2 class="sh-map-desc">Click on any state in the nationwide map to view Latest RFPs</h2>
+              
             </div>
             <div class="container sh-dp-none" id="CategoryDiv" *ngIf="CategoryCheck">
               <div class="col-md-12">
@@ -414,19 +414,25 @@
             <i class="fa fa-arrow-right" aria-hidden="true"></i>
           </button>
         </ngx-carousel>
-        <div class=" map-mid">
-            <h2 class="sh-map-desc">Click on any state in the nationwide map to view Latest RFPs</h2>
+        <div class="row">
+        <div class="col-md-5 padding-0 col-md-offset-2 ">
+          <div class="map-mid ">
           <us-map style="cursor: pointer; " (onMapClick)="getState($event)" strokeColor="#00000" fillStateColor="#fff"
             fillColor="black">
           </us-map> 
-          
         </div>
-        <div class="btn-holder text-center" style="margin-top:-30px">
-        <a routerLink="/latest-rfp"><button  type="button" class="btn btn-lg btn-rose" title="VIEW All LATEST RFPs" style="background-color: black;border-radius: 30px">View All Latest RFPs
+      </div>
+        <div class="col-md-5 padding-0">
+            <img src="../../assets/img/avatar.png" alt="img">
+        </div>
+      </div>
+      <div class="text-center col-md-12">
+        <a routerLink="/latest-rfp ">
+          <button  type="button" class="btn btn-lg btn-rose" title="VIEW All LATEST RFPs" style="background-color: black;border-radius: 30px">View All Latest RFPs
             <i class="fa fa-arrow-right" aria-hidden="true"></i>
           </button>
         </a> 
-        </div>
+      </div>
       </div>
     </section>
     <section class="interest-area sh" style="margin-top: -10px">
