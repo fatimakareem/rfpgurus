@@ -15,7 +15,8 @@ declare const $: any;
     styleUrls: ['./history.component.scss'],
     providers: [AuthService, MainService]
 })
-export class HistoryComponent implements OnInit, OnDestroy {
+export class HistoryComponent implements OnInit {
+    
      captureScreen()  
     {  
       var data = document.getElementById('contentToConvert');  
@@ -23,6 +24,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
         // Few necessary setting options  
         var imgWidth = 208;   
         var pageHeight = 295;    
+        // var imgHeight=200;
         var imgHeight = canvas.height * imgWidth / canvas.width;  
         var heightLeft = imgHeight;  
     
@@ -30,7 +32,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
         let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF  
         var position = 0;  
         pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
-        pdf.save('MYPdf.pdf'); // Generated PDF   
+        pdf.save('Invoice.pdf'); // Generated PDF   
       });  
     
     }  
@@ -106,13 +108,20 @@ export class HistoryComponent implements OnInit, OnDestroy {
           return true
         }
       }
+      pay;
+      end;
+      get(pay_date,end_date){
+this.pay=pay_date;
+this.end=end_date
+      }
     mainFunction() {
         this.endRequest = this._serv.purchaseHistory().subscribe(
             data => {
                 this.record = data;
                 this.pkgList = data.pkg_fk;
                 this.result = true;
-                var enddate = this.record['end_date'].toString();
+                // var enddate = this.record['end_date'].toString();
+                // var enddate = this.record['end_date'].toString();
                 var date = new Date();
 this.userdetail=data.reg_fk;
 
@@ -196,6 +205,5 @@ this.userdetail=data.reg_fk;
         this._nav.navigate(['/']);
        
     }
-    ngOnDestroy() {
-    }
+   
 }
