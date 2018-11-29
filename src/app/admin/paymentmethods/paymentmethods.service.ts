@@ -35,7 +35,7 @@ export class PaymentmethodsService {
     headers.append('Content-Type', 'application/json');
     return this.http.get('https://apis.rfpgurus.com/payment/cardinfo/', { headers: headers }).map((response: Response) => response.json());
   }
-  updateCard(status, id, name, cardno, ccv, expiryDate, address, zip, city, state, country) {
+  updateCard(status,autopay, id, name, cardno, ccv, expiryDate, address, zip, city, state, country) {
     let header = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
     header.append('Content-Type', 'application/json');
     return this.http.put('https://apis.rfpgurus.com/payment/cardinfo/',
@@ -53,6 +53,7 @@ export class PaymentmethodsService {
         "number": cardno,
         "cvc": ccv,
         "expDate": expiryDate,
+        "autopay":autopay
       }),
       { headers: header }).map((response: Response) => response.json());
   }

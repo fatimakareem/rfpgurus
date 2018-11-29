@@ -11,12 +11,6 @@ export class PricingService {
     constructor(private _http5: HttpService ) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
-    showCards() {
-        if(localStorage.getItem('currentUser')){
-        let headers = new Headers({ 'Authorization': 'JWT ' +  JSON.parse(localStorage.getItem('currentUser')).token });
-        headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://apis.rfpgurus.com/payment/cardinfo/', { headers: headers }).map((response: Response) => response.json());
-      }}
     get_card_info() {
         if(localStorage.getItem('currentUser')){
         let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
@@ -73,19 +67,21 @@ export class PricingService {
             'code': code,
         }).map((res: Response) => res.json())
     }
-    package_free(username, pkgdetail) {
+    package_free(status,id,username, pkgdetail) {
+
         let headers = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
         headers.append('Content-Type', 'application/json');
-        if (pkgdetail.type == 'F') {
-            return this._http5.post("https://apis.rfpgurus.com/package/",
-                JSON.stringify({
-                    'username': username,
-                    'pricepackage': pkgdetail.type,
-                    'duaration': pkgdetail.dur
-                }),
-                { headers: headers }).map((res: Response) => res.json())
-        }
-        else {
+        if(status == false){
+        // if (pkgdetail.type == 'F') {
+        //     return this._http5.post("https://apis.rfpgurus.com/package/",
+        //         JSON.stringify({
+        //             'username': username,
+        //             'pricepackage': pkgdetail.type,
+        //             'duaration': pkgdetail.dur
+        //         }),
+        //         { headers: headers }).map((res: Response) => res.json())
+        // }
+        // else {
             return this._http5.post("https://apis.rfpgurus.com/package/",
                 JSON.stringify({
                     'username': username,
@@ -94,8 +90,21 @@ export class PricingService {
                     'creditno': pkgdetail.credit,
                     'exp': pkgdetail.expdate,
                     'ccv': pkgdetail.ccv
+                    
                 }),
                 { headers: headers }).map((res: Response) => res.json())
+        // }
+    }
+        else if(status == true){
+            return this._http5.post("https://apis.rfpgurus.com/package/",
+            JSON.stringify({
+               
+                "id":id,
+                "username":username,
+                "pricepackage":pkgdetail.type,
+                "duration": pkgdetail.dur
+            }),
+            { headers: headers }).map((res: Response) => res.json())
         }
     }
     updateCard(var_status,id, name, cardno, ccv, expiryDate, address, zip, city, state, country,set_auto_pay) {

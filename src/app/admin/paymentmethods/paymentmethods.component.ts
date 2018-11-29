@@ -20,13 +20,14 @@ export interface card_opeation {
 })
 export class PaymentmethodsComponent implements OnInit, OnDestroy {
   var_type_atm= new FormControl('');
+  cardtype;
   public show: boolean = false;
   check_value: boolean = false;
   ccv1: boolean = false;
 card_opeation=[
-{value: 'fasle', viewValue: 'Visa Card'},
-{value: 'false', viewValue: 'Master Card'},
-{value: 'true', viewValue: 'American Expressions Card'}
+{value: 'visa card', viewValue: 'Visa Card'},
+{value: 'master card', viewValue: 'Master Card'},
+{value: 'American Express', viewValue: 'American Expressions Card'}
 
 ];
   public buttonName: any = 'Show';
@@ -112,9 +113,9 @@ card_opeation=[
     this.ccv2 = false;
   }
   ShowButton(var_type_atm) {
-    
-    if (var_type_atm == "true") {
-        var_type_atm = "true";
+    this.cardtype = var_type_atm;
+    if (var_type_atm == "American Express") {
+     
       this.cardnumber = false;
       this.form.controls.cardnumber.reset();
       this.cardnumber2 = true;
@@ -123,7 +124,7 @@ card_opeation=[
       this.ccv2 = true;
     }
     else  {
-      var_type_atm = "false";
+     
       this.cardnumber2 = false;
       this.form.controls.cardnumber2.reset();
       this.cardnumber = true;
@@ -162,7 +163,8 @@ card_opeation=[
   state;
   country;
   id;
-  get(status, id, name, number, cvc, expDate, street_address, zipcode, city, state, country) {
+  autopay;
+  get(status, id, name, number, cvc, expDate, street_address, zipcode, city, state, country,autopay) {
     this.id = id;
     this.name = name;
     this.cardnumber = number;
@@ -175,10 +177,11 @@ card_opeation=[
     this.state = state;
     this.country = country;
     this.updefault = status;
+    this.autopay=autopay;
   }
-  updateSingleCard(status, name, updatecardnumber, updateccv, date, updateaddress, updatezip, updatecity, updatestate, updatecountry) {
+  updateSingleCard(status,autopay, name, updatecardnumber, updateccv, date, updateaddress, updatezip, updatecity, updatestate, updatecountry) {
     console.log(status)
-    this.endRequest = this.serv.updateCard(status, this.id, name, updatecardnumber, updateccv, date, updateaddress, updatezip, updatecity, updatestate, updatecountry).subscribe(Data => {
+    this.endRequest = this.serv.updateCard(status,autopay, this.id, name, updatecardnumber, updateccv, date, updateaddress, updatezip, updatecity, updatestate, updatecountry).subscribe(Data => {
       swal({
         type: 'success',
         title: 'Credit Card Details Are Updated!',
@@ -250,6 +253,7 @@ card_opeation=[
   date;
   changed() {
     console.log(this.default)
+    console.log(this.autopay)
   }
   public removeValidators(form: FormGroup) {
     for (const key in form.controls) {
@@ -258,7 +262,7 @@ card_opeation=[
     }
   }
   check_value_get: boolean = false;
-  add(var_type_atm) {
+  add() {
 
     // console.log(this.default)
     this.date = this.form.value['expirydate'];
@@ -266,11 +270,11 @@ card_opeation=[
     // name,pin,address,zip,city,state,country,cardno, ccv, expiryDate
     // alert(this.var_type_atm);
     
-    if (var_type_atm == "true") {
+    if (this.cardtype == "American Express") {
       if (this.form.controls.cardnickname.valid && this.form.controls.cardnumber2.valid && this.form.controls.ccv2.valid
         && this.form.controls.expirydate.valid && this.form.controls.address.valid && this.form.controls.zip.valid
         && this.form.controls.city.valid && this.form.controls.state.valid && this.form.controls.country.valid) {
-        this.endRequest = this.serv.addCard(this.default, this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber2'], this.form.value['ccv2'],this.date,this.form.value['var_type_atm']).subscribe(Data => {
+        this.endRequest = this.serv.addCard(this.default, this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber2'], this.form.value['ccv2'],this.date,this.cardtype).subscribe(Data => {
           swal({
             type: 'success',
             title: 'Payment Method Is Listed!',
@@ -327,7 +331,7 @@ card_opeation=[
       if (this.form.controls.cardnickname.valid && this.form.controls.cardnumber.valid && this.form.controls.ccv.valid
         && this.form.controls.expirydate.valid && this.form.controls.address.valid && this.form.controls.zip.valid
         && this.form.controls.city.valid && this.form.controls.state.valid && this.form.controls.country.valid) {
-        this.endRequest = this.serv.addCard(this.default, this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber'], this.form.value['ccv'],this.date,this.form.value['var_type_atm']).subscribe(Data => {
+        this.endRequest = this.serv.addCard(this.default, this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber'], this.form.value['ccv'],this.date,this.cardtype).subscribe(Data => {
           swal({
             type: 'success',
             title: 'Payment Method Is Listed!',

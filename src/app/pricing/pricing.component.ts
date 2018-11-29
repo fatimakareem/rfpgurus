@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { PricingService } from './pricing.service';
 import swal from 'sweetalert2';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { RfpService } from '../rfps/single-rfp/rfp.service';
 import { PaymentmethodsService } from 'app/admin/paymentmethods/paymentmethods.service';
 
@@ -67,7 +67,7 @@ export class PricingComponent implements OnInit {
   message;
   var_get_card_id;
   /////////////////////////////end///////////////////////////
-  constructor(private route: ActivatedRoute,private _serv1: RfpService, private _nav: Router, private _serv: PricingService, private http: Http, private _http6: PaymentmethodsService) { }
+  constructor(private route: ActivatedRoute, private _serv1: RfpService, private _nav: Router, private _serv: PricingService, private http: Http, private _http6: PaymentmethodsService) { }
   //
   next_stepdetail(event: any) {
     if (event.target.value == "BM") {
@@ -77,29 +77,30 @@ export class PricingComponent implements OnInit {
     }
   }
   getCards() {
-    if(localStorage.getItem('currentUser')){
-    this.endRequest = this._serv.showCards().subscribe(Data => {
-      this.res = Data;
-      this.message = Data.message;
-    },
-      error => {
-        if (error.status == 404) {
-          swal({
-            type: 'error',
-            title: 'Credit Card Not Found!',
-            showConfirmButton: false,
-            timer: 1500
-          })
-        }
-        else if (error.status == 500) {
-          swal(
-            'Sorry',
-            'Server Is Under Maintenance!',
-            'error'
-          )
-        }
-      })
-  }}
+    if (localStorage.getItem('currentUser')) {
+      this.endRequest = this._serv.get_card_info().subscribe(Data => {
+        this.res = Data;
+        this.message = Data.message;
+      },
+        error => {
+          // if (error.status == 404) {
+          //   swal({
+          //     type: 'error',
+          //     title: 'Credit Card Not Found!',
+          //     showConfirmButton: false,
+          //     timer: 1500
+          //   })
+          // }
+          // else if (error.status == 500) {
+          //   swal(
+          //     'Sorry',
+          //     'Server Is Under Maintenance!',
+          //     'error'
+          //   )
+          // }
+        })
+    }
+  }
   setdefault() {
     this.default = false;
   }
@@ -158,6 +159,7 @@ export class PricingComponent implements OnInit {
     }
   }
   proceed() {
+   
     this.pkg_detail['credit'] = this.cardnumber1 + this.cardnumber2 +
       this.cardnumber3 + this.cardnumber4
     this.pkg_detail['ccv'] = this.ccv
@@ -165,7 +167,7 @@ export class PricingComponent implements OnInit {
     this.local = localStorage.getItem('currentUser');
     let pars = JSON.parse(this.local);
     this.uname = pars.username
-    this._serv.package_free(this.uname, this.pkg_detail).subscribe(
+    this._serv.package_free(this.set, this.id, this.uname, this.pkg_detail).subscribe(
       data => {
         swal(
           'Your payment has been transferred',
@@ -273,8 +275,9 @@ export class PricingComponent implements OnInit {
   }
   res;
   status;
-  get_card_number: number;
+  get_card_number;
   file;
+  id;
   get_card_value1;
   get_card_value2;
   get_card_value3;
@@ -286,6 +289,7 @@ export class PricingComponent implements OnInit {
   value_2;
   subscribe;
   notsubscribe;
+  set;
   show_card_info() {
     if (JSON.parse(localStorage.getItem('currentUser'))) {
       this._serv1.usersubscribe(JSON.parse(localStorage.getItem('currentUser')).username).subscribe(
@@ -299,31 +303,53 @@ export class PricingComponent implements OnInit {
           if (localStorage.getItem('currentUser') && this.notsubscribe == 406) {
             return this._serv.get_card_info()
               .subscribe(response => {
-                for (let i of response) {
-                  if (i.default) {
-                    this.status = i;
-                  }
-                }
-                if (this.status) {
-                  this.get_card_number = this.status.number.toString();
-                  this.get_card_value1 = this.get_card_number.toString().slice(0, 4);
-                  this.get_card_value2 = this.get_card_number.toString().slice(4, 8);
-                  this.get_card_value3 = this.get_card_number.toString().slice(8, 12);
-                  this.get_card_value4 = this.get_card_number.toString().slice(12, 16);
-                  this.cardnumber1 = this.get_card_value1;
-                  this.cardnumber2 = this.get_card_value2;
-                  this.cardnumber3 = this.get_card_value3;
-                  this.cardnumber4 = this.get_card_value4;
-                  this.ex_get_value = this.status.expDate;
-                  this.ex_value1 = this.ex_get_value.split("/");
-                  this.ex_month_value = this.ex_value1[0];
-                  this.ex_year_value = this.ex_value1[1];
-                  this.cardholdername = this.status.name;
-                  this.expmonth = this.ex_month_value;
-                  this.expyear = this.ex_year_value;
-                  this.ccv = this.status.cvc;
-                }
-              })
+            for (let i of this.res) {
+            if(i.default == true){
+                this.status = i;
+                this.set=i.default
+                console.log(this.status);
+                this.get_card_number = this.status.cardNumber;
+              this.get_card_value1 = this.get_card_number.toString().slice(0, 4);
+              this.get_card_value2 = this.get_card_number.toString().slice(4, 8);
+              this.get_card_value3 = this.get_card_number.toString().slice(8, 12);
+              this.get_card_value4 = this.get_card_number.toString().slice(12, 16);
+              this.cardnumber1 = this.get_card_value1;
+              this.cardnumber2 = this.get_card_value2;
+              this.cardnumber3 = this.get_card_value3;
+              this.cardnumber4 = this.get_card_value4;
+              this.ex_get_value = this.status.expiryDate;
+              this.ex_value1 = this.ex_get_value.split("/");
+              this.ex_month_value = this.ex_value1[0];
+              this.ex_year_value = this.ex_value1[1];
+              this.cardholdername = this.status.nickname;
+              this.expmonth = this.ex_month_value;
+              this.expyear = this.ex_year_value;
+              this.ccv = this.status.ccv;
+              this.id = this.status.id
+            } else if(i.default == false) {
+             this.set=false;
+              this.get_card_number = '';
+              this.get_card_value1 = '';
+              this.get_card_value2 = '';
+              this.get_card_value3 = '';
+              this.get_card_value4 = '';
+              this.cardnumber1 = '';
+              this.cardnumber2 = '';
+              this.cardnumber3 = '';
+              this.cardnumber4 = '';
+              this.ex_get_value = '';
+              this.ex_value1 = null;
+              this.ex_month_value = '';
+              this.ex_year_value = '';
+              this.cardholdername = '';
+              this.expmonth = '';
+              this.expyear = '';
+              this.ccv = '';
+              this.id = ''
+            }
+            }
+            
+            })
           }
         }
       );
@@ -350,22 +376,21 @@ export class PricingComponent implements OnInit {
   }
 
   updefault;
-  setcard(status, var_get_card_id, name, number, cvc, expDate, street_address, zipcode, city, state, country) {
+  setcard(status, var_get_card_id, name, number, cvc, expDate, street_address, zipcode, city, state, country,autopay) {
     if (status == false) {
       this.updefault = true;
     }
-    else if(status == true)
-     {
+    else if (status == true) {
       this.updefault = false;
     }
 
-    this.endRequest = this._http6.updateCard(this.updefault, var_get_card_id, name, number, cvc, expDate, street_address, zipcode, city, state, country).subscribe(Data => {
-      swal({
-        type: 'success',
-        title: 'Credit Card Details Are Updated!',
-        showConfirmButton: false,
-        timer: 1500
-      })
+    this.endRequest = this._serv.updateCard(this.updefault, var_get_card_id, name, number, cvc, expDate, street_address, zipcode, city, state, country,autopay).subscribe(Data => {
+      // swal({
+      //   type: 'success',
+      //   title: 'Credit Card Details Are Updated!',
+      //   showConfirmButton: false,
+      //   timer: 1500
+      // })
       this.show_card_info();
       this.getCards();
     },
@@ -395,20 +420,18 @@ export class PricingComponent implements OnInit {
       })
   }
   var_auto_pay;
-  setautopay(var_status,var_get_card_id, name, number, cvc, expDate, street_address, zipcode, city, state, country,setautopay) {
+  setautopay(var_status, var_get_card_id, name, number, cvc, expDate, street_address, zipcode, city, state, country, setautopay) {
     //alert(setautopay);
-    if (setautopay == false )
-    {
+    if (setautopay == false) {
       this.var_auto_pay = true;
       // alert(this.var_auto_pay);
     }
-    else if(setautopay == true)
-     {
+    else if (setautopay == true) {
       this.var_auto_pay = false;
       // alert(this.var_auto_pay);
     }
 
-    this.endRequest = this._serv.updateCard(var_status,var_get_card_id, name, number, cvc, expDate, street_address, zipcode, city, state, country,this.var_auto_pay).subscribe(Data => {
+    this.endRequest = this._serv.updateCard(var_status, var_get_card_id, name, number, cvc, expDate, street_address, zipcode, city, state, country, this.var_auto_pay).subscribe(Data => {
       swal({
         type: 'success',
         title: 'Auto Pay Payment Method Is Successfully Apply On This Card',
@@ -447,7 +470,7 @@ export class PricingComponent implements OnInit {
     this.show_card_info();
     this.getCards();
     this.route.queryParams
-    
+
       .subscribe(params => {
         this.firststep(params.value)
         // if (params.value == "BM") {

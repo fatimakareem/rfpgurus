@@ -4,7 +4,7 @@
             <h2>Advanced Search</h2>
         </div>
         <div class="card-content">
-            <form  (ngSubmit)="onSubmit(1)" class="sh-form-spaces-fix  sh-more-condense-spaces sh">
+            <form  (ngSubmit)="onSubmit(1)" class="sh-form-spaces-fix sh-signup-form-fix sh-advanceSearch sh-more-condense-spaces sh">
                 <div class="row">
                     <div class="col-sm-4">
                         <mat-form-field>
@@ -17,7 +17,7 @@
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">
-                        <mat-form-field color="warn">
+                        <mat-form-field color="warn" class="sh-ad-date">
                             <input matInput [matDatepicker]="startPicker" (focus)="startPicker.open()" name="enterdate" [(ngModel)]="enterdate"
                                 placeholder="From Date" (ngModelChange)="entereddate(enterdate)" />
                             <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
@@ -25,7 +25,7 @@
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">
-                        <mat-form-field color="warn" class="example-full-width mat-size">
+                        <mat-form-field color="warn" class="example-full-width mat-size sh-ad-date">
                             <input matInput [matDatepicker]="startPicker1" (focus)="startPicker1.open()" name="duedate" [(ngModel)]="duedate"
                                 placeholder="To Date" (ngModelChange)="dueddate(duedate)" />
                             <mat-datepicker-toggle matSuffix [for]="startPicker1"></mat-datepicker-toggle>
@@ -158,7 +158,7 @@
                                         <a style="cursor:pointer" [routerLink]="['/rfp/', rfp.seoTitleUrl]">
                                             {{rfp.title}}</a>
                                     </h3>
-                                    <div class="col-md-6" *ngIf="!subscribe">
+                                    <div class="col-md-4" *ngIf="!subscribe">
                                         <button routerLink="/pricing" class="btn btn-rose sub" title="Subscribe Package">Subscribe
                                             Now
                                             <!-- <i class="material-icons">bubble_chart</i> -->

@@ -377,7 +377,7 @@
                         </fieldset>
                         <fieldset>
                             <label for="card-ccv" style="font-size:16px;">Enroll in Autopay </label>
-                            <mat-slide-toggle name="default" data-target="#myModal4" data-toggle="modal" class="py-toggle">
+                            <mat-slide-toggle name="default" [(ngModel)]="default" data-target="#myModal4" data-toggle="modal" class="py-toggle">
                             </mat-slide-toggle>
                             <span>set as recurring payment method</span>
                         </fieldset>
@@ -417,11 +417,11 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let card of res">
-                            <td>{{card.name}}</td>
-                            <td>{{card.number}}</td>
+                            <td>{{card.nickname}}</td>
+                            <td>{{card.cardNumber}}</td>
                             <!-- <td>{{card.number | slice:0:4}}-{{card.number | slice:4:8}}-{{card.number | slice:8:12}}</td> -->
-                            <td>{{card.cvc.length > 0 ? '...' : '****' }}</td>
-                            <td>{{card.expDate }} </td>
+                            <td>{{card.ccv}}</td>
+                            <td>{{card.expiryDate }} </td>
                             <!-- <td>{{card.pinCode.length > 0 ? '...' : '****'}} </td> -->
                             <td>{{card.street_address }} </td>
                             <td>{{card.zipcode }} </td>
@@ -430,7 +430,7 @@
                             <td> {{card.country }}</td>
                             <td>{{card.default}}</td>
                             <td>
-                                <mat-slide-toggle name="atm_details" (click)="setcard(card.default,card.id,card.name,card.number,card.cvc,card.expDate,card.street_address,card.zipcode,card.city,card.state,card.country)"
+                                <mat-slide-toggle name="atm_details" [(ngModel)]="card.default" (click)="setcard(card.default,card.id,card.nickname,card.cardNumber,card.ccv,card.expiryDate,card.street_address,card.zipcode,card.city,card.state,card.country,card.autopay)"
                                     class="py-toggle"></mat-slide-toggle>
 
                             </td>
@@ -441,7 +441,7 @@
         </div>
     </div>
 </div>
-<div>
+
         <div id="myModal4" class="modal fade" role="dialog">
                 <div class="modal-dialog">
 
