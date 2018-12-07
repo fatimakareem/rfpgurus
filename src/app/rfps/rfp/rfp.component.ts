@@ -110,7 +110,7 @@ currentUser;
           headers = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
       }
       headers.append('Content-Type', 'application/json');
-      const href = 'https://apis.rfpgurus.com/rf_p/rfp/';
+      const href = 'https://devapis.rfpgurus.com/rf_p/rfp/';
       const requestUrl =
       `${href}${sort}/${order}/${pageSize}?page=${page + 1}`;
 

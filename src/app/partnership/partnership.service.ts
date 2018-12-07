@@ -13,7 +13,7 @@ export class partnershipservice {
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http5.post('https://apis.rfpgurus.com/becomePartner/',
+    return this._http5.post('https://devapis.rfpgurus.com/becomePartner/',
       {
         'name': name,
         'email': email,

@@ -20,7 +20,7 @@ rfpcategory() {
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http.get('https://apis.rfpgurus.com/rf_p/category/',
+    return this._http.get('https://devapis.rfpgurus.com/rf_p/category/',
     {headers: headers}).map((response: Response) => response.json());
 
     }
@@ -28,7 +28,7 @@ rfpcategory() {
         
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http.get('https://apis.rfpgurus.com/rf_p/state/',
+        return this._http.get('https://devapis.rfpgurus.com/rf_p/state/',
         {headers: headers}).map((response: Response) => response.json());
         
         }

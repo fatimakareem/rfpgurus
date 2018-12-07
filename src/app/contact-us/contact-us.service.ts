@@ -8,7 +8,7 @@ export class ContactUsService {
   constructor(private http: Http, private _nav: Router) { }
   contact(name, email, phone, message) {
     let headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-    return this.http.post('https://apis.rfpgurus.com/rf_p/message',
+    return this.http.post('https://devapis.rfpgurus.com/rf_p/message',
       {
         'name': name,
         'email': email,

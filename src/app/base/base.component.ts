@@ -123,7 +123,7 @@ export class BaseComponent implements OnInit {
       
           let headers = new Headers();
           headers.append('Content-Type', 'application/json');
-          this.http.get('https://apis.rfpgurus.com/rf_p/rfp/date_entered/asc/' + this.pageSize + '?page=' + page, { headers: headers })
+          this.http.get('https://devapis.rfpgurus.com/rf_p/rfp/date_entered/asc/' + this.pageSize + '?page=' + page, { headers: headers })
             .subscribe(Res => {
               this.items = Res.json()['results'];
               console.log(this.items, Res.json()['totalItems'], 'eee')

@@ -12,13 +12,13 @@ export class BlogService {
   blogRecord() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http.get('https://apis.rfpgurus.com/bloglist',
+    return this._http.get('https://devapis.rfpgurus.com/bloglist',
       { headers: headers }).map((response: Response) => response.json());
   }
   singleblog(bid) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http.get('https://apis.rfpgurus.com/singleblog/' + bid,
+    return this._http.get('https://devapis.rfpgurus.com/singleblog/' + bid,
       { headers: headers }).map((response: Response) => response.json());
   }
 }

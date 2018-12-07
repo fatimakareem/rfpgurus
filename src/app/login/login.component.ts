@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         if (user) {
-            const createUser = this._http.post('https://apis.rfpgurus.com/social_login/', {
+            const createUser = this._http.post('https://devapis.rfpgurus.com/social_login/', {
                 user
             }, { headers: headers })
             createUser.subscribe(data => {

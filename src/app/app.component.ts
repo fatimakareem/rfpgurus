@@ -16,10 +16,15 @@ export class AppComponent implements OnInit {
     // secretKey = '6Lebrk8UAAAAAJDD-gFnna3WtX6-ZKFtDC1dE1Te';
     
     private _router: Subscription;
-
+    time;
     constructor( private router: Router, @Inject(DOCUMENT,) private document: any) {}
    
     ngOnInit() {
+        this.time=new Date()
+        // setTimeout(function(){localStorage.removeItem("currentUser");}, 1000*60);
+        if(localStorage.getItem("exp") == this.time){
+            localStorage.clear();
+        }
         $.material.options.autofill = true;
         $.material.init();
         this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {

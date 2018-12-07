@@ -13,7 +13,7 @@ export class ForgetPasswordService {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         });
-        return this._http5.put('https://apis.rfpgurus.com/change_password/', JSON.stringify(
+        return this._http5.put('https://devapis.rfpgurus.com/change_password/', JSON.stringify(
             {
                 "pass1": pass1,
                 "pass2": pass2,

@@ -285,7 +285,7 @@ card_opeation=[
 
         },
           error => {
-            if (error.status == 404) {
+            if (error.status == 302) {
               swal({
                 type: 'error',
                 title: 'This Card Already Exist!',

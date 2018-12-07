@@ -13,7 +13,7 @@ export class PaymentmethodsService {
   addCard(status, name, address, zip, city, state, country, cardno, ccv, expiryDate,var_type_atm) {
     let header = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
     header.append('Content-Type', 'application/json');
-    return this.http.post('https://apis.rfpgurus.com/payment/cardinfo/',
+    return this.http.post('https://devapis.rfpgurus.com/payment/cardinfo/',
       JSON.stringify({
         "default": status,
         "name": name,
@@ -33,12 +33,12 @@ export class PaymentmethodsService {
   showCards() {
     let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
     headers.append('Content-Type', 'application/json');
-    return this.http.get('https://apis.rfpgurus.com/payment/cardinfo/', { headers: headers }).map((response: Response) => response.json());
+    return this.http.get('https://devapis.rfpgurus.com/payment/cardinfo/', { headers: headers }).map((response: Response) => response.json());
   }
   updateCard(status,autopay, id, name, cardno, ccv, expiryDate, address, zip, city, state, country) {
     let header = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
     header.append('Content-Type', 'application/json');
-    return this.http.put('https://apis.rfpgurus.com/payment/cardinfo/',
+    return this.http.put('https://devapis.rfpgurus.com/payment/cardinfo/',
       JSON.stringify({
         // "cardNumber": cardno,
         "default": status,
@@ -60,13 +60,13 @@ export class PaymentmethodsService {
   deleteCard(id) {
     let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
     headers.append('Content-Type', 'application/json');
-    return this.http.delete('https://apis.rfpgurus.com/payment/cardinfodelete/' + id, { headers: headers }).map((response: Response) => response.json());
+    return this.http.delete('https://devapis.rfpgurus.com/payment/cardinfodelete/' + id, { headers: headers }).map((response: Response) => response.json());
   }
   Atm_card_exist(card) {
     let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
     // alert(JSON.parse(localStorage.getItem('currentUser')).token });
     headers.append('Content-Type', 'application/json');
-    return this.http.post('https://apis.rfpgurus.com/payment/cardnoexist/',
+    return this.http.post('https://devapis.rfpgurus.com/payment/cardnoexist/',
       JSON.stringify({
         'number': card
       }),

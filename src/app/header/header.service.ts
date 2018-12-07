@@ -14,7 +14,7 @@ export class HeaderService {
       headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
       }  
     headers.append('Content-Type', 'application/json');
-    return this._http5.get('https://apis.rfpgurus.com/user_notifications/',
+    return this._http5.get('https://devapis.rfpgurus.com/user_notifications/',
     {headers: headers}).map((response: Response) => response.json());
   }
   deletenotify(id){
@@ -23,7 +23,7 @@ export class HeaderService {
       headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
       }  
     headers.append('Content-Type', 'application/json');
-    return this._http5.delete('https://apis.rfpgurus.com/read_delete/'+id +'/',
+    return this._http5.delete('https://devapis.rfpgurus.com/read_delete/'+id +'/',
     {headers: headers}).map((response: Response) => response.json());
   }
   Updatenotify(id){
@@ -32,7 +32,7 @@ export class HeaderService {
       headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
       }  
     headers.append('Content-Type', 'application/json');
-    return this._http5.put('https://apis.rfpgurus.com/read_delete/'+id +'/', JSON.stringify({}),
+    return this._http5.put('https://devapis.rfpgurus.com/read_delete/'+id +'/', JSON.stringify({}),
     {headers: headers}).map((response: Response) => response.json());
   }
 Watchlist(){
@@ -41,7 +41,7 @@ Watchlist(){
     headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
     }  
   headers.append('Content-Type', 'application/json');
-  return this._http5.get('https://apis.rfpgurus.com/rf_p/watchlist/',
+  return this._http5.get('https://devapis.rfpgurus.com/rf_p/watchlist/',
   {headers: headers}).map((response: Response) => response.json());
 }
 deleteallnotify(){
@@ -50,7 +50,7 @@ deleteallnotify(){
     headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
     }  
   headers.append('Content-Type', 'application/json');
-  return this._http5.delete('https://apis.rfpgurus.com/delete_all_notification/',
+  return this._http5.delete('https://devapis.rfpgurus.com/delete_all_notification/',
   {headers: headers}).map((response: Response) => response.json());
 }
 deleteWatchlist(rfpid){
@@ -59,7 +59,7 @@ deleteWatchlist(rfpid){
     headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
     }  
   headers.append('Content-Type', 'application/json');
-  return this._http5.delete('https://apis.rfpgurus.com/rf_p/watchlistdelete/'+rfpid,
+  return this._http5.delete('https://devapis.rfpgurus.com/rf_p/watchlistdelete/'+rfpid,
   {headers: headers}).map((response: Response) => response.json());
 }
 AlldeleteWatchlist(){
@@ -68,36 +68,36 @@ AlldeleteWatchlist(){
     headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
     }  
   headers.append('Content-Type', 'application/json');
-  return this._http5.delete('https://apis.rfpgurus.com/rf_p/Delete_all_watch_list/', {headers: headers}).map((response: Response) => response.json());
+  return this._http5.delete('https://devapis.rfpgurus.com/rf_p/Delete_all_watch_list/', {headers: headers}).map((response: Response) => response.json());
 }
   searchrecord(obj) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http5.get('https://apis.rfpgurus.com/rf_p/search_id/'+obj+'/10?page=1',
+    return this._http5.get('https://devapis.rfpgurus.com/rf_p/search_id/'+obj+'/10?page=1',
     {headers: headers}).map((response: Response) => response.json());
     }
     searchSuggestions(obj) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://apis.rfpgurus.com/rf_p/search_key/'+obj+'/-1?page=1',
+        return this._http5.get('https://devapis.rfpgurus.com/rf_p/search_key/'+obj+'/-1?page=1',
             {headers: headers}).map((response: Response) => response.json());
     }
     record(obj){
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://apis.rfpgurus.com/rf_p/search_id/'+obj+'/',
+        return this._http5.get('https://devapis.rfpgurus.com/rf_p/search_id/'+obj+'/',
             {headers: headers}).map((response: Response) => response.json());
     }
     rfpstate() {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      return this._http5.get('https://apis.rfpgurus.com/rf_p/allstate/',
+      return this._http5.get('https://devapis.rfpgurus.com/rf_p/allstate/',
       {headers: headers}).map((response: Response) => response.json());
       }
       rfpcategory() {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://apis.rfpgurus.com/rf_p/allcategory/',
+        return this._http5.get('https://devapis.rfpgurus.com/rf_p/allcategory/',
         {headers: headers}).map((response: Response) => response.json());
         }  
 }

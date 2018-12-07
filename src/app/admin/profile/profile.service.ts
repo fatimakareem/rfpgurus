@@ -14,7 +14,7 @@ export class ProfileService {
 
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http1.get('https://apis.rfpgurus.com/zipcode/' + zip + '/',
+        return this._http1.get('https://devapis.rfpgurus.com/zipcode/' + zip + '/',
             { headers: headers }).map((response: Response) => response.json());
 
     }
@@ -23,7 +23,7 @@ export class ProfileService {
 
         let headers = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
         headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://apis.rfpgurus.com/preferance_Updates/' + uid + '/',
+        return this._http5.get('https://devapis.rfpgurus.com/preferance_Updates/' + uid + '/',
             { headers: headers }).map((response: Response) => response.json());
 
     }
@@ -31,7 +31,7 @@ export class ProfileService {
 
         let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
         headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://apis.rfpgurus.com/user_information/' + uid + '/',
+        return this._http5.get('https://devapis.rfpgurus.com/user_information/' + uid + '/',
             { headers: headers }).map((response: Response) => response.json());
 
     }
@@ -57,7 +57,7 @@ export class ProfileService {
         console.log(userlist)
         let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
         headers.append('Content-Type', 'application/json');
-        return this._http5.put('https://apis.rfpgurus.com/profile_update/' + obj.username + '/',
+        return this._http5.put('https://devapis.rfpgurus.com/profile_update/' + obj.username + '/',
             JSON.stringify(jsonlist),
             { headers: headers }).map((data: Response) => data.json());
     }
@@ -94,18 +94,18 @@ export class ProfileService {
         console.log(userlist)
         let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
         headers.append('Content-Type', 'application/json');
-        return this._http5.put('https://apis.rfpgurus.com/preferance_Updates/' + JSON.parse(localStorage.getItem('currentUser')).username + '/',
+        return this._http5.put('https://devapis.rfpgurus.com/preferance_Updates/' + JSON.parse(localStorage.getItem('currentUser')).username + '/',
             JSON.stringify(jsonlist),
             { headers: headers }).map((data: Response) => data.json());
     }
 
     email_exist(email) {
-        return this._http1.post('https://apis.rfpgurus.com/email_exist/', {
+        return this._http1.post('https://devapis.rfpgurus.com/email_exist/', {
             'email': email
         }).map((res: Response) => res.json())
     }
     username_exist(username) {
-        return this._http1.post('https://apis.rfpgurus.com/user_name_exist/', {
+        return this._http1.post('https://devapis.rfpgurus.com/user_name_exist/', {
             'username': username
         }).map((res: Response) => res.json())
     }
