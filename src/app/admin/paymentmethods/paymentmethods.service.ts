@@ -10,7 +10,7 @@ export class PaymentmethodsService {
   constructor(private http: HttpService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
-  addCard(status, name, address, zip, city, state, country, cardno, ccv, expiryDate,var_type_atm) {
+  addCard(status, name, address, zip, city, state, country, cardno, ccv, expiryDate,var_type_atm,setautopay) {
     let header = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
     header.append('Content-Type', 'application/json');
     return this.http.post('https://devapis.rfpgurus.com/payment/cardinfo/',
@@ -26,7 +26,8 @@ export class PaymentmethodsService {
         "number": cardno,
         "cvc": ccv,
         "expDate": expiryDate,
-        "card_type":var_type_atm
+        "card_type":var_type_atm,
+        "autopay":setautopay
       }),
       { headers: header }).map((response: Response) => response.json());
   }
