@@ -25,31 +25,35 @@
                                 <strong class="error-block">Password cannot be empty</strong>
                             </mat-error>
                         </mat-form-field>
-                        <div class="pull-left">
+                    
+                        <div class="checkbox ">
+                            <label>
+                                <input type="checkbox" value="" name="remember" checked> Keep me logged in
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group mg-btm-10">
+                    <blackgeeks-recaptcha >
+                    </blackgeeks-recaptcha>
+                    <div class="error-block" *ngIf="isequal==false" style="float: left;">
+                        <span>*Please Enter Valid Answer</span>
+                    </div>
+                    </div>
+                    <div >
+                        <label>
+                            <a style="cursor:pointer;text-decoration:underline" (click)="foremail()">Forgot your password?</a>
+                        </label>
+                    </div>
+                    <div >
                         <span style="font-weight:700">No Account Yet?
                             <a routerLink="/sign-up">Signup</a>
                         </span>
                         </div>
-                        <div class="pull-right">
-                            <label>
-                                <a style="cursor:pointer;text-decoration:underline" (click)="foremail()">Forgot your password?</a>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="checkbox pull-left">
-                        <label>
-                            <input type="checkbox" value="" name="remember" checked> Keep me logged in
-                        </label>
-                    </div>
-                   
                     <div class="clearfix"></div>
-                    <div class="form-footer text-right">
-                        <div class="form-group text-center">
-                            <blackgeeks-recaptcha >
-                            </blackgeeks-recaptcha>
-                            <div class="error-block" *ngIf="isequal==false" style="float: left;">
-                                <span>*Please Enter Valid Answer</span>
-                            </div>
+                    <div class="form-footer ">
+                       
+                          
+                            <div class="form-group ">
                             <button type="submit"  class="btn btn-rose btn-fill btn-wd sh-signin-btn" (click)="onLogin()">Sign in</button>
 
                             <p  class="sh-OR" data-reactid="40">OR</p>
@@ -64,6 +68,12 @@
                                     <i  class="fa fa-google"></i>
                                     <span>Google</span>
                                 </button>
+                                <br>
+                                <div class="term-privacy">
+                                <a href="#">Terms of Service </a>
+                                <a href="#">Privacy Policy</a>
+                                <a href="#">Cookies Policy</a>
+                                </div>
                             </div>
                         </div>
                     </div>

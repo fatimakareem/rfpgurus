@@ -121,7 +121,7 @@ total;
         else{
             swal({
                 type: 'error',
-                title: 'Please Login with RFP Gurus',
+                title: 'Please Login with RFPGurus',
                 showConfirmButton: true,
                 confirmButtonColor: "#090200",
             }); 

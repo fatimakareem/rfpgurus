@@ -92,6 +92,10 @@
                                             </button>
                                         </div>
                                     </div>
+                                    <div class="col-md-12 padding-0">
+                                        <button title="Search Results" type="submit" class="btn btn-primary btn-rose btn-lg sh-ad-to-watchlist"
+                                    (click)="watchlist()">Add to Watchlist</button>
+                                    </div>
                                     <div class="col-md-12" *ngIf="rfp.descriptionTag == null">
                                         <h5>Description:</h5>
                                         <div [innerHTML]="rfp.deescription"></div>
@@ -103,8 +107,12 @@
                                         <div [innerHTML]="rfp.descriptionTag"></div>
                                     </div>
                                 </div>
-                                <button title="Search Results" type="submit" class="btn btn-primary btn-rose btn-lg sh-ad-to-watchlist"
-                                    (click)="watchlist()">Add to Watchlist</button>
+                                <div class="card-content">
+                                    <button title="Search Results" type="submit" class="btn btn-primary btn-rose btn-lg sh-ad-to-watchlist"
+                                    (click)="watchlist()">Add to Watchlist
+                                </button>
+                                </div>
+                               
                             </div>
                         </div>
                     </div>
