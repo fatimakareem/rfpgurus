@@ -55,6 +55,7 @@
                         <h3>
                           <a style="cursor:pointer" [routerLink]="['/rfp/',  rfp?.wrfp.seoTitleUrl]"> {{ rfp?.wrfp.title}}</a>
                         </h3>
+                        <h5 *ngIf="rfp?.wrfp.agency"><i class="fa fa-building-o"></i>Agency : <span>{{rfp?.wrfp.agency}}</span></h5>
                         <h5>
                           <i class="fa fa-university"></i>Category :
                           <span>{{ rfp?.wrfp.category}}</span>

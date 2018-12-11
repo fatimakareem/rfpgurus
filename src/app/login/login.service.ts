@@ -2,6 +2,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Injectable } from '@angular/core';
 import { Headers, Response } from '@angular/http';
+// import { JwtHelperService  } from '@auth0/angular-jwt';
 import { JwtHelper } from 'angular2-jwt';
 import 'rxjs/add/operator/map';
 import { HttpService } from './../serv/http-service';
@@ -9,7 +10,7 @@ import * as moment from 'moment';
 
 @Injectable()
 export class LoginService {
-    jwtHelper: JwtHelper = new JwtHelper();
+    jwtHelper: JwtHelper  = new JwtHelper ();
 
     constructor(private _http5: HttpService) {
     }

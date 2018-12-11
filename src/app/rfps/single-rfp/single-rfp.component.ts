@@ -8,7 +8,7 @@ import swal from 'sweetalert2';
 import 'rxjs/Rx' ;
 import {SharedData } from '../../shared-service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HeaderService } from 'app/header/header.service';
+// import { HeaderService } from './header/header.service';
 
 
 @Component({
@@ -102,6 +102,8 @@ total;
                 title: 'This RFP Is Already In Your Watchlist',
                 showConfirmButton: true,
                 confirmButtonColor: "#090200",
+                width: '512px',
+               
             });
         }
         else{
@@ -110,6 +112,7 @@ total;
                 title: 'RFP succesfully added to your watch list',
                 showConfirmButton: true,
                 confirmButtonColor: "#090200",
+                width: '512px',
             });
         }
               
@@ -123,6 +126,7 @@ total;
                 type: 'error',
                 title: 'Please Login with RFPGurus',
                 showConfirmButton: true,
+                width: '512px',
                 confirmButtonColor: "#090200",
             }); 
             // this._nav.navigate(['login']);

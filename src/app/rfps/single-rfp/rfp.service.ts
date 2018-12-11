@@ -19,7 +19,7 @@ export class RfpService {
    
    postWatchlist(rfpid){
     let headers = new Headers();
-    if(this.currentUser){
+    if(localStorage.getItem('currentUser')){
       headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
       }  
     headers.append('Content-Type', 'application/json');
@@ -30,7 +30,7 @@ export class RfpService {
   }
   rfprecord(id){
     let headers = new Headers();
-    if(this.currentUser){
+    if(localStorage.getItem('currentUser')){
     headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
     }  
     headers.append('Content-Type', 'application/json');
@@ -42,7 +42,7 @@ export class RfpService {
   
   downloadFile(id){
     let headers = new Headers();
-    if(this.currentUser){
+    if(localStorage.getItem('currentUser')){
     headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
     }  
     headers.append('Content-Type', 'application/json');

@@ -29,7 +29,7 @@ export class AuthenticateComponent implements OnInit, OnDestroy {
             type: 'success',
             title: 'Your Account is Verified',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,width: '512px',
           })
           this.router.navigate(['/login']);
         },

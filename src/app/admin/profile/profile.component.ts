@@ -134,7 +134,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
                         type: 'success',
                         title: 'Updated Your Profile',
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 1500,width: '512px',
                     })
                 },
                 error => {
@@ -228,11 +228,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
             type: 'success',
             title: 'Successfully Logged out',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,width: '512px',
         });
         this._nav.navigate(['/']);
     }
     ngOnDestroy() {
-        this.endRequest.unsubscribe();
+        // this.endRequest.unsubscribe();
     }
 }

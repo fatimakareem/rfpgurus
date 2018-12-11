@@ -4,7 +4,7 @@ import { PricingService } from './pricing.service';
 import swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RfpService } from '../rfps/single-rfp/rfp.service';
-import { PaymentmethodsService } from 'app/admin/paymentmethods/paymentmethods.service';
+import { PaymentmethodsService } from '../admin/paymentmethods/paymentmethods.service';
 
 @Component({
   selector: 'app-pricing',
@@ -400,7 +400,7 @@ export class PricingComponent implements OnInit {
             type: 'error',
             title: 'Credit Card Details Are Not Correct!',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,width: '512px',
           })
         }
         else if (error.status == 500) {
@@ -436,7 +436,7 @@ export class PricingComponent implements OnInit {
         type: 'success',
         title: 'Auto Pay Payment Method Is Successfully Apply On This Card',
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,width: '512px',
       })
       this.show_card_info();
       this.getCards();
@@ -447,7 +447,7 @@ export class PricingComponent implements OnInit {
             type: 'error',
             title: 'Credit Card Details Are Not Correct!',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,width: '512px',
           })
         }
         else if (error.status == 500) {

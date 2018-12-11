@@ -8,7 +8,9 @@ import { ViewChild } from '@angular/core';
 import { RecaptchaComponent } from '../recaptcha/recaptcha.component';
 import { AuthService } from "angular4-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angular4-social-login";
+// import { JwtHelperService  } from '@auth0/angular-jwt';
 import { JwtHelper } from 'angular2-jwt';
+
 import { Http, Headers } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 declare interface ValidatorFn {
@@ -43,7 +45,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     login: FormGroup;
     type: FormGroup;
     isequal;
-    jwtHelper: JwtHelper = new JwtHelper();
+    jwtHelper: JwtHelper  = new JwtHelper();
     private loggedIn: boolean;
     user: any;
     public logedin: any = 0;
@@ -70,7 +72,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                     type: 'success',
                     title: 'Successfully Logged in',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1500,width: '512px',
                 });
                 let url = 'profile';
                 this._nav.navigate([url]);
@@ -123,7 +125,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                                 type: 'success',
                                 title: 'Successfully Logged in',
                                 showConfirmButton: false,
-                                timer: 1500
+                                timer: 1500,width: '512px',
                             });
                             let url = 'profile';
                             this._nav.navigate([url]);
@@ -166,7 +168,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             title: 'Enter email address',
             html: ' Enter you email address to receive a link allowing you to reset your password.',
             input: 'email',
-            confirmButtonColor: "#000",
+            confirmButtonColor: "#000",width: '512px',
             inputPlaceholder: 'Enter your email address'
         }).then((email) => {
             this.forgetPassword(email)
@@ -177,7 +179,8 @@ export class LoginComponent implements OnInit, OnDestroy {
             data => {
                 swal({
                     type: 'success',
-                    html: 'Password reset instructions have been sent to your email. '
+                    html: 'Password reset instructions have been sent to your email. ',
+                    width: '512px',
                 })
             },
             error => {

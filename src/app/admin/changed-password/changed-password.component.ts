@@ -69,7 +69,7 @@ export class ChangedPasswordComponent implements OnInit, OnDestroy {
                         type: 'success',
                         title: 'Your password has been successfully changed',
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 1500,width: '512px',
                     })
                 },
                 error => {
@@ -115,7 +115,7 @@ export class ChangedPasswordComponent implements OnInit, OnDestroy {
             type: 'success',
             title: 'Successfully Logged out',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,width: '512px',
         });
         this._nav.navigate(['/']);
     }

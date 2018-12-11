@@ -58,16 +58,18 @@
                     </div>
                     <div class="row">
                             <div class="col-sm-6">
-                                    <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'state')">
-                                        <mat-form-field class="example-full-width">
-                                            <input matInput placeholder="State" type="text" id="state" formControlName="state"
-                                                [(ngModel)]="personal.state" value="{{personal.state}}" required>
-                                            <mat-error *ngIf="register.controls.state.value == ''">
-                                                <strong>State cannot be empty</strong>
+                                    <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'zipcode')">
+                                        <mat-form-field>
+                                            <input matInput type="text" id="zipcode" (ngModelChange)="zipcodeCheck(zipcode1.value)"
+                                                #zipcode1 [(ngModel)]="personal.zipcode" formControlName="zipcode" value="{{personal.zipcode}}"
+                                                placeholder="Zip Code" maxlength="5" required />
+                                            <mat-error *ngIf="register.controls.zipcode.value == ''">
+                                                <strong>Zip Code cannot be empty</strong>
                                             </mat-error>
                                         </mat-form-field>
                                     </div>
                                 </div>
+                            
                         <div class="col-sm-6">
                             <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'city')">
                                 <mat-form-field class="example-full-width">
@@ -81,6 +83,17 @@
                         </div>
                     </div>
                     <div class="row">
+                            <div class="col-sm-6">
+                                    <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'state')">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="State" type="text" id="state" formControlName="state"
+                                                [(ngModel)]="personal.state" value="{{personal.state}}" required>
+                                            <mat-error *ngIf="register.controls.state.value == ''">
+                                                <strong>State cannot be empty</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
                         <div class="col-sm-6">
                             <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'country')">
                                 <mat-form-field class="example-full-width">
@@ -92,18 +105,7 @@
                                 </mat-form-field>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                                <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'zipcode')">
-                                    <mat-form-field>
-                                        <input matInput type="text" id="zipcode" (ngModelChange)="zipcodeCheck(zipcode1.value)"
-                                            #zipcode1 [(ngModel)]="personal.zipcode" formControlName="zipcode" value="{{personal.zipcode}}"
-                                            placeholder="Zip Code" maxlength="5" required />
-                                        <mat-error *ngIf="register.controls.zipcode.value == ''">
-                                            <strong>Zip Code cannot be empty</strong>
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
-                            </div>
+                      
                        
                     </div>
                     <div class="row">
