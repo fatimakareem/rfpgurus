@@ -58,7 +58,7 @@ export class ForgetPasswordComponent implements OnInit, OnDestroy {
             type: 'success',
             title: 'Your Password has been successfully changed',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,width: '512px',
           })
           let url = 'login';
           this.router.navigate([url]);

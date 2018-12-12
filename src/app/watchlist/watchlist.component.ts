@@ -68,7 +68,8 @@ export class WatchlistComponent implements OnInit {
           type: 'success',
           title: 'Your Watch List Successfully Clear',
           showConfirmButton: false,
-          timer: 2500
+          timer: 2500,width: '512px',
+
         });
         this.watchlist();
       },

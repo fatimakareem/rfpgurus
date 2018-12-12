@@ -45,7 +45,7 @@ export class ContactUsComponent implements OnInit, OnDestroy {
         title: 'Thank You For Contacting Us, We Will Reply Soon On Our E-mail',
         showConfirmButton: true,
         confirmButtonColor: "#090200",
-        timer: 3000
+        timer: 3000,width: '512px',
       });
       let url = '/';
       this._nav.navigate([url]);

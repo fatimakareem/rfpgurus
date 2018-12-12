@@ -40,7 +40,7 @@ export class UnsubscribeComponent implements OnInit {
           type: 'success',
           title: 'UnSubScribed Successfully',
           showConfirmButton: false,
-          timer: 2000
+          timer: 2000,width: '512px',
         })
         this.router.navigate(['/']);
         // if (this.email == "Alredy UnSubScribed") {

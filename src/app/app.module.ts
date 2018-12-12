@@ -3,7 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { APP_BASE_HREF } from '@angular/common';
-// import { FormsModule } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxCarouselModule } from 'ngx-carousel';
@@ -11,8 +10,8 @@ import { LoaderComponent } from './loader/loader.component';
 import { ProgressHttpModule } from "angular-progress-http";
 import { UsMapModule } from 'angular-us-map';
 // import { InputModule } from 'voice-to-text';
-import { Nl2BrPipeModule } from 'nl2br-pipe';
-import { Ng2SmartTableModule } from 'ngx-smart-table';
+// import { Nl2BrPipeModule } from 'nl2br-pipe';
+// import { Ng2SmartTableModule } from 'ngx-smart-table';
 /////////////////////////////////Service/////////////////////////////
 import { UnsubscribeService } from './unsubscribe/unsubscribe.service';
 import { RfpService } from './rfps/single-rfp/rfp.service';
@@ -215,8 +214,8 @@ export function provideConfig() {
 export class MaterialModule { }
 @NgModule({
     imports: [
-        Nl2BrPipeModule,
-        Ng2SmartTableModule,
+        // Nl2BrPipeModule,
+        // Ng2SmartTableModule,
         CommonModule,
         UsMapModule,
         BrowserAnimationsModule,

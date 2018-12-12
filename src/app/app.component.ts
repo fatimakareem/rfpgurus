@@ -3,6 +3,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
 import { DOCUMENT } from '@angular/platform-browser';
+// import { networkInterfaces } from 'os';
 declare var $: any;
 
 @Component({
@@ -20,6 +21,11 @@ export class AppComponent implements OnInit {
     constructor( private router: Router, @Inject(DOCUMENT,) private document: any) {}
    
     ngOnInit() {
+         
+            console.log(window.console);
+            // if(window.console || window.console) {
+            
+           
         this.time=new Date()
         // setTimeout(function(){localStorage.removeItem("currentUser");}, 1000*60);
         if(localStorage.getItem("exp") == this.time){
@@ -39,5 +45,8 @@ export class AppComponent implements OnInit {
             $(this).scrollTop(0);
           }
         //   .animate({ scrollTop: 0 }, 800);
+        console.log('lll');
+        console.clear();
+
     }
 }

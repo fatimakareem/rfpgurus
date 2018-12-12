@@ -187,7 +187,7 @@ card_opeation=[
         type: 'success',
         title: 'Credit Card Details Are Updated!',
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,width: '512px',
       })
       this.getCards();
     },
@@ -197,7 +197,7 @@ card_opeation=[
             type: 'error',
             title: 'Credit Card Details Are Not Correct!',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,width: '512px',
           })
         }
         else if (error.status == 500) {
@@ -222,7 +222,7 @@ card_opeation=[
         type: 'success',
         title: 'Credit Card Is Deleted!',
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,width: '512px',
       })
       this.getCards();
     },
@@ -232,7 +232,7 @@ card_opeation=[
             type: 'error',
             title: 'No Credit Card Found!',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,width: '512px',
           })
         }
         else if (error.status == 500) {
@@ -280,7 +280,7 @@ card_opeation=[
             type: 'success',
             title: 'Payment Method Is Listed!',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,width: '512px',
           })
           this.getCards();
 
@@ -291,7 +291,7 @@ card_opeation=[
                 type: 'error',
                 title: 'This Card Already Exist!',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1500,width: '512px',
               })
             }
             else if (error.status == 400) {
@@ -299,7 +299,7 @@ card_opeation=[
                 type: 'error',
                 title: 'Please Enter Correct Details!',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1500,width: '512px',
               })
             }
             else if (error.status == 500) {
@@ -323,7 +323,7 @@ card_opeation=[
           type: 'error',
           title: 'Please Enter Valid Filed',
           showConfirmButton: false,
-          timer: 1500,
+          timer: 1500,width: '512px',
         })
       }
     }
@@ -337,7 +337,7 @@ card_opeation=[
             type: 'success',
             title: 'Payment Method Is Listed!',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,width: '512px',
           });
           this.getCards();
 
@@ -349,7 +349,7 @@ card_opeation=[
                 type: 'error',
                 title: 'This Card Already Exist!',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1500,width: '512px',
               })
             }
             else if (error.status == 400) {
@@ -357,7 +357,7 @@ card_opeation=[
                 type: 'error',
                 title: 'Please Enter Correct Details!',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1500,width: '512px',
               })
             }
             else if (error.status == 500) {
@@ -381,7 +381,7 @@ card_opeation=[
           type: 'error',
           title: 'Please Enter Correct Details!',
           showConfirmButton: false,
-          timer: 1500,
+          timer: 1500,width: '512px',
         })
       }
 
@@ -400,7 +400,7 @@ card_opeation=[
             type: 'error',
             title: 'Credit Card Not Found!',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,width: '512px',
           })
         }
         else if (error.status == 500) {

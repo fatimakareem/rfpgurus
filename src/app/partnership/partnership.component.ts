@@ -51,7 +51,7 @@ export class PartnershipComponent implements OnInit {
             type: 'success',
             title: 'Thank You For Showing Your interest to Become a Partner',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,width: '512px',
           });
           this._nav.navigate(['/']);
         })

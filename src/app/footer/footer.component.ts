@@ -32,7 +32,7 @@ export class FooterComponent {
                     type: 'success',
                     title: 'Successfully subscribed!',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1500,width: '512px',
                 });
             },
             error => {

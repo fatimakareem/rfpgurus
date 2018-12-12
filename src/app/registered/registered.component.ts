@@ -132,6 +132,7 @@ textonly='[a-zA-Z]+'
                     type: 'success',
                     title: 'Please check your email for account activation instructions',
                     showConfirmButton: true,
+                    width: '512px',
                 });
             },
             error => {

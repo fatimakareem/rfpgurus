@@ -23,7 +23,7 @@ export class BaseComponent implements OnInit {
   }
   items;
   public cat = [];
-  pageSize = '50';
+  pageSize = '20';
   settings: any;
   duedate;
   enterdate;

@@ -75,7 +75,7 @@ export class HeaderComponent implements OnInit {
       title: 'Successfully Logged out',
       showConfirmButton: false,
       confirmButtonColor: "#090200",
-      timer: 1500
+      timer: 1500,width: '512px',
     });
     this._nav.navigate(['/']);
   }
@@ -123,9 +123,9 @@ export class HeaderComponent implements OnInit {
     this._shareData.currentMessage.subscribe(message => this.wrfp = message)
     this._shareData.currentMessagetotal.subscribe(message => this.total = message)
     // this.watchlist();
-    // this.notification()
-    let timer = Observable.timer(0, 60000);
-    timer.subscribe(() => this.notification());
+    this.notification()
+    // let timer = Observable.timer(0, 6000000);
+    // timer.subscribe(() => this.notification());
     $('#search').click(function () {
       setTimeout(function () {
         $('#textsearch').focus();

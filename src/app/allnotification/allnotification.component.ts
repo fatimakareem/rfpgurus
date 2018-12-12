@@ -68,7 +68,7 @@ export class AllnotificationComponent implements OnInit {
           type: 'success',
           title: 'All Notifications Successfully Deleted.',
           showConfirmButton: false,
-          timer: 2500
+          timer: 2500,width: '512px',
         });
         this.notification()
       },

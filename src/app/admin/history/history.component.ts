@@ -200,7 +200,7 @@ this.userdetail=data.reg_fk;
             type: 'success',
             title: 'Successfully Logged out',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,width: '512px',
         });
         this._nav.navigate(['/']);
        
