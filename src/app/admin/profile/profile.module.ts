@@ -6,13 +6,15 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatInputModule, MatFormFieldModule, MatSelectModule,MatChipsModule } from '@angular/material';
 import { TextMaskModule } from 'angular2-text-mask';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { InternationalPhoneModule } from 'ng4-intl-phone';
+
 const routes: Routes = [
   {
     path: '', component: ProfileComponent
   }
 ]
 @NgModule({
-  imports: [
+  imports: [InternationalPhoneModule,
     CommonModule,
     MatChipsModule,
     ReactiveFormsModule,

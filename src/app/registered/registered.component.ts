@@ -110,6 +110,7 @@ textonly='[a-zA-Z]+'
     }
 
     onRegister(value) {
+        // alert(this.register.value.phone)
         if (this.register.valid && this.captcha.getResponse()) {
             this.isequal=true;
            this.endRequest= this._serv.post_service(this.register.value).subscribe(

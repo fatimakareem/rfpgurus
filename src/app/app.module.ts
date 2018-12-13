@@ -9,6 +9,7 @@ import { NgxCarouselModule } from 'ngx-carousel';
 import { LoaderComponent } from './loader/loader.component';
 import { ProgressHttpModule } from "angular-progress-http";
 import { UsMapModule } from 'angular-us-map';
+import { InternationalPhoneModule } from 'ng4-intl-phone';
 // import { InputModule } from 'voice-to-text';
 // import { Nl2BrPipeModule } from 'nl2br-pipe';
 // import { Ng2SmartTableModule } from 'ngx-smart-table';
@@ -214,8 +215,7 @@ export function provideConfig() {
 export class MaterialModule { }
 @NgModule({
     imports: [
-        // Nl2BrPipeModule,
-        // Ng2SmartTableModule,
+        InternationalPhoneModule,
         CommonModule,
         UsMapModule,
         BrowserAnimationsModule,
