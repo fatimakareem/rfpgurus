@@ -11,7 +11,7 @@
               </svg>
             </div>
             <div class="card-holder" style="top: 29px;left: 221px;">
-              <label>Nickname</label>
+              <label>Card Holder</label>
               <div>{{form.controls.cardnickname.value}}</div>
             </div>
             <div class="card-holder">
@@ -63,7 +63,7 @@
          
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" *ngIf="cardnumber">
           <mat-form-field>
-            <input matInput type="text" minlength="16" maxlength="16" placeholder="Credit Card Number" formControlName="cardnumber">
+            <input matInput type="text" [textMask]="{mask: cardsmask}" placeholder="Credit Card Number" formControlName="cardnumber">
             <mat-error *ngIf="form.controls.cardnumber.touched && form.controls.cardnumber.invalid">
               <mat-error *ngIf="form.controls.cardnumber.errors.required">
                 Card number cannot be empty
@@ -79,7 +79,7 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" *ngIf="cardnumber2">
           <mat-form-field>
-            <input matInput type="text" minlength="15" maxlength="15" placeholder="Credit Card Number" formControlName="cardnumber2">
+            <input matInput type="text"  placeholder="Credit Card Number" [textMask]="{mask: cardmask}" formControlName="cardnumber2">
             <mat-error *ngIf="form.controls.cardnumber2.touched && form.controls.cardnumber2.invalid">
               <mat-error *ngIf="form.controls.cardnumber2.errors.required">
                 Card number cannot be empty
@@ -135,7 +135,7 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
           <mat-form-field>
-            <input matInput placeholder="Expiry Date (MM/YYYY)" [textMask]="{mask: mask}" type="text" formControlName="expirydate">
+            <input matInput placeholder="Expiry Date (MM/YYYY)" [textMask]="{mask: mask}" type="text" (change)="function(expirydate)"formControlName="expirydate">
             <mat-error *ngIf="form.controls.expirydate.touched && form.controls.expirydate.invalid">
               <mat-error *ngIf="form.controls.expirydate.errors.required">
                 Expiry date cannot be empty
@@ -206,10 +206,10 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
           <mat-form-field>
-            <input matInput type="text" placeholder="Card nickname" maxlength="12" formControlName="cardnickname">
+            <input matInput type="text" placeholder="Card Holder" maxlength="12" formControlName="cardnickname">
             <mat-error *ngIf="form.controls.cardnickname.touched && form.controls.cardnickname.invalid">
               <mat-error *ngIf="form.controls.cardnickname.errors.required">
-                Nick name cannot be empty
+                Card Holder name cannot be empty
               </mat-error>
               <mat-error *ngIf="form.controls.cardnickname.errors.minlength">
                 Nick name must be atleast {{form.controls.cardnickname.errors.minlength.requiredLength}} characters
@@ -242,18 +242,18 @@
     <table class="table payment-table">
       <thead>
         <tr>
-          <th>Name</th>
+          <th>Card Holder</th>
           <th>Card Number</th>
           <th>CCV</th>
           <th>Expiry Date</th>
           <!-- <th>Pin Code</th> -->
-          <th>Street Address</th>
+          <!-- <th>Street Address</th>
           <th>Zip Code</th>
           <th>City</th>
           <th>State</th>
-          <th>Country </th>
-          <th>Status</th>
-          <th>Edit</th>
+          <th>Country </th> -->
+          <th>Default</th>
+          <!-- <th>Edit</th> -->
           <th>Delete</th>
         </tr>
       </thead>
@@ -265,20 +265,20 @@
                             <td>{{card.ccv}}</td>
                             <td>{{card.expiryDate }} </td>
                             <!-- <td>{{card.pinCode.length > 0 ? '...' : '****'}} </td> -->
-                            <td>{{card.street_address }} </td>
+                            <!-- <td>{{card.street_address }} </td>
                             <td>{{card.zipcode }} </td>
                             <td> {{card.city }}</td>
                             <td>{{card.state }} </td>
-                            <td> {{card.country }}</td>
+                            <td> {{card.country }}</td> -->
                             <td>{{card.default}}</td>
-          <td>
+          <!-- <td>
             <h3 class="edit-payment">
               <a class="edit" (click)="get(card.default,card.id,card.nickname,card.cardNumber,card.ccv,card.expiryDate,card.street_address,card.zipcode,card.city,card.state,card.country,card.autopay)"
                 data-target="#myModal2" data-toggle="modal">
                 <i class="fa fa-edit"></i>
               </a>
             </h3>
-          </td>
+          </td> -->
           <td>
             <h3 class="edit-payment">
               <a class="delete" (click)="deleteSingleCard(card.id)">

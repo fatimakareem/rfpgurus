@@ -375,12 +375,12 @@
                                 </div>
                             </div> -->
                         </fieldset>
-                        <fieldset>
+                        <!-- <fieldset>
                             <label for="card-ccv" style="font-size:16px;">Enroll in Autopay </label>
                             <mat-slide-toggle name="default" [(ngModel)]="default" data-target="#myModal4" data-toggle="modal" class="py-toggle">
                             </mat-slide-toggle>
                             <span>set as recurring payment method</span>
-                        </fieldset>
+                        </fieldset> -->
                         <button class="btn sh" (click)="proceed()">
 
                             <i class="fa fa-lock"></i> Continue</button>
@@ -406,13 +406,13 @@
                             <th>CCV</th>
                             <th>Expiry Date</th>
                             <!-- <th>Pin Code</th> -->
-                            <th>Street Address</th>
+                            <!-- <th>Street Address</th>
                             <th>Zip Code</th>
                             <th>City</th>
                             <th>State</th>
                             <th>Country </th>
-                            <th>Status</th>
-                            <th>Set as Defalt</th>
+                            <th>Status</th> -->
+                            <th>Set as Default</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -423,12 +423,12 @@
                             <td>{{card.ccv}}</td>
                             <td>{{card.expiryDate }} </td>
                             <!-- <td>{{card.pinCode.length > 0 ? '...' : '****'}} </td> -->
-                            <td>{{card.street_address }} </td>
+                            <!-- <td>{{card.street_address }} </td>
                             <td>{{card.zipcode }} </td>
                             <td> {{card.city }}</td>
                             <td>{{card.state }} </td>
                             <td> {{card.country }}</td>
-                            <td>{{card.default}}</td>
+                            <td>{{card.default}}</td> -->
                             <td>
                                 <mat-slide-toggle name="atm_details" [(ngModel)]="card.default" (click)="setcard(card.default,card.id,card.nickname,card.cardNumber,card.ccv,card.expiryDate,card.street_address,card.zipcode,card.city,card.state,card.country,card.autopay)"
                                     class="py-toggle"></mat-slide-toggle>

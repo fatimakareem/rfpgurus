@@ -27,13 +27,26 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
 card_opeation=[
 {value: 'visa card', viewValue: 'Visa Card'},
 {value: 'master card', viewValue: 'Master Card'},
-{value: 'American Express', viewValue: 'American Expressions Card'}
+{value: 'American Express', viewValue: 'American Express'},
+{value: 'Discover', viewValue: 'Discover'}
 
 ];
   public buttonName: any = 'Show';
   public show2: boolean = false
   endRequest;
-  public mask = [/[0-9]/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
+ public cardsmask=[/[0-9]/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+  // public mask = [/[0,1]/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
+  public mask=function(rawValue) {
+    // add logic to generate your mask array  
+    if (rawValue && rawValue.length > 0) {
+        if (rawValue[0] == '0' || rawValue[5] == '1') {
+            return [/[01]/, /[1-9]/, '/', /[2-9]/, /[0-9]/, /[0-9]/, /[012345679]/];
+        } else {
+            return [/[01]/, /[0-2]/, '/',  /[2-9]/, /[0-9]/, /[0-9]/, /[0123456789]/];
+        }
+    }
+    return [/[01]/, /[0-9]/, '/',  /[2-9]/, /[0-9]/, /[0-9]/, /[0123456789]/];
+}
   cardexist: boolean = false;
   form = new FormGroup({
     cardnumber: new FormControl('', [
@@ -102,7 +115,8 @@ card_opeation=[
   cardnumber2;
   var_box_check: boolean = false;
   destroy_value;
- 
+ public cardmask;
+//  public cardsmask;
   vin_Data = { "city": "", "state": "" };
   private sub: Subscription;
   flipclass = 'credit-card-box';
@@ -115,7 +129,7 @@ card_opeation=[
   ShowButton(var_type_atm) {
     this.cardtype = var_type_atm;
     if (var_type_atm == "American Express") {
-     
+     this.cardmask = [/[3]/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]
       this.cardnumber = false;
       this.form.controls.cardnumber.reset();
       this.cardnumber2 = true;
@@ -123,8 +137,8 @@ card_opeation=[
       this.form.controls.ccv.reset();
       this.ccv2 = true;
     }
-    else  {
-     
+    else if (var_type_atm == "visa card") {
+     this.cardsmask=[/[4]/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
       this.cardnumber2 = false;
       this.form.controls.cardnumber2.reset();
       this.cardnumber = true;
@@ -132,6 +146,23 @@ card_opeation=[
       this.form.controls.ccv2.reset();
       this.ccv = true;
     }
+    else if (var_type_atm == "master card") {
+      this.cardsmask=[/[5]/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+       this.cardnumber2 = false;
+       this.form.controls.cardnumber2.reset();
+       this.cardnumber = true;
+       this.ccv2 = false;
+       this.form.controls.ccv2.reset();
+       this.ccv = true;
+     } else{
+      this.cardsmask=[/[6]/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+       this.cardnumber2 = false;
+       this.form.controls.cardnumber2.reset();
+       this.cardnumber = true;
+       this.ccv2 = false;
+       this.form.controls.ccv2.reset();
+       this.ccv = true;
+     }
   }
   zipcodeCheck(zipcode1) {
     if (zipcode1.length > 4) {
