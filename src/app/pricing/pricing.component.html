@@ -185,7 +185,7 @@
                     </table>
                 </div> -->
             <!-- </div> -->
-            <div class="col-lg-7 col-lg-offset-3 col-md-offset-3 col-md-7 col-sm-12 col-xs-12 sh-plan-form">
+            <div class="col-lg-6 col-md-6 col-sm-6 sh-container-paymnt" *ngIf="message!='No Credit card detail in your list'">
                     <div class="dropdown mydropdown">
                             <select (change)="next_stepdetail($event)" class="btn btn-success record-btn-mail dropdown-toggle text-left"
                                 data-toggle="dropdown" value="{{valuee}}">
@@ -194,6 +194,50 @@
                                 <option value="BM">Monthly Subscription</option>
                             </select>
                         </div>
+                <div class="table-responsive margin-top-20">
+                    <table class="table payment-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Card Number</th>
+                                <th>CCV</th>
+                                <th>Expiry Date</th>
+                                <!-- <th>Pin Code</th> -->
+                                <!-- <th>Street Address</th>
+                                <th>Zip Code</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Country </th>
+                                <th>Status</th> -->
+                                <th>Set as Default</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let card of res">
+                                <td>{{card.nickname}}</td>
+                                <td>{{card.cardNumber}}</td>
+                                <!-- <td>{{card.number | slice:0:4}}-{{card.number | slice:4:8}}-{{card.number | slice:8:12}}</td> -->
+                                <td>{{card.ccv}}</td>
+                                <td>{{card.expiryDate }} </td>
+                                <!-- <td>{{card.pinCode.length > 0 ? '...' : '****'}} </td> -->
+                                <!-- <td>{{card.street_address }} </td>
+                                <td>{{card.zipcode }} </td>
+                                <td> {{card.city }}</td>
+                                <td>{{card.state }} </td>
+                                <td> {{card.country }}</td>
+                                <td>{{card.default}}</td> -->
+                                <td>
+                                    <mat-slide-toggle name="atm_details" [(ngModel)]="card.default" (click)="setcard(card.default,card.id,card.nickname,card.cardNumber,card.ccv,card.expiryDate,card.street_address,card.zipcode,card.city,card.state,card.country,card.autopay)"
+                                        class="py-toggle"></mat-slide-toggle>
+    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 sh-plan-form">
+ 
                 <div class="checkout ">
                     <div [className]="flipclass">
                         <div class="flip">
@@ -394,51 +438,9 @@
 
                 </div>
             </div>
-
+           
         </div>
-        <div class="sh-container-paymnt" *ngIf="message!='No Credit card detail in your list'">
-            <div class="table-responsive margin-top-20">
-                <table class="table payment-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Card Number</th>
-                            <th>CCV</th>
-                            <th>Expiry Date</th>
-                            <!-- <th>Pin Code</th> -->
-                            <!-- <th>Street Address</th>
-                            <th>Zip Code</th>
-                            <th>City</th>
-                            <th>State</th>
-                            <th>Country </th>
-                            <th>Status</th> -->
-                            <th>Set as Default</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let card of res">
-                            <td>{{card.nickname}}</td>
-                            <td>{{card.cardNumber}}</td>
-                            <!-- <td>{{card.number | slice:0:4}}-{{card.number | slice:4:8}}-{{card.number | slice:8:12}}</td> -->
-                            <td>{{card.ccv}}</td>
-                            <td>{{card.expiryDate }} </td>
-                            <!-- <td>{{card.pinCode.length > 0 ? '...' : '****'}} </td> -->
-                            <!-- <td>{{card.street_address }} </td>
-                            <td>{{card.zipcode }} </td>
-                            <td> {{card.city }}</td>
-                            <td>{{card.state }} </td>
-                            <td> {{card.country }}</td>
-                            <td>{{card.default}}</td> -->
-                            <td>
-                                <mat-slide-toggle name="atm_details" [(ngModel)]="card.default" (click)="setcard(card.default,card.id,card.nickname,card.cardNumber,card.ccv,card.expiryDate,card.street_address,card.zipcode,card.city,card.state,card.country,card.autopay)"
-                                    class="py-toggle"></mat-slide-toggle>
-
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        
     </div>
 </div>
 

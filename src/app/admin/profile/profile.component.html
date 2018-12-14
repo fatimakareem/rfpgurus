@@ -112,7 +112,9 @@
                         <div class="col-sm-6">
                             <div class="form-group label-floating" [ngClass]="displayFieldCss(register, 'phone')">
                                 <!-- <mat-form-field class="example-full-width"> -->
-                                        <int-phone-prefix [(ngModel)]="personal.phone_no"  placeholder="Phone No" formControlName="phone" value="{{personal.phone_no}}"></int-phone-prefix>
+                                        <int-phone-prefix class="phonee" [(ngModel)]="personal.phone_no"  placeholder="Phone No" formControlName="phone" value="{{personal.phone_no}}">
+
+                                        </int-phone-prefix>
                                     <!-- <input matInput placeholder="Phone No" type="text" [textMask]="{mask: phoneMask}"
                                         id="phone" formControlName="phone" [(ngModel)]="personal.phone_no" value="{{personal.phone_no}}"
                                         required> -->
