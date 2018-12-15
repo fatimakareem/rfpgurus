@@ -11,13 +11,13 @@ export class AllAgenciesService {
     rfpagency() {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http.get('https://devapis.rfpgurus.com/rf_p/allagency/',
+        return this._http.get('https://apis.rfpgurus.com/rf_p/allagency/',
             { headers: headers }).map((response: Response) => response.json());
     }
     searchrecord(obj) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://devapis.rfpgurus.com/rf_p/search_agency/' + obj + '/',
+        return this._http5.get('https://apis.rfpgurus.com/rf_p/search_agency/' + obj + '/',
             { headers: headers }).map((response: Response) => response.json());
     }
 }

@@ -140,6 +140,8 @@
               <mat-error *ngIf="form.controls.expirydate.errors.required">
                 Expiry date cannot be empty
               </mat-error>
+              <mat-error *ngIf="msg == 'Expiry Date must be greater than current'">Expiry Date must be greater than current</mat-error>
+            
               <mat-error *ngIf="form.controls.expirydate.hasError('pattern')">
                 Expiry date must be in MM/YYYY format.
               </mat-error>
@@ -234,6 +236,7 @@
       </form>
       <mat-slide-toggle name="default" [(ngModel)]=default (change)="changed()" class="py-toggle">Set as Defalt</mat-slide-toggle>
       <mat-slide-toggle name="setautopay" [(ngModel)]=setautopay (change)="changed()">Enroll in Autopay</mat-slide-toggle>
+      <!-- <span>set as recurring payment method</span> -->
     </div>
   </div>
 </div>
@@ -252,8 +255,9 @@
           <th>City</th>
           <th>State</th>
           <th>Country </th> -->
-          <th>Default</th>
+          <!-- <th>Default</th> -->
           <!-- <th>Edit</th> -->
+          <th>Set As Default</th>
           <th>Delete</th>
         </tr>
       </thead>
@@ -270,7 +274,12 @@
                             <td> {{card.city }}</td>
                             <td>{{card.state }} </td>
                             <td> {{card.country }}</td> -->
-                            <td>{{card.default}}</td>
+                            <!-- <td>{{card.default}}</td> -->
+                            <td>
+                              <mat-slide-toggle name="atm_details" [(ngModel)]="card.default" (click)="setcard(card.default,card.autopay,card.id,card.nickname,card.cardNumber,card.ccv,card.expiryDate,card.street_address,card.zipcode,card.city,card.state,card.country)"
+                                  class="py-toggle"></mat-slide-toggle>
+
+                          </td>
           <!-- <td>
             <h3 class="edit-payment">
               <a class="edit" (click)="get(card.default,card.id,card.nickname,card.cardNumber,card.ccv,card.expiryDate,card.street_address,card.zipcode,card.city,card.state,card.country,card.autopay)"

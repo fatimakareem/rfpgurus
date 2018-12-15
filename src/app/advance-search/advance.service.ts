@@ -13,41 +13,41 @@ export class AdvanceService {
   searchrecord(obj) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http5.get('https://devapis.rfpgurus.com/rf_p/search_id/' + obj + '/',
+    return this._http5.get('https://apis.rfpgurus.com/rf_p/search_id/' + obj + '/',
       { headers: headers }).map((response: Response) => response.json());
   }
   rfpstate() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http5.get('https://devapis.rfpgurus.com/rf_p/allstate/',
+    return this._http5.get('https://apis.rfpgurus.com/rf_p/allstate/',
       { headers: headers }).map((response: Response) => response.json());
   }
   rfpcategory() {
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http5.get('https://devapis.rfpgurus.com/rf_p/allcategory/',
+    return this._http5.get('https://apis.rfpgurus.com/rf_p/allcategory/',
       { headers: headers }).map((response: Response) => response.json());
   }
   rfpcity() {
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http5.get('https://devapis.rfpgurus.com/allcites/',
+    return this._http5.get('https://apis.rfpgurus.com/allcites/',
       { headers: headers }).map((response: Response) => response.json());
   }
   rfpcounty() {
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http5.get('https://devapis.rfpgurus.com/allcounty/',
+    return this._http5.get('https://apis.rfpgurus.com/allcounty/',
       { headers: headers }).map((response: Response) => response.json());
   }
   rfpagency() {
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http.get('https://devapis.rfpgurus.com/rf_p/allagency/',
+    return this._http.get('https://apis.rfpgurus.com/rf_p/allagency/',
       { headers: headers }).map((response: Response) => response.json());
   }
   downloadFile(id) {
@@ -56,7 +56,7 @@ export class AdvanceService {
       headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
     }
     headers.append('Content-Type', 'application/json');
-    return this._http5.get('https://devapis.rfpgurus.com/rf_p/download_file/' + id + '/',
+    return this._http5.get('https://apis.rfpgurus.com/rf_p/download_file/' + id + '/',
       { headers: headers }).map((response: Response) => response.json());
   }
   searchrfprecord(Rfpnum, title, status, enterdate, duedate, state, agency, cat, items, page) {
@@ -65,7 +65,7 @@ export class AdvanceService {
       headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
     }
     headers.append('Content-Type', 'application/json');
-    return this._http.put('https://devapis.rfpgurus.com/rf_p/filters/' + items + '/?page=' + page,
+    return this._http.put('https://apis.rfpgurus.com/rf_p/filters/' + items + '/?page=' + page,
       JSON.stringify({
         "rfp_key": Rfpnum,
         "title": title,
@@ -79,7 +79,7 @@ export class AdvanceService {
       { headers: headers }).map((response: Response) => response.json());
   }
   usersubscribe(username) {
-    return this._http5.post('https://devapis.rfpgurus.com/pkg_sub/', {
+    return this._http5.post('https://apis.rfpgurus.com/pkg_sub/', {
       'username': username
     }).map((res: Response) => res.json())
   }

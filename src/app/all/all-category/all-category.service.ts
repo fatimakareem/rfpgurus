@@ -11,14 +11,14 @@ export class AllCategoryService {
     rfpcategory() {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http.get('https://devapis.rfpgurus.com/rf_p/allcategory/',
+        return this._http.get('https://apis.rfpgurus.com/rf_p/allcategory/',
             { headers: headers }).map((response: Response) => response.json());
     }
     searchrecord(obj) {
 
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://devapis.rfpgurus.com/rf_p/search_category/' + obj + '/',
+        return this._http5.get('https://apis.rfpgurus.com/rf_p/search_category/' + obj + '/',
             { headers: headers }).map((response: Response) => response.json());
     }
 }

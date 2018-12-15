@@ -8,12 +8,12 @@ export class UnsubscribeService {
   unsub(uid) {
     console.log(uid)
     let headers = new Headers();
-    return this.http.delete('https://devapis.rfpgurus.com/unsubscribe/' + uid +'/', { headers: headers }).map((response: Response) => response.json());
+    return this.http.delete('https://apis.rfpgurus.com/unsubscribe/' + uid +'/', { headers: headers }).map((response: Response) => response.json());
 }
 qurey(uid,comment) {
   console.log(uid)
   let headers = new Headers();
-  return this.http.post('https://devapis.rfpgurus.com/unsubscribe_query/',{
+  return this.http.post('https://apis.rfpgurus.com/unsubscribe_query/',{
     "email":uid,
 "comment":comment
 }, { headers: headers }).map((response: Response) => response.json());

@@ -23,7 +23,7 @@ sortby(obj,order,cat,page,pageSize){
     }
     headers.append('Content-Type', 'application/json');
     // http://192.168.30.132:8000/rf_p/search_with_sort/roo/-1/state/asc?page=1
-    return this._http5.get('https://devapis.rfpgurus.com/rf_p/search_with_sort/'+cat +'/'+pageSize+'/'+obj+'/'+order+'?page='+page,
+    return this._http5.get('https://apis.rfpgurus.com/rf_p/search_with_sort/'+cat +'/'+pageSize+'/'+obj+'/'+order+'?page='+page,
         {headers: headers}).map((response: Response) => response.json());
 }
     searchrfprecord(obj,items, page) {
@@ -33,13 +33,13 @@ sortby(obj,order,cat,page,pageSize){
             headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
         }
         headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://devapis.rfpgurus.com/rf_p/search_id/'+obj+'/'+items+'?page='+page,{headers: headers}).map((response: Response) => response.json());
+        return this._http5.get('https://apis.rfpgurus.com/rf_p/search_id/'+obj+'/'+items+'?page='+page,{headers: headers}).map((response: Response) => response.json());
     }
     toalsearchrecord(obj) {
 
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://devapis.rfpgurus.com/rf_p/totalrfp/'+obj+'/10?page=1',
+        return this._http5.get('https://apis.rfpgurus.com/rf_p/totalrfp/'+obj+'/10?page=1',
             {headers: headers}).map((response: Response) => response.json());
 
     }
@@ -50,14 +50,14 @@ sortby(obj,order,cat,page,pageSize){
         }
         headers.append('Content-Type', 'application/json');
 
-        return this._http5.get('https://devapis.rfpgurus.com/rf_p/download_file/'+id+'/',
+        return this._http5.get('https://apis.rfpgurus.com/rf_p/download_file/'+id+'/',
             {headers: headers}).map((response: Response) => response.json());
     }
 
 
     usersubscribe(username)
     {
-        return this._http5.post('https://devapis.rfpgurus.com/pkg_sub/',{
+        return this._http5.post('https://apis.rfpgurus.com/pkg_sub/',{
             'username':username
         }).map((res: Response) => res.json() )
     }

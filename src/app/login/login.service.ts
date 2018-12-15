@@ -21,7 +21,7 @@ export class LoginService {
     login(username: string, password: string) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http5.post('https://devapis.rfpgurus.com/user-token-auth/',
+        return this._http5.post('https://apis.rfpgurus.com/user-token-auth/',
             JSON.stringify({ username: username, password: password }), { headers: headers })
             .map((response: Response) => {
                 let user = { userid: this.jwtHelper.decodeToken(response.json().token).user_id, username: this.jwtHelper.decodeToken(response.json().token).username, token: response.json().token };
@@ -38,20 +38,20 @@ export class LoginService {
 
 
     login_authenticate(username) {
-        return this._http5.post('https://devapis.rfpgurus.com/ac_login/', {
+        return this._http5.post('https://apis.rfpgurus.com/ac_login/', {
             'username': username
         }).map((res: Response) => res.json())
     }
 
 
     post_service(obj) {
-        return this._http5.post("https://devapis.rfpgurus.com/register/", {
+        return this._http5.post("https://apis.rfpgurus.com/register/", {
             'obj': obj
         }).map((res: Response) => res.json());
     }
     activation_service(email) {
         console.log(email);
-        return this._http5.post("https://devapis.rfpgurus.com/ac_code/", {
+        return this._http5.post("https://apis.rfpgurus.com/ac_code/", {
             'email': email
         }).map((res: Response) => res.json())
     }
@@ -59,16 +59,16 @@ export class LoginService {
     authenticate_service(uid) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://devapis.rfpgurus.com/activate/' + uid,
+        return this._http5.get('https://apis.rfpgurus.com/activate/' + uid,
             { headers: headers }).map((response: Response) => response.json());
     }
     forget_password(email) {
-        return this._http5.post('https://devapis.rfpgurus.com/forget_password/', {
+        return this._http5.post('https://apis.rfpgurus.com/forget_password/', {
             'email': email
         }).map((res: Response) => res.json())
     }
     change_password(pass1, pass2, code) {
-        return this._http5.post('https://devapis.rfpgurus.com/change_password/', {
+        return this._http5.post('https://apis.rfpgurus.com/change_password/', {
             'pass1': pass1,
             'pass2': pass2,
             'code': code,

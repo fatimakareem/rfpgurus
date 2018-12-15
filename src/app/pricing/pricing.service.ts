@@ -15,13 +15,13 @@ export class PricingService {
         if(localStorage.getItem('currentUser')){
         let headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
         headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://devapis.rfpgurus.com/payment/cardinfo/', { headers: headers }).map((response: Response) => response.json());
+        return this._http5.get('https://apis.rfpgurus.com/payment/cardinfo/', { headers: headers }).map((response: Response) => response.json());
     }}
     loaded: boolean = false;
     login(username: string, password: string) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http5.post('https://devapis.rfpgurus.com/user-token-auth/',
+        return this._http5.post('https://apis.rfpgurus.com/user-token-auth/',
             JSON.stringify({ username: username, password: password }), { headers: headers })
             .map((response: Response) => {
                 let user = { username: username, token: response.json().token };
@@ -32,36 +32,36 @@ export class PricingService {
             });
     }
     login_authenticate(username) {
-        return this._http5.post('https://devapis.rfpgurus.com/ac_login/', {
+        return this._http5.post('https://apis.rfpgurus.com/ac_login/', {
             'username': username
         }).map((res: Response) => res.json())
     }
     post_service(obj) {
         console.log('service');
         console.log(obj);
-        return this._http5.post("https://devapis.rfpgurus.com/register/", {
+        return this._http5.post("https://apis.rfpgurus.com/register/", {
             'obj': obj
         }).map((res: Response) => res.json());
     }
     activation_service(email) {
         console.log(email);
-        return this._http5.post("https://devapis.rfpgurus.com/ac_code/", {
+        return this._http5.post("https://apis.rfpgurus.com/ac_code/", {
             'email': email
         }).map((res: Response) => res.json())
     }
     authenticate_service(uid) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://devapis.rfpgurus.com/activate/' + uid,
+        return this._http5.get('https://apis.rfpgurus.com/activate/' + uid,
             { headers: headers }).map((response: Response) => response.json());
     }
     forget_password(email) {
-        return this._http5.post('https://devapis.rfpgurus.com/forget_password/', {
+        return this._http5.post('https://apis.rfpgurus.com/forget_password/', {
             'email': email
         }).map((res: Response) => res.json())
     }
     change_password(pass1, pass2, code) {
-        return this._http5.post('https://devapis.rfpgurus.com/change_password/', {
+        return this._http5.post('https://apis.rfpgurus.com/change_password/', {
             'pass1': pass1,
             'pass2': pass2,
             'code': code,
@@ -73,7 +73,7 @@ export class PricingService {
         headers.append('Content-Type', 'application/json');
         if(status == false){
         // if (pkgdetail.type == 'F') {
-        //     return this._http5.post("https://devapis.rfpgurus.com/package/",
+        //     return this._http5.post("https://apis.rfpgurus.com/package/",
         //         JSON.stringify({
         //             'username': username,
         //             'pricepackage': pkgdetail.type,
@@ -82,7 +82,7 @@ export class PricingService {
         //         { headers: headers }).map((res: Response) => res.json())
         // }
         // else {
-            return this._http5.post("https://devapis.rfpgurus.com/package/",
+            return this._http5.post("https://apis.rfpgurus.com/package/",
                 JSON.stringify({
                     'username': username,
                     'pricepackage': pkgdetail.type,
@@ -96,7 +96,7 @@ export class PricingService {
         // }
     }
         else if(status == true){
-            return this._http5.post("https://devapis.rfpgurus.com/package/",
+            return this._http5.post("https://apis.rfpgurus.com/package/",
             JSON.stringify({
                
                 "id":id,
@@ -110,7 +110,7 @@ export class PricingService {
     updateCard(var_status,id, name, cardno, ccv, expiryDate, address, zip, city, state, country,set_auto_pay) {
         let header = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
         header.append('Content-Type', 'application/json');
-        return this._http5.put('https://devapis.rfpgurus.com/payment/cardinfo/',
+        return this._http5.put('https://apis.rfpgurus.com/payment/cardinfo/',
           JSON.stringify({
             // "cardNumber": cardno,
             "default": var_status,

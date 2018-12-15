@@ -15,7 +15,7 @@ export class ChangedPasswordService {
     user_change_password(oldpass, pass1, pass2) {
         let headers = new Headers({ 'Authorization': 'JWT ' + this.currentUser.token });
         headers.append('Content-Type', 'application/json');
-        return this._http5.put('https://devapis.rfpgurus.com/user_change_password/' + this.currentUser.username + '/',
+        return this._http5.put('https://apis.rfpgurus.com/user_change_password/' + this.currentUser.username + '/',
             JSON.stringify({
                 "currentPassword": oldpass,
                 "newPassword": pass1,

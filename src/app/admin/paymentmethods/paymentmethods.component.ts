@@ -33,29 +33,33 @@ card_opeation=[
 ];
   public buttonName: any = 'Show';
   public show2: boolean = false
-  endRequest;
+  endRequest;msg;
  public cardsmask=[/[0-9]/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
   // public mask = [/[0,1]/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
+  function(rawValue) {
+    if(rawValue[5][6] == '18'){
+      this.msg= "Expiry Date must be greater than current"
+    }}
   public mask=function(rawValue) {
+   
     // add logic to generate your mask array  
     if (rawValue && rawValue.length > 0) {
         if (rawValue[0] == '0' || rawValue[5] == '1') {
-            return [/[01]/, /[1-9]/, '/', /[2-9]/, /[0-9]/, /[0-9]/, /[012345679]/];
+            return [/[01]/, /[1-9]/, '/', /[2-9]/, /[0-9]/, /[0-9]/, /[0123456789]/];
         } else {
             return [/[01]/, /[0-2]/, '/',  /[2-9]/, /[0-9]/, /[0-9]/, /[0123456789]/];
         }
     }
     return [/[01]/, /[0-9]/, '/',  /[2-9]/, /[0-9]/, /[0-9]/, /[0123456789]/];
+    
 }
   cardexist: boolean = false;
   form = new FormGroup({
     cardnumber: new FormControl('', [
       Validators.required,
-      Validators.pattern('^[0-9]*$')
     ]),
     cardnumber2: new FormControl('', [
       Validators.required,
-      Validators.pattern('^[0-9]*$')
     ]),
     ccv: new FormControl('', [
       Validators.required,
@@ -177,13 +181,58 @@ card_opeation=[
         });
     }
   }
+  
+  updefault;
+  setcard(status,autopay,id, name, updatecardnumber, updateccv, date, updateaddress, updatezip, updatecity, updatestate, updatecountry) {
+    if (status == false) {
+      this.updefault = true;
+    }
+    else if (status == true) {
+      this.updefault = false;
+    }
+
+    this.endRequest = this.serv.updateCard(status,autopay,id, name, updatecardnumber, updateccv, date, updateaddress, updatezip, updatecity, updatestate, updatecountry).subscribe(Data => {
+      // swal({
+      //   type: 'success',
+      //   title: 'Credit Card Details Are Updated!',
+      //   showConfirmButton: false,
+      //   timer: 1500
+      // })
+      
+      this.getCards();
+    },
+      error => {
+        if (error.status == 400) {
+          swal({
+            type: 'error',
+            title: 'Credit Card Details Are Not Correct!',
+            showConfirmButton: false,
+            timer: 1500,width: '512px',
+          })
+        }
+        else if (error.status == 500) {
+          swal(
+            'Sorry',
+            'Server Is Under Maintenance!',
+            'error'
+          )
+        }
+        else {
+          swal(
+            'Sorry',
+            'Some Thing Went Worrng!',
+            'error'
+          )
+        }
+      })
+  }
   ngOnInit() {
     this.getCards();
   }
   cardid = "";
   card;
   default: boolean = false;
-  updefault;
+  
   name;
   cardnumber;
   ccv;

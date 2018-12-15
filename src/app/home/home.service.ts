@@ -13,25 +13,25 @@ export class HomeService {
   searchrecord(obj) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http5.get('https://devapis.rfpgurus.com/rf_p/search_id/' + obj + '/',
+    return this._http5.get('https://apis.rfpgurus.com/rf_p/search_id/' + obj + '/',
       { headers: headers }).map((response: Response) => response.json());
   }
   rfpstate() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http5.get('https://devapis.rfpgurus.com/rf_p/allstate/',
+    return this._http5.get('https://apis.rfpgurus.com/rf_p/allstate/',
       { headers: headers }).map((response: Response) => response.json());
   }
   latestrfps() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http5.get('https://devapis.rfpgurus.com/rf_p/latest/10?page=1',
+    return this._http5.get('https://apis.rfpgurus.com/rf_p/latest/10?page=1',
       { headers: headers }).map((response: Response) => response.json());
   }
   rfpcategory() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http5.get('https://devapis.rfpgurus.com/rf_p/allcategory/',
+    return this._http5.get('https://apis.rfpgurus.com/rf_p/allcategory/',
       { headers: headers }).map((response: Response) => response.json());
   }
   searchrfprecord(status, enterdate, duedate, state, cat, items, page) {
@@ -41,7 +41,7 @@ export class HomeService {
     }
     headers.append('Content-Type', 'application/json');
     console.log(enterdate, duedate);
-    return this._http.put('https://devapis.rfpgurus.com/rf_p/filters/' + items + '/?page=' + page,
+    return this._http.put('https://apis.rfpgurus.com/rf_p/filters/' + items + '/?page=' + page,
       JSON.stringify({
         "status": status,
         "posted_from": enterdate,
@@ -52,7 +52,7 @@ export class HomeService {
       { headers: headers }).map((response: Response) => response.json());
   }
   usersubscribe(username) {
-    return this._http5.post('https://devapis.rfpgurus.com/pkg_sub/', {
+    return this._http5.post('https://apis.rfpgurus.com/pkg_sub/', {
       'username': username
     }).map((res: Response) => res.json())
   }

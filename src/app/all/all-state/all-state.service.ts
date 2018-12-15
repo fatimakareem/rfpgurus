@@ -11,13 +11,13 @@ export class AllStateService {
     rfpstate() {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http.get('https://devapis.rfpgurus.com/rf_p/allstate/',
+        return this._http.get('https://apis.rfpgurus.com/rf_p/allstate/',
             { headers: headers }).map((response: Response) => response.json());
     }
     searchrecord(obj) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://devapis.rfpgurus.com/rf_p/search_state/' + obj + '/',
+        return this._http5.get('https://apis.rfpgurus.com/rf_p/search_state/' + obj + '/',
             { headers: headers }).map((response: Response) => response.json());
     }
 }

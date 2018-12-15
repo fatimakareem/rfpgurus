@@ -18,7 +18,7 @@ export class MainService {
 
         let headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
         headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://devapis.rfpgurus.com/payment/history/'+JSON.parse(localStorage.getItem('currentUser')).username+'/',
+        return this._http5.get('https://apis.rfpgurus.com/payment/history/'+JSON.parse(localStorage.getItem('currentUser')).username+'/',
             {headers: headers}).map((response: Response) => response.json());
 
     }
@@ -27,7 +27,7 @@ export class MainService {
     expirePackage(expDate){
         let headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
         headers.append('Content-Type', 'application/json');
-        return this._http5.post("https://devapis.rfpgurus.com/payment/history/"+JSON.parse(localStorage.getItem('currentUser')).username+"/",
+        return this._http5.post("https://apis.rfpgurus.com/payment/history/"+JSON.parse(localStorage.getItem('currentUser')).username+"/",
             JSON.stringify({
                 'pkgdate': expDate,
 
@@ -41,7 +41,7 @@ export class MainService {
 
         let headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
         headers.append('Content-Type', 'application/json');
-        return this._http5.put("https://devapis.rfpgurus.com/payment/history/"+JSON.parse(localStorage.getItem('currentUser')).username+"/",
+        return this._http5.put("https://apis.rfpgurus.com/payment/history/"+JSON.parse(localStorage.getItem('currentUser')).username+"/",
             JSON.stringify({
                 'pricepackage': pkgdetail.type,
                 'duration': pkgdetail.dur,
