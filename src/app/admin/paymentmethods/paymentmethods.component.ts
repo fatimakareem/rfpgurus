@@ -32,14 +32,15 @@ card_opeation=[
 
 ];
   public buttonName: any = 'Show';
+  expirydate;
   public show2: boolean = false
   endRequest;msg;
  public cardsmask=[/[0-9]/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
   // public mask = [/[0,1]/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
-  function(rawValue) {
-    if(rawValue[5][6] == '18'){
-      this.msg= "Expiry Date must be greater than current"
-    }}
+  chek(val){
+    this.expirydate=val.toString().slice(3,7);
+    console.log(this.expirydate,'jj')
+  }
   public mask=function(rawValue) {
    
     // add logic to generate your mask array  
@@ -236,7 +237,7 @@ card_opeation=[
   name;
   cardnumber;
   ccv;
-  expirydate;
+
   address;
   zip;
   city;

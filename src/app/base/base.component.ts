@@ -5,6 +5,8 @@ import { PagerService } from '../rfps/rfp/paginator.service';
 import * as moment from 'moment';
 import { AdvanceService } from '../advance-search/advance.service';
 import { ActivatedRoute } from '@angular/router';
+import {HttpService} from '../serv/http-service';
+
 @Component({
   selector: 'app-base',
   templateUrl: './base.component.html',
@@ -36,7 +38,7 @@ export class BaseComponent implements OnInit {
   item;
   length;
   search = false;
-  constructor(private route: ActivatedRoute, private _adserv: AdvanceService, private pagerService: PagerService, private http: Http, private _nav: Router) {
+  constructor(private route: ActivatedRoute, private _adserv: AdvanceService, private pagerService: PagerService, private http: HttpService, private _nav: Router) {
   }
   ngOnInit() {
     // this.setpage(1);

@@ -6,7 +6,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxCarouselModule } from 'ngx-carousel';
-import { LoaderComponent } from './loader/loader.component';
+// import { LoaderComponent } from './loader/loader.component';
 import { ProgressHttpModule } from "angular-progress-http";
 import { UsMapModule } from 'angular-us-map';
 import { InternationalPhoneModule } from 'ng4-intl-phone';
@@ -154,6 +154,7 @@ export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestO
 /////////////////////////Social login//////////////////////////////
 import { SocialLoginModule, AuthServiceConfig } from "angular4-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angular4-social-login";
+import { LoaderModule } from './loader/loader.module';
 // import { partnershipservice } from './partnership/partnership.service';
 // import { SlickModule } from 'ngx-slick';
 let config = new AuthServiceConfig([
@@ -238,6 +239,7 @@ export class MaterialModule { }
         MatTooltipModule,
         MatStepperModule,
         SocialLoginModule,
+        LoaderModule,
     ],
     declarations: [
         AdminComponent,
@@ -256,7 +258,7 @@ export class MaterialModule { }
         RfpComponent,
         PreloaderFull,
         PreloaderSmall,
-        LoaderComponent,
+        // LoaderComponent,
         RegisteredComponent,
         AuthenticateComponent,
         LoginComponent,

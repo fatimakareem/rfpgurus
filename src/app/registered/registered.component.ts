@@ -42,6 +42,7 @@ export class RegisteredComponent implements OnInit,OnDestroy {
     @ViewChild(RecaptchaComponent) captcha: RecaptchaComponent;
     endRequest;
     hide = true;
+    phone;
     public typeValidation: User;
     register: FormGroup;
     emailVerify: FormGroup;

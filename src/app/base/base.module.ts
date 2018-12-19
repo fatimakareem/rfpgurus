@@ -7,6 +7,7 @@ import { MatInputModule, MatFormFieldModule, MatSelectModule, MatDatepickerModul
 import { TextMaskModule } from 'angular2-text-mask';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MatNativeDateModule, DateAdapter } from '@angular/material';
+import {LoaderModule} from '../loader/loader.module'
 const routes: Routes = [
   {
     path: '', component: BaseComponent
@@ -14,7 +15,7 @@ const routes: Routes = [
 ]
 @NgModule({
   imports: [
-    CommonModule,
+    CommonModule,LoaderModule,
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,

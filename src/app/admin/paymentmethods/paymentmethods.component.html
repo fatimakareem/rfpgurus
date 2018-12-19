@@ -133,20 +133,27 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pos-rel">
           <mat-form-field>
-            <input matInput placeholder="Expiry Date (MM/YYYY)" [textMask]="{mask: mask}" type="text" (change)="function(expirydate)"formControlName="expirydate">
+            <input matInput placeholder="Expiry Date (MM/YYYY)" [textMask]="{mask: mask}" type="text" formControlName="expirydate" #exp (change)="chek(exp.value)">
+           
             <mat-error *ngIf="form.controls.expirydate.touched && form.controls.expirydate.invalid">
               <mat-error *ngIf="form.controls.expirydate.errors.required">
                 Expiry date cannot be empty
               </mat-error>
-              <mat-error *ngIf="msg == 'Expiry Date must be greater than current'">Expiry Date must be greater than current</mat-error>
+              <!-- <div *ngIf="expirydate == 12/2018">
+                Invalid Expiry Date
+              </div> -->
+              <!-- <div *ngIf="msg == 'Expiry Date must be greater than current'">Expiry Date must be greater than current</div> -->
             
               <mat-error *ngIf="form.controls.expirydate.hasError('pattern')">
                 Expiry date must be in MM/YYYY format.
               </mat-error>
             </mat-error>
-          </mat-form-field>
+          </mat-form-field> 
+          <span class="card-error" *ngIf="expirydate <= '2018'">
+            Invalid Expiry Date
+          </span> 
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
           <mat-form-field>
