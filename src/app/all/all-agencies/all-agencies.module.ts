@@ -6,6 +6,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatInputModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
 import { TextMaskModule } from 'angular2-text-mask';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {LoaderModule} from './../../loader/loader.module'
+
 const routes: Routes = [
   {
     path: '', component: AllAgenciesComponent
@@ -13,7 +15,7 @@ const routes: Routes = [
 ]
 @NgModule({
   imports: [
-    CommonModule,
+    CommonModule,LoaderModule,
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,

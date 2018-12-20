@@ -63,9 +63,45 @@ export class ProfileComponent implements OnInit, OnDestroy {
         if (preference != "") {
             console.log(preference)
             // this.tempstatePreference.push(preference.toString());
+            this.endRequest = this._adserv.rfpcounty(this.tempstatePreference).subscribe(
+                data => {
+                    this.county = data[0];
+                    console.log(this.county);
+                },
+                error => {
+                    // console.log(error);
+                }
+            )
+            this.endRequest = this._adserv.rfpagency(this.tempstatePreference).subscribe(
+                data => {
+                    this.agency = data[0];
+                    console.log(this.agency);
+                },
+                error => {
+                    // console.log(error);
+                }
+            )
 
         } else if (preference == "") {
             this.tempstatePreference.splice(status, 1);
+            this.endRequest = this._adserv.rfpcounty(this.tempstatePreference).subscribe(
+                data => {
+                    this.county = data[0];
+                    console.log(this.county);
+                },
+                error => {
+                    // console.log(error);
+                }
+            )
+            this.endRequest = this._adserv.rfpagency(this.tempstatePreference).subscribe(
+                data => {
+                    this.agency = data[0];
+                    console.log(this.agency);
+                },
+                error => {
+                    // console.log(error);
+                }
+            )
         } console.log('zikikiki', this.tempstatePreference);
     }
     valueSelected2(preference, status) {
@@ -81,9 +117,28 @@ export class ProfileComponent implements OnInit, OnDestroy {
         if (preference != "") {
         console.log(preference)
         // this.tempcountyPreference.push(preference.toString());
+                        this.endRequest = this._adserv.rfpcity(this.tempcountyPreference).subscribe(
+                            data => {
+                                this.city = data[0];
+                                console.log(this.city);
+                            },
+                            error => {
+                                // console.log(error);
+                            }
+                        )
     }
         else if (preference == "") {
+            console.log(preference)
             this.tempcountyPreference.splice(status, 1);
+                        this.endRequest = this._adserv.rfpcity(this.tempcountyPreference).subscribe(
+                            data => {
+                                this.city = data[0];
+                                console.log(this.city);
+                            },
+                            error => {
+                                // console.log(error);
+                            }
+                        )
         } 
         console.log('zikikiki', this.tempcountyPreference);
     }
@@ -97,13 +152,33 @@ export class ProfileComponent implements OnInit, OnDestroy {
         } 
         console.log('zikikiki', this.tempagencyPreference);
     }
-    remove(preference, index: number) {
+    remove(preference, index) {
         console.log(preference);
         this.tempUserPreference.splice(index, 1);
+        // this.valueSelected(preference, status);
+        console.log(this.tempUserPreference);
     }
     remove1(preference, index: number) {
         console.log(preference);
         this.tempstatePreference.splice(index, 1);
+        this.endRequest = this._adserv.rfpcounty(this.tempstatePreference).subscribe(
+            data => {
+                this.county = data[0];
+                console.log(this.county);
+            },
+            error => {
+                // console.log(error);
+            }
+        )
+        this.endRequest = this._adserv.rfpagency(this.tempstatePreference).subscribe(
+            data => {
+                this.agency = data[0];
+                console.log(this.agency);
+            },
+            error => {
+                // console.log(error);
+            }
+        )
 
     }
     remove2(preference, index: number) {
@@ -112,9 +187,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     }
     remove3(preference, index: number) {
-        console.log(preference);
+        // console.log(preference);
         this.tempcountyPreference.splice(index, 1);
-
+        // this.tempcountyPreference.splice(status, 1);
+        console.log(this.tempcountyPreference);
+                        this.endRequest = this._adserv.rfpcity(this.tempcountyPreference).subscribe(
+                            data => {
+                                this.city = data[0];
+                                console.log(this.city);
+                            },
+                            error => {
+                                // console.log(error);
+                            }
+                        )
     }
     remove4(preference, index: number) {
         console.log(preference);
@@ -174,31 +259,59 @@ export class ProfileComponent implements OnInit, OnDestroy {
                         this.UserPreference = [];
                     } else {
                         this.UserPreference = data['user_preference'];
-                        this.tempUserPreference = this.UserPreference.slice();
+                        this.tempUserPreference = this.UserPreference;
                     }
                     if (data['state_preference'] == null) {
                         this.statePreference = [];
                     } else {
                         this.statePreference = data['state_preference'];
-                        this.tempstatePreference = this.statePreference.slice();
-                    }
-                    if (data['city_preference'] == null) {
-                        this.cityPreference = [];
-                    } else {
-                        this.cityPreference = data['city_preference'];
-                        this.tempcityPreference = this.cityPreference.slice();
+                        this.tempstatePreference = this.statePreference;
+                        this.endRequest = this._adserv.rfpcounty(this.tempstatePreference).subscribe(
+                            data => {
+                                this.county = data[0];
+                                console.log(this.county);
+                            },
+                            error => {
+                                // console.log(error);
+                            }
+                        )
+                        this.endRequest = this._adserv.rfpagency(this.tempstatePreference).subscribe(
+                            data => {
+                                this.agency = data[0];
+                                console.log(this.agency);
+                            },
+                            error => {
+                                // console.log(error);
+                            }
+                        )
                     }
                     if (data['county_preference'] == null) {
                         this.countyPreference = [];
                     } else {
                         this.countyPreference = data['county_preference'];
-                        this.tempcountyPreference = this.countyPreference.slice();
+                        this.tempcountyPreference = this.countyPreference;
+                        this.endRequest = this._adserv.rfpcity(this.tempcountyPreference).subscribe(
+                            data => {
+                                this.city = data[0];
+                                console.log(this.city);
+                            },
+                            error => {
+                                // console.log(error);
+                            }
+                        )
                     }
+                    if (data['city_preference'] == null) {
+                        this.cityPreference = [];
+                    } else {
+                        this.cityPreference = data['city_preference'];
+                        this.tempcityPreference = this.cityPreference;
+                    }
+                   
                     if (data['agency_preference'] == null) {
                         this.agencyPreference = [];
                     } else {
                         this.agencyPreference = data['agency_preference'];
-                        this.tempagencyPreference = this.agencyPreference.slice();
+                        this.tempagencyPreference = this.agencyPreference;
                     }
                     console.log('UserPreference isss', this.UserPreference);
                 },
@@ -373,33 +486,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 // console.log(error);
             }
         )
-        this.endRequest = this._adserv.rfpcity().subscribe(
-            data => {
-                this.city = data;
-                console.log(this.city);
-            },
-            error => {
-                // console.log(error);
-            }
-        )
-        this.endRequest = this._adserv.rfpcounty().subscribe(
-            data => {
-                this.county = data;
-                console.log(this.county);
-            },
-            error => {
-                // console.log(error);
-            }
-        )
-        this.endRequest = this._adserv.rfpagency().subscribe(
-            data => {
-                this.agency = data.Result;
-                console.log(this.agency);
-            },
-            error => {
-                // console.log(error);
-            }
-        )
+      
+       
         this.endRequest = this._adserv.rfpstate().subscribe(
             data => {
                 this.state = data.Result;
@@ -409,6 +497,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 // console.log(error);
             }
         )
+        
+
         $('#click_advance').click(function () {
             $("i", this).toggleClass("fa-arrow-left fa-arrow-right");
         });

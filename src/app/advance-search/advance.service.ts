@@ -29,21 +29,28 @@ export class AdvanceService {
     return this._http5.get('https://apis.rfpgurus.com/rf_p/allcategory/',
       { headers: headers }).map((response: Response) => response.json());
   }
-  rfpcity() {
+  rfpcity(value) {
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http5.get('https://apis.rfpgurus.com/allcites/',
+    return this._http5.post('https://apis.rfpgurus.com/county_city',JSON.stringify({"county":value}),
       { headers: headers }).map((response: Response) => response.json());
   }
-  rfpcounty() {
+  rfpcounty(value) {
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http5.get('https://apis.rfpgurus.com/allcounty/',
+    return this._http5.post('https://apis.rfpgurus.com/state_county',JSON.stringify({"state":value}),
       { headers: headers }).map((response: Response) => response.json());
   }
-  rfpagency() {
+  rfpagency(value) {
+
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http.post('https://apis.rfpgurus.com/state_agency',JSON.stringify({"state":value}),
+      { headers: headers }).map((response: Response) => response.json());
+  }
+  rfpagencys() {
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');

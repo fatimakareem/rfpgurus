@@ -26,11 +26,11 @@ export class AppComponent implements OnInit {
             // if(window.console || window.console) {
             
            
-        this.time=new Date()
-        // setTimeout(function(){localStorage.removeItem("currentUser");}, 1000*60);
-        if(localStorage.getItem("exp") == this.time){
-            localStorage.clear();
-        }
+        // this.time=new Date()
+        // // setTimeout(function(){localStorage.removeItem("currentUser");}, 1000*60);
+        // if(localStorage.getItem("exp") == this.time){
+        //     localStorage.clear();
+        // }
         $.material.options.autofill = true;
         $.material.init();
         this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {
