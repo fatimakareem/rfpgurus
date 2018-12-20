@@ -5,6 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatInputModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
 import { TextMaskModule } from 'angular2-text-mask';
+import {LoaderModule} from './../../loader/loader.module'
+
 const routes: Routes = [
   {
     path: '', component: AllRfpsComponent
@@ -12,7 +14,7 @@ const routes: Routes = [
 ]
 @NgModule({
   imports: [
-    CommonModule,
+    CommonModule,LoaderModule,
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,

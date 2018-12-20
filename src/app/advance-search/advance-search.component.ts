@@ -314,7 +314,7 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
         // console.log(error);
       }
     )
-    this.endRequest = this._serv.rfpagency().subscribe(
+    this.endRequest = this._serv.rfpagencys().subscribe(
       data => {
         this.agency = data.Result;
       }

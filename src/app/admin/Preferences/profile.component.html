@@ -29,7 +29,7 @@
                                             <div class="col-md-8">
                                             <mat-form-field class="example-chip-list" *ngIf="tempUserPreference !=null">
                                                         <mat-chip-list #chipList>
-                                                          <mat-chip *ngFor="let list of tempUserPreference; let i=index" [selectable]="selectable"
+                                                          <mat-chip *ngFor="let list of tempUserPreference; let i=index" [selectable]="selectable" 
                                                                    [removable]="removable" (removed)="remove(list, $event)">
                                                                    {{list}}
                                                             <mat-icon matChipRemove *ngIf="removable"><i class="fa fa-close " (change)="remove(list, $event)"></i></mat-icon>
@@ -95,9 +95,9 @@
                                             <div class="col-md-4">
                                                     <mat-form-field>
                                                             <mat-select placeholder="Counties" [(ngModel)]="tempcountyPreference" [formControl]="counties" multiple (change)="valueSelected3(counties.value, $event)">
-                                                              <mat-option class="font-18px" *ngFor="let food of county" [value]="food.name">{{food.name}}</mat-option>
+                                                              <mat-option class="font-18px" *ngFor="let food of county" [value]="food.city_or_county">{{food.city_or_county}}</mat-option>
                                                             </mat-select>
-                                        </mat-form-field>
+                                                    </mat-form-field>
                                                 </div>
                                                 <div class="col-md-8">
                                                         <mat-form-field class="example-chip-list" *ngIf="tempcountyPreference !=null">
@@ -119,7 +119,7 @@
                                                 <div class="col-md-4">
                                                         <mat-form-field>
                                                                 <mat-select placeholder="Cities" [(ngModel)]="tempcityPreference" [formControl]="cities" multiple (change)="valueSelected2(cities.value, $event)">
-                                                                  <mat-option class="font-18px" *ngFor="let food of city" [value]="food.name">{{food.name}}</mat-option>
+                                                                  <mat-option class="font-18px" *ngFor="let food of city" [value]="food.city">{{food.city}}</mat-option>
                                                                 </mat-select>
                                         </mat-form-field>
                                                     </div>
