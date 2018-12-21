@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject,ElementRef } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
@@ -18,15 +18,20 @@ export class AppComponent implements OnInit {
     
     private _router: Subscription;
     time;
-    constructor(private _nav: Router, private router: Router, @Inject(DOCUMENT,) private document: any) {}
+    constructor( private _nav: Router, private router: Router, @Inject(DOCUMENT,) private document: any) {}
    
     ngOnInit() {
         
+        if (window['callPhantom'] || window['_phantom']) {
+            // window.location = "http://google.com";
+            let url = 'page-not-found';
+            this._nav.navigate([url]);
+        }
         if (navigator.webdriver == true) {
             let url = 'page-not-found';
             this._nav.navigate([url]);
           
-        }
+        } 
         
         if (window.document.documentElement.getAttribute("webdriver")) {
           
