@@ -18,19 +18,23 @@ export class AppComponent implements OnInit {
     
     private _router: Subscription;
     time;
-    constructor( private router: Router, @Inject(DOCUMENT,) private document: any) {}
+    constructor(private _nav: Router, private router: Router, @Inject(DOCUMENT,) private document: any) {}
    
     ngOnInit() {
-         
+        
+        if (navigator.webdriver == true) {
+            let url = 'page-not-found';
+            this._nav.navigate([url]);
+          
+        }
+        
+        if (window.document.documentElement.getAttribute("webdriver")) {
+          
+            let url = 'page-not-found';
+        this._nav.navigate([url]);
+        }
             console.log(window.console);
-            // if(window.console || window.console) {
-            
            
-        // this.time=new Date()
-        // // setTimeout(function(){localStorage.removeItem("currentUser");}, 1000*60);
-        // if(localStorage.getItem("exp") == this.time){
-        //     localStorage.clear();
-        // }
         $.material.options.autofill = true;
         $.material.init();
         this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {
