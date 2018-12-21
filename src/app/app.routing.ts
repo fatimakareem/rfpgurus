@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PaymentmethodsComponent } from './admin/paymentmethods/paymentmethods.component';
 import { AllnotificationComponent } from './allnotification/allnotification.component';
-
+import {Page404Component} from './page404/page404.component'
 import { SingleRfpComponent } from './rfps/single-rfp/single-rfp.component';
 import { PricingComponent } from './pricing/pricing.component';
 // import {SidebarComponent} from "./sidebar/sidebar.component";
@@ -58,6 +58,8 @@ export const AppRoutes: Routes = [
         path: 'activateaccount/:query1',
         component: AuthenticateComponent
     },
+    { path: 'page-not-found', loadChildren: '../app/page404/page404.module#Page404Module' },
+
     {
         path: '',
         component: AdminComponent,
@@ -152,6 +154,7 @@ export const AppRoutes: Routes = [
             { path: 'contact-us', loadChildren: '../app/contact-us/contact-us.module#ContactUsModule' },
             // { path: 'advanced-search', component: AdvanceSearchComponent },
  { path: 'advanced-search', loadChildren: '../app/advance-search/advance-search.module#AdvanceSearchModule' },
+
             // { path: 'forgetpassword/:query2', component: ForgetPasswordComponent},
             { path: 'forgetpassword/:query2', loadChildren: '../app/admin/forget-password/forget-password.module#ForgetPasswordModule' },
            
