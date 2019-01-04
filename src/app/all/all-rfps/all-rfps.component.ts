@@ -7,6 +7,7 @@ import { SharedData } from '../../shared-service';
 import { PagerService } from '../../rfps/rfp/paginator.service';
 import { AllRfpsService } from './all-rfps.service';
 declare const $: any;
+import {  Compiler } from '@angular/core';
 @Component({
     selector: 'app-all-rfps',
     templateUrl: './all-rfps.component.html',
@@ -19,7 +20,7 @@ export class AllRfpsComponent implements OnInit {
     record: any = [];
     currentUser;
     length = 0;
-    constructor(private pagerService: PagerService, public _shareData: SharedData, private _nav: Router, private _serv: AllRfpsService, private route: ActivatedRoute) { }
+    constructor(private _compiler: Compiler,private pagerService: PagerService, public _shareData: SharedData, private _nav: Router, private _serv: AllRfpsService, private route: ActivatedRoute) { this._compiler.clearCache(); }
     // MatPaginator Inputs
     // length
     pageSize = "10";
@@ -65,6 +66,7 @@ export class AllRfpsComponent implements OnInit {
                 this.record.splice(0, this.record.length);
                 //   console.log(error);
             });
+            this._compiler.clearCache()
     }
     download(info) {
         this._serv.downloadFile(info).subscribe(
@@ -83,6 +85,7 @@ export class AllRfpsComponent implements OnInit {
     ngOnInit() {
         this.setPage(1);
         this.check_login()
+        
     }
     single(query) {
         let sth = 'rfp/' + query;

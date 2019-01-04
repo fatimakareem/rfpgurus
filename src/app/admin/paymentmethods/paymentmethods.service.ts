@@ -36,7 +36,7 @@ export class PaymentmethodsService {
     headers.append('Content-Type', 'application/json');
     return this.http.get('https://apis.rfpgurus.com/payment/cardinfo/', { headers: headers }).map((response: Response) => response.json());
   }
-  updateCard(autopay,status,id, name, updatecardnumber, updateccv, date, updateaddress, updatezip, updatecity, updatestate, updatecountry) {
+  updateCard(status,autopay,id, name, updatecardnumber, updateccv, date, updateaddress, updatezip, updatecity, updatestate, updatecountry) {
     console.log(status,autopay,id, name, updatecardnumber, updateccv, date, updateaddress, updatezip, updatecity, updatestate, updatecountry)
     let header = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
     header.append('Content-Type', 'application/json');
@@ -45,8 +45,8 @@ export class PaymentmethodsService {
         // "cardNumber": cardno,
         "default": status,
         "cid": id,
-        // "name": name,
-        // // "pinCode": pin,
+        "name": name,
+        // "pinCode": pin,
         // "street_address": address,
         // "zipcode": zip,
         // "city": city,
@@ -54,7 +54,7 @@ export class PaymentmethodsService {
         // "country": country,
         // "number": cardno,
         // "cvc": ccv,
-        // "expDate": expiryDate,
+        "expDate": date,
         "autopay":autopay
       }),
       { headers: header }).map((response: Response) => response.json());

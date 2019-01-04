@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { AdvanceService } from '../advance-search/advance.service';
 import { ActivatedRoute } from '@angular/router';
 import {HttpService} from '../serv/http-service';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-base',
@@ -25,7 +26,7 @@ export class BaseComponent implements OnInit {
   }
   items;
   public cat = [];
-  pageSize = '20';
+  pageSize = '15';
   settings: any;
   duedate;
   enterdate;
@@ -90,6 +91,7 @@ export class BaseComponent implements OnInit {
               this.length = this.item;
               this.pager = this.pagerService.getPager(data['TotalResult'], page,this.pageSize);
               this.search = false;
+              
             },
             error => {
               this.search = true;
@@ -131,6 +133,7 @@ export class BaseComponent implements OnInit {
               console.log(this.items, Res.json()['totalItems'], 'eee')
               this.pager = this.pagerService.getPager(Res.json()['totalItems'], page,this.pageSize);
               this.search = false;
+             
             });
         }
       });

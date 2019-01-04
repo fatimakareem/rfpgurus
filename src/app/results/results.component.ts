@@ -34,7 +34,7 @@ export class ResultsComponent implements OnInit,OnDestroy {
     length = 0;
     pager: any = {};  
 
-    pageSize = '20';
+    pageSize = '10';
     pageSizeOptions = [10, 20, 35, 50];
 
     // MatPaginator Output
@@ -64,13 +64,13 @@ export class ResultsComponent implements OnInit,OnDestroy {
 
             });
     }
-    order="asc"
+    // order="asc"
     sort(sorted,page){
         this.route.queryParams
         .subscribe(params => {
             this.cat = params.keyword
         console.log(sorted)
-        this._serv.sortby(sorted, this.order,this.cat,page,this.pageSize).subscribe(
+        this._serv.sortby(sorted,this.cat,page,this.pageSize).subscribe(
             data => {
                 this.record = data.results;
                 console.log(data.results)
