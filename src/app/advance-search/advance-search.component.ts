@@ -24,6 +24,7 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
   @Output() spokenText = new EventEmitter<string>();
   @Output() error = new EventEmitter<string>();
   @Input() showInput = true;
+  
   endRequest;
   pager: any = {};
   state: any = [];
@@ -100,7 +101,7 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
   }
   chang(status) {
     this.status = status;
-    this.onSubmit(1);
+    // this.onSubmit(1);
   }
   entereddate(enterdate){
     // if (enterdate == 'Invalid Date') {
@@ -110,12 +111,12 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
     // }
    if(enterdate) {
       this.postedDate = moment(enterdate).format('YYYY-MM-DD');
-      this.onSubmit(1);
+      // this.onSubmit(1);
     }
     else{
       delete this.enterdate;
    delete this.postedDate;
-   this.onSubmit(1);
+  //  this.onSubmit(1);
     }
   }
   dueddate(duedate){
@@ -126,11 +127,11 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
     // }
     if(duedate) {
       this.DueDate = moment(duedate).format('YYYY-MM-DD');
-      this.onSubmit(1);
+      // this.onSubmit(1);
     }else{
       delete this.DueDate;
      delete this.duedate;
-     this.onSubmit(1);
+    //  this.onSubmit(1);
     }
 
   }

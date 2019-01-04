@@ -46,6 +46,7 @@
     "chartist": "0.9.4",
     "chartist-plugin-zoom": "0.4.0",
     "core-js": "2.4.1",
+    "crypto-js": "^3.1.9-1",
     "datatables": "1.10.12",
     "datatables.net-bs": "1.10.12",
     "datatables.net-responsive": "2.1.1",

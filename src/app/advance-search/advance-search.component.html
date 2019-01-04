@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <mat-form-field>
-                            <mat-select [(ngModel)]="states" name="states"  placeholder="Search By State" (change)="onSubmit(1)">
+                            <mat-select [(ngModel)]="states" name="states"  placeholder="Search By State" >
                                 <input class="inp" type="text" [(ngModel)]="statsearch" [ngModelOptions]="{standalone: true}"
                                     class="search-allstates" placeholder="Search By State" style="width: 100%; border-radius: 7px;">
                                 <i class="fa fa-search s-icon-all-states" area-hidden="true"></i>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="col-sm-4">
                         <mat-form-field>
-                            <mat-select [(ngModel)]="agencies" name="agencies" placeholder="Search By Agency" (change)="onSubmit(1)">
+                            <mat-select [(ngModel)]="agencies" name="agencies" placeholder="Search By Agency" >
                                 <input class="inp" type="text" [(ngModel)]="agensearch" [ngModelOptions]="{standalone: true}"
                                     class="search-allstates" placeholder="Search By Agency" style="width: 100%; border-radius: 7px">
                                 <i class="fa fa-search s-icon-all-states" area-hidden="true"></i>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-sm-4">
                         <mat-form-field>
-                            <mat-select [(ngModel)]=cates name="cates" placeholder="Search By Category" (change)="onSubmit(1)">
+                            <mat-select [(ngModel)]=cates name="cates" placeholder="Search By Category" >
                                 <input class="inp" type="text" [(ngModel)]="catsearch" [ngModelOptions]="{standalone: true}"
                                     placeholder="Search By Category" class="search-allstates" style="width: 100%; border-radius: 7px">
                                 <i class="fa fa-search s-icon-all-states" area-hidden="true"></i>
@@ -188,8 +188,8 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>{{rfp.date_entered | date:'MMM dd, y'}}</td>
-                                                    <td>{{rfp.due_date | date:'MMM dd, y'}}</td>
+                                                    <td>{{rfp.date_entered | date:'EEEE, MMM dd, y'}}</td>
+                                                    <td>{{rfp.due_date | date:'EEEE, MMM dd, y'}}</td>
                                                 </tr>
 
                                             </tbody>

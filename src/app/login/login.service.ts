@@ -7,7 +7,6 @@ import { JwtHelper } from 'angular2-jwt';
 import 'rxjs/add/operator/map';
 import { HttpService } from './../serv/http-service';
 import * as moment from 'moment';
-
 @Injectable()
 export class LoginService {
     jwtHelper: JwtHelper  = new JwtHelper ();
@@ -73,5 +72,16 @@ export class LoginService {
             'pass2': pass2,
             'code': code,
         }).map((res: Response) => res.json())
+    }
+    decrypt() {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this._http5.get('http://192.168.30.225:9000/users/',
+            { headers: headers }).map((res: Response) => res.json()
+           
+            )
+                // let user =  this.jwtHelper.decodeToken(response.json()).ticker
+               
+                
     }
 }

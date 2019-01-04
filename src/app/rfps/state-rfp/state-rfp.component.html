@@ -1,5 +1,5 @@
 <!-- <app-header class="inner"></app-header> -->
-<!-- <app-loader></app-loader> -->
+<app-loader></app-loader>
 
 <div class="main-panel" [ngClass]="status ? 'sidebarActive' : ''">
         <!-- <div class="navbar-minimize sidebarToggle">
@@ -23,7 +23,7 @@
                                 <span>{{state}}</span>
                             </div>
                             <div class="col-sm-6" style="margin:10px 0px">
-                                <span *ngIf="item">No of RFPs  <b>“{{item | number}}”</b></span>
+                                <span *ngIf="item">No of RFPs: <b>{{item | number}}</b></span>
                             </div>
                         </div>
                         <div class="products-area sh-products-area">
@@ -68,8 +68,8 @@
                                                         </thead>
                                                         <tbody>
                                                         <tr>
-                                                            <td>{{rfp.date_entered | date:'MMM dd, y'}}</td>
-                                                            <td>{{rfp.due_date | date:'MMM dd, y'}}</td>
+                                                            <td>{{rfp.date_entered | date:'EEEE, MMM dd, y'}}</td>
+                                                            <td>{{rfp.due_date | date:'EEEE, MMM dd, y'}}</td>
                                                         </tr>
     
                                                         </tbody>

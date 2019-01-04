@@ -79,7 +79,7 @@ AlldeleteWatchlist(){
     searchSuggestions(obj) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://apis.rfpgurus.com/rf_p/search_key/'+obj+'/-1?page=1',
+        return this._http5.post('https://apis.rfpgurus.com/rf_p/search_key/'+'15?page=1',{"query":obj},
             {headers: headers}).map((response: Response) => response.json());
     }
     record(obj){

@@ -192,7 +192,7 @@ card_opeation=[
       this.updefault = false;
     }
 
-    this.endRequest = this.serv.updateCard(status,autopay,id, name, updatecardnumber, updateccv, date, updateaddress, updatezip, updatecity, updatestate, updatecountry).subscribe(Data => {
+    this.endRequest = this.serv.updateCard(this.updefault,autopay,id, name, updatecardnumber, updateccv, date, updateaddress, updatezip, updatecity, updatestate, updatecountry).subscribe(Data => {
       // swal({
       //   type: 'success',
       //   title: 'Credit Card Details Are Updated!',
@@ -356,7 +356,7 @@ card_opeation=[
       if (this.form.controls.cardnickname.valid && this.form.controls.cardnumber2.valid && this.form.controls.ccv2.valid
         && this.form.controls.expirydate.valid && this.form.controls.address.valid && this.form.controls.zip.valid
         && this.form.controls.city.valid && this.form.controls.state.valid && this.form.controls.country.valid) {
-        this.endRequest = this.serv.addCard(this.default, this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber2'], this.form.value['ccv2'],this.date,this.cardtype,this.setautopay).subscribe(Data => {
+        this.endRequest = this.serv.addCard(this.default, this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber2'].split('-').join(''), this.form.value['ccv2'],this.date,this.cardtype,this.setautopay).subscribe(Data => {
           swal({
             type: 'success',
             title: 'Payment Method Is Listed!',
@@ -413,7 +413,7 @@ card_opeation=[
       if (this.form.controls.cardnickname.valid && this.form.controls.cardnumber.valid && this.form.controls.ccv.valid
         && this.form.controls.expirydate.valid && this.form.controls.address.valid && this.form.controls.zip.valid
         && this.form.controls.city.valid && this.form.controls.state.valid && this.form.controls.country.valid) {
-        this.endRequest = this.serv.addCard(this.default, this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber'], this.form.value['ccv'],this.date,this.cardtype,this.setautopay).subscribe(Data => {
+        this.endRequest = this.serv.addCard(this.default, this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber'].split('-').join(''), this.form.value['ccv'],this.date,this.cardtype,this.setautopay).subscribe(Data => {
           swal({
             type: 'success',
             title: 'Payment Method Is Listed!',

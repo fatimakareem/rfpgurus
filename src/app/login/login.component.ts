@@ -10,9 +10,11 @@ import { AuthService } from "angular4-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angular4-social-login";
 // import { JwtHelperService  } from '@auth0/angular-jwt';
 import { JwtHelper } from 'angular2-jwt';
-
+import * as CryptoJS from 'crypto-js';
 import { Http, Headers } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
+declare var $: any;
+
 declare interface ValidatorFn {
     (c: AbstractControl): {
         [key: string]: any;
@@ -202,7 +204,34 @@ export class LoginComponent implements OnInit, OnDestroy {
             }
         });
     }
+    trik;encryptSecretKey;
     ngOnInit() {
+       
+//         try {
+//             // var ciphertext = CryptoJS.AES.encrypt('uc442jjb4labn2ovmo5eshjkhy', 'uniquekey').toString();
+//             // console.log(ciphertext,'encryptedddddddd')
+//             var bytes  = CryptoJS.AES.decrypt('uc442jjb4labn2ovmo5eshjkhy','uniquekey');
+// var originalText = bytes.toString(CryptoJS.enc.Utf8);
+// var bytes  = CryptoJS.AES.decrypt(originalText,'uniquekey');
+// var originalText = bytes.toString(CryptoJS.enc.Utf8);
+
+// console.log(originalText,'decryptedddddddd'); // 'my message'
+//           } catch (e) {
+//             console.log(e);
+//           }
+       
+//         this._serv.decrypt().subscribe(
+//             data => {
+
+//                 for (let i of data) {
+//                     this.trik=i.ticker
+                    
+//                     // console.log(this.trik) 
+//                 //    var riks= this.jwtHelper.decodeToken(this.trik)
+// // console.log(riks)
+//                 }
+//             });
+
         if (isPlatformBrowser(this.platformId)) {
             this.logedin = localStorage.getItem('loged_in');
             // alert(this.logedin)
