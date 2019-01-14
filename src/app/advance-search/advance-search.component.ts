@@ -13,6 +13,8 @@ import { SharedData } from '../shared-service';
 import { PagerService } from '../rfps/rfp/paginator.service';
 // import { DateFormat } from './date-format';
 import * as moment from 'moment';
+import {Location} from '@angular/common';
+
 @Component({
   selector: 'app-advance-search',
   templateUrl: './advance-search.component.html',
@@ -21,10 +23,22 @@ import * as moment from 'moment';
 })
 export class AdvanceSearchComponent implements OnInit, OnDestroy {
   public blink = false;
+  formats = [
+    moment.ISO_8601,
+    "YYYY/MM/DD"
+];
+date;
   @Output() spokenText = new EventEmitter<string>();
   @Output() error = new EventEmitter<string>();
   @Input() showInput = true;
-  
+  check(date){
+       
+    this.date= moment(date, this.formats, true).isValid()
+     
+    return this.date;
+   
+ 
+}
   endRequest;
   pager: any = {};
   state: any = [];
@@ -61,9 +75,11 @@ export class AdvanceSearchComponent implements OnInit, OnDestroy {
   ];
   datashow: boolean = false;
   filtertext;
-  constructor(private speech: SpeechRecognitionService, public _shareData: SharedData, private _serv1: HeaderService, private pagerService: PagerService, private route: ActivatedRoute, private _nav: Router, private _serv: AdvanceService) {
+  constructor(private speech: SpeechRecognitionService, public _shareData: SharedData, private _serv1: HeaderService, private pagerService: PagerService, private route: ActivatedRoute, private _nav: Router, private _serv: AdvanceService,private _location: Location) {
   }
- 
+  back(){
+    this._location.back();
+  }
   // MatPaginator Inputs
   length = 0;
   // click = 1;

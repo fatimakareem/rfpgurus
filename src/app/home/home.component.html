@@ -398,10 +398,10 @@
                       </h5>
                       <h5>
                         <i class="glyphicon glyphicon-calendar"></i> Posted Date :
-                        <span>{{rfp.date_entered | date:'EEEE, MMM dd, y'}}</span>
+                        <span *ngIf="check(rfp.date_entered) == true">{{rfp.date_entered | date:'EEEE, MMM dd, y'}}</span>
                         <br>
                         <i class="glyphicon glyphicon-calendar"></i> Submission Deadline :
-                        <span>{{rfp.due_date | date:'EEEE, MMM dd, y'}}</span>
+                        <span *ngIf="check(rfp.due_date) == true">{{rfp.due_date | date:'EEEE, MMM dd, y'}}</span>
                       </h5>
                     </div>
                   </div>

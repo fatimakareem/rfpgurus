@@ -46,4 +46,25 @@ export class AllRfpsService {
             'username': username
         }).map((res: Response) => res.json())
     }
+    update_rfp(id,updatedtitle,updatedrfp_number,uprfpkey,updateddescriptionTag,updatedstates,updatedagency,updateddate_entered,updateddue_date,updatedweb_info,updatedrfp_reference) {
+        let headers = new Headers();
+        if (localStorage.getItem('currentUser')) {
+            headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
+        }
+        headers.append('Content-Type', 'application/json');
+        return this._http.put('https://apis.rfpgurus.com/rf_p/edit_rfp/'+id,JSON.stringify({
+            "rfpkey":uprfpkey,
+"rfp_number":updatedrfp_number,
+"title":updatedtitle,
+
+"descriptionTag":updateddescriptionTag,
+"state":updatedstates,
+"agency":updatedagency,
+"date_entered":updateddate_entered,
+"due_date":updateddue_date,
+"web_info":'https://storage.rfpgurus.com/bplrfpgurus/'+updatedweb_info,
+"rfp_reference":updatedrfp_reference
+        }),
+            { headers: headers }).map((response: Response) => response.json());
+    }
 }

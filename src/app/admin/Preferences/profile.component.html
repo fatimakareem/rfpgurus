@@ -32,7 +32,7 @@
                                                           <mat-chip *ngFor="let list of tempUserPreference; let i=index" [selectable]="selectable" 
                                                                    [removable]="removable" (removed)="remove(list, $event)">
                                                                    {{list}}
-                                                            <mat-icon matChipRemove *ngIf="removable"><i class="fa fa-close " (change)="remove(list, $event)"></i></mat-icon>
+                                                            <mat-icon matChipRemove *ngIf="removable"></mat-icon>
                                                           </mat-chip>
                                                           <input
                                                                  [matChipInputFor]="chipList"
@@ -55,7 +55,7 @@
                                                               <mat-chip *ngFor="let list of tempstatePreference; let i=index" [selectable]="selectable"
                                                                        [removable]="removable" (removed)="remove1(list, $event)">
                                                                        {{list}}
-                                                                <mat-icon matChipRemove *ngIf="removable"><i class="fa fa-close " (change)="remove1(list, $event)"></i></mat-icon>
+                                                                <mat-icon matChipRemove *ngIf="removable"></mat-icon>
                                                               </mat-chip>
                                                               <input
                                                                      [matChipInputFor]="chipList"
@@ -79,7 +79,7 @@
                                                               <mat-chip *ngFor="let list of tempagencyPreference; let i=index" [selectable]="selectable"
                                                                        [removable]="removable" (removed)="remove4(list, $event)">
                                                                        {{list}}
-                                                                <mat-icon matChipRemove *ngIf="removable"><i class="fa fa-close " (change)="remove4(list, $event)"></i></mat-icon>
+                                                                <mat-icon matChipRemove *ngIf="removable"></mat-icon>
                                                               </mat-chip>
                                                               <input
                                                                      [matChipInputFor]="chipList"
@@ -105,7 +105,7 @@
                                                                   <mat-chip *ngFor="let list of tempcountyPreference; let i=index" [selectable]="selectable"
                                                                            [removable]="removable" (removed)="remove3(list, $event)">
                                                                            {{list}}
-                                                                    <mat-icon matChipRemove *ngIf="removable"><i class="fa fa-close " (change)="remove3(list, $event)"></i></mat-icon>
+                                                                    <mat-icon matChipRemove *ngIf="removable"></mat-icon>
                                                                   </mat-chip>
                                                                   <input
                                                                          [matChipInputFor]="chipList"
@@ -129,7 +129,7 @@
                                                                       <mat-chip *ngFor="let list of tempcityPreference; let i=index" [selectable]="selectable"
                                                                                [removable]="removable" (removed)="remove2(list, $event)">
                                                                                {{list}}
-                                                                        <mat-icon matChipRemove *ngIf="removable"><i class="fa fa-close " (change)="remove2(list, $event)"></i></mat-icon>
+                                                                        <mat-icon matChipRemove *ngIf="removable"></mat-icon>
                                                                       </mat-chip>
                                                                       <input
                                                                              [matChipInputFor]="chipList"

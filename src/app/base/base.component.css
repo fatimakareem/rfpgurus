@@ -9,3 +9,14 @@
   .mat-form-field-empty.mat-form-field-placeholder, .sh-n-table .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-placeholder, mat-form-field.mat-form-field {
     font-size: 16px;
 }
+.category-name{
+  color: #000000;
+}
+.category-name:hover{
+  color: #cc0000;
+}
+.main-heading{
+  text-align: center;
+  margin: 10px 0;
+  color: #000000;
+}

@@ -16,6 +16,9 @@
         </div> -->
         <div class="main-content custom">
             <div class="container-fluid">
+                    <div class="rfp-back">
+                            <a (click)="back()"><i class="fa fa-chevron-left"></i> Back to Previous Page</a>
+                        </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-title">
@@ -26,6 +29,10 @@
                                 <span *ngIf="item">No of RFPs: <b>{{item | number}}</b></span>
                             </div>
                         </div>
+                        <div class="col-sm-12 text-center mg-top-100" *ngIf="item == 0 ">
+                                <i class="fa fa-exclamation-triangle" style="font-size:35px;padding:15px 0 0;"></i>
+                                <h3 class="text-center">No Record Found</h3>
+                            </div>
                         <div class="products-area sh-products-area">
                             <div *ngFor="let rfp of record" class="card">
                                 <div class="row">
@@ -68,8 +75,10 @@
                                                         </thead>
                                                         <tbody>
                                                         <tr>
-                                                            <td>{{rfp.date_entered | date:'EEEE, MMM dd, y'}}</td>
-                                                            <td>{{rfp.due_date | date:'EEEE, MMM dd, y'}}</td>
+                                                            <td *ngIf="check(rfp.date_entered) == true">{{rfp.date_entered | date:'EEEE, MMM dd, y'}}</td>
+                            <td *ngIf="check(rfp.date_entered) == false"></td>
+                            <td *ngIf="check(rfp.due_date) == true">{{rfp.due_date | date:'EEEE, MMM dd, y'}}</td>
+                            <td *ngIf="check(rfp.due_date) == false"></td>
                                                         </tr>
     
                                                         </tbody>
@@ -82,14 +91,14 @@
     
                                                 <div attr.id="View{{rfp.id}}" class="panel-details collapse">
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 plan-detail">
-                                                        <h5>
-                                                            <i class="fa fa-university"></i>Category :
-                                                            <span>{{rfp.category}}</span>
-                                                        </h5>
-                                                        <h5>
-                                                            <i class="fa fa-fort-awesome"></i>State :
-                                                            <span>{{rfp.state}}</span>
-                                                        </h5>
+                                                            <h5 *ngIf="rfp.agency"><i class="fa fa-building-o"></i>Agency : <a [routerLink]="['/agency']" [queryParams]="{ agency: rfp.agency}"><span><b>{{rfp.agency}}</b></span></a></h5>
+                                                            <h5>
+                                                              <i class="fa fa-university"></i>Category :
+                                                              <a [routerLink]="['/category']" [queryParams]="{ cat: rfp.category}"><span><b>{{ rfp.category}}</b></span></a>
+                                                            </h5>
+                                                            <h5>
+                                                              <i class="fa fa-fort-awesome"></i>State :<a [routerLink]="['/state']" [queryParams]="{ state: rfp.state}"><span><b>{{ rfp.state}}</b></span></a>
+                                                            </h5>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 term top-margin-25">
                                                             <ul class="list-normal">
@@ -118,7 +127,7 @@
                                                                 </ng-template>
                                                             </ul>
                                                     </div>
-                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 plan-detail">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 plan-detail" *ngIf="subscribe">
                                                             <div class="col-md-12" *ngIf="rfp.descriptionTag == null">
                                                                     <h5>Description:</h5>
                                                                     
@@ -131,6 +140,15 @@
                                                                     <div [innerHTML]="rfp.descriptionTag"></div>
                                                                 </div>
                                                 </div>
+
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 plan-detail" *ngIf="!subscribe">
+                                                        <h5 ><i class="fas fa-info dscrption-icon"></i>Description:
+                                                           <a routerLink="/pricing" class="memberOnly"><i class="fas fa-lock lock-icon"></i>Member Only</a>
+                                                        </h5>
+                                                        <h5 ><i class="fas fa-file-alt"></i>Bid Documents:
+                                                           <a routerLink="/pricing" class="memberOnly"><i class="fas fa-lock lock-icon"></i>Member Only</a>
+                                                        </h5>
+                                                      </div>
                                             </div>
                                         </div>
     

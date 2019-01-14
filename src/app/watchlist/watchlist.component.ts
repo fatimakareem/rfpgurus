@@ -4,6 +4,8 @@ import { SharedData } from '../shared-service';
 import { Router } from '@angular/router';
 import { RfpService } from '../rfps/single-rfp/rfp.service';
 import swal from 'sweetalert2';
+import * as moment from 'moment';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-watchlist',
@@ -11,10 +13,26 @@ import swal from 'sweetalert2';
   styleUrls: ['./watchlist.component.scss']
 })
 export class WatchlistComponent implements OnInit {
+  date;
+  back(){
+    this._location.back();
+  }
+    check(date){
+         
+      this.date= moment(date, this.formats, true).isValid()
+     
+      return this.date;
+     
+   
+  }
+  formats = [
+    moment.ISO_8601,
+    "YYYY/MM/DD"
+  ];
   wrfp;
   message;
   total;
-  constructor(private _nav: Router, private _serv: HeaderService, public _shareData: SharedData, private _serv1: RfpService) { }
+  constructor(private _nav: Router, private _serv: HeaderService, public _shareData: SharedData, private _serv1: RfpService,private _location: Location) { }
 
   ngOnInit() {
     this._shareData.currentMessage.subscribe(message => this.wrfp = message)

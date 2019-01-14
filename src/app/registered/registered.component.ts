@@ -6,8 +6,10 @@ import { ErrorStateMatcher} from '@angular/material';
 import { RegisterService } from './register.service';
 import {  Router } from '@angular/router';
 import { ViewChild } from '@angular/core';
-import {RecaptchaComponent} from '../recaptcha/recaptcha.component';
+import {RecapchaComponent} from '../recapcha/recapcha.component';
 import {isPlatformBrowser} from '@angular/common';
+import { RecapchaService } from '../recapcha/recapcha.service';
+
 export class errorMatcher implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
         const isSubmitted = form && form.submitted;
@@ -39,7 +41,7 @@ declare interface User {
 })
 
 export class RegisteredComponent implements OnInit,OnDestroy {
-    @ViewChild(RecaptchaComponent) captcha: RecaptchaComponent;
+    @ViewChild(RecapchaComponent) captcha: RecapchaComponent;
     endRequest;
     hide = true;
     phone;
@@ -61,7 +63,7 @@ textonly='[a-zA-Z]+'
     public phoneMask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
     public logedin: any = 0;
     
-    constructor(@Inject(PLATFORM_ID) private platformId: Object,private _serv: RegisterService, private formBuilder: FormBuilder, private router: Router, ) { }
+    constructor(@Inject(PLATFORM_ID) private platformId: Object,private _serv: RegisterService, private formBuilder: FormBuilder, private router: Router,public recapcha: RecapchaService) { }
 
     isFieldValid(form: FormGroup, field: string) {
         return !form.get(field).valid && form.get(field).touched;
@@ -112,7 +114,7 @@ textonly='[a-zA-Z]+'
 
     onRegister(value) {
         // alert(this.register.value.phone)
-        if (this.register.valid && this.captcha.getResponse()) {
+        if (this.register.valid && this.recapcha.check()) {
             this.isequal=true;
            this.endRequest= this._serv.post_service(this.register.value).subscribe(
                 data => {
@@ -123,8 +125,17 @@ textonly='[a-zA-Z]+'
                 });
         } else {
             this.validateAllFormFields(this.register);
-            this.captcha.reset();
-            this.isequal=false;
+            this.captcha.resetImg();
+    // this.captcha.reset();
+    // this.isequal = false;
+    
+    swal({
+      type: 'error',
+      title: 'Please confirm you are not a robot!',
+      showConfirmButton: false,
+      width: '512px',
+      timer: 2000
+    });
         }
     }
     send_link(email) {

@@ -322,17 +322,23 @@
             </ul>
           </div>
         </li>
-        <li *ngIf="!check_login()" class="">
+        <li *ngIf="!check_login() && !check_adminlogin()" class="">
           <a routerLink="/login" routerLinkActive="Active">
             <i class="fas fa-fingerprint"></i> Sign in
           </a>
         </li>
-        <li *ngIf="!check_login()" class="">
+        <li *ngIf="!check_login() && !check_adminlogin()" class="">
           <a routerLink="/sign-up" routerLinkActive="Active">
             <i class="fa fa-unlock" aria-hidden="true"></i>
             Sign up
           </a>
         </li>
+        
+        <li *ngIf="check_adminlogin()" class="">
+            <a routerLink="/admin-penal" routerLinkActive="Active">
+              <i class="fas fa-user"></i> admin
+            </a>
+          </li>
         <!--............-->
       </ul>
       </div>

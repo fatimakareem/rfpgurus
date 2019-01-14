@@ -73,15 +73,5 @@ export class LoginService {
             'code': code,
         }).map((res: Response) => res.json())
     }
-    decrypt() {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this._http5.get('http://192.168.30.225:9000/users/',
-            { headers: headers }).map((res: Response) => res.json()
-           
-            )
-                // let user =  this.jwtHelper.decodeToken(response.json()).ticker
-               
-                
-    }
+   
 }

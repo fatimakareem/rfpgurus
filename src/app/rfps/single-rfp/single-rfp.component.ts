@@ -9,13 +9,30 @@ import 'rxjs/Rx' ;
 import {SharedData } from '../../shared-service';
 import { ActivatedRoute, Router } from '@angular/router';
 // import { HeaderService } from './header/header.service';
+import * as moment from 'moment';
+import {Location} from '@angular/common';
 
 
 @Component({
     selector: 'app-data-table-cmp',
-    templateUrl: 'single-rfp.component.html'})
+    templateUrl: 'single-rfp.component.html',
+    styleUrls: ['./single-rfp.component.css']
+},)
 
 export class SingleRfpComponent implements OnInit  {
+    date;
+    check(date){
+         
+      this.date= moment(date, this.formats, true).isValid()
+    //    
+      return this.date;
+     
+   
+  }
+  formats = [
+    moment.ISO_8601,
+    "YYYY/MM/DD"
+  ];
     rfpid:string;
     id;
     record=[];
@@ -25,10 +42,12 @@ export class SingleRfpComponent implements OnInit  {
     subscribe;
     currentUser;
     wrfp;
-    constructor(private _nav:Router,public _shareData: SharedData,private _http: Http,private route: ActivatedRoute,private _serv: RfpService) {
+    constructor(private _nav:Router,public _shareData: SharedData,private _http: Http,private route: ActivatedRoute,private _serv: RfpService,private _location: Location) {
         
      }
-  
+  back(){
+    this._location.back();
+  }
 
     status: boolean = false;
     navbarClass(){

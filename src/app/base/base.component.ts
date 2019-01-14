@@ -7,6 +7,7 @@ import { AdvanceService } from '../advance-search/advance.service';
 import { ActivatedRoute } from '@angular/router';
 import {HttpService} from '../serv/http-service';
 import * as CryptoJS from 'crypto-js';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-base',
@@ -18,11 +19,28 @@ export class BaseComponent implements OnInit {
   data;
   state;
   pager: any = {};
+  date;
+  check(date){
+       
+    this.date= moment(date, this.formats, true).isValid()
+     
+    return this.date;
+   
+ 
+}
+formats = [
+  moment.ISO_8601,
+  "YYYY/MM/DD"
+];
   onUserRowSelect(event): void {
     this.data = event.data.seoTitleUrl;
     console.log(this.data);
     let sth = 'rfp/' + this.data;
     this._nav.navigate([sth]);
+    
+  }
+  back(){
+    this._location.back();
   }
   items;
   public cat = [];
@@ -39,7 +57,7 @@ export class BaseComponent implements OnInit {
   item;
   length;
   search = false;
-  constructor(private route: ActivatedRoute, private _adserv: AdvanceService, private pagerService: PagerService, private http: HttpService, private _nav: Router) {
+  constructor(private route: ActivatedRoute, private _adserv: AdvanceService, private pagerService: PagerService, private http: HttpService, private _nav: Router,private _location: Location) {
   }
   ngOnInit() {
     // this.setpage(1);

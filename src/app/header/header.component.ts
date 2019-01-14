@@ -60,7 +60,7 @@ export class HeaderComponent implements OnInit {
     setTimeout(this.focusInput(), 5000);
   }
 
-  constructor( private speech: SpeechRecognitionService,private authService: AuthService,private _nav: Router, public _shareData: SharedData,private _serv: HeaderService,private _serv1: RfpService) { this. check_login1();
+  constructor( private speech: SpeechRecognitionService,private authService: AuthService,private _nav: Router, public _shareData: SharedData,private _serv: HeaderService,private _serv1: RfpService) { this. check_login1();this.check_adminlogin();
     this.check_login();}
   logout() {
     this.authService.signOut().then(success => {
@@ -124,6 +124,7 @@ export class HeaderComponent implements OnInit {
     this._shareData.currentMessagetotal.subscribe(message => this.total = message)
     // this.watchlist();
     this.notification()
+
     // let timer = Observable.timer(0, 6000000);
     // timer.subscribe(() => this.notification());
     $('#search').click(function () {
@@ -179,6 +180,14 @@ export class HeaderComponent implements OnInit {
       this.local = localStorage.getItem('currentUser');
       let pars = JSON.parse(this.local);
       this.uname = pars.username;
+      return true;
+    } else {
+      return false;
+    }
+  }
+  check_adminlogin() {
+    if (localStorage.getItem('currentadmin')) {
+      this.local = localStorage.getItem('currentadmin');
       return true;
     } else {
       return false;
