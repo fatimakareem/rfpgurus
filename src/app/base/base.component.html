@@ -3,46 +3,52 @@
 <div class="main-panel">
     <div class="main-content custom" style="margin-top:10px;">
         <div class="col-sm-12">
+            <div>
+                <div class="rfp-back">
+                    <a (click)="back()"><i class="fa fa-chevron-left"></i> Back to Previous Page</a>
+                </div>
+                <h2 class="main-heading">Find RFPs</h2>
+            </div>
             <div class="example-container mat-elevation-z8">
                 <div *ngIf="items">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sh-pg-container" *ngIf="search == false">
                         <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12 text-right">
-                        <ul class="pagination" *ngIf="pager.pages && pager.pages.length">
-                            <li [ngClass]="{hide:pager.currentPage === 1}">
-                                <a (click)="onPaginateChange(pager.currentPage - 1)" class="view-1s" class="btn btn-fill">
-                                    <i class="fa fa-angle-left"></i>
-                                </a>
-                            </li>
-                            <li [ngClass]="{hide:pager.currentPage <= 30}">
-                                <a (click)="onPaginateChange(pager.currentPage - 30)">...</a>
-                            </li>
-                            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-                                <a (click)="onPaginateChange(page)" class="view-plan-details">{{page | number}}</a>
-                            </li>
-                            <li [ngClass]="{hide:pager.currentPage === pager.totalPages}" *ngIf="(pager.startPage  + 3) <= pager.totalPages">
-                                <a (click)="onPaginateChange(pager.currentPage + 3)">...</a>
-                            </li>
-                            <li [ngClass]="{hide:pager.currentPage === pager.totalPages}"> <a>Of</a></li>
-                            <li [ngClass]="{hide:pager.currentPage === pager.totalPages}">
-                                <a (click)="onPaginateChange(pager.totalPages)" class="view-plan-details" type="Last">{{pager.totalPages
-                                    | number}}</a>
-                            </li>
-                            <li *ngIf="pager.currentPage === pager.totalPages"> <a>Of</a></li>
-                            <li *ngIf="pager.currentPage === pager.totalPages">
-                                <a (click)="onPaginateChange(pager.totalPages)" class="view-plan-details" type="Last">{{pager.totalPages
-                                    | number}}</a>
-                            </li>
-                            <li [ngClass]="{hide:pager.currentPage === pager.totalPages}">
-                                <a (click)="onPaginateChange(pager.currentPage + 1)" class="view-plan-details" class="btn bd-color"
-                                    type="Next">
-                                    <i class="fa fa-angle-right top-set"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-         <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12 prod-select-list sec-list sh-select-list"
+                            <ul class="pagination" *ngIf="pager.pages && pager.pages.length">
+                                <li [ngClass]="{hide:pager.currentPage === 1}">
+                                    <a (click)="onPaginateChange(pager.currentPage - 1)" class="view-1s" class="btn btn-fill">
+                                        <i class="fa fa-angle-left"></i>
+                                    </a>
+                                </li>
+                                <li [ngClass]="{hide:pager.currentPage <= 30}">
+                                    <a (click)="onPaginateChange(pager.currentPage - 30)">...</a>
+                                </li>
+                                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                    <a (click)="onPaginateChange(page)" class="view-plan-details">{{page | number}}</a>
+                                </li>
+                                <li [ngClass]="{hide:pager.currentPage === pager.totalPages}" *ngIf="(pager.startPage  + 3) <= pager.totalPages">
+                                    <a (click)="onPaginateChange(pager.currentPage + 3)">...</a>
+                                </li>
+                                <li [ngClass]="{hide:pager.currentPage === pager.totalPages}"> <a>Of</a></li>
+                                <li [ngClass]="{hide:pager.currentPage === pager.totalPages}">
+                                    <a (click)="onPaginateChange(pager.totalPages)" class="view-plan-details" type="Last">{{pager.totalPages
+                                        | number}}</a>
+                                </li>
+                                <li *ngIf="pager.currentPage === pager.totalPages"> <a>Of</a></li>
+                                <li *ngIf="pager.currentPage === pager.totalPages">
+                                    <a (click)="onPaginateChange(pager.totalPages)" class="view-plan-details" type="Last">{{pager.totalPages
+                                        | number}}</a>
+                                </li>
+                                <li [ngClass]="{hide:pager.currentPage === pager.totalPages}">
+                                    <a (click)="onPaginateChange(pager.currentPage + 1)" class="view-plan-details"
+                                        class="btn bd-color" type="Next">
+                                        <i class="fa fa-angle-right top-set"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12 prod-select-list sec-list sh-select-list"
                             *ngIf="pager.pages && pager.pages.length">
-                            <label class="product-label" >Items per page:
+                            <label class="product-label">Items per page:
                             </label>
                             <mat-form-field>
                                 <mat-select class="width-sec" placeholder="" value="{{pageSize}}" (change)="page(pageSize)"
@@ -107,16 +113,18 @@
                                     </td>
                                     <td>
                                         <mat-form-field class="sh-table-date">
-                                            <input matInput [matDatepicker]="startPicker" (focus)="startPicker.open()" name="enterdate" [(ngModel)]="enterdate"
-                                                placeholder="MM/DD/YYYY" (ngModelChange)="onPaginateChange(1)" />
+                                            <input matInput [matDatepicker]="startPicker" (focus)="startPicker.open()"
+                                                name="enterdate" [(ngModel)]="enterdate" placeholder="MM/DD/YYYY"
+                                                (ngModelChange)="onPaginateChange(1)" />
                                             <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
                                             <mat-datepicker #startPicker></mat-datepicker>
                                         </mat-form-field>
                                     </td>
                                     <td>
                                         <mat-form-field class="example-full-width mat-size sh-table-date ">
-                                            <input matInput [matDatepicker]="startPicker1" (focus)="startPicker1.open()" name="duedate" [(ngModel)]="duedate"
-                                                placeholder="MM/DD/YYYY" (ngModelChange)="onPaginateChange(1)" />
+                                            <input matInput [matDatepicker]="startPicker1" (focus)="startPicker1.open()"
+                                                name="duedate" [(ngModel)]="duedate" placeholder="MM/DD/YYYY"
+                                                (ngModelChange)="onPaginateChange(1)" />
                                             <mat-datepicker-toggle matSuffix [for]="startPicker1"></mat-datepicker-toggle>
                                             <mat-datepicker #startPicker1></mat-datepicker>
                                         </mat-form-field>
@@ -125,14 +133,23 @@
                             </thead>
                             <tbody *ngIf="search == false && items">
                                 <tr *ngFor="let data of items;let i=index">
-                                    <td (click)="singlerfp(data.seoTitleUrl)">
-                                        {{data.rfpkey }}
+                                    <td>
+                                        <a style="cursor:pointer;color: #c00;" [routerLink]="['/rfp/', data.seoTitleUrl]"><span>{{data.rfpkey
+                                                }}</span></a>
                                     </td>
                                     <td><span class="block-ellipsis"> {{data. title}}</span></td>
-                                    <td>{{data.category}}</td>
-                                    <td class="sh-align-center">{{data.state }} </td>
-                                    <td class="sh-align-center">{{data.date_entered | date:'EEEE, MMM dd, y' }} </td>
-                                    <td class="sh-align-center">{{data.due_date | date:'EEEE, MMM dd, y' }} </td>
+
+                                    <td><a class="category-name" [routerLink]="['/category']" [queryParams]="{ cat: data.category}"><span>{{data.category}}</span></a></td>
+                                    <td class="sh-align-center"><a class="category-name" [routerLink]="['/state']"
+                                            [queryParams]="{ state: data.state}"><span>{{data.state }}</span></a> </td>
+                                    <!-- <td class="sh-align-center">{{data.date_entered | date:'EEEE, MMM dd, y' }} </td>
+                                    <td class="sh-align-center">{{data.due_date | date:'EEEE, MMM dd, y' }} </td> -->
+                                    <td *ngIf="check(data.date_entered) == true" class="sh-align-center">{{data.date_entered
+                                        | date:'EEEE, MMM dd, y'}}</td>
+                                    <td *ngIf="check(data.date_entered) == false" class="sh-align-center"></td>
+                                    <td *ngIf="check(data.due_date) == true" class="sh-align-center">{{data.due_date |
+                                        date:'EEEE, MMM dd, y'}}</td>
+                                    <td *ngIf="check(data.due_date) == false" class="sh-align-center"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -144,43 +161,42 @@
                     <!-- <ng2-smart-table class="sh-table" [settings]="settings" [source]="items" (userRowSelect)="onUserRowSelect($event)" ></ng2-smart-table> -->
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sh-pg-container" *ngIf="search == false">
-                        <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12 text-right">
-                                <ul class="pagination" *ngIf="pager.pages && pager.pages.length">
-                                    <li [ngClass]="{hide:pager.currentPage === 1}">
-                                        <a (click)="onPaginateChange(pager.currentPage - 1)" class="view-1s" class="btn btn-fill">
-                                            <i class="fa fa-angle-left"></i>
-                                        </a>
-                                    </li>
-                                    <li [ngClass]="{hide:pager.currentPage <= 30}">
-                                        <a (click)="onPaginateChange(pager.currentPage - 30)">...</a>
-                                    </li>
-                                    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-                                        <a (click)="onPaginateChange(page)" class="view-plan-details">{{page | number}}</a>
-                                    </li>
-                                    <li [ngClass]="{hide:pager.currentPage === pager.totalPages}" *ngIf="(pager.startPage  + 3) <= pager.totalPages">
-                                        <a (click)="onPaginateChange(pager.currentPage + 3)">...</a>
-                                    </li>
-                                    <li [ngClass]="{hide:pager.currentPage === pager.totalPages}"> <a>Of</a></li>
-                                    <li [ngClass]="{hide:pager.currentPage === pager.totalPages}">
-                                        <a (click)="onPaginateChange(pager.totalPages)" class="view-plan-details" type="Last">{{pager.totalPages
-                                            | number}}</a>
-                                    </li>
-                                    <li *ngIf="pager.currentPage === pager.totalPages"> <a>Of</a></li>
-                                    <li *ngIf="pager.currentPage === pager.totalPages">
-                                        <a (click)="onPaginateChange(pager.totalPages)" class="view-plan-details" type="Last">{{pager.totalPages
-                                            | number}}</a>
-                                    </li>
-                                    <li [ngClass]="{hide:pager.currentPage === pager.totalPages}">
-                                        <a (click)="onPaginateChange(pager.currentPage + 1)" class="view-plan-details" class="btn bd-color"
-                                            type="Next">
-                                            <i class="fa fa-angle-right top-set"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12 prod-select-list sec-list sh-select-list"
-                            *ngIf="pager.pages && pager.pages.length">
-                        <label class="product-label" >Items per page:
+                    <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12 text-right">
+                        <ul class="pagination" *ngIf="pager.pages && pager.pages.length">
+                            <li [ngClass]="{hide:pager.currentPage === 1}">
+                                <a (click)="onPaginateChange(pager.currentPage - 1)" class="view-1s" class="btn btn-fill">
+                                    <i class="fa fa-angle-left"></i>
+                                </a>
+                            </li>
+                            <li [ngClass]="{hide:pager.currentPage <= 30}">
+                                <a (click)="onPaginateChange(pager.currentPage - 30)">...</a>
+                            </li>
+                            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a (click)="onPaginateChange(page)" class="view-plan-details">{{page | number}}</a>
+                            </li>
+                            <li [ngClass]="{hide:pager.currentPage === pager.totalPages}" *ngIf="(pager.startPage  + 3) <= pager.totalPages">
+                                <a (click)="onPaginateChange(pager.currentPage + 3)">...</a>
+                            </li>
+                            <li [ngClass]="{hide:pager.currentPage === pager.totalPages}"> <a>Of</a></li>
+                            <li [ngClass]="{hide:pager.currentPage === pager.totalPages}">
+                                <a (click)="onPaginateChange(pager.totalPages)" class="view-plan-details" type="Last">{{pager.totalPages
+                                    | number}}</a>
+                            </li>
+                            <li *ngIf="pager.currentPage === pager.totalPages"> <a>Of</a></li>
+                            <li *ngIf="pager.currentPage === pager.totalPages">
+                                <a (click)="onPaginateChange(pager.totalPages)" class="view-plan-details" type="Last">{{pager.totalPages
+                                    | number}}</a>
+                            </li>
+                            <li [ngClass]="{hide:pager.currentPage === pager.totalPages}">
+                                <a (click)="onPaginateChange(pager.currentPage + 1)" class="view-plan-details" class="btn bd-color"
+                                    type="Next">
+                                    <i class="fa fa-angle-right top-set"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12 prod-select-list sec-list sh-select-list" *ngIf="pager.pages && pager.pages.length">
+                        <label class="product-label">Items per page:
                         </label>
                         <mat-form-field>
                             <mat-select class="width-sec" placeholder="" value="pageSize" (change)="page(pageSize)"

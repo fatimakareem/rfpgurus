@@ -5,7 +5,7 @@ import swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { ViewChild } from '@angular/core';
-import { RecaptchaComponent } from '../recaptcha/recaptcha.component';
+import { RecapchaComponent } from '../recapcha/recapcha.component';
 import { AuthService } from "angular4-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angular4-social-login";
 // import { JwtHelperService  } from '@auth0/angular-jwt';
@@ -14,6 +14,8 @@ import * as CryptoJS from 'crypto-js';
 import { Http, Headers } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 declare var $: any;
+import {Location} from '@angular/common';
+import { RecapchaService } from '../recapcha/recapcha.service';
 
 declare interface ValidatorFn {
     (c: AbstractControl): {
@@ -39,7 +41,7 @@ declare interface User {
     providers: [LoginService, AuthService]
 })
 export class LoginComponent implements OnInit, OnDestroy {
-    @ViewChild(RecaptchaComponent) captcha: RecaptchaComponent;
+    @ViewChild(RecapchaComponent) captcha: RecapchaComponent;
     endRequest;
     hide = true;
     public typeValidation: User;
@@ -52,7 +54,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     user: any;
     public logedin: any = 0;
     returnUrl: string;
-    constructor(@Inject(PLATFORM_ID) private platformId: Object, private route: ActivatedRoute, private _http: Http, private authService: AuthService, private _nav: Router, private _serv: LoginService, private formBuilder: FormBuilder) { }
+    constructor(@Inject(PLATFORM_ID) private platformId: Object, private route: ActivatedRoute, private _http: Http, private authService: AuthService, private _nav: Router, private _serv: LoginService, private formBuilder: FormBuilder,private _location: Location,public recapcha: RecapchaService) { }
     ///////////////////social login////////////////////////////
     socialCallBack = (user) => {
         this.user = user;
@@ -76,8 +78,9 @@ export class LoginComponent implements OnInit, OnDestroy {
                     showConfirmButton: false,
                     timer: 1500,width: '512px',
                 });
-                let url = 'profile';
-                this._nav.navigate([url]);
+                this._location.back();
+                // let url = 'profile';
+                // this._nav.navigate([url]);
             },
                 error => {
                     swal(
@@ -114,7 +117,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
     onLogin() {
         // console.log(this.login);
-        if (this.login.valid && this.captcha.getResponse()) {
+        if (this.login.valid && this.recapcha.check()) {
             // console.log(this.login.value);
             // console.log('form submitted');
             this.isequal = true;
@@ -129,8 +132,10 @@ export class LoginComponent implements OnInit, OnDestroy {
                                 showConfirmButton: false,
                                 timer: 1500,width: '512px',
                             });
-                            let url = 'profile';
-                            this._nav.navigate([url]);
+                            // let url = 'profile';
+                            // this._nav.navigate([url]);
+                            
+                            this._location.back();
                         },
                         error => {
                             swal(
@@ -161,8 +166,17 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
         else {
             this.validateAllFormFields(this.login);
-            this.captcha.reset();
-            this.isequal = false;
+            this.captcha.resetImg();
+            // this.captcha.reset();
+            // this.isequal = false;
+            
+            swal({
+              type: 'error',
+              title: 'Please confirm you are not a robot!',
+              showConfirmButton: false,
+              width: '512px',
+              timer: 2000
+            });
         }
     }
     foremail() {

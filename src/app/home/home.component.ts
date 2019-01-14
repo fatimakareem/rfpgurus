@@ -5,6 +5,8 @@ import { HomeService } from './home.service';
 import { NgForm } from '@angular/forms'
 import { Meta } from '@angular/platform-browser';
 import { SharedData } from './../shared-service';
+import * as moment from 'moment';
+
 declare var $: any;
 @Component({
   selector: 'app-home',
@@ -21,6 +23,19 @@ export class HomeComponent implements OnInit, AfterContentInit, OnDestroy {
   public selected: any;
   state: any = [];
   cat: any = [];
+  date;
+  check(date){
+       
+    this.date= moment(date, this.formats, true).isValid()
+     
+    return this.date;
+   
+ 
+}
+formats = [
+  moment.ISO_8601,
+  "YYYY/MM/DD"
+];
   category;
   item;
   posted = '';

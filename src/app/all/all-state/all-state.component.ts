@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AllStateService } from './all-state.service';
-import { SharedData } from '../../shared-service';
+import { SharedData } from '../../shared-service';import {Location} from '@angular/common';
 @Component({
   selector: 'app-all-state',
   templateUrl: './all-state.component.html',
@@ -12,12 +12,15 @@ export class AllStateComponent implements OnInit, OnDestroy {
   endRequest;
   state: any = [];
   statesearch;
+  back(){
+    this._location.back();
+  }
   loaded = false;
   public query: any;
   public Rfp: any;
   public selected: any;
   mainSearch = 0;
-  constructor(public _shareData: SharedData, private _nav: Router, private _serv: AllStateService) {
+  constructor(public _shareData: SharedData, private _nav: Router, private _serv: AllStateService,private _location: Location) {
     this.endRequest = this._serv.rfpstate().subscribe(
       data => {
         this.state = data.Result;

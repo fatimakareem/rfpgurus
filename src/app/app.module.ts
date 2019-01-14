@@ -39,7 +39,7 @@ import { PaymentmethodsService } from './admin/paymentmethods/paymentmethods.ser
 // import { DateFormat } from './advance-search/date-format';
 // import { UnsubscribeService } from './unsubscribe/unsubscribe.service';
 import { SpeechRecognitionService } from './header/speechservice';
-
+import {SuperadminComponent} from './layouts/admin/superadmin.component'
 /////////////////////////////////End////////////////////////////////
 ///////////////////for loader//////////////////////////////
 import { PreloaderFull } from './component/preloader-full/preloader-full';
@@ -103,6 +103,8 @@ import { RfpComponent } from './rfps/rfp/rfp.component';
 import { RegisteredComponent } from './registered/registered.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { LoginComponent } from './login/login.component';
+import { SuperloginComponent } from './superlogin/superlogin.component';
+
 // import { ForgetPasswordComponent } from './admin/forget-password/forget-password.component';
 // import { StateRfpComponent } from './rfps/state-rfp/state-rfp.component';
 // import { CategoryRfpComponent } from './rfps/category-rfp/category-rfp.component';
@@ -119,14 +121,15 @@ import { FooterComponent } from './footer/footer.component';
 // import { RfpAsServiceComponent } from './rfp-as-service/rfp-as-service.component';
 // import { BlogComponent } from './blog/blog.component';
 // import { SingleblogComponent } from './singleblog/singleblog.component';
-import { RecaptchaModule } from 'ng-recaptcha';
+// import { RecaptchaModule } from 'ng-recaptcha';
+import { RecapchaComponent } from './recapcha/recapcha.component';
+import { RecapchaService } from './recapcha/recapcha.service';
+
 // import { PartnershipComponent } from './partnership/partnership.component';
 // import { HistoryComponent } from './admin/history/history.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SharedData } from './shared-service'
 import { DatePipe } from '@angular/common';
-import { BlackgeeksRecaptchaModule } from './recaptcha/recaptcha.module';
-import { RecaptchaComponent } from './recaptcha/recaptcha.component';
 import { ResultsComponent } from './results/results.component';
 import { ResultsService } from './results/results.service';
 // import {PagerService} from './rfps/rfp/paginator.service';
@@ -208,7 +211,7 @@ export function provideConfig() {
         MatToolbarModule,
         MatTooltipModule,
         MatStepperModule,
-        BlackgeeksRecaptchaModule
+        // BlackgeeksRecaptchaModule
     ],
     declarations: [],
 
@@ -233,7 +236,7 @@ export class MaterialModule { }
             apiKey: 'AIzaSyDPnJ0zatoiPOI1GOeeS7HCj7AxIW183tg'
         }),
         ReactiveFormsModule,
-        RecaptchaModule.forRoot(),
+        // RecaptchaModule.forRoot(),
         MatTabsModule,
         MatToolbarModule,
         MatTooltipModule,
@@ -242,7 +245,8 @@ export class MaterialModule { }
         LoaderModule,
     ],
     declarations: [
-        AdminComponent,
+        AdminComponent,SuperloginComponent,
+        SuperadminComponent,
         // UnsubscribeComponent,
         AllnotificationComponent,
         // PaymentmethodsComponent,
@@ -254,6 +258,7 @@ export class MaterialModule { }
         HeaderComponent,
         SingleRfpComponent,
         UserSidebarComponent,
+        RecapchaComponent,
         // PricingComponent,
         RfpComponent,
         PreloaderFull,
@@ -263,7 +268,7 @@ export class MaterialModule { }
         AuthenticateComponent,
         LoginComponent,
         // ForgetPasswordComponent,
-        RecaptchaComponent,
+        // RecaptchaComponent,
         // StateRfpComponent,
         // CategoryRfpComponent,
         // AllCategoryComponent,
@@ -293,6 +298,7 @@ export class MaterialModule { }
         DatePipe,
         // MainService,
         // AllStateService,
+        RecapchaService,
         SharedData,
         AdvanceService,
         HomeService,

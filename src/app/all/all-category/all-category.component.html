@@ -15,7 +15,7 @@
             <p>No results found. Please use keywords.</p>
           </li>
           <li *ngFor="let item of Rfp">
-            <a style="cursor:pointer" (click)="catrfp(item.category)"> <i class="material-icons">arrow_forward</i>
+            <a style="cursor:pointer" [routerLink]="['/category']" [queryParams]="{ cat: item.category}"> <i class="material-icons">arrow_forward</i>
               {{item.category}} </a>
           </li>
         </ul>
@@ -23,26 +23,29 @@
     </div>
   </div>
 </div>
-<app-loader></app-loader>
+
 <div class="main-content">
   <div class="container">
-    <div class="row">
+      
+    <div class="row"><div class="rfp-back">
+        <a (click)="back()"><i class="fa fa-chevron-left"></i> Back to Previous Page</a>
+      </div>
       <div class="all-cats">
         <div class="head col-sm-12">
           <div class="row">
             <div class="col-sm-8">
-              <h3><i class="fa fa-list-alt" aria-hidden="true"></i>All Categories</h3>
+              <h3><i class="fas fa-list-alt" aria-hidden="true"></i>All Categories</h3>
             </div>
             <div class="col-sm-4 text-right">
               <input type="text" [(ngModel)]="catsearch" [ngModelOptions]="{standalone: true}" placeholder="Search RFPs"
                 class="search-allstates">
-              <i class="fa fa-search s-icon-all-states" area-hidden="true"></i>
+              <i class="fas fa-search s-icon-all-states" area-hidden="true"></i>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-4 col" *ngFor="let rfpcat of cat | filter:catsearch">
-            <a style="cursor:pointer" (click)="catrfp(rfpcat.category)"><i class="fa fa-superpowers" aria-hidden="true"></i>{{rfpcat.category}}</a>
+            <a style="cursor:pointer" (click)="catrfp(rfpcat.category)"><i class="fab fa-superpowers" aria-hidden="true"></i>{{rfpcat.category}}</a>
           </div>
         </div>
       </div>

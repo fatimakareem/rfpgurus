@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AllAgenciesService } from './all-agencies.service';
-import { SharedData } from '../../shared-service';
+import { SharedData } from '../../shared-service';import {Location} from '@angular/common';
+
 @Component({
     selector: 'app-agencies',
     templateUrl: './all-agencies.component.html',
@@ -9,6 +10,9 @@ import { SharedData } from '../../shared-service';
     providers: [AllAgenciesService, SharedData]
 })
 export class AllAgenciesComponent implements OnInit, OnDestroy {
+    back(){
+        this._location.back();
+      }
     endRequest;
     agency: any = [];
     agensearch;
@@ -16,7 +20,7 @@ export class AllAgenciesComponent implements OnInit, OnDestroy {
     public query: any;
     public Rfp: any;
     public selected: any;
-    constructor(public _shareData: SharedData, private _nav: Router, private _serv: AllAgenciesService) {
+    constructor(public _shareData: SharedData, private _nav: Router, private _serv: AllAgenciesService,private _location: Location) {
         this.endRequest = this._serv.rfpagency().subscribe(
             data => {
                 this.agency = data.Result;

@@ -8,6 +8,8 @@ import swal from 'sweetalert2';
 import {SharedData } from '../../shared-service';
 declare const $: any;
 import {PagerService} from '../rfp/paginator.service';
+import * as moment from 'moment';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -17,7 +19,22 @@ import {PagerService} from '../rfp/paginator.service';
   providers: [PagerService,SharedData,CategoryRfpService]
 })
 export class CategoryRfpComponent implements OnInit {
-
+  date;
+  back(){
+    this._location.back();
+  }
+  check(date){
+       
+    this.date= moment(date, this.formats, true).isValid()
+  //    
+    return this.date;
+   
+ 
+}
+formats = [
+  moment.ISO_8601,
+  "YYYY/MM/DD"
+];
   item;
   cat;
   record:any = [] ;
@@ -26,7 +43,7 @@ export class CategoryRfpComponent implements OnInit {
   uname;
   subscribe;
   
-  constructor(private pagerService:PagerService,public _shareData: SharedData,private _nav:Router,private _serv: CategoryRfpService ,private route: ActivatedRoute) { }
+  constructor(private pagerService:PagerService,public _shareData: SharedData,private _nav:Router,private _serv: CategoryRfpService ,private route: ActivatedRoute,private _location: Location) { }
   // MatPaginator Inputs
   length = 0;
   pageSize = '50';

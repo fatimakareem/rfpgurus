@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AllCategoryService } from './all-category.service';
-import { SharedData } from '../../shared-service';
+import { SharedData } from '../../shared-service';import {Location} from '@angular/common';
 @Component({
   selector: 'app-all-category',
   templateUrl: './all-category.component.html',
@@ -10,6 +10,9 @@ import { SharedData } from '../../shared-service';
 })
 export class AllCategoryComponent implements OnInit, OnDestroy {
   endRequest;
+  back(){
+    this._location.back();
+  }
   cat: any = [];
   catsearch;
   loaded = false;
@@ -17,7 +20,7 @@ export class AllCategoryComponent implements OnInit, OnDestroy {
   public Rfp: any;
   public selected: any;
   mainSearch = 0;
-  constructor(public _shareData: SharedData, private _nav: Router, private _serv: AllCategoryService) {
+  constructor(public _shareData: SharedData, private _nav: Router, private _serv: AllCategoryService,private _location: Location) {
     this.endRequest = this._serv.rfpcategory().subscribe(
       data => {
         this.cat = data;

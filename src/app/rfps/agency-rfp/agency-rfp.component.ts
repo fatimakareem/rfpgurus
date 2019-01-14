@@ -9,6 +9,8 @@ import { Router, RouterModule } from '@angular/router';
 import swal from 'sweetalert2';
 import {SharedData } from '../../shared-service';
 import {PagerService} from '../rfp/paginator.service';
+import * as moment from 'moment';
+import {Location} from '@angular/common';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 declare const $: any;
@@ -20,6 +22,22 @@ declare const $: any;
  providers: [PagerService,SharedData,AgencyService]
 })
 export class AgencyRfpComponent implements OnInit ,OnDestroy{
+    date;
+    back(){
+        this._location.back();
+      }
+    check(date){
+         
+      this.date= moment(date, this.formats, true).isValid()
+    //    
+      return this.date;
+     
+   
+  }
+  formats = [
+    moment.ISO_8601,
+    "YYYY/MM/DD"
+  ];
     item;
     agency;
     record:any = [] ;
@@ -27,7 +45,7 @@ export class AgencyRfpComponent implements OnInit ,OnDestroy{
 
     currentUser;
 
-    constructor(private pagerService:PagerService,public _shareData: SharedData,private _nav:Router,private _serv: AgencyService ,private route: ActivatedRoute) { }
+    constructor(private pagerService:PagerService,public _shareData: SharedData,private _nav:Router,private _serv: AgencyService ,private route: ActivatedRoute,private _location: Location) { }
     // MatPaginator Inputs
     length = 0;
     pageSize = '50';

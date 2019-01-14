@@ -15,6 +15,9 @@
 </div> -->
 <div class="main-content custom">
 <div class="container-fluid">
+    <div class="rfp-back">
+        <a (click)="back()"><i class="fa fa-chevron-left"></i> Back to Previous Page</a>
+    </div>
   <div class="row">
       <div class="col-sm-12"> 
           <!-- <div class="page-title" style="margin:10px 0px">
@@ -55,14 +58,13 @@
                         <h3>
                           <a style="cursor:pointer" [routerLink]="['/rfp/',  rfp?.wrfp.seoTitleUrl]"> {{ rfp?.wrfp.title}}</a>
                         </h3>
-                        <h5 *ngIf="rfp?.wrfp.agency"><i class="fa fa-building-o"></i>Agency : <span>{{rfp?.wrfp.agency}}</span></h5>
+                        <h5 *ngIf="rfp?.wrfp.agency"><i class="fa fa-building-o"></i>Agency : <a [routerLink]="['/agency']" [queryParams]="{ agency: rfp?.wrfp.agency}"><span><b>{{rfp?.wrfp.agency}}</b></span></a></h5>
                         <h5>
                           <i class="fa fa-university"></i>Category :
-                          <span>{{ rfp?.wrfp.category}}</span>
+                          <a [routerLink]="['/category']" [queryParams]="{ cat: rfp?.wrfp.category}"><span><b>{{ rfp?.wrfp.category}}</b></span></a>
                         </h5>
                         <h5>
-                          <i class="fa fa-fort-awesome"></i>State :
-                          <span>{{ rfp?.wrfp.state}}</span>
+                          <i class="fa fa-fort-awesome"></i>State :<a [routerLink]="['/state']" [queryParams]="{ state: rfp?.wrfp.state}"><span><b>{{ rfp?.wrfp.state}}</b></span></a>
                         </h5>
                         
                       </div>
@@ -80,8 +82,10 @@
                             </thead>
                             <tbody>
                             <tr>
-                              <td>{{ rfp?.wrfp.date_entered | date:'EEEE, MMM dd, y'}}</td>
-                              <td>{{ rfp?.wrfp.due_date | date:'EEEE, MMM dd, y'}}</td>
+                                <td *ngIf="check(rfp?.wrfp.date_entered) == true">{{rfp?.wrfp.date_entered | date:'EEEE, MMM dd, y'}}</td>
+                                <td *ngIf="check(rfp?.wrfp.date_entered) == false"></td>
+                                <td *ngIf="check(rfp?.wrfp.due_date) == true">{{rfp?.wrfp.due_date | date:'EEEE, MMM dd, y'}}</td>
+                                <td *ngIf="check(rfp?.wrfp.due_date) == false"></td>
                             </tr>
     
                             </tbody>

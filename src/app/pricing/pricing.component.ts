@@ -5,6 +5,7 @@ import swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RfpService } from '../rfps/single-rfp/rfp.service';
 import { PaymentmethodsService } from '../admin/paymentmethods/paymentmethods.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-pricing',
@@ -67,7 +68,7 @@ export class PricingComponent implements OnInit {
   message;
   var_get_card_id;
   /////////////////////////////end///////////////////////////
-  constructor(private route: ActivatedRoute, private _serv1: RfpService, private _nav: Router, private _serv: PricingService, private http: Http, private _http6: PaymentmethodsService) { }
+  constructor(private route: ActivatedRoute, private _serv1: RfpService, private _nav: Router, private _serv: PricingService, private http: Http, private _http6: PaymentmethodsService,private _location: Location) { }
   //
   next_stepdetail(event: any) {
     if (event.target.value == "BM") {
@@ -174,7 +175,9 @@ export class PricingComponent implements OnInit {
           '',
           'success'
         )
+        this._location.back();
       },
+
       error => {
         swal(
           'Oops...',

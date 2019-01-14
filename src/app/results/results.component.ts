@@ -7,8 +7,10 @@ import swal from 'sweetalert2';
 import {SharedData } from './../shared-service';
 import {ResultsService} from './results.service';
 import {PagerService} from '../rfps/rfp/paginator.service';
+import * as moment from 'moment';
 
 declare const $: any;
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -19,7 +21,22 @@ declare const $: any;
 })
 
 export class ResultsComponent implements OnInit,OnDestroy {
-
+    date;
+    back(){
+        this._location.back();
+      }
+    check(date){
+         
+      this.date= moment(date, this.formats, true).isValid()
+    //    
+      return this.date;
+     
+   
+  }
+  formats = [
+    moment.ISO_8601,
+    "YYYY/MM/DD"
+  ];
     item;
     cat;
     record:any = [] ;
@@ -28,7 +45,7 @@ export class ResultsComponent implements OnInit,OnDestroy {
     uname;
     subscribe;
     sorted;
-    constructor(private pagerService:PagerService,public _shareData: SharedData,private _nav:Router,private _serv: ResultsService ,private route: ActivatedRoute) { }
+    constructor(private pagerService:PagerService,public _shareData: SharedData,private _nav:Router,private _serv: ResultsService ,private route: ActivatedRoute,private _location: Location) { }
     // MatPaginator Inputs
     endRequest;
     length = 0;

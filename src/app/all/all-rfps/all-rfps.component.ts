@@ -8,6 +8,9 @@ import { PagerService } from '../../rfps/rfp/paginator.service';
 import { AllRfpsService } from './all-rfps.service';
 declare const $: any;
 import {  Compiler } from '@angular/core';
+import * as moment from 'moment';
+import {Location} from '@angular/common';
+
 @Component({
     selector: 'app-all-rfps',
     templateUrl: './all-rfps.component.html',
@@ -16,11 +19,18 @@ import {  Compiler } from '@angular/core';
 })
 export class AllRfpsComponent implements OnInit {
     item;
+    back(){
+        this._location.back();
+      }
     state;
     record: any = [];
     currentUser;
     length = 0;
-    constructor(private _compiler: Compiler,private pagerService: PagerService, public _shareData: SharedData, private _nav: Router, private _serv: AllRfpsService, private route: ActivatedRoute) { this._compiler.clearCache(); }
+    constructor(private _compiler: Compiler,private pagerService: PagerService, public _shareData: SharedData, private _nav: Router, private _serv: AllRfpsService, private route: ActivatedRoute,private _location: Location) { this._compiler.clearCache(); }
+   formats = [
+        moment.ISO_8601,
+        "YYYY/MM/DD"
+    ];
     // MatPaginator Inputs
     // length
     pageSize = "10";
@@ -30,7 +40,7 @@ export class AllRfpsComponent implements OnInit {
     status;
     local;
     uname;
-    subscribe;
+    subscribe;date;
     // MatPaginator Output
     // pageEvent: PageEvent;
     // endRequest;
@@ -38,6 +48,14 @@ export class AllRfpsComponent implements OnInit {
     //     this.matpageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
 
     // }
+    check(date){
+       
+           this.date= moment(date, this.formats, true).isValid()
+            
+           return this.date;
+          
+        
+    }
     page(pageSize) {
         if (pageSize) {
             console.log(pageSize);
@@ -50,11 +68,26 @@ export class AllRfpsComponent implements OnInit {
             console.log(this.pageSize)
         }
     }
+    enter:any=[];
     setPage(page: number) {
         this._serv.latestrfpecord(this.pageSize, page).subscribe(
             data => {
 
                 this.record = data.results;
+                // for(var i of data.results){
+                //     this.date= moment(i.date_entered, this.formats, true).isValid()
+                //     if(this.date==true){
+                //         // this.enter= i.date_entered
+                //     }
+                //     console.log(this.date)
+                //     if(this.date==false){
+                //         this.enter='';
+                //     }
+                    
+                //     console.log(this.enter)
+                //    return this.enter;
+                   
+                // }
                 this.item = data.totalItems;
                 // this.length = this.item;
                 console.log(this.record, 'jjjjjjjjjjjjjjj');

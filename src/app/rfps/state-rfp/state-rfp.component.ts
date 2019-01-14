@@ -12,6 +12,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 import {PagerService} from '../rfp/paginator.service';
 import {isEmpty} from 'rxjs/operator/isEmpty';
 declare const $: any;
+import * as moment from 'moment';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-state-rfp',
@@ -20,6 +22,19 @@ declare const $: any;
  providers: [PagerService,SharedData,StateService]
 })
 export class StateRfpComponent implements OnInit ,OnDestroy{
+  date;
+    check(date){
+         
+      this.date= moment(date, this.formats, true).isValid()
+    //    
+      return this.date;
+     
+   
+  }
+  formats = [
+    moment.ISO_8601,
+    "YYYY/MM/DD"
+  ];
   item;
   state;
   record:any = [] ;
@@ -28,11 +43,14 @@ export class StateRfpComponent implements OnInit ,OnDestroy{
     pageSizeOptions;
   currentUser;
   
-  constructor(private pagerService:PagerService,public _shareData: SharedData,private _nav:Router,private _serv: StateService ,private route: ActivatedRoute) { }
+  constructor(private pagerService:PagerService,public _shareData: SharedData,private _nav:Router,private _serv: StateService ,private route: ActivatedRoute,private _location: Location) { }
   // MatPaginator Inputs
   length = 0;
   pageSize = '50';
   matpageSizeOptions = [10, 20, 35, 50];
+  back(){
+    this._location.back();
+  }
 
     status;
   local;

@@ -45,8 +45,11 @@ import { AllRfpsComponent } from './all/all-rfps/all-rfps.component';
 import { AdminLayoutComponent } from './layouts/lyout/admin-layout.component';
 import { AdminComponent } from './layouts/superadmin/admin-layout.component'
 import { WatchlistComponent } from './watchlist/watchlist.component';
+import {SuperadminComponent} from './layouts/admin/superadmin.component'
 
-import { AuthLayoutComponent } from './layouts/auth/auth-layout.component'
+import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
+import { SuperloginComponent } from './superlogin/superlogin.component';
+
 export const AppRoutes: Routes = [
     {
         path: '',
@@ -113,6 +116,10 @@ export const AppRoutes: Routes = [
         path: '',
         component: AuthLayoutComponent,
         children: [
+            {
+                path: 'adminlogin',
+                component: SuperloginComponent
+              },
             // { path: 'unsubscribe/:query1', component: UnsubscribeComponent },
             { path: 'unsubscribe/:query1', loadChildren: '../app/unsubscribe/unsubscribe.module#UnsubscribeModule' },
             // { path: 'login', loadChildren: '../app/login/login.module#LoginModule' },
@@ -157,6 +164,16 @@ export const AppRoutes: Routes = [
 
             // { path: 'forgetpassword/:query2', component: ForgetPasswordComponent},
             { path: 'forgetpassword/:query2', loadChildren: '../app/admin/forget-password/forget-password.module#ForgetPasswordModule' },
+           
+        ]
+    },
+
+    {
+        path: '',
+        component: SuperadminComponent,
+        children: [
+            
+            { path: 'admin-penal', loadChildren: '../app/admin-penal/admin-penal.module#AdminPenalModule' },
            
         ]
     },
