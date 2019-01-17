@@ -14,7 +14,7 @@
             </div>
           </div>
           <div class="products-area sh-products-area">
-            <div *ngFor="let rfp of record;let i=index" class="card">
+            <div *ngFor="let rfp of record;let i=index" class="card pos-rel">
               <div class="row">
                 <div class="col-sm-12">
                   <div class="card-header card-header-text" data-background-color="purple">
@@ -23,8 +23,8 @@
                     </a>
                   </div>
                 </div>
-                <button class="fa fa-edit edit-del-btn" type="submit" value="Edit" type="submit" (click)="btnEditClick(rfp.id,rfp.rfpkey,rfp.rfp_number,rfp.title,rfp.descriptionTag,rfp.state,rfp.agency,rfp.date_entered,rfp.due_date,rfp.web_info,rfp.rfp_reference)"
-                  data-toggle="modal" data-target="#myModal2" style="margin-right: 20px;"><span style="font-size: 19px;">
+                <button class="fa btn sh fa-edit edit-del-btn" type="submit" value="Edit" type="submit" (click)="btnEditClick(rfp.id,rfp.rfpkey,rfp.rfp_number,rfp.title,rfp.descriptionTag,rfp.state,rfp.agency,rfp.date_entered,rfp.due_date,rfp.web_info,rfp.rfp_reference)"
+                  data-toggle="modal" data-target="#myModal2"><span style="font-size: 18px;">
                     Edit </span>
                 </button>
                 <div class="card-content">
@@ -160,25 +160,19 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="myModal2" role="dialog">
-  <div class="modal-dialog">
+<div class="modal fade " id="myModal2" role="dialog">
+  <div class="modal-dialog admin-popup">
     <!-- Modal content-->
     <div class="modal-content popupmodel">
-      <div class="modal-header">
-      </div>
-      <div class="modal-body" style="font-size: 18px;
-                                  background: #ffffff;
-                                  padding: 20px 20px 0px;
-                                  margin: 15px;
-                                  position: relative;">
-        <div class="popup-close-button" data-dismiss="modal">X</div>
+      <div class="modal-body" >
+          <div class="popup-close-button" data-dismiss="modal">X</div>
         <div class="row">
           <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 " style="border-bottom: 1px #4f4f4f solid;">
             <p class=" modal-v2__main-heading"> {{title}}</p>
 
           </div>
 
-          <form>
+          <form class="sh-signup-form-fix">
 
             <div class="col-md-6 col-sm-6">
               <div class="input-group">
@@ -207,15 +201,7 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="col-md-6 col-sm-6">
-              <div class="input-group">
-                <ckeditor [(ngModel)]="descriptionTag" name="descriptionTag"> {{descriptionTag}}
-                  <ckbutton [name]="'saveButton'" [command]="'saveCmd'"  [icon]="'save.png'"
-                    [label]="'Save Document'" [toolbar]="'clipboard,1'">
-                  </ckbutton></ckeditor>
-
-              </div>
-            </div>
+            
             <div class="col-md-6 col-sm-6">
               <div class="input-group">
                 <mat-form-field>
@@ -276,7 +262,15 @@
                 </mat-form-field>
               </div>
             </div>
-
+            <div class="col-md-12 col-sm-12">
+                <div class="input-group">
+                  <ckeditor [(ngModel)]="descriptionTag" name="descriptionTag"> {{descriptionTag}}
+                    <ckbutton [name]="'saveButton'" [command]="'saveCmd'"  [icon]="'save.png'"
+                      [label]="'Save Document'" [toolbar]="'clipboard,1'">
+                    </ckbutton></ckeditor>
+  
+                </div>
+              </div>
             <div class="col-md-12 col-sm-12">
 
               <div class=" text-center" style="margin-top: -21px;">

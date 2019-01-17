@@ -28,19 +28,19 @@
                         </mat-form-field>
                     </div>
                     <div class="form-group">
-                    <div class="checkbox col-sm-6 padding-0">
-                        <label>
-                            <input type="checkbox" value="" name="remember" checked> Keep me logged in
-                        </label>
-                    </div>
-                    <div class="col-lg-6 margin-top-55">
-                            <app-recapcha></app-recapcha>
+                        <div class="checkbox col-sm-6 padding-0">
+                            <label>
+                                <input type="checkbox" value="" name="remember" checked> Keep me logged in
+                            </label>
+                        </div>
+
+                        <app-recapcha></app-recapcha>
                         <!-- <div class="error-block" *ngIf="isequal==false">
                             <span>*Please Enter Valid Answer</span>
                         </div> -->
+
                     </div>
-                    </div>
-                    
+
                     <div class="form-footer ">
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-rose btn-fill btn-wd sh-signin-btn" (click)="onLogin()">Signin
@@ -54,27 +54,32 @@
                             </div>
                             <div class="forgot_pas col-sm-6 padding-0">
                                 <label>
-                                    <a style="cursor:pointer;text-decoration:underline" (click)="foremail()">Forgot your password?</a>
+                                    <a style="cursor:pointer;text-decoration:underline" (click)="foremail()">Forgot
+                                        your password?</a>
                                 </label>
                             </div>
-                            <p class="sh-OR col-sm-12" data-reactid="40">OR</p>
-                            <div class="other-logins">
-                                <button (click)="signInWithFB()" class="btn btn-rose btn-fill btn-wd s-l-fb">
-                                    <i class="fa fa-facebook"></i>
-                                    <span>Facebook</span>
-                                </button>
-                                <button (click)="signInWithGoogle()" class="btn btn-rose btn-fill btn-wd  s-l-google">
-                                    <i class="fa fa-google"></i>
-                                    <span>Google</span>
-                                </button>
-                                <br>
-                                <div class="term-privacy text-center">
-                                    <a [routerLink]="['/terms']">Terms of Service </a>
-                                    <a [routerLink]="['/privacy-policy']">Privacy Policy</a>
-                                </div>
+                            <div class="col-sm-12">
+                                <p class="sh-OR" data-reactid="40">OR</p>
+                            </div>
+                       
+                        </div>
+                       
+                    </div>
+                    <div class="other-logins ">
+                            <button (click)="signInWithFB()" class="btn btn-rose btn-fill btn-wd s-l-fb">
+                                <i class="fa fa-facebook"></i>
+                                <span>Facebook</span>
+                            </button>
+                            <button (click)="signInWithGoogle()" class="btn btn-rose btn-fill btn-wd  s-l-google">
+                                <i class="fa fa-google"></i>
+                                <span>Google</span>
+                            </button>
+                            <br>
+                            <div class="term-privacy text-center">
+                                <a [routerLink]="['/terms']">Terms of Service </a>
+                                <a [routerLink]="['/privacy-policy']">Privacy Policy</a>
                             </div>
                         </div>
-                    </div>
                 </div>
             </form>
         </div>

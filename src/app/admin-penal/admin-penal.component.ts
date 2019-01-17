@@ -202,7 +202,7 @@ this.id=id;
         if(this.web_info){
         this.http.post(
             'https://storage.rfpgurus.com/bplrfpgurus/',
-          this.web_info, { responseType: 'text' }).subscribe(data => {
+          this.web_info).subscribe(data => {
           
     
               
