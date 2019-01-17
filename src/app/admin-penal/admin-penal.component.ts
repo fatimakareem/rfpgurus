@@ -9,7 +9,9 @@ import { AllRfpsService } from '../all/all-rfps/all-rfps.service';
 declare const $: any;
 import {  Compiler } from '@angular/core';
 import * as moment from 'moment';
-import { HttpClient, HttpResponse, HttpHeaders } from "@angular/common/http";
+import { Headers, Http, Response } from '@angular/http';
+import {HttpService} from '../serv/http-service';
+
 
 @Component({
   selector: 'app-admin-penal',
@@ -23,7 +25,7 @@ export class AdminPanelComponent implements OnInit {
     record: any = [];
     currentUser;
     length = 0;
-    constructor(private _compiler: Compiler,private pagerService: PagerService, public _shareData: SharedData, private _nav: Router, private _serv: AllRfpsService, private route: ActivatedRoute,private http: HttpClient) {  }
+    constructor(private _compiler: Compiler,private pagerService: PagerService, public _shareData: SharedData, private _nav: Router, private _serv: AllRfpsService, private route: ActivatedRoute,private http: HttpService) {  }
    formats = [
         moment.ISO_8601,
         "YYYY/MM/DD"
@@ -69,35 +71,46 @@ export class AdminPanelComponent implements OnInit {
     }
     enter:any=[];
     setPage(page: number) {
-        this._serv.latestrfpecord(this.pageSize, page).subscribe(
-            data => {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        this.http.get('https://apis.rfpgurus.com/rf_p/rfp/date_entered/asc/' + this.pageSize + '?page=' + page, { headers: headers })
+          .subscribe(Res => {
+            this.record = Res.json()['results'];
+            this.item = Res.json()['totalItems'];
+            console.log( this.record, Res.json()['totalItems'], 'eee')
+            this.pager = this.pagerService.getPager(this.item, page,this.pageSize);
+            // this.search = false;
+           
+          });
+        // this._serv.latestrfpecord(this.pageSize, page).subscribe(
+        //     data => {
 
-                this.record = data.results;
-                // for(var i of data.results){
-                //     this.date= moment(i.date_entered, this.formats, true).isValid()
-                //     if(this.date==true){
-                //         // this.enter= i.date_entered
-                //     }
-                //     console.log(this.date)
-                //     if(this.date==false){
-                //         this.enter='';
-                //     }
+        //         this.record = data.results;
+        //         // for(var i of data.results){
+        //         //     this.date= moment(i.date_entered, this.formats, true).isValid()
+        //         //     if(this.date==true){
+        //         //         // this.enter= i.date_entered
+        //         //     }
+        //         //     console.log(this.date)
+        //         //     if(this.date==false){
+        //         //         this.enter='';
+        //         //     }
                     
-                //     console.log(this.enter)
-                //    return this.enter;
+        //         //     console.log(this.enter)
+        //         //    return this.enter;
                    
-                // }
-                this.item = data.totalItems;
-                // this.length = this.item;
-                console.log(this.record, 'jjjjjjjjjjjjjjj');
-                console.log(data.totalItems);
-                this.pager = this.pagerService.getPager(this.item, page,this.pageSize);
-                console.log(this.pager)
-            },
-            error => {
-                this.record.splice(0, this.record.length);
-                //   console.log(error);
-            });
+        //         // }
+        //         this.item = data.totalItems;
+        //         // this.length = this.item;
+        //         console.log(this.record, 'jjjjjjjjjjjjjjj');
+        //         console.log(data.totalItems);
+        //         this.pager = this.pagerService.getPager(this.item, page,this.pageSize);
+        //         console.log(this.pager)
+        //     },
+            // error => {
+            //     this.record.splice(0, this.record.length);
+            //     //   console.log(error);
+            // });
             // this._compiler.clearCache()
     }
     download(info) {
