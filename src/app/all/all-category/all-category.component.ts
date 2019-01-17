@@ -49,10 +49,7 @@ export class AllCategoryComponent implements OnInit, OnDestroy {
       inputField.focus();
     }
   }
-  openSearch(): void {
-    this.mainSearch = 1;
-    setTimeout(this.focusInput(), 5000);
-  }
+  
   filter(query) {
     if (this.query !== "") {
       this.endRequest = this._serv.searchrecord(this.query).subscribe(response => {

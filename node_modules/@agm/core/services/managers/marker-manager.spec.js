@@ -10,7 +10,9 @@ describe('MarkerManager', function () {
                 { provide: NgZone, useFactory: function () { return new NgZone({ enableLongStackTrace: true }); } },
                 MarkerManager, {
                     provide: GoogleMapsAPIWrapper,
-                    useValue: jasmine.createSpyObj('GoogleMapsAPIWrapper', ['createMarker'])
+                    useValue: {
+                        createMarker: jest.fn()
+                    }
                 }
             ]
         });
@@ -30,7 +32,9 @@ describe('MarkerManager', function () {
                 opacity: 1,
                 visible: true,
                 zIndex: 1,
-                title: undefined
+                title: undefined,
+                clickable: true,
+                animation: undefined
             });
         }));
     });
@@ -40,8 +44,10 @@ describe('MarkerManager', function () {
             newMarker.latitude = 34.4;
             newMarker.longitude = 22.3;
             newMarker.label = 'A';
-            var markerInstance = jasmine.createSpyObj('Marker', ['setMap']);
-            apiWrapper.createMarker.and.returnValue(Promise.resolve(markerInstance));
+            var markerInstance = {
+                setMap: jest.fn()
+            };
+            apiWrapper.createMarker.mockReturnValue(Promise.resolve(markerInstance));
             markerManager.addMarker(newMarker);
             markerManager.deleteMarker(newMarker).then(function () { expect(markerInstance.setMap).toHaveBeenCalledWith(null); });
         }));
@@ -52,8 +58,11 @@ describe('MarkerManager', function () {
             newMarker.latitude = 34.4;
             newMarker.longitude = 22.3;
             newMarker.label = 'A';
-            var markerInstance = jasmine.createSpyObj('Marker', ['setMap', 'setIcon']);
-            apiWrapper.createMarker.and.returnValue(Promise.resolve(markerInstance));
+            var markerInstance = {
+                setMap: jest.fn(),
+                setIcon: jest.fn()
+            };
+            apiWrapper.createMarker.mockReturnValue(Promise.resolve(markerInstance));
             markerManager.addMarker(newMarker);
             expect(apiWrapper.createMarker).toHaveBeenCalledWith({
                 position: { lat: 34.4, lng: 22.3 },
@@ -63,7 +72,9 @@ describe('MarkerManager', function () {
                 opacity: 1,
                 visible: true,
                 zIndex: 1,
-                title: undefined
+                title: undefined,
+                clickable: true,
+                animation: undefined
             });
             var iconUrl = 'http://angular-maps.com/icon.png';
             newMarker.iconUrl = iconUrl;
@@ -76,8 +87,12 @@ describe('MarkerManager', function () {
             newMarker.latitude = 34.4;
             newMarker.longitude = 22.3;
             newMarker.label = 'A';
-            var markerInstance = jasmine.createSpyObj('Marker', ['setMap', 'setOpacity']);
-            apiWrapper.createMarker.and.returnValue(Promise.resolve(markerInstance));
+            var markerInstance = {
+                setMap: jest.fn(),
+                setOpacity: jest.fn()
+            };
+            apiWrapper.createMarker.mockReturnValue(Promise.resolve(markerInstance));
+            apiWrapper.createMarker.mockReturnValue(Promise.resolve(markerInstance));
             markerManager.addMarker(newMarker);
             expect(apiWrapper.createMarker).toHaveBeenCalledWith({
                 position: { lat: 34.4, lng: 22.3 },
@@ -87,7 +102,9 @@ describe('MarkerManager', function () {
                 visible: true,
                 opacity: 1,
                 zIndex: 1,
-                title: undefined
+                title: undefined,
+                clickable: true,
+                animation: undefined
             });
             var opacity = 0.4;
             newMarker.opacity = opacity;
@@ -101,8 +118,11 @@ describe('MarkerManager', function () {
             newMarker.longitude = 22.3;
             newMarker.label = 'A';
             newMarker.visible = false;
-            var markerInstance = jasmine.createSpyObj('Marker', ['setMap', 'setVisible']);
-            apiWrapper.createMarker.and.returnValue(Promise.resolve(markerInstance));
+            var markerInstance = {
+                setMap: jest.fn(),
+                setVisible: jest.fn()
+            };
+            apiWrapper.createMarker.mockReturnValue(Promise.resolve(markerInstance));
             markerManager.addMarker(newMarker);
             expect(apiWrapper.createMarker).toHaveBeenCalledWith({
                 position: { lat: 34.4, lng: 22.3 },
@@ -112,7 +132,9 @@ describe('MarkerManager', function () {
                 visible: false,
                 opacity: 1,
                 zIndex: 1,
-                title: undefined
+                title: undefined,
+                clickable: true,
+                animation: undefined
             });
             newMarker.visible = true;
             return markerManager.updateVisible(newMarker).then(function () { expect(markerInstance.setVisible).toHaveBeenCalledWith(true); });
@@ -125,8 +147,11 @@ describe('MarkerManager', function () {
             newMarker.longitude = 22.3;
             newMarker.label = 'A';
             newMarker.visible = false;
-            var markerInstance = jasmine.createSpyObj('Marker', ['setMap', 'setZIndex']);
-            apiWrapper.createMarker.and.returnValue(Promise.resolve(markerInstance));
+            var markerInstance = {
+                setMap: jest.fn(),
+                setZIndex: jest.fn()
+            };
+            apiWrapper.createMarker.mockReturnValue(Promise.resolve(markerInstance));
             markerManager.addMarker(newMarker);
             expect(apiWrapper.createMarker).toHaveBeenCalledWith({
                 position: { lat: 34.4, lng: 22.3 },
@@ -136,7 +161,9 @@ describe('MarkerManager', function () {
                 visible: false,
                 opacity: 1,
                 zIndex: 1,
-                title: undefined
+                title: undefined,
+                clickable: true,
+                animation: undefined
             });
             var zIndex = 10;
             newMarker.zIndex = zIndex;
