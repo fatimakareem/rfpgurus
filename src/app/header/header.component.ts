@@ -55,10 +55,7 @@ export class HeaderComponent implements OnInit {
       inputField.focus();
     }
   }
-  openSearch(): void {
-    this.mainSearch = 1;
-    setTimeout(this.focusInput(), 5000);
-  }
+  
 
   constructor( private speech: SpeechRecognitionService,private authService: AuthService,private _nav: Router, public _shareData: SharedData,private _serv: HeaderService,private _serv1: RfpService) { this. check_login1();this.check_adminlogin();
     this.check_login();}
