@@ -1056,6 +1056,9 @@
     .spacific-width {
         margin-right: 7px!important
     }
+    .sh-super-admin .nav-vanders{
+        min-width: 130px;
+    }
 }
 
 @media (max-width:991px) {
@@ -1997,6 +2000,16 @@ button {
 
 .sh-plan-form {
     padding: 20px 0 0
+}
+.sh-super-admin{
+    left: -40px;
+}
+/* .mat-option .mat-option-text {
+
+} */
+.font-18px .mat-option-text{float: left;width: 250px; white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
+.font-18px .mat-pseudo-checkbox {
+    margin-top: 7px;
 }
 
 @media (min-width:1440px) and (max-width:1679px) {

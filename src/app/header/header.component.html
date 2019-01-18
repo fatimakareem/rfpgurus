@@ -334,10 +334,27 @@
           </a>
         </li>
         
-        <li *ngIf="check_adminlogin()" class="">
+        <li *ngIf="check_adminlogin()" class="vanders">
             <a routerLink="/admin-penal" routerLinkActive="Active">
-              <i class="fas fa-user"></i> admin
+              <i class="fas fa-user"></i> Admin
             </a>
+            <div class="drop-downs sh-why sh-super-admin">
+              <ul class="nav-vanders why-rfp-sublist sh ">
+              <li>
+              <a routerLink="/admin-penal">
+              <i class="fa fa-question-circle-o"></i> Dashboard
+              </a>
+              </li>
+              <li><a routerLink="/" >
+                <i class="fa fa-home"></i>Home</a>
+            </li>
+              <li>
+              <a (click)="logout()">
+              <i class="fa fa-fire"></i> Sign out
+              </a>
+              </li>
+            </ul>
+            </div>
           </li>
         <!--............-->
       </ul>
