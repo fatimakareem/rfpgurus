@@ -175,7 +175,12 @@ export class PricingComponent implements OnInit {
           '',
           'success'
         )
-        this._location.back();
+        if(localStorage.getItem('member')){
+          let url =localStorage.getItem('member')
+          this._nav.navigate([url]);
+      }else{
+          this._nav.navigate(['home']);
+      }
       },
 
       error => {

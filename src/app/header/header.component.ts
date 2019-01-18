@@ -49,14 +49,17 @@ export class HeaderComponent implements OnInit {
       this.Rfp = '';
     }
   }
-  focusInput() {
+  focusInput(){
     if (this.mainSearch == 1) {
       let inputField: HTMLElement = <HTMLElement>document.querySelectorAll('.search-holder input')[0];
       inputField.focus();
     }
   }
   
-
+  openSearch(): void {
+    this.mainSearch = 1;
+    this.focusInput();
+  }
   constructor( private speech: SpeechRecognitionService,private authService: AuthService,private _nav: Router, public _shareData: SharedData,private _serv: HeaderService,private _serv1: RfpService) { this. check_login1();this.check_adminlogin();
     this.check_login();}
   logout() {

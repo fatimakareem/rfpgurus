@@ -78,9 +78,14 @@ export class LoginComponent implements OnInit, OnDestroy {
                     showConfirmButton: false,
                     timer: 1500,width: '512px',
                 });
-                this._location.back();
-                // let url = 'profile';
-                // this._nav.navigate([url]);
+                // this._location.back();
+                if(localStorage.getItem('member')){
+                    let url =localStorage.getItem('member')
+                    this._nav.navigate([url]);
+                }else{
+                    this._nav.navigate(['home']);
+                }
+              
             },
                 error => {
                     swal(
@@ -134,8 +139,13 @@ export class LoginComponent implements OnInit, OnDestroy {
                             });
                             // let url = 'profile';
                             // this._nav.navigate([url]);
-                            
-                            this._location.back();
+                            if(localStorage.getItem('member')){
+                                let url =localStorage.getItem('member')
+                                this._nav.navigate([url]);
+                            }else{
+                                this._nav.navigate(['/']);
+                            }
+                            // this._location.back();
                         },
                         error => {
                             swal(

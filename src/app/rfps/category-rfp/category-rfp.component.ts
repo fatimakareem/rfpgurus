@@ -56,8 +56,24 @@ formats = [
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
- 
-
+  move(){
+    this.route.queryParams
+    .subscribe(params => {
+        this.cat = params.cat
+    localStorage.setItem('location','category'+this.cat)
+    })
+  }
+  memberonly(){
+  
+    if(!this.local){
+        this._nav.navigate(['login']);
+     
+    }
+    else if(!this.subscribe){
+        this._nav.navigate(['pricing']);
+       
+    
+    }}
 
   download(info){
     console.log(info);

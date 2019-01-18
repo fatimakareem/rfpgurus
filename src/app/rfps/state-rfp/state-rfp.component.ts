@@ -122,7 +122,27 @@ unsubscribe_data(){
             //   console.log(error);
           });
 }
-      
+memberonly(){
+  
+  if(!this.local){
+      this._nav.navigate(['login']);
+   
+  }
+  else if(!this.subscribe){
+      this._nav.navigate(['pricing']);
+     
+  
+  }
+    
+ 
+}
+move(){ this.route.queryParams
+    
+  .subscribe(params => {
+    this.state = params.state
+  localStorage.setItem('location','state'+this.state)
+  })
+}
 download(info){
 //   console.log(info);
   this._serv.downloadFile(info).subscribe(

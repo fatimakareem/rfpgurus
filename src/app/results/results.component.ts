@@ -113,6 +113,24 @@ export class ResultsComponent implements OnInit,OnDestroy {
           console.log(this.pageSize)
       }
       }
+      move(){
+        this.route.queryParams
+        .subscribe(params => {
+            this.cat = params.keyword
+        localStorage.setItem('location','searched-data'+this.cat)
+        })
+      }
+      memberonly(){
+  
+        if(!this.local){
+            this._nav.navigate(['login']);
+         
+        }
+        else if(!this.subscribe){
+            this._nav.navigate(['pricing']);
+           
+        
+        }}
     onPaginateChange(page:number) {
         // this.route.params
         // .subscribe(params => {

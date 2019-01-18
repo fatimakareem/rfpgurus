@@ -77,9 +77,20 @@ date;
   filtertext;
   constructor(private speech: SpeechRecognitionService, public _shareData: SharedData, private _serv1: HeaderService, private pagerService: PagerService, private route: ActivatedRoute, private _nav: Router, private _serv: AdvanceService,private _location: Location) {
   }
-  back(){
-    this._location.back();
+  move(){
+    localStorage.setItem('location','advanced-search')
   }
+  memberonly(){
+  
+    if(!this.local){
+        this._nav.navigate(['login']);
+     
+    }
+    else if(!this.subscribe){
+        this._nav.navigate(['pricing']);
+       
+    
+    }}
   // MatPaginator Inputs
   length = 0;
   // click = 1;

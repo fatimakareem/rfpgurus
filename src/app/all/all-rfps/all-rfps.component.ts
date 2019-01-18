@@ -56,6 +56,20 @@ export class AllRfpsComponent implements OnInit {
           
         
     }
+    memberonly(){
+  
+        if(!this.local){
+            this._nav.navigate(['login']);
+         
+        }
+        else if(!this.subscribe){
+            this._nav.navigate(['pricing']);
+           
+        
+        }}
+    move(){
+        localStorage.setItem('location','latest-rfp')
+      }
     page(pageSize) {
         if (pageSize) {
             console.log(pageSize);

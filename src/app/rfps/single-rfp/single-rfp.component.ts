@@ -43,10 +43,34 @@ export class SingleRfpComponent implements OnInit  {
     currentUser;
     wrfp;
     constructor(private _nav:Router,public _shareData: SharedData,private _http: Http,private route: ActivatedRoute,private _serv: RfpService,private _location: Location) {
+        localStorage.removeItem('member');
         
      }
   back(){
-    this._location.back();
+      if(localStorage.getItem('location')){
+        let url =localStorage.getItem('location')
+        let last=url.length
+        let ur =url.slice(0,13)
+       let state=url.slice(0,5)
+       let category=url.slice(0,8)
+       let agency=url.slice(0,6)
+    
+          if(ur == 'searched-data'){ this._nav.navigate([ur], { queryParams: { keyword: url.slice(13,last) } });  }
+          else if(state == 'state'){
+               this._nav.navigate([state], { queryParams: { state: url.slice(5,last) } });  }
+               else if(category == 'category'){
+                this._nav.navigate([category], { queryParams: { cat: url.slice(8,last) } });  }
+                else if(agency == 'agency'){
+                  
+                    this._nav.navigate([agency], { queryParams: { agency: url.slice(6,last) } });  }
+       else{
+        this._nav.navigate([url]);
+      }}
+      else{
+        this._nav.navigate(['/']);
+      }
+    // this._location.back();
+
   }
 
     status: boolean = false;
@@ -73,6 +97,23 @@ this._serv.downloadFile(info).subscribe(
     error=>{
 
     });
+        }
+        memberonly(){
+            this.route.params
+            .subscribe(params => {
+            //   console.log(params); // {order: "popular"}
+            if(!this.local){
+                this._nav.navigate(['login']);
+                this.rfpid = params['query'];
+              localStorage.setItem('member',this.rfpid );
+            }
+            else if(!this.subscribe){
+                this._nav.navigate(['pricing']);
+                this.rfpid = params['query'];
+              localStorage.setItem('member',this.rfpid );
+            }
+              
+            })
         }
     
     ngOnInit() {
@@ -147,8 +188,16 @@ total;
                 showConfirmButton: true,
                 width: '512px',
                 confirmButtonColor: "#090200",
-            }); 
-            // this._nav.navigate(['login']);
+            });  
+            
+            this.route.params
+            .subscribe(params => {
+            //   console.log(params); // {order: "popular"}
+           
+                this._nav.navigate(['login']);
+                this.rfpid = params['query'];
+              localStorage.setItem('member',this.rfpid );
+            });
         }
        
        

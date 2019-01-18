@@ -23,8 +23,13 @@ declare const $: any;
 })
 export class AgencyRfpComponent implements OnInit ,OnDestroy{
     date;
-    back(){
-        this._location.back();
+    age;
+    move(){
+        this.route.queryParams
+    .subscribe(params => {
+        this.age = params.agency
+        localStorage.setItem('location','agency'+this.age)
+    })
       }
     check(date){
          
@@ -34,6 +39,17 @@ export class AgencyRfpComponent implements OnInit ,OnDestroy{
      
    
   }
+  memberonly(){
+  
+    if(!this.local){
+        this._nav.navigate(['login']);
+     
+    }
+    else if(!this.subscribe){
+        this._nav.navigate(['pricing']);
+       
+    
+    }}
   formats = [
     moment.ISO_8601,
     "YYYY/MM/DD"
