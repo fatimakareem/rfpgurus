@@ -43,7 +43,7 @@ formats = [
   uname;
   subscribe;
   
-  constructor(private pagerService:PagerService,public _shareData: SharedData,private _nav:Router,private _serv: CategoryRfpService ,private route: ActivatedRoute,private _location: Location) { }
+  constructor(private pagerService:PagerService,public _shareData: SharedData,private _nav:Router,private _serv: CategoryRfpService ,private route: ActivatedRoute,private _location: Location) {localStorage.removeItem('member'); }
   // MatPaginator Inputs
   length = 0;
   pageSize = '50';
@@ -64,16 +64,21 @@ formats = [
     })
   }
   memberonly(){
-  
+    this.route.queryParams
+    .subscribe(params => {
+        this.cat = params.cat
     if(!this.local){
         this._nav.navigate(['login']);
-     
+        localStorage.setItem('member','category'+this.cat)
+
     }
     else if(!this.subscribe){
         this._nav.navigate(['pricing']);
-       
+        localStorage.setItem('member','category'+this.cat)
+
     
-    }}
+    }})
+  }
 
   download(info){
     console.log(info);

@@ -45,7 +45,7 @@ export class ResultsComponent implements OnInit,OnDestroy {
     uname;
     subscribe;
     sorted;
-    constructor(private pagerService:PagerService,public _shareData: SharedData,private _nav:Router,private _serv: ResultsService ,private route: ActivatedRoute,private _location: Location) { }
+    constructor(private pagerService:PagerService,public _shareData: SharedData,private _nav:Router,private _serv: ResultsService ,private route: ActivatedRoute,private _location: Location) {localStorage.removeItem('member'); }
     // MatPaginator Inputs
     endRequest;
     length = 0;
@@ -121,16 +121,21 @@ export class ResultsComponent implements OnInit,OnDestroy {
         })
       }
       memberonly(){
-  
+        this.route.queryParams
+        .subscribe(params => {
+            this.cat = params.keyword
         if(!this.local){
             this._nav.navigate(['login']);
-         
+            localStorage.setItem('member','searched-data'+this.cat );
+
         }
         else if(!this.subscribe){
             this._nav.navigate(['pricing']);
-           
+            localStorage.setItem('member','searched-data'+this.cat );
+
         
-        }}
+        }
+    })}
     onPaginateChange(page:number) {
         // this.route.params
         // .subscribe(params => {

@@ -10,7 +10,9 @@ declare const $: any;
   styleUrls: ['./superadmin.component.scss']
 })
 export class SuperadminComponent implements OnInit , AfterViewInit {
-
+    logout() {
+        localStorage.clear();
+    }
   private _router: Subscription;
   url: string;
   location: Location;

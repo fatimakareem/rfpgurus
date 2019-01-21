@@ -84,7 +84,7 @@ user;
       '',
       'success'
     )
-    this.router.navigate(['/admin-penal']);
+    this.router.navigate(['/admin-panel']);
   
    
       localStorage.setItem('currentadmin', this.username);

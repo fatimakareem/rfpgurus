@@ -43,7 +43,7 @@ export class StateRfpComponent implements OnInit ,OnDestroy{
     pageSizeOptions;
   currentUser;
   
-  constructor(private pagerService:PagerService,public _shareData: SharedData,private _nav:Router,private _serv: StateService ,private route: ActivatedRoute,private _location: Location) { }
+  constructor(private pagerService:PagerService,public _shareData: SharedData,private _nav:Router,private _serv: StateService ,private route: ActivatedRoute,private _location: Location) { localStorage.removeItem('member');}
   // MatPaginator Inputs
   length = 0;
   pageSize = '50';
@@ -123,17 +123,22 @@ unsubscribe_data(){
           });
 }
 memberonly(){
-  
+  this.route.queryParams
+    
+  .subscribe(params => {
+    this.state = params.state
   if(!this.local){
       this._nav.navigate(['login']);
-   
+      localStorage.setItem('member','state'+this.state)
+
   }
   else if(!this.subscribe){
       this._nav.navigate(['pricing']);
      
-  
+      localStorage.setItem('member','state'+this.state)
+
   }
-    
+})
  
 }
 move(){ this.route.queryParams

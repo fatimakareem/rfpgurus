@@ -139,12 +139,29 @@ export class LoginComponent implements OnInit, OnDestroy {
                             });
                             // let url = 'profile';
                             // this._nav.navigate([url]);
-                            if(localStorage.getItem('member')){
+                            // if(localStorage.getItem('member')){
+                                if(localStorage.getItem('member')){
                                 let url =localStorage.getItem('member')
+                                let last=url.length
+        let ur =url.slice(0,13)
+        let state=url.slice(0,5)
+        let category=url.slice(0,8)
+        let agency=url.slice(0,6)
+                            
+                            if(ur == 'searched-data'){ this._nav.navigate([ur], { queryParams: { keyword: url.slice(13,last) } });  }
+                            else if(state == 'state'){
+                                this._nav.navigate([state], { queryParams: { state: url.slice(5,last) } });  }
+                                else if(category == 'category'){
+                                 this._nav.navigate([category], { queryParams: { cat: url.slice(8,last) } });  }
+                                 else if(agency == 'agency'){
+                                   
+                                     this._nav.navigate([agency], { queryParams: { agency: url.slice(6,last) } });  }
+                            else{
                                 this._nav.navigate([url]);
-                            }else{
-                                this._nav.navigate(['/']);
                             }
+                        }else{
+                            this._nav.navigate(['/']);
+                        }
                             // this._location.back();
                         },
                         error => {

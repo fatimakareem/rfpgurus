@@ -135,7 +135,7 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pos-rel">
           <mat-form-field>
-            <input matInput placeholder="Expiry Date (MM/YYYY)" [textMask]="{mask: mask}" type="text" formControlName="expirydate" #exp (change)="chek(exp.value)">
+            <input matInput placeholder="Expiry Date (MM/YY)" [textMask]="{mask: mask}" type="text" formControlName="expirydate" #exp (change)="chek(exp.value)">
            
             <mat-error *ngIf="form.controls.expirydate.touched && form.controls.expirydate.invalid">
               <mat-error *ngIf="form.controls.expirydate.errors.required">
@@ -151,7 +151,7 @@
               </mat-error>
             </mat-error>
           </mat-form-field> 
-          <span class="card-error" *ngIf="expirydate <= '2018'">
+          <span class="card-error" *ngIf="expirydate <= '18'">
             Invalid Expiry Date
           </span> 
         </div>
@@ -274,7 +274,7 @@
                             <td>{{card.cardNumber}}</td>
                             <!-- <td>{{card.number | slice:0:4}}-{{card.number | slice:4:8}}-{{card.number | slice:8:12}}</td> -->
                             <td>{{card.ccv}}</td>
-                            <td>{{card.expiryDate }} </td>
+                            <td>{{card.expiryDate | slice:0:2 }}/20{{card.expiryDate | slice:2:4 }} </td>
                             <!-- <td>{{card.pinCode.length > 0 ? '...' : '****'}} </td> -->
                             <!-- <td>{{card.street_address }} </td>
                             <td>{{card.zipcode }} </td>

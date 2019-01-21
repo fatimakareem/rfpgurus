@@ -184,7 +184,11 @@
 </mat-paginator> -->
       <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12 text-right">
         <ul class="  pagination" *ngIf="pager.pages && pager.pages.length">
-
+            <li [ngClass]="{hide:pager.currentPage === 1}">
+                <a (click)="onPaginateChange(1)" class="view-1s" class="btn btn-fill">
+                    <i class="fa fa-angle-double-left"></i>
+                </a>
+            </li>
             <li [ngClass]="{hide:pager.currentPage === 1}">
                 <a (click)="onPaginateChange(pager.currentPage - 1)" class="view-1s" class="btn btn-fill">
                     <i class="fa fa-angle-left"></i>
@@ -216,7 +220,12 @@
                     <i class="fa fa-angle-right top-set"></i>
                 </a>
             </li>
-
+            <li [ngClass]="{hide:pager.currentPage === pager.totalPages}">
+                <a (click)="onPaginateChange(pager.totalPages)" class="view-plan-details" class="btn bd-color"
+                    type="Next">
+                    <i class="fa fa-angle-double-right"></i>
+                </a>
+            </li>
         </ul>
       </div>
         <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12 prod-select-list sec-list sh-select-list"

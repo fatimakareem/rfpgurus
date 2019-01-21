@@ -63,10 +63,18 @@ export class PricingComponent implements OnInit {
   card = false;
   pkg;
   local;
+  cardtype;
   uname;
   endRequest;
   message;
   var_get_card_id;
+  card_opeation=[
+    {value: 'Visa', viewValue: 'Visa Card'},
+    {value: 'Mastercard', viewValue: 'Master Card'},
+    {value: 'American Express', viewValue: 'American Express'},
+    {value: 'Discover', viewValue: 'Discover'}
+    
+    ];
   /////////////////////////////end///////////////////////////
   constructor(private route: ActivatedRoute, private _serv1: RfpService, private _nav: Router, private _serv: PricingService, private http: Http, private _http6: PaymentmethodsService,private _location: Location) { }
   //
@@ -164,11 +172,11 @@ export class PricingComponent implements OnInit {
     this.pkg_detail['credit'] = this.cardnumber1 + this.cardnumber2 +
       this.cardnumber3 + this.cardnumber4
     this.pkg_detail['ccv'] = this.ccv
-    this.pkg_detail['expdate'] = this.expmonth + '/' + this.expyear
+    this.pkg_detail['expdate'] = this.expmonth + this.expyear
     this.local = localStorage.getItem('currentUser');
     let pars = JSON.parse(this.local);
     this.uname = pars.username
-    this._serv.package_free(this.set, this.id, this.uname, this.pkg_detail).subscribe(
+    this._serv.package_free(this.set, this.id, this.uname, this.pkg_detail,this.cardtype,this.cardholdername).subscribe(
       data => {
         swal(
           'Your payment has been transferred',
@@ -177,10 +185,26 @@ export class PricingComponent implements OnInit {
         )
         if(localStorage.getItem('member')){
           let url =localStorage.getItem('member')
+          let last=url.length
+let ur =url.slice(0,13)
+let state=url.slice(0,5)
+let category=url.slice(0,8)
+let agency=url.slice(0,6)
+      
+      if(ur == 'searched-data'){ this._nav.navigate([ur], { queryParams: { keyword: url.slice(13,last) } });  }
+      else if(state == 'state'){
+          this._nav.navigate([state], { queryParams: { state: url.slice(5,last) } });  }
+          else if(category == 'category'){
+           this._nav.navigate([category], { queryParams: { cat: url.slice(8,last) } });  }
+           else if(agency == 'agency'){
+             
+               this._nav.navigate([agency], { queryParams: { agency: url.slice(6,last) } });  }
+      else{
           this._nav.navigate([url]);
-      }else{
-          this._nav.navigate(['home']);
       }
+  }else{
+      this._nav.navigate(['/']);
+  }
       },
 
       error => {
@@ -326,12 +350,15 @@ export class PricingComponent implements OnInit {
               this.cardnumber3 = this.get_card_value3;
               this.cardnumber4 = this.get_card_value4;
               this.ex_get_value = this.status.expiryDate;
-              this.ex_value1 = this.ex_get_value.split("/");
-              this.ex_month_value = this.ex_value1[0];
-              this.ex_year_value = this.ex_value1[1];
+             
+              // this.ex_value1 = this.ex_get_value.split("/");
+              this.ex_month_value = this.ex_get_value.slice(0,2);
+             
+              this.ex_year_value = this.ex_get_value.slice(2,4);
               this.cardholdername = this.status.nickname;
               this.expmonth = this.ex_month_value;
               this.expyear = this.ex_year_value;
+              this.cardtype=this.status.card_type
               this.ccv = this.status.ccv;
               this.id = this.status.id
             } else if(i.default == false) {
@@ -352,6 +379,7 @@ export class PricingComponent implements OnInit {
               this.cardholdername = '';
               this.expmonth = '';
               this.expyear = '';
+              this.cardtype='';
               this.ccv = '';
               this.id = ''
             }

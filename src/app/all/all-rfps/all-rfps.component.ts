@@ -26,7 +26,7 @@ export class AllRfpsComponent implements OnInit {
     record: any = [];
     currentUser;
     length = 0;
-    constructor(private _compiler: Compiler,private pagerService: PagerService, public _shareData: SharedData, private _nav: Router, private _serv: AllRfpsService, private route: ActivatedRoute,private _location: Location) { this._compiler.clearCache(); }
+    constructor(private _compiler: Compiler,private pagerService: PagerService, public _shareData: SharedData, private _nav: Router, private _serv: AllRfpsService, private route: ActivatedRoute,private _location: Location) { localStorage.removeItem('member'); }
    formats = [
         moment.ISO_8601,
         "YYYY/MM/DD"
@@ -60,11 +60,11 @@ export class AllRfpsComponent implements OnInit {
   
         if(!this.local){
             this._nav.navigate(['login']);
-         
+            localStorage.setItem('member','latest-rfp' );
         }
         else if(!this.subscribe){
             this._nav.navigate(['pricing']);
-           
+            localStorage.setItem('member','latest-rfp' );
         
         }}
     move(){

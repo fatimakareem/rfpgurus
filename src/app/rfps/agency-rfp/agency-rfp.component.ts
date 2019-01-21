@@ -40,16 +40,19 @@ export class AgencyRfpComponent implements OnInit ,OnDestroy{
    
   }
   memberonly(){
-  
+    this.route.queryParams
+    .subscribe(params => {
+        this.age = params.agency
     if(!this.local){
         this._nav.navigate(['login']);
-     
+        localStorage.setItem('member','agency'+this.age)
     }
     else if(!this.subscribe){
         this._nav.navigate(['pricing']);
-       
+        localStorage.setItem('member','agency'+this.age)
     
-    }}
+    }
+})}
   formats = [
     moment.ISO_8601,
     "YYYY/MM/DD"
@@ -61,7 +64,7 @@ export class AgencyRfpComponent implements OnInit ,OnDestroy{
 
     currentUser;
 
-    constructor(private pagerService:PagerService,public _shareData: SharedData,private _nav:Router,private _serv: AgencyService ,private route: ActivatedRoute,private _location: Location) { }
+    constructor(private pagerService:PagerService,public _shareData: SharedData,private _nav:Router,private _serv: AgencyService ,private route: ActivatedRoute,private _location: Location) {localStorage.removeItem('member'); }
     // MatPaginator Inputs
     length = 0;
     pageSize = '50';

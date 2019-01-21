@@ -218,7 +218,7 @@
                                 <td>{{card.cardNumber}}</td>
                                 <!-- <td>{{card.number | slice:0:4}}-{{card.number | slice:4:8}}-{{card.number | slice:8:12}}</td> -->
                                 <td>{{card.ccv}}</td>
-                                <td>{{card.expiryDate }} </td>
+                                <td>{{card.expiryDate | slice:0:2 }}/20{{card.expiryDate | slice:2:4 }} </td>
                                 <!-- <td>{{card.pinCode.length > 0 ? '...' : '****'}} </td> -->
                                 <!-- <td>{{card.street_address }} </td>
                                 <td>{{card.zipcode }} </td>
@@ -341,16 +341,31 @@
                                 Number must be at least 4 digits
                             </div>
                         </div> -->
+                        <div class="col-sm-6 padding-left-0">
+                                <fieldset>
+                                        <label for="card-holder" style="font-size:16px;">Card holder</label>
+                                        <input (keypress)="keyPressnamezip($event)" type="text" name="cardholdername" maxlength="20"
+                                            required #cardholde1="ngModel" [(ngModel)]="cardholdername" id="card-holder" />
+                                        <!-- <div *ngIf="cardholde1.touched && cardholde1.invalid">
+                                            <div *ngIf="cardholde1.errors.required" class="card-error">
+                                                Card Holder Name cannot be empty
+                                            </div>
+                                        </div> -->
+                                    </fieldset>
+                        </div>
+                        <div class="col-sm-6 padding-left-0 ">
                         <fieldset>
-                            <label for="card-holder" style="font-size:16px;">Card holder</label>
-                            <input (keypress)="keyPressnamezip($event)" type="text" name="cardholdername" maxlength="20"
-                                required #cardholde1="ngModel" [(ngModel)]="cardholdername" id="card-holder" />
-                            <!-- <div *ngIf="cardholde1.touched && cardholde1.invalid">
-                                <div *ngIf="cardholde1.errors.required" class="card-error">
-                                    Card Holder Name cannot be empty
-                                </div>
-                            </div> -->
-                        </fieldset>
+                                <label for="card-holder" style="font-size:16px;">Card Type</label>
+                                <select placeholder="Type Card" [(ngModel)]="cardtype" name="cardtype" #cardtype1="ngModel" class="pricing-card-type">
+                                        <option style="font-size: 16px;" *ngFor="let card_get_datat of card_opeation" [value]="card_get_datat.value">{{card_get_datat.viewValue}}</option>
+                                      </select>
+                                <!-- <div *ngIf="cardholde1.touched && cardholde1.invalid">
+                                    <div *ngIf="cardholde1.errors.required" class="card-error">
+                                        Card Holder Name cannot be empty
+                                    </div>
+                                </div> -->
+                            </fieldset>
+    </div>
 
 
                         <fieldset class="fieldset-expiration">
@@ -377,19 +392,19 @@
                                 <select id="card-expiration-year" required #expyear1="ngModel" name="expyear"
                                     [(ngModel)]="expyear">
                                     <option value="" disabled selected>Year</option>
-                                    <option>2019</option>
-                                    <option>2020</option>
-                                    <option>2021</option>
-                                    <option>2022</option>
-                                    <option>2023</option>
-                                    <option>2024</option>
-                                    <option>2025</option>
-                                    <option>2026</option>
-                                    <option>2027</option>
-                                    <option>2028</option>
-                                    <option>2029</option>
-                                    <option>2030</option>
-                                    <option>2031</option>
+                                    <option>19</option>
+                                    <option>20</option>
+                                    <option>21</option>
+                                    <option>22</option>
+                                    <option>23</option>
+                                    <option>24</option>
+                                    <option>25</option>
+                                    <option>26</option>
+                                    <option>27</option>
+                                    <option>28</option>
+                                    <option>29</option>
+                                    <option>30</option>
+                                    <option>31</option>
                                 </select>
 
                             </div>

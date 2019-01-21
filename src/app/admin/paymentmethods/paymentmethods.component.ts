@@ -25,8 +25,8 @@ export class PaymentmethodsComponent implements OnInit, OnDestroy {
   check_value: boolean = false;
   ccv1: boolean = false;
 card_opeation=[
-{value: 'visa card', viewValue: 'Visa Card'},
-{value: 'master card', viewValue: 'Master Card'},
+{value: 'Visa', viewValue: 'Visa Card'},
+{value: 'Mastercard', viewValue: 'Master Card'},
 {value: 'American Express', viewValue: 'American Express'},
 {value: 'Discover', viewValue: 'Discover'}
 
@@ -38,7 +38,8 @@ card_opeation=[
  public cardsmask=[/[0-9]/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
   // public mask = [/[0,1]/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
   chek(val){
-    this.expirydate=val.toString().slice(3,7);
+    // this.expirydate=val.toString().slice(3,7);
+    this.expirydate=val.toString().slice(3,5);
     console.log(this.expirydate,'jj')
   }
   public mask=function(rawValue) {
@@ -46,12 +47,12 @@ card_opeation=[
     // add logic to generate your mask array  
     if (rawValue && rawValue.length > 0) {
         if (rawValue[0] == '0' || rawValue[5] == '1') {
-            return [/[01]/, /[1-9]/, '/', /[2-9]/, /[0-9]/, /[0-9]/, /[0123456789]/];
+            return [/[01]/, /[1-9]/, '/',  /[0-9]/, /[0123456789]/];
         } else {
-            return [/[01]/, /[0-2]/, '/',  /[2-9]/, /[0-9]/, /[0-9]/, /[0123456789]/];
+            return [/[01]/, /[0-2]/, '/',  /[0-9]/, /[0123456789]/];
         }
     }
-    return [/[01]/, /[0-9]/, '/',  /[2-9]/, /[0-9]/, /[0-9]/, /[0123456789]/];
+    return [/[01]/, /[0-9]/, '/',  /[0-9]/, /[0123456789]/];
     
 }
   cardexist: boolean = false;
@@ -76,7 +77,7 @@ card_opeation=[
     ]),
     expirydate: new FormControl('', [
       Validators.required,
-      Validators.pattern('(0[1-9]|10|11|12)/20[0-9]{2}$')
+      Validators.pattern('(0[1-9]|10|11|12)/[0-9]{2}$')
     ]),
     cardnickname: new FormControl('', [
       Validators.minLength(3),
@@ -356,7 +357,7 @@ card_opeation=[
       if (this.form.controls.cardnickname.valid && this.form.controls.cardnumber2.valid && this.form.controls.ccv2.valid
         && this.form.controls.expirydate.valid && this.form.controls.address.valid && this.form.controls.zip.valid
         && this.form.controls.city.valid && this.form.controls.state.valid && this.form.controls.country.valid) {
-        this.endRequest = this.serv.addCard(this.default, this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber2'].split('-').join(''), this.form.value['ccv2'],this.date,this.cardtype,this.setautopay).subscribe(Data => {
+        this.endRequest = this.serv.addCard(this.default, this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber2'].split('-').join(''), this.form.value['ccv2'],this.date.split('/').join(''),this.cardtype,this.setautopay).subscribe(Data => {
           swal({
             type: 'success',
             title: 'Payment Method Is Listed!',
@@ -413,7 +414,7 @@ card_opeation=[
       if (this.form.controls.cardnickname.valid && this.form.controls.cardnumber.valid && this.form.controls.ccv.valid
         && this.form.controls.expirydate.valid && this.form.controls.address.valid && this.form.controls.zip.valid
         && this.form.controls.city.valid && this.form.controls.state.valid && this.form.controls.country.valid) {
-        this.endRequest = this.serv.addCard(this.default, this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber'].split('-').join(''), this.form.value['ccv'],this.date,this.cardtype,this.setautopay).subscribe(Data => {
+        this.endRequest = this.serv.addCard(this.default, this.form.value['cardnickname'], this.form.value['address'], this.form.value['zip'], this.form.value['city'], this.form.value['state'], this.form.value['country'], this.form.value['cardnumber'].split('-').join(''), this.form.value['ccv'],this.date.split('/').join(''),this.cardtype,this.setautopay).subscribe(Data => {
           swal({
             type: 'success',
             title: 'Payment Method Is Listed!',

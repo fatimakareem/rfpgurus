@@ -56,6 +56,7 @@ export const AppRoutes: Routes = [
         redirectTo: '/',
         pathMatch: 'full',
     },
+    
     { path: '', component: HomeComponent },
     {
         path: 'activateaccount/:query1',
@@ -164,7 +165,7 @@ export const AppRoutes: Routes = [
 
             // { path: 'forgetpassword/:query2', component: ForgetPasswordComponent},
             { path: 'forgetpassword/:query2', loadChildren: '../app/admin/forget-password/forget-password.module#ForgetPasswordModule' },
-           
+            // { path: '**', loadChildren: '../app/page404/page404.module#Page404Module' },
         ]
     },
 
@@ -173,8 +174,9 @@ export const AppRoutes: Routes = [
         component: SuperadminComponent,
         children: [
             
-            { path: 'admin-penal', loadChildren: '../app/admin-penal/admin-penal.module#AdminPenalModule' },
+            { path: 'admin-panel', loadChildren: '../app/admin-penal/admin-penal.module#AdminPenalModule' },
            
         ]
     },
+    { path: '**', loadChildren: '../app/page404/page404.module#Page404Module' }
 ];

@@ -75,7 +75,7 @@ date;
   ];
   datashow: boolean = false;
   filtertext;
-  constructor(private speech: SpeechRecognitionService, public _shareData: SharedData, private _serv1: HeaderService, private pagerService: PagerService, private route: ActivatedRoute, private _nav: Router, private _serv: AdvanceService,private _location: Location) {
+  constructor(private speech: SpeechRecognitionService, public _shareData: SharedData, private _serv1: HeaderService, private pagerService: PagerService, private route: ActivatedRoute, private _nav: Router, private _serv: AdvanceService,private _location: Location) {localStorage.removeItem('member');
   }
   move(){
     localStorage.setItem('location','advanced-search')
@@ -84,11 +84,11 @@ date;
   
     if(!this.local){
         this._nav.navigate(['login']);
-     
+        localStorage.setItem('member','advanced-search' );
     }
     else if(!this.subscribe){
         this._nav.navigate(['pricing']);
-       
+        localStorage.setItem('member','advanced-search' );
     
     }}
   // MatPaginator Inputs
