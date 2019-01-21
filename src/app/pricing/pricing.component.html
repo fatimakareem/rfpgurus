@@ -13,7 +13,7 @@
                     and comprehensive sources of Government Contracts, Bids, RFPs, RFIs, RFQs, RFBs and RFTs from over
                     thousands
                     and thousands of Government Agencies, States, Cities, Municipalities, Counties, Special District
-                    andx
+                    and
                     other Agencies.</p>
             </div>
 
@@ -167,8 +167,8 @@
     <div class="container-fluid">
         <div class="row">
             <!-- <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 container"> -->
-               
-                <!-- <div class="clearfix"></div>
+
+            <!-- <div class="clearfix"></div>
                 <div class="package-detail">
                     <h2>PACKAGE DETAILS</h2>
                     <table class="table projects table-bordered table-responsive">
@@ -185,15 +185,15 @@
                     </table>
                 </div> -->
             <!-- </div> -->
-            <div class="col-lg-6 col-md-6 col-sm-6 sh-container-paymnt" >
-                    <div class="dropdown mydropdown">
-                            <select (change)="next_stepdetail($event)" class="btn btn-success record-btn-mail dropdown-toggle text-left"
-                                data-toggle="dropdown" value="{{valuee}}">
-                                <!-- <option value="" disabled selected>Select Package</option> -->
-                                <option value="PY">Yearly Subscription</option>
-                                <option value="BM">Monthly Subscription</option>
-                            </select>
-                        </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 sh-container-paymnt">
+                <div class="dropdown mydropdown">
+                    <select (change)="next_stepdetail($event)" class="btn btn-success record-btn-mail dropdown-toggle text-left"
+                        data-toggle="dropdown" value="{{valuee}}">
+                        <!-- <option value="" disabled selected>Select Package</option> -->
+                        <option value="PY">Yearly Subscription</option>
+                        <option value="BM">Monthly Subscription</option>
+                    </select>
+                </div>
                 <div class="table-responsive margin-top-20" *ngIf="message!='No Credit card detail in your list'">
                     <table class="table payment-table">
                         <thead>
@@ -229,7 +229,7 @@
                                 <td>
                                     <mat-slide-toggle name="atm_details" [(ngModel)]="card.default" (click)="setcard(card.default,card.id,card.nickname,card.cardNumber,card.ccv,card.expiryDate,card.street_address,card.zipcode,card.city,card.state,card.country,card.autopay)"
                                         class="py-toggle"></mat-slide-toggle>
-    
+
                                 </td>
                             </tr>
                         </tbody>
@@ -237,7 +237,7 @@
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 sh-plan-form">
- 
+
                 <div class="checkout ">
                     <div [className]="flipclass">
                         <div class="flip">
@@ -447,42 +447,40 @@
 
                             <i class="fa fa-lock"></i> Continue</button>
 
-                    
-                        
-                        </form>
+
+
+                    </form>
 
                     <!-- Modal -->
-                   
+
 
                 </div>
             </div>
-           
+
         </div>
-        
+
     </div>
 </div>
 
-        <div id="myModal4" class="modal fade" role="dialog">
-                <div class="modal-dialog">
+<div id="myModal4" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" ><i
-                                    class="fa fa-times btn-dismiss"></i></button>
-                            <!-- <h4 class="modal-title heading-modal">Set as recurring payment method </h4> -->
-                        </div>
-                        <div class="modal-body text-center padding-zero">
-                            <h4>I Agree to terms and condition.</h4>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="modal-buttons">
-                                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="setautopay(status.default,status.id,status.name,status.number,status.cvc,status.expDate,status.street_address,status.zipcode,status.city,status.state,status.country,status.autopay)">Yes</button>
-                                <button type="button" class="btn btn-default" 
-                                    data-dismiss="modal">No</button>
-                            </div>
-                        </div>
-                    </div>
-
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times btn-dismiss"></i></button>
+                <!-- <h4 class="modal-title heading-modal">Set as recurring payment method </h4> -->
+            </div>
+            <div class="modal-body text-center padding-zero">
+                <h4>I Agree to terms and condition.</h4>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-buttons">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="setautopay(status.default,status.id,status.name,status.number,status.cvc,status.expDate,status.street_address,status.zipcode,status.city,status.state,status.country,status.autopay)">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                 </div>
             </div>
+        </div>
+
+    </div>
+</div>
