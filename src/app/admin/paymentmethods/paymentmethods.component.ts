@@ -143,7 +143,7 @@ card_opeation=[
       this.form.controls.ccv.reset();
       this.ccv2 = true;
     }
-    else if (var_type_atm == "visa card") {
+    else if (var_type_atm == "Visa") {
      this.cardsmask=[/[4]/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
       this.cardnumber2 = false;
       this.form.controls.cardnumber2.reset();
@@ -152,7 +152,7 @@ card_opeation=[
       this.form.controls.ccv2.reset();
       this.ccv = true;
     }
-    else if (var_type_atm == "master card") {
+    else if (var_type_atm == "Mastercard") {
       this.cardsmask=[/[5]/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
        this.cardnumber2 = false;
        this.form.controls.cardnumber2.reset();

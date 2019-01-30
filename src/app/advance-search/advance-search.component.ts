@@ -62,7 +62,7 @@ date;
   states;
   agencies;
   cates;
-  status = "active";
+  status;
   catsearch;
   agensearch;
   statsearch;
@@ -163,30 +163,39 @@ date;
 
   }
   onSubmit(page) {
-    if (this.states) {
-  //     if (this.enterdate == 'Invalid Date') {
-  //       delete this.enterdate;
-  //       delete this.postedDate
-  //     }
-  // if (this.enterdate) {
-  //       this.postedDate = moment(this.enterdate).format('YYYY-MM-DD');
-  //     }
-      // if (this.duedate == 'Invalid Date') {
-      //   delete this.DueDate;
-      //   delete this.duedate;
-      // }
-      // if (this.duedate) {
-      //   this.DueDate = moment(this.duedate).format('YYYY-MM-DD');
-      // }
-      // this.search = false;
-      // if( this.DueDate == null){
-      //   delete this.DueDate
-      // }
-      // if(this.postedDate == null){
-      //   delete this.postedDate
-      // }
+    this.route.queryParams
+    .subscribe(params => {
      
-      this._serv.searchrfprecord(this.Rfpnum, this.title, this.status, this.postedDate, this.DueDate, this.states, this.agencies, this.cates, this.pageSize, page).subscribe(
+      if(params.state){
+        this.states = params.state;
+      }
+     
+    if(this.Rfpnum || this.title || this.status || this.postedDate || this.DueDate || this.states || this.agencies || this.cates){
+     
+       
+        this.search = false;
+       
+        this._serv.searchrfprecord(this.Rfpnum, this.title, this.status, this.postedDate, this.DueDate, this.states, this.agencies, this.cates, this.pageSize, page).subscribe(
+          data => {
+            this.record = "";
+            this.item = "";
+            this.record = data.Results;
+            this.item = data.TotalResult;
+            this.length = this.item;
+            this.pager = this.pagerService.getPager(this.item, page,this.pageSize);
+          },
+          error => {
+            this.search = true;
+            this.datashow = true;
+            this.record.splice(0, this.record.length);
+            this.length = 0;
+          });
+
+    
+    } 
+   else {
+      this.status = "active";
+        this._serv.advancesearch(this.Rfpnum, this.title, this.status, this.postedDate, this.DueDate, this.states, this.agencies, this.cates, this.pageSize, page).subscribe(
         data => {
           this.record = "";
           this.item = "";
@@ -201,52 +210,8 @@ date;
           this.record.splice(0, this.record.length);
           this.length = 0;
         });
-    }
-    else {
-      this.route.queryParams
-        .subscribe(params => {
-          this.states = params.state;
-          console.log("sdsdfffff", this.enterdate, this.duedate)
-        //   if (this.enterdate == 'Invalid Date') {
-        //     delete this.postedDate;
-        //     delete this.enterdate;
-        //   }
-        //   if (this.enterdate) {
-        //     this.postedDate = moment(this.enterdate).format('YYYY-MM-DD');
-        //   }
-        //   if (this.duedate == 'Invalid Date') {
-        //     delete this.DueDate;
-        //     delete this.duedate;
-        //   }
-        //  if (this.duedate) {
-        //     this.DueDate = moment(this.duedate).format('YYYY-MM-DD');
-        //   }
-        //   if( this.DueDate == null){
-        //     delete this.DueDate
-        //   }
-        //   if(this.postedDate == null){
-        //     delete this.postedDate
-        //   }
-          this.search = false;
-         
-          this._serv.searchrfprecord(this.Rfpnum, this.title, this.status, this.postedDate, this.DueDate, this.states, this.agencies, this.cates, this.pageSize, page).subscribe(
-            data => {
-              this.record = "";
-              this.item = "";
-              this.record = data.Results;
-              this.item = data.TotalResult;
-              this.length = this.item;
-              this.pager = this.pagerService.getPager(this.item, page,this.pageSize);
-            },
-            error => {
-              this.search = true;
-              this.datashow = true;
-              this.record.splice(0, this.record.length);
-              this.length = 0;
-            });
-
-        })
-    }
+    } })
+  
   }
   page(pageSize) {
     if (pageSize) {

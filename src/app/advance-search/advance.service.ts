@@ -66,6 +66,25 @@ export class AdvanceService {
     return this._http5.get('https://apis.rfpgurus.com/rf_p/download_file/' + id + '/',
       { headers: headers }).map((response: Response) => response.json());
   }
+  advancesearch(Rfpnum, title, status, enterdate, duedate, state, agency, cat, items, page){
+    let headers = new Headers();
+    if (this.currentUser) {
+      headers = new Headers({ 'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token });
+    }
+    headers.append('Content-Type', 'application/json');
+    return this._http.put('https://apis.rfpgurus.com/rf_p/advance/' + items + '/?page=' + page,
+      JSON.stringify({
+        "rfp_key": Rfpnum,
+        "title": title,
+        "status": status,
+        "posted_from": enterdate,
+        "posted_to": duedate,
+        "state": state,
+        "agency": agency,
+        "category": cat
+      }),
+      { headers: headers }).map((response: Response) => response.json());
+  }
   searchrfprecord(Rfpnum, title, status, enterdate, duedate, state, agency, cat, items, page) {
     let headers = new Headers();
     if (this.currentUser) {

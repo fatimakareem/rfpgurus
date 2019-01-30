@@ -75,9 +75,9 @@ export class AdminPanelComponent implements OnInit {
         headers.append('Content-Type', 'application/json');
         this.http.get('https://apis.rfpgurus.com/rf_p/all_rfp/' + this.pageSize + '?page=' + page, { headers: headers })
           .subscribe(Res => {
-            this.record = Res.json()['results'];
-            this.item = Res.json()['totalItems'];
-            console.log( this.record, Res.json()['totalItems'], 'eee')
+            this.record = Res.json()['Results'];
+            this.item = Res.json()['TotalResult'];
+            console.log( this.record, Res.json()['TotalResult'], 'eee')
             this.pager = this.pagerService.getPager(this.item, page,this.pageSize);
             // this.search = false;
            
