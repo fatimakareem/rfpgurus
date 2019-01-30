@@ -89,8 +89,13 @@ export class RecapchaService {
     check(): boolean {
         let text
         this.data.subscribe(res => text = res)
-        let status = this.imgText === text ? true : false
-        this.resetImg()
-        return status
+        // let status = this.imgText === text ? true : false
+        if(this.imgText === text){
+            return true
+        }else{
+            this.resetImg()
+        }
+        // this.resetImg()
+        // return status
     }
 }

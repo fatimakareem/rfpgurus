@@ -1,31 +1,84 @@
-import { Component, OnInit } from '@angular/core';
-import {NgxCarousel} from 'ngx-carousel';
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
+import {isPlatformBrowser} from "@angular/common";
+import {GlobalService} from "../global.service";
+import {FormControl} from "@angular/forms";
+import {HeaderService} from "../header/header.service";
+import {Config} from "../Config";
+declare const $: any;
+
 @Component({
   selector: 'app-about',
-  templateUrl: './about.component.html'
+  templateUrl: './about.component.html',
+  styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  constructor() { }
-    public clientCarousel: NgxCarousel;
-  ngOnInit() {
-      this.clientCarousel = {
-          grid: {xs: 1, sm: 3, md: 4, lg: 5, all: 0},
-          slide: 1,
-          speed: 500,
-          interval: 2000,
-          point: {
-              visible: false
-          },
-          load: 2,
-          touch: true,
-          loop: true,
-          custom: 'banner',
-          easing: 'ease'
-      };
-  }
-    public myfunc(event: Event) {
-        // carouselLoad will trigger this funnction when your load value reaches
-        // it is helps to load the data by parts to increase the performance of the app
-        // must use feature to all carousel
+  public Logedin: string = '1';
+  public Categories: any;
+  loaded = false;
+  public catImageUrl = Config.staticStorageImages;
+
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private global: GlobalService, private obj2: HeaderService,
+  ) {
+    this.global.Categories$.subscribe(
+      data => {
+        this.Categories = data;
+      });
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.Logedin = localStorage.getItem("loged_in");
     }
+    this.global.caseNumber$.subscribe(
+      data => {
+        this.Logedin = data;
+      });
+  }
+
+  ngOnInit() {
+    this.obj2.get_categories().subscribe(response => {
+      this.Categories = response;
+      this.loaded = true;
+      $('.homeSlider').fadeOut(0);
+      if (this.Categories) {
+        setTimeout(function () {
+          $('.homeSlider').slick({
+            infinite: true,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            autoplay: true,
+            prevArrow: '<button class="leftRs">&lt;</button>',
+            nextArrow: '<button class="rightRs">&lt;</button>',
+            responsive: [
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 3,
+                  slidesToScroll: 3,
+                  infinite: true
+
+                }
+              },
+              {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 2
+                }
+              },
+              {
+                breakpoint: 480,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1
+                }
+              }
+
+            ]
+          });
+        }, 250);
+      }
+      $('.homeSlider').fadeIn(700).delay(500);
+    });
+  }
+
 }

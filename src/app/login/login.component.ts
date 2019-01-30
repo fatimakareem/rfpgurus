@@ -1,199 +1,237 @@
-import { Component, OnInit, Inject, PLATFORM_ID, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
+import { Component, Inject, OnInit, PLATFORM_ID, ViewContainerRef } from '@angular/core';
+import { FormControl, NgForm, Validators } from '@angular/forms';
+// import {  App_service } from  './../app.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from './login.service';
-import swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
+import { SignUpservice } from '../signup/signup.service';
+import { GlobalService } from '../global.service';
 import { isPlatformBrowser } from '@angular/common';
-import { ViewChild } from '@angular/core';
-import { RecapchaComponent } from '../recapcha/recapcha.component';
-import { AuthService } from "angular4-social-login";
-import { FacebookLoginProvider, GoogleLoginProvider } from "angular4-social-login";
-// import { JwtHelperService  } from '@auth0/angular-jwt';
+import swal from 'sweetalert2';
+import { AuthService } from 'angular4-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider } from 'angular4-social-login';
+import { HttpClient } from '@angular/common/http';
+import { Config } from '../Config';
 import { JwtHelper } from 'angular2-jwt';
-import * as CryptoJS from 'crypto-js';
-import { Http, Headers } from '@angular/http';
-import { ActivatedRoute } from '@angular/router';
-declare var $: any;
-import {Location} from '@angular/common';
+import { CoursesService } from '../course/courses.service';
+import { CourseCheckoutService } from '../course-checkout/course-checkout.service';
+import { RecapchaComponent } from '../recapcha/recapcha.component';
+import { ViewChild } from '@angular/core';
 import { RecapchaService } from '../recapcha/recapcha.service';
 
-declare interface ValidatorFn {
-    (c: AbstractControl): {
-        [key: string]: any;
-    };
-}
-declare interface User {
-    username?: string; // required, must be 5-8 characters
-    email?: string; // required, must be valid email format
-    password?: string; // required, value must be equal to confirm password.
-    confirmPassword?: string; // required, value must be equal to password.
-    number?: number; // required, value must be equal to password.
-    url?: string;
-    idSource?: string;
-    idDestination?: string;
-    optionsCheckboxes?: boolean;
-    status?: boolean;
-}
+const EMAIL_REGEX = '^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$';
+
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css'],
-    providers: [LoginService, AuthService]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
-    @ViewChild(RecapchaComponent) captcha: RecapchaComponent;
-    endRequest;
-    hide = true;
-    public typeValidation: User;
-    register: FormGroup;
-    login: FormGroup;
-    type: FormGroup;
-    isequal;
-    jwtHelper: JwtHelper  = new JwtHelper();
-    private loggedIn: boolean;
-    user: any;
-    public logedin: any = 0;
-    returnUrl: string;
-    constructor(@Inject(PLATFORM_ID) private platformId: Object, private route: ActivatedRoute, private _http: Http, private authService: AuthService, private _nav: Router, private _serv: LoginService, private formBuilder: FormBuilder,private _location: Location,public recapcha: RecapchaService) { }
-    ///////////////////social login////////////////////////////
-    socialCallBack = (user) => {
-        this.user = user;
-        const headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        if (user) {
-            const createUser = this._http.post('https://apis.rfpgurus.com/social_login/', {
-                user
-            }, { headers: headers })
-            createUser.subscribe(data => {
-                console.log(data['token'], "data", data.json());
-                let user = { userid: this.jwtHelper.decodeToken(data.json().token).user_id, username: this.jwtHelper.decodeToken(data.json().token).username, token: data.json().token };
-                if (user && user.token) {
-                    localStorage.setItem('loged_in', '1');
-                    localStorage.setItem('currentUser', JSON.stringify(user));
+
+export class LoginComponent implements OnInit {
+  @ViewChild(RecapchaComponent) captcha: RecapchaComponent;
+  islogin: boolean;
+  returnUrl: string;
+  hide = true;
+  checked = true;
+  searchCaseNumber: any = '';
+  public model: any = {};
+  public firstnameLower = '';
+  public wishPage = 1;
+  public emptyWishlist: boolean;
+  public emptyCart: boolean;
+  public wishlistCourses: any;
+  public GlobalCartCourses: any;
+  username;
+  password;
+  captcharesponse;
+  public cap: boolean = false;
+  jwtHelper: JwtHelper = new JwtHelper();
+  user: any;
+  // public captcha: boolean =false;
+  public logedin: any = 0;
+
+  userFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  passwordFormControl = new FormControl('', [
+    Validators.required]);
+
+  constructor(private obj: LoginService, public dialog: MatDialog, private vcr: ViewContainerRef,
+    private route: ActivatedRoute, private global: GlobalService, private course: CoursesService, private obj2: CourseCheckoutService,
+    @Inject(PLATFORM_ID) private platformId: Object, private authService: AuthService, private _http: HttpClient,
+    private _nav: Router,public recapcha: RecapchaService) {
+    // this.global.caseNumber$.subscribe(
+    //   data => {
+    //     this.searchCaseNumber = data;
+    //   });
+
+    this.global.GlobalWishListCourses$.subscribe(
+      data => {
+        if (data.length === 0) {
+          this.wishlistCourses = data;
+        } else {
+          this.wishlistCourses = [];
+        }
+      });
+
+    this.global.GlobalCartCourses$.subscribe(
+      data => {
+        if (data.length === 0) {
+          this.GlobalCartCourses = [];
+        } else {
+          this.GlobalCartCourses = data;
+        }
+      });
+  }
+
+  ngOnInit() {
+    // this.captcha.reset();
+    if (isPlatformBrowser(this.platformId)) {
+      this.logedin = localStorage.getItem('loged_in');
+      // alert(this.logedin)
+    }
+    if (this.logedin === 1) {
+
+      this._nav.navigate(['/']);
+    }
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
+
+  public resolved(captchaResponse: string) {
+
+    this.captcharesponse = captchaResponse;
+    // this.cap= true;
+  }
+
+  // resolved(captchaResponse: string) {
+  //   console.log(`Resolved captcha with response ${captchaResponse}:`);
+  //   this.captcha= true;
+  //   // console.log('recap', this.captcha);
+  //   // alert('recap'+this.captcha);
+  // }
+  static showSuccess() {
+    swal({
+      type: 'success',
+      title: 'Login Successful <br> Welcome to CourseFrenzy!',
+      // text: 'Welcome to CourseFrenzy!',
+      showConfirmButton: false,
+      width: '512px',
+      timer: 1500
+    });
+  }
+
+  static LoginError() {
+    swal({
+      type: 'error',
+      title: 'Failed to Login <br> Incorrect Credentials!',
+      width: '512px',
+      timer: 2000
+    })
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ResetPasswordComponent, {
+      width: '500px',
+    });
+  }
+
+  onSubmit(f) {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.clear();
+    }
+    // console.log('username' + this.model.firstname, +'Password' + this.model.password);
+    this.firstnameLower = this.model.firstname;
+    this.firstnameLower = this.firstnameLower.toLowerCase();
+    // this.model.firstname = (this.model.firstname).toLowerCase();
+    if (this.recapcha.check()) {
+      this.obj.login_authenticate(this.firstnameLower).subscribe(
+        data => {
+          this.obj.loged_in(this.firstnameLower, this.model.password, this.returnUrl).subscribe(
+            data => {
+
+              LoginComponent.showSuccess();
+              if (isPlatformBrowser(this.platformId)) {
+                localStorage.setItem("loged_in", '1');
+                this.global.publishData("1");
+              }
+              if (isPlatformBrowser(this.platformId)) {
+                localStorage.setItem('login', 'false');
+              }
+
+              this.course.get_wishlist_courses(this.wishPage).subscribe(response => {
+                if (response.hasOwnProperty("status")) {
+                  this.emptyWishlist = true;
+                  this.global.getemptyWishlistGlobal(this.emptyWishlist);
                 }
-                // console.log("junaid",this.jwtHelper.decodeToken(data.json().token))
-                swal({
-                    type: 'success',
-                    title: 'Successfully Logged in',
-                    showConfirmButton: false,
-                    timer: 1500,width: '512px',
-                });
-                // this._location.back();
-                if(localStorage.getItem('member')){
-                    let url =localStorage.getItem('member')
-                    this._nav.navigate([url]);
-                }else{
-                    this._nav.navigate(['home']);
+                else {
+                  this.wishlistCourses = response;
+                  console.log(this.wishlistCourses);
+                  this.global.getGolbalWishListCourses(this.wishlistCourses);
+                  this.emptyWishlist = false;
+                  this.global.getemptyWishlistGlobal(this.emptyWishlist);
                 }
-              
+              });
+
+              this.obj2.get_checkout_courses().subscribe(response => {
+                if (response.hasOwnProperty("status")) {
+                  this.emptyCart = true;
+                  this.global.getemptyCartGlobal(this.emptyCart);
+                }
+                else {
+                  this.GlobalCartCourses = response;
+                  // if (this.GlobalCartCourses.hasOwnProperty("status")){
+                  //   console.log('status found')
+                  // }
+                  console.log('Checkout' + this.GlobalCartCourses);
+                  this.global.getGolbalCartCourses(this.GlobalCartCourses);
+                  this.emptyCart = false;
+                  this.global.getemptyCartGlobal(this.emptyCart);
+                }
+              });
+
             },
-                error => {
-                    swal(
-                        'Invalid',
-                        'Something went wrong',
-                        'error'
-                    )
-                })
-        }
+            error => {
+
+              this.islogin = false;
+              LoginComponent.LoginError();
+            });
+        },error => {
+          console.log(error.status, 'masssssagaggggg')
+          if (error.status == 404) {
+            swal({
+              type: 'error',
+              title: 'First, Verify your email address to Sign In.',
+              showConfirmButton: false,
+              width: '512px',
+              timer: 2000
+            });
+          }
+          else if (error.status == 500) {
+            swal({
+              type: 'error',
+              title: 'User Doesnot Exist!',
+              showConfirmButton: false,
+              width: '512px',
+              timer: 2000
+            });
+          }
+      }
+        )
     }
-    signInWithGoogle(): void {
-        this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(this.socialCallBack)
-            .catch(message => console.log(message));
-    }
-    signInWithFB(): void {
-        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(this.socialCallBack)
-            .catch(message => console.log(message));
-    }
-    signOut(): void {
-        this.authService.signOut();
-    }
-    /////////////////////end /////////////////////////////////
-    isFieldValid(form: FormGroup, field: string) {
-        return !form.get(field).valid && form.get(field).touched;
-    }
-    displayFieldCss(form: FormGroup, field: string) {
-        return {
-            'has-error': this.isFieldValid(form, field),
-            'has-feedback': this.isFieldValid(form, field)
-        };
-    }
-    resolved(captchaResponse: string) {
-        console.log(`Resolved captcha with response ${captchaResponse}:`);
-    }
-    onLogin() {
-        // console.log(this.login);
-        if (this.login.valid && this.recapcha.check()) {
-            // console.log(this.login.value);
-            // console.log('form submitted');
-            this.isequal = true;
-            this._serv.login_authenticate(this.login.value.username).subscribe(
-                data => {
-                    //  console.log("user",data);
-                    this._serv.login(this.login.value.username, this.login.value.password).subscribe(
-                        data => {
-                            swal({
-                                type: 'success',
-                                title: 'Successfully Logged in',
-                                showConfirmButton: false,
-                                timer: 1500,width: '512px',
-                            });
-                            // let url = 'profile';
-                            // this._nav.navigate([url]);
-                            // if(localStorage.getItem('member')){
-                                if(localStorage.getItem('member')){
-                                let url =localStorage.getItem('member')
-                                let last=url.length
-        let ur =url.slice(0,13)
-        let state=url.slice(0,5)
-        let category=url.slice(0,8)
-        let agency=url.slice(0,6)
-                            
-                            if(ur == 'searched-data'){ this._nav.navigate([ur], { queryParams: { keyword: url.slice(13,last) } });  }
-                            else if(state == 'state'){
-                                this._nav.navigate([state], { queryParams: { state: url.slice(5,last) } });  }
-                                else if(category == 'category'){
-                                 this._nav.navigate([category], { queryParams: { cat: url.slice(8,last) } });  }
-                                 else if(agency == 'agency'){
-                                   
-                                     this._nav.navigate([agency], { queryParams: { agency: url.slice(6,last) } });  }
-                            else{
-                                this._nav.navigate([url]);
-                            }
-                        }else{
-                            this._nav.navigate(['/']);
-                        }
-                            // this._location.back();
-                        },
-                        error => {
-                            swal(
-                                'Invalid',
-                                'Username OR Password',
-                                'error'
-                            )
-                        });
-                },
-                error => {
-                    console.log(error.status, 'masssssagaggggg')
-                    if (error.status == 400) {
-                        swal(
-                            'Error',
-                            'First, Verify your email address to Sign In.',
-                            'error'
-                        )
-                    }
-                    else if (error.status == 500) {
-                        swal(
-                            'Error',
-                            'User doesnot exists',
-                            'error'
-                        )
-                    }
-                }
-            );
-        }
-        else {
-            this.validateAllFormFields(this.login);
-            this.captcha.resetImg();
+    // else if(this.captcha.getResponse()== false){
+    //
+    //   swal({
+    //     type: 'error',
+    //     title: 'Please confirm you are not a robot!',
+    //     showConfirmButton: false,
+    //     width: '512px',
+    //     timer: 2000
+    //   })
+    //
+    // }
+    else {
+      this.captcha.resetImg();
             // this.captcha.reset();
             // this.isequal = false;
             
@@ -204,89 +242,140 @@ export class LoginComponent implements OnInit, OnDestroy {
               width: '512px',
               timer: 2000
             });
-        }
-    }
-    foremail() {
-        swal({
-            title: 'Enter email address',
-            html: ' Enter you email address to receive a link allowing you to reset your password.',
-            input: 'email',
-            confirmButtonColor: "#000",width: '512px',
-            inputPlaceholder: 'Enter your email address'
-        }).then((email) => {
-            this.forgetPassword(email)
-        })
-    }
-    forgetPassword(pass) {
-        this._serv.forget_password(pass).subscribe(
-            data => {
-                swal({
-                    type: 'success',
-                    html: 'Password reset instructions have been sent to your email. ',
-                    width: '512px',
-                })
-            },
-            error => {
-                swal(
-                    'Invalid email ',
-                    'Or user does not exist!',
-                    'error'
-                )
-            }
-        )
-    }
-    validateAllFormFields(formGroup: FormGroup) {
-        Object.keys(formGroup.controls).forEach(field => {
-            const control = formGroup.get(field);
-            if (control instanceof FormControl) {
-                control.markAsTouched({ onlySelf: true });
-            } else if (control instanceof FormGroup) {
-                this.validateAllFormFields(control);
-            }
-        });
-    }
-    trik;encryptSecretKey;
-    ngOnInit() {
-       
-//         try {
-//             // var ciphertext = CryptoJS.AES.encrypt('uc442jjb4labn2ovmo5eshjkhy', 'uniquekey').toString();
-//             // console.log(ciphertext,'encryptedddddddd')
-//             var bytes  = CryptoJS.AES.decrypt('uc442jjb4labn2ovmo5eshjkhy','uniquekey');
-// var originalText = bytes.toString(CryptoJS.enc.Utf8);
-// var bytes  = CryptoJS.AES.decrypt(originalText,'uniquekey');
-// var originalText = bytes.toString(CryptoJS.enc.Utf8);
 
-// console.log(originalText,'decryptedddddddd'); // 'my message'
-//           } catch (e) {
-//             console.log(e);
-//           }
-       
-//         this._serv.decrypt().subscribe(
-//             data => {
+    }
+  }
 
-//                 for (let i of data) {
-//                     this.trik=i.ticker
-                    
-//                     // console.log(this.trik) 
-//                 //    var riks= this.jwtHelper.decodeToken(this.trik)
-// // console.log(riks)
-//                 }
-//             });
+  signOut(): void {
+    this.authService.signOut();
+  }
 
+  socialCallBack = (user) => {
+    this.user = user;
+
+    const headers = { 'Content-Type': 'application/json' };
+    if (user) {
+      console.log(user,'pppppppp')
+      const createUser = this._http.post(Config.api + 'users/social_login/', {
+        user
+      }, { headers: headers });
+
+      createUser.subscribe(data => {
+        // localStorage.setItem('json_token', data['token']);
+        // localStorage.setItem('isSocial', 'True');
+        // this.user.id = data[ 'id' ];
+        // console.log(data);
         if (isPlatformBrowser(this.platformId)) {
-            this.logedin = localStorage.getItem('loged_in');
-            // alert(this.logedin)
+          localStorage.setItem("loged_in", '1');
+          localStorage.setItem("Authorization", data['token']);
+          localStorage.setItem('username', this.jwtHelper.decodeToken(data['token']).username);
+          localStorage.setItem('id', this.jwtHelper.decodeToken(data['token']).user_id);
+          this.global.publishData("1");
+          LoginComponent.showSuccess();
+
+          this.course.get_wishlist_courses(this.wishPage).subscribe(response => {
+            if (response.hasOwnProperty("status")) {
+              this.emptyWishlist = true;
+              this.global.getemptyWishlistGlobal(this.emptyWishlist);
+            }
+            else {
+              this.wishlistCourses = response;
+              console.log(this.wishlistCourses);
+              this.global.getGolbalWishListCourses(this.wishlistCourses);
+              this.emptyWishlist = false;
+              this.global.getemptyWishlistGlobal(this.emptyWishlist);
+            }
+          });
+
+          this.obj2.get_checkout_courses().subscribe(response => {
+            if (response.hasOwnProperty("status")) {
+              this.emptyCart = true;
+              this.global.getemptyCartGlobal(this.emptyCart);
+            }
+            else {
+              this.GlobalCartCourses = response;
+              console.log('Checkout' + this.GlobalCartCourses);
+              this.global.getGolbalCartCourses(this.GlobalCartCourses);
+              this.emptyCart = false;
+              this.global.getemptyCartGlobal(this.emptyCart);
+            }
+          });
+
+
+          this._nav.navigate(['/']);
         }
-        if (this.logedin == 1) {
-            this._nav.navigate(['/']);
+      });
+    }
+  }
+
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(this.socialCallBack)
+      .catch(message => console.log(message));
+  }
+
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(this.socialCallBack)
+      .catch(message => console.log(message));
+  }
+
+}
+
+@Component({
+  selector: 'app-reset-password-dialog',
+  templateUrl: 'reset-password-dialog.html',
+  styleUrls: ['../events/add-event.component.css']
+})
+
+export class ResetPasswordComponent {
+  public model: any = {};
+  public emailResponse = false;
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email
+  ]);
+
+  constructor(private obj: LoginService, private obj2: SignUpservice,
+    public dialogRef: MatDialogRef<ResetPasswordComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  onSubmit(f: NgForm) {
+    this.obj2.check_email_unique(this.model.email).subscribe(Response => this.emailResponse = Response);
+    if (this.emailResponse == false) {
+      this.obj.reset_password(this.model.email).subscribe(
+        data => {
+          // console.log(data);
+          this.dialogRef.close();
+          ResetPasswordComponent.resetSuccess();
+        },
+        error => {
+          // console.log(error);
         }
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        this.login = this.formBuilder.group({
-            username: ['', Validators.compose([Validators.required])],
-            password: ['', Validators.compose([Validators.required])]
-        });
+      );
+    } else {
+      ResetPasswordComponent.emailError();
     }
-    ngOnDestroy() {
-        // this.endRequest.unsubscribe();
-    }
+  }
+
+  static resetSuccess() {
+      swal({
+        type: 'success',
+        title: 'Check Email! <br> Link sent on Email!',
+        width: '512px',
+        timer:2000
+      })
+  }
+
+  static emailError() {
+    swal({
+      type: 'error',
+      title: 'Oops <br> No account registered with this email',
+      width: '512px',
+      timer:2000
+    })
+  }
 }

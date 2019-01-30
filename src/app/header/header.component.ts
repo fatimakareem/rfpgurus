@@ -1,247 +1,598 @@
-import { Component, OnInit, AfterContentInit, ElementRef, ViewChild, Output, EventEmitter, Input } from '@angular/core';
-import { Router } from '@angular/router';
-import { HeaderService } from './header.service';
-import swal from 'sweetalert2';
-import { SharedData } from '../shared-service';
-import { AuthService, SocialUser } from "angular4-social-login";
-import { Meta } from '@angular/platform-browser';
-import { SpeechRecognitionService } from './speechservice';
-import { RfpService } from '../rfps/single-rfp/rfp.service';
-import { Observable, Subject } from 'rxjs/Rx';
-declare var $: any;
+import {Component, Inject, Input, OnInit, PLATFORM_ID} from '@angular/core';
+import {HeaderService} from './header.service';
+import {Config} from '../Config';
+import {GlobalService} from '../global.service';
+import {UploadCoursesService} from '../upload-courses/upload-courses.service';
+import {LogoutService} from '../logout/logout.service';
+import {Router} from '@angular/router';
+import {isPlatformBrowser} from '@angular/common';
+import swal from 'sweetalert2'
+import {SimpleGlobal} from "ng2-simple-global";
+import {HomeService} from "../home/home.service";
+import {CoursesService} from "../course/courses.service";
+import {CourseCheckoutService} from "../course-checkout/course-checkout.service";
+import {AddCartDialogComponent} from "../cart-dialog/add-cart-dialog.component";
+import {MatDialog} from "@angular/material";
+import {HomeComponent} from '../home/home.component';
+import {CoursesOnBidComponent} from '../courses-all/courses-on-bid/courses-on-bid.component';
+import {AddCourseDialogComponent} from '../upload-courses/upload-courses.component'
+
+declare const $: any;
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css', '../chat/chat.component.css', '../course/course.component.css']
 })
 export class HeaderComponent implements OnInit {
-  // @ViewChild('openModal') openModal: ElementRef;
-  public blink = false;
-  @Output() spokenText = new EventEmitter<string>();
-  @Output() error = new EventEmitter<string>();
-  @Input() showInput = true;
-  text;
-  onError(event) {
-    console.log(event, "error")
-  }
-  response(event) {
-    console.log(event, 'text')
-    this.query = event;
-  }
-  uname;
-  local;
-  name;
-  id;
-  title;
-  state: any = [];
-  cat: any = [];
+// public nestedSubCategories:any;
+public postedCoursesList:any;
+  public Categories: any;
   loaded = false;
+  Logedin: string = '1';
+  uname;
+  public wishPage = 1;
+  search: string;
+  searchSlider: string;
+  searchCourses: string;
+  IsLogedIn: boolean;
+  public islogin: boolean;
   public query: any;
-  public Rfp: any;
+  public Courses: any;
   public selected: any;
-  category;
-  wrfp;
-  mainSearch = 0;
-  closeSearch() {
-    if (this.mainSearch == 1) {
-      this.mainSearch = 0;
-      this.query = '';
-      this.Rfp = '';
+  public ImageUrl1 = 'https://storage.coursefrenzy.com/images/';
+  ImageUrl = Config.staticStorageImages;
+  public heart= false;
+  public heartClass= 'fa fa-heart-o';
+  // public coursesList: any;
+  // public listTitles = [];
+  // public countries = [];
+  // public filteredList = [];
+  public userRole: string;
+  getingRoleData: any;
+  public wishlistCourses: any=[];
+  public wishloaded: boolean = false;
+  public checkoutCourses: any;
+  public chekoutloaded: boolean;
+  public GlobalWishListCourses:any = [];
+  public GlobalCartCourses:any = [];
+  public emptyWishlist: boolean;
+  public emptyCart: boolean;
+  public topOffer: boolean = true;
+  private token: string | any;
+  public BidCourses: any;
+  public page = 1 ;
+  public notify: any ;
+  constructor(private obj: HeaderService,
+              private global2: GlobalService,
+              private course: CoursesService,
+              private courseCheckout: CourseCheckoutService,
+              private objcourses: UploadCoursesService,
+              private logout: LogoutService,
+              private _nav: Router,
+              private glb_ser: SimpleGlobal,
+              private global: GlobalService,
+              private obj2: CourseCheckoutService,
+              private _home: HomeService,
+              public dialog: MatDialog,
+              private nav: Router,
+              @Inject(PLATFORM_ID) private platformId: Object ) {
+    // this.islogin = this.isAuthenticated();
+    if (isPlatformBrowser(this.platformId)) {
+      this.Logedin = localStorage.getItem("loged_in");
     }
-  }
-  focusInput(){
-    if (this.mainSearch == 1) {
-      let inputField: HTMLElement = <HTMLElement>document.querySelectorAll('.search-holder input')[0];
-      inputField.focus();
+    this.global2.caseNumber$.subscribe(
+      data => {
+        this.Logedin = data;
+      });
+
+
+
+
+    // this.global2.topOfferGlobal$.subscribe(
+    //   data => {
+    //     this.topOffer = data;
+    //   });
+    this.global2.checkingUserRole$.subscribe(
+      data => {
+        this.userRole = data;
+        // alert('Checking Role in Header' + data);
+      });
+    this.global2.Categories$.subscribe(
+      data => {
+        this.Categories = data;
+      });
+
+    this.global2.openSearch$.subscribe(
+      data => {
+        this.search = data;
+      });
+
+    this.global2.openSliderSearch$.subscribe(
+      data => {
+        this.searchSlider = data;
+      });
+
+    this.global2.GlobalWishListCourses$.subscribe(
+      data => {
+        if (data.length===0){
+          this.wishlistCourses = [];
+        }else {
+          this.wishlistCourses = data;
+        }
+      });
+
+    this.global2.GlobalCartCourses$.subscribe(
+      data => {
+        if(data.length===0){
+          this.GlobalCartCourses = [];
+          // alert('Global list is going to be set empty');
+        }else {
+          this.GlobalCartCourses = data;
+          this.totalcarts=data.totalItems;
+        }
+      });
+
+    this.global2.emptyWishlistGlobal$.subscribe(
+      data => {
+        this.emptyWishlist = data;
+      });
+
+    this.global2.emptyCartGlobal$.subscribe(
+      data => {
+        this.emptyCart = data;
+      });
+    this.token = localStorage.getItem('Authorization');
+    if(this.token!=null){
+      this.global2.setGlobalToken(true);
+    }else{
+      this.global2.setGlobalToken(false);
     }
+
+    this.global.caseNumber$.subscribe(
+      data => {
+        this.Logedin = data;
+      });
+
+    this.global.GlobalWishListCourses$.subscribe(
+      data => {
+        if (data.length===0){
+          this.GlobalWishListCourses = [];
+        }else {
+          this.GlobalWishListCourses = data;
+        }
+      });
   }
-  
-  openSearch(): void {
-    this.mainSearch = 1;
-    this.focusInput();
-  }
-  constructor( private speech: SpeechRecognitionService,private authService: AuthService,private _nav: Router, public _shareData: SharedData,private _serv: HeaderService,private _serv1: RfpService) { this. check_login1();this.check_adminlogin();
-    this.check_login();}
-  logout() {
-    this.authService.signOut().then(success => {
-      console.log("true", success)
-    }, error => {
-      console.log("error", error)
+  UserRole:any;
+  totalcarts;
+  ngOnInit() {
+    // this._home.get_role().subscribe(response => {
+    //   this.UserRole = response.Role;
+    //     alert(response.Role)
+    //     // alert('Geting DAta From Shared Service' + this.UserRole);
+    //   });
+    this.course.get_bid_courses(this.page).subscribe(response => {
+      this.BidCourses = response;
     });
-    localStorage.clear();
-    sessionStorage.clear();
+
+    if (this.Logedin === '1'){
+      // alert('logedIn True');
+    }
+
+
+    // if(this.topOffer) {
+    //   $('.wrapp-content').addClass('offer');
+    // } else {
+    //   $('.wrapp-content').removeClass('offer');
+    // }
+
+    // this.Categories = this.global2.loadCategories();
+    this.obj.get_categories().subscribe(response => {
+      this.Categories = response;
+      // this.UserRole = this.getingRoleData.Role;
+      // alert('Home Role' + this.UserRole);
+      this.global2.getCategories(this.Categories);
+      this.loaded = true;
+    });
+
+    if (this.Logedin === '1') {
+      this._home.get_role().subscribe(response => {
+        this.getingRoleData = response;
+        this.userRole = this.getingRoleData.Role;
+        // alert('Home Role' + this.UserRole);
+        this.global2.checkUserRole(this.userRole);
+        this.loaded = true;
+      });
+    }
+    if (this.Logedin === '1') {
+      this.obj.Notifications().subscribe(data => {
+        this.notify = data;
+        console.log(this.notify);
+      });
+    }
+    if (this.Logedin === '1') {
+      this.course.get_wishlist_courses(this.wishPage).subscribe(response => {
+        if(response.hasOwnProperty("status")) {
+          this.wishlistCourses = [];
+          this.emptyWishlist = true;
+        }
+        else {
+          this.wishlistCourses = response;
+          // alert('total Wishlist Courses' + this.wishlistCourses.length);
+          this.global2.getGolbalWishListCourses(this.wishlistCourses);
+          this.emptyWishlist = false;
+        }
+
+      });
+    }
+this.getcart();
+   
+
+  }
+  getcart(){
+    if (this.Logedin === '1') {
+      // alert('calling Checkout Courses');
+      this.obj2.get_checkout_courses().subscribe(response => {
+        if(response.hasOwnProperty("status")) {
+          this.emptyCart = response.status;
+          this.GlobalCartCourses = [];
+
+          // alert('Checkout Courses are Empty')
+        }
+        else {
+          this.GlobalCartCourses = response;
+          this.totalcarts=response.totalItems
+          this.global2.getGolbalCartCourses(this.GlobalCartCourses);
+          this.emptyCart = false;
+        }
+      });
+    }
+  }
+ 
+  openDialog(): void {
+    if (localStorage.getItem("loged_in")) {
+      this.nav.navigate(['/mycourses']);
+      localStorage.setItem('sell','sell')
+      // const dialogRef = this.dialog.open(AddCourseDialogComponent, {
+      //   // width: '500px',
+      //   data: this.postedCoursesList
+      // });
+    }
+    else {
+      swal({
+        type: 'error',
+        title: 'Authentication Required <br> Please Login or Signup first',
+        showConfirmButton: false,
+        width: '512px',
+        timer: 1500
+      });
+      this.nav.navigate(['/login']);
+    }
+   }
+  onclick() {
+    if (!this.heart) {
+      this.heartClass = 'fa fa-heart';
+      this.heart = true;
+      // alert(this.heart);
+    } else {
+      this.heartClass = 'fa fa-heart-o';
+      // alert(this.heart);
+      this.heart = false;
+    }
+  }
+
+  click(index, course_id) {
+    if (this.Logedin === '1') {
+      this.course.add_wishlist(course_id).subscribe(
+        data => {
+          if(data[0]['json'].json().hasOwnProperty("status")) {
+            CoursesOnBidComponent.AlreadyInWishlistError();
+          }
+          else {
+            this.wishlistCourses.splice(this.wishlistCourses.indexOf(this.wishlistCourses[index]),1);
+
+            this.GlobalWishListCourses.push(data[0]['json'].json());
+            this.global.getGolbalWishListCourses(this.GlobalWishListCourses);
+            CoursesOnBidComponent.wishlistSuccess();
+          }
+        }
+      );
+      this.courseCheckout.removeFromCart(course_id).subscribe(
+        data => {
+          console.log(data);
+          // this.wishlistCourses.splice(this.wishlistCourses.indexOf(this.wishlistCourses[index]),1);
+          // console.log(this.wishlistCourses);
+          // if (this.Logedin === '1') {
+          this.courseCheckout.get_checkout_courses().subscribe(response => {
+            if (response.hasOwnProperty("status")) {
+              this.emptyCart = true;
+              this.global.getemptyCartGlobal(this.emptyCart);
+            }
+            else {
+              this.GlobalCartCourses = response;
+              // if (this.GlobalCartCourses.hasOwnProperty("status")){
+              //   console.log('status found')
+              // }
+              console.log('Checkout' + this.GlobalCartCourses);
+              this.global.getGolbalCartCourses(this.GlobalCartCourses);
+              this.emptyCart = false;
+              this.global.getemptyCartGlobal(this.emptyCart);
+            }
+
+          });
+          // }
+        });
+
+    }
+    else {
+      CoursesOnBidComponent.Authenticat();
+      this.nav.navigate(['login']);
+    }
+  }
+
+
+  static AlreadyInWishlistError() {
+    swal({
+      type: 'warning',
+      title: 'Oops! <br> This course already exists in your wishlist!',
+      showConfirmButton: false,
+      width: '512px',
+      timer: 2500
+    })
+  }
+
+  static wishlistSuccess() {
     swal({
       type: 'success',
-      title: 'Successfully Logged out',
+      title: 'Success! <br> Successfuly added to wishlist.',
       showConfirmButton: false,
-      confirmButtonColor: "#090200",
-      timer: 1500,width: '512px',
+      width: '512px',
+      timer: 2000,
+      position: 'top-end'
     });
-    this._nav.navigate(['/']);
   }
-  triggerMike() {
-    if (!('webkitSpeechRecognition' in window)) {
-      console.log('please upgrade');
-    } else {
-      this.blink = true;
-      this.search();
-    }
-  }
-  search(): void {
-    this.speech.record().subscribe((text) => {
-      this.query = text;
-      this.blink = false;
-      this.spokenText.emit(this.query);
-      this.speech.stop();
-    },
-    );
-  }
-  single(query) {
-    let sth = 'rfp/' + query;
-    this._nav.navigate([sth]);
-  }
-  deletenofication(id) {
-    this._serv.deletenotify(id).subscribe(
-      data => {
-        this.notification();
-      },
-      error => {
-      });
-  }
-  updatenofication(id) {
-    this._serv.Updatenotify(id).subscribe(
-      data => {
-        this.notification();
-      },
-      error => {
-      });
-  }
-  ngOnInit() {
-    this.watchlist();
-    this._shareData.notification.subscribe(message => this.notificate = message)
-    this._shareData.unreadnotification.subscribe(message => this.unread = message)
-    this._shareData.currentMessage.subscribe(message => this.wrfp = message)
-    this._shareData.currentMessagetotal.subscribe(message => this.total = message)
-    // this.watchlist();
-    this.notification()
 
-    // let timer = Observable.timer(0, 6000000);
-    // timer.subscribe(() => this.notification());
-    $('#search').click(function () {
-      setTimeout(function () {
-        $('#textsearch').focus();
-      }, 350);
-    });
-    $("#box").click(function () {
-      $("#box").toggleClass("animation-blink");
-    });
-  }
-  notificate;
-  unread;
-  total_notification;
-  notification() {
-    this._serv.notify().subscribe(
-      data => {
-        this.notificate = data['notifications'];
-        this.unread = data.unread;
-        this._shareData.notifyInfo(this.notificate);
-        this._shareData.unreadnotifyInfo(this.unread);
-      },
-      error => {
-      });
-  }
-  total;
-  watchlist() {
-    this._serv.Watchlist().subscribe(
-      data => {
-        this.wrfp = data['result'];
-        this.total = data.total
-        this._shareData.watchInfo(this.wrfp);
-        this._shareData.watchtotal(this.total);
-      },
-      error => {
-      });
-  }
-  get(id, title) {
-    this.id = id;
-    this.title = title
-  }
-  deletewatchlist() {
-    this._serv.deleteWatchlist(this.id).subscribe(
-      data => {
-        this.watchlist();
-      },
-      error => {
-        // console.log(error);
-      });
-  }
-  check_login() {
-    if (localStorage.getItem('currentUser')) {
-      this.local = localStorage.getItem('currentUser');
-      let pars = JSON.parse(this.local);
-      this.uname = pars.username;
-      return true;
-    } else {
-      return false;
+  isAuthenticated() {
+    // alert("dsfd")
+    // localStorage.clear();
+    if (isPlatformBrowser(this.platformId)) {
+      const user = localStorage.getItem('username');
+      this.uname = user;
+      // console.log(this.uname)
+      if (user !== '' && user) {
+        return this.IsLogedIn = true;
+      } else {
+        return this.IsLogedIn = false;
+      }
     }
   }
-  check_adminlogin() {
-    if (localStorage.getItem('currentadmin')) {
-      this.local = localStorage.getItem('currentadmin');
-      return true;
-    } else {
-      return false;
+  offerTopSetFalse(){
+    this.topOffer = false;
+    this.global2.gettopOfferGlobal(this.topOffer);
+
+
+    this.global2.topOfferGlobal$.subscribe(
+      data => {
+        this.topOffer = data;
+      });
+
+    // alert('Top Offer After Cross '+ this.topOffer);
+
+  }
+  logFunction() {
+
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.clear();
+    }
+    this.GlobalCartCourses = [];
+    this.global2.getGolbalCartCourses(this.GlobalCartCourses);
+    this.wishlistCourses = [];
+    this.global2.getGolbalWishListCourses(this.wishlistCourses);
+    this.emptyWishlist = true;
+    this.global2.getemptyWishlistGlobal(this.emptyWishlist);
+    this.emptyCart = true;
+    this.global2.getemptyCartGlobal(this.emptyCart);
+    this._nav.navigate(['/']);
+
+    // });
+    if (this.Logedin === '1') {
+      this.Logedin = '0';
+      this.global2.publishData(this.Logedin);
+      this.global2.checkUserRole(null);
+      this.logSuccess();
+    }
+    this.global2.setGlobalToken(false);
+
+  }
+
+  logSuccess() {
+    swal({
+      type: 'success',
+      title: 'You have been successfully signed out from CourseFrenzy.',
+      width: '512px',
+      showConfirmButton: false,
+      timer: 2000
+    })
+  }
+onClick() {
+  if (this.Logedin === '1') {
+    this.nav.navigate(['/mycourses']);
+  }
+  else {
+    swal({
+      type: 'error',
+      title: 'Authentication Required <br> Please Login or Signup first',
+      showConfirmButton: false,
+      width: '512px',
+      timer: 1500
+    });
+    this.nav.navigate(['/login']);
+  }
+}
+  closeSearch() {
+    if(this.searchCourses === '1' || this.searchSlider === '1') {
+      this.searchCourses = '0';
+      this.searchSlider = '0';
+      this.search = '0';
+      this.global2.searchSlider('0');
+      this.global2.search('0');
+      this.query = '';
+      this.Courses = '';
     }
   }
-  fund(event) {
-    console.log(this.query)
-    this._shareData.catInfo(this.query);
-    let requiredUrl = 'searched-data'
-    this._nav.navigate([requiredUrl], { queryParams: { keyword: this.query } });
-    this.closeSearch();
+
+  openSearch() {
+    this.searchCourses = '1';
+    this.search = '1';
+    setTimeout(function () {
+      $('#textsearch').focus();
+    },200);
   }
   filter(query) {
-    if (this.query !== "") {
-      this._serv.searchSuggestions(this.query).subscribe(response => {
-        this.Rfp = response.results;
-        // console.log(this.Rfp);
+    if (this.query !== '') {
+      this.obj.search(this.query).subscribe(response => {
+        this.Courses = response['results'];
+        // console.log(this.Courses);
         this.loaded = true;
       });
     }
   }
+  fund(event) {
+    console.log(this.query)
+    
+    let requiredUrl = 'results'
+    this._nav.navigate([requiredUrl], { queryParams: { keyword: this.query } });
+    this.closeSearch();
+  }
   select(item) {
     this.selected = item;
-    this.mainSearch = 0;
+    this.searchCourses = '0';
+    this.search = '0';
     this.query = '';
-    this.Rfp = '';
+    this.Courses = '';
   }
-  singlerfp(query) {
-    let sth = 'rfp/' + query;
-    this._nav.navigate([sth]);
-    this.mainSearch = 0;
-    this.query = '';
-    this.Rfp = '';
+
+  private Suggestions(query: any, number: number) {
   }
-  subscribe;
-  check_login1() {
-    if (localStorage.getItem('currentUser')) {
-      this.local = localStorage.getItem('currentUser');
-      let pars = JSON.parse(this.local);
-      this.uname = pars.username
-      this._serv1.usersubscribe(this.uname).subscribe(
-        data => {
-          //   console.log(data.Response);
-          if (data.Response == "Subscribe user") {
-            this.subscribe = data.Response
-            return false
+
+
+  openCartDialog(index, course_id): void {
+    // if (this.Logedin === '1') {
+      const dialogRef = this.dialog.open(AddCartDialogComponent, {
+        width: '500px',
+        data: { course_id: course_id,
+                index: index
+          // CourseDetail: this.Courses
+        }
+      });
+    // } else {
+    //   this.Authenticat();
+    //   this.nav.navigate(['login']);
+    // }
+  }
+
+  removeFromWishlist(index, course_id) {
+    console.log(index);
+    console.log(course_id);
+    swal({
+      title: 'Are you sure you want to remove this course from wishlist? <br> You will not be able to revert this!',
+      type: 'question',
+      showCancelButton: true,
+      width: '512px',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirm'
+    }).then((result) => {
+      if (result.value) {
+        this.course.removeFromWishlist(course_id).subscribe(
+          data => {
+            console.log(data);
+            console.log('index' + index);
+            this.wishlistCourses.splice(this.wishlistCourses.indexOf(this.wishlistCourses[index]),1);
+            console.log(this.wishlistCourses);
+            HeaderComponent.removeFromWishlistSuccess();
+          },
+          error => {
+            // console.log(error);
+            HeaderComponent.removeFromWishlistError();
           }
-        },
-        error => {
-          // console.log(error);
-        });
-    }
-    else {
-      return true
-    }
+        );
+      }
+    })
   }
+
+
+  static removeFromWishlistSuccess() {
+    swal({
+      type: 'success',
+      title: 'Course Removed From Wishlist Successfully',
+      showConfirmButton: false,
+      width: '512px',
+      timer: 2500
+    })
+  }
+
+  static removeFromWishlistError() {
+    swal({
+      type: 'error',
+      title: 'Oops <br> Failed to remove from wishlist!',
+      // text: 'Failed to approve course!',
+      showConfirmButton: false,
+      width: '512px',
+      timer: 2500
+    })
+  }
+
+
+  removeFromCart(index, course_id) {
+    console.log(index);
+    console.log(course_id);
+    swal({
+      title: 'Are you sure you want to remove this course from cart? <br> You will not be able to revert this!',
+      type: 'question',
+      showCancelButton: true,
+      width: '512px',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, remove it!'
+    }).then((result) => {
+      if (result.value) {
+        this.courseCheckout.removeFromCart(course_id).subscribe(
+          data => {
+            console.log(data);
+            this.getcart();
+            HeaderComponent.removeFromCartSuccess();
+          },
+          error => {
+            // console.log(error);
+            HeaderComponent.removeFromCartError();
+          }
+        );
+      }
+    })
+  }
+
+
+  static removeFromCartSuccess() {
+    swal({
+      type: 'success',
+      title: 'Course Removed From Cart Successfully',
+      showConfirmButton: false,
+      width: '512px',
+      timer: 2500
+    })
+  }
+
+  static removeFromCartError() {
+    swal({
+      type: 'error',
+      title: 'Oops <br> Failed to remove from cart!',
+      // text: 'Failed to approve course!',
+      showConfirmButton: false,
+      width: '512px',
+      timer: 2500
+    })
+  }
+
+
+
 }

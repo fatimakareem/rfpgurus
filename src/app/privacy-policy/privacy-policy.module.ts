@@ -1,17 +1,38 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PrivacyPolicyComponent } from '../privacy-policy/privacy-policy.component';
-import { Routes, RouterModule } from '@angular/router';
-const routes: Routes = [
-  {
-    path: '', component: PrivacyPolicyComponent
-  }
-]
+import {Routes, RouterModule} from '@angular/router';
+import {NgModule} from '@angular/core';
+import {CommonModule} from "@angular/common";
+import {PrivacyComponent} from "../privacy/privacy.component";
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import {MatIconModule} from '@angular/material';
+import {MatInputModule} from '@angular/material';
+import {PrivacyPolicyComponent} from "./privacy-policy.component";
+import {LoaderModule} from "../loader/loader.module";
+
+const privacyRoutes: Routes = [
+  { path: '', component: PrivacyPolicyComponent }
+];
+
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
+  declarations: [
+    PrivacyPolicyComponent
   ],
-  declarations: [PrivacyPolicyComponent]
+
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    MatIconModule,
+    MatInputModule,
+    RouterModule.forChild(privacyRoutes),
+    LoaderModule
+  ],
+
+  providers: [],
+  exports: []
+
 })
-export class PrivacyPolicyModule { }
+
+export class PrivacyPolicyModule {
+
+}
+

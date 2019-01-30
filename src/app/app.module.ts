@@ -1,347 +1,288 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
-import { RouterModule } from '@angular/router';
-import { HttpModule } from '@angular/http';
-import { APP_BASE_HREF } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { NgxCarouselModule } from 'ngx-carousel';
-// import { LoaderComponent } from './loader/loader.component';
-import { ProgressHttpModule } from "angular-progress-http";
-import { UsMapModule } from 'angular-us-map';
-import { InternationalPhoneModule } from 'ng4-intl-phone';
-// import { InputModule } from 'voice-to-text';
-// import { Nl2BrPipeModule } from 'nl2br-pipe';
-// import { Ng2SmartTableModule } from 'ngx-smart-table';
-/////////////////////////////////Service/////////////////////////////
-import { UnsubscribeService } from './unsubscribe/unsubscribe.service';
-import { RfpService } from './rfps/single-rfp/rfp.service';
-import { LoginService } from './login/login.service';
-// import { PricingService } from './pricing/pricing.service';
-import { RegisterService } from './registered/register.service';
-// import { ForgetPasswordService } from './admin/forget-password/forget-password.service';
-// import { ChangedPasswordService } from './admin/changed-password/changed-password.service';
-import { SidebarService } from './user-sidebar/sidebar.service';
-// import { CategoryService } from './categories/category.service';
-// import {AllAgenciesService} from './all/all-agencies/all-agencies.service';
-import { StateService } from './rfps/state-rfp/state.service';
-import { CategoryRfpService } from './rfps/category-rfp/category-rfp.service';
-// import { AllCategoryService } from './all/all-category/all-category.service';
-// import { AllStateService } from './all/all-state/all-state.service';
-// import { ProfileService } from './admin/profile/profile.service';
-import { HeaderService } from './header/header.service';
-import { HomeService } from './home/home.service';
-import { AdvanceService } from './advance-search/advance.service';
-import { BlogService } from './blog/blog.service'
-// import { ContactUsService } from './contact-us/contact-us.service';
-import { FooterService } from './footer/footer.service';
-import { PaymentmethodsService } from './admin/paymentmethods/paymentmethods.service';
-// import { DateFormat } from './advance-search/date-format';
-// import { UnsubscribeService } from './unsubscribe/unsubscribe.service';
-import { SpeechRecognitionService } from './header/speechservice';
-import {SuperadminComponent} from './layouts/admin/superadmin.component'
-/////////////////////////////////End////////////////////////////////
-///////////////////for loader//////////////////////////////
-import { PreloaderFull } from './component/preloader-full/preloader-full';
-import { PreloaderSmall } from './component/preloader-small/preloader-small';
-import { BaseRequestOptions } from '@angular/http';
-import { PreloaderService } from './serv/preloader-service';
-import { XHRBackend, RequestOptions } from '@angular/http';
-import { HttpService } from './serv/http-service';
-// import { MainService } from './serv/main.service'
-// import {AlertService} from './serv/alert.service';
-//////////////////////////////////////////////////////////End//////////////////////////////////////////////
-import 'hammerjs';
+import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
+import {CommonModule} from "@angular/common";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NormalLayoutComponent} from "./layouts/normal-layout.component";
+import {AppComponent} from './app.component';
+import {HeaderComponent} from './header/header.component';
+import {FooterComponent} from './footer/footer.component';
+// import {ModuleMapLoaderModule} from '@nguniversal/module-map-ngfactory-loader';
+// import { RecaptchaModule } from 'ng-recaptcha';
+import {BiddingDialogComponent} from "./bidding-dialog/bidding-dialog.component";
+import {SignUpservice} from './signup/signup.service';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import {
-    MatAutocompleteModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatStepperModule,
-    MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    DateAdapter,
-
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  // MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatStepperModule,
 } from '@angular/material';
 
-import { AppComponent } from './app.component';
-// import { PaymentmethodsComponent } from './admin/paymentmethods/paymentmethods.component';
-import { AllnotificationComponent } from './allnotification/allnotification.component';
-import { AppRoutes } from './app.routing';
-// import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
-import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './header/header.component';
-import { SingleRfpComponent } from './rfps/single-rfp/single-rfp.component';
-import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
-// import { PricingComponent } from './pricing/pricing.component';
-import { TextMaskModule } from 'angular2-text-mask';
-import { RfpComponent } from './rfps/rfp/rfp.component';
-import { RegisteredComponent } from './registered/registered.component';
-import { AuthenticateComponent } from './authenticate/authenticate.component';
-import { LoginComponent } from './login/login.component';
-import { SuperloginComponent } from './superlogin/superlogin.component';
+import {MatTableModule} from '@angular/material/table';
 
-// import { ForgetPasswordComponent } from './admin/forget-password/forget-password.component';
-// import { StateRfpComponent } from './rfps/state-rfp/state-rfp.component';
-// import { CategoryRfpComponent } from './rfps/category-rfp/category-rfp.component';
-// import { AllCategoryComponent } from './all/all-category/all-category.component';
-// import { AllStateComponent } from './all/all-state/all-state.component';
-import { DialogOverviewExample } from './residential/residential.component';
-// import { ProfileComponent } from './admin/profile/profile.component';
-import { AuthGuard } from './_guards/auth.guard';
-// import { ContactUsComponent } from './contact-us/contact-us.component';
-import { AgmCoreModule } from '@agm/core';
-import { FooterComponent } from './footer/footer.component';
-// import { ChangedPasswordComponent } from './admin/changed-password/changed-password.component';
-// import { AdvanceSearchComponent } from './advance-search/advance-search.component';
-// import { RfpAsServiceComponent } from './rfp-as-service/rfp-as-service.component';
-// import { BlogComponent } from './blog/blog.component';
-// import { SingleblogComponent } from './singleblog/singleblog.component';
-// import { RecaptchaModule } from 'ng-recaptcha';
-import { RecapchaComponent } from './recapcha/recapcha.component';
+
+import {Routing, AppRoutingProvider} from './app.routing';
+import {HttpModule} from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
+import {NgxPaginationModule} from 'ngx-pagination';
+// import { Uploader } from 'angular2-http-file-upload';
+import {AddCartDialogModule} from "./cart-dialog/add-cart-dialog.module";
+import { PaymentmethodsService } from './paymentmethods/paymentmethods.service';
+// import { RecapchaComponent } from './recapcha/recapcha.component';
 import { RecapchaService } from './recapcha/recapcha.service';
+import {UserProfileComponent} from './layouts/user-profile/user-profile.component';
+import {AuthGuard} from './auth-guard/auth-guard.service';
+import {LoginService} from './login/login.service';
+import {LogoutComponent} from './logout/logout.component';
+import {LogoutService} from './logout/logout.service';
+import {UploadCoursesService} from './upload-courses/upload-courses.service';
+import {CoursesService} from './course/courses.service';
+import {ChangePasswordService} from './change-password/change-password.service';
 
-// import { PartnershipComponent } from './partnership/partnership.component';
-// import { HistoryComponent } from './admin/history/history.component';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { SharedData } from './shared-service'
-import { DatePipe } from '@angular/common';
-import { ResultsComponent } from './results/results.component';
-import { ResultsService } from './results/results.service';
-// import {PagerService} from './rfps/rfp/paginator.service';
-// import {AllAgenciesComponent} from './all/all-agencies/all-agencies.component';
-// import {AgencyRfpComponent} from './rfps/agency-rfp/agency-rfp.component';
-import { AgencyService } from './rfps/agency-rfp/agency.service';
-// import {BaseComponent} from './base/base.component';
-// import {AllRfpsComponent} from './all/all-rfps/all-rfps.component';
-// import {AllRfpsService} from './all/all-rfps/all-rfps.service';
-import { AdminLayoutComponent } from './layouts/lyout/admin-layout.component';
-import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
-import { AdminComponent } from './layouts/superadmin/admin-layout.component'
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { WatchlistComponent } from './watchlist/watchlist.component';
+import { AgmCoreModule } from '@agm/core';
 
-////////////////////////for loader/////////////////////////
-export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestOptions, preloaderService: PreloaderService) {
-    return new HttpService(backend, defaultOptions, preloaderService);
-}
-////////////////////////end///////////////////////
-//////////////////////////// Live Chat ////////////////////////////
-// import { LivechatWidgetModule } from '@livechat/angular-widget';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import {SingleCourseService} from './single-course/single-course.service';
+import {GlobalService} from './global.service';
+import {PartnershipService} from './partnership/partnership.service';
 
-/////////////////////////// End //////////////////////////////////
-/////////////////////////Social login//////////////////////////////
+import { ImageCropperModule } from 'ngx-image-cropper';
+
+import { NguiDatetimePickerModule } from '@ngui/datetime-picker';
+import { SlickModule } from 'ngx-slick';
+
+import {RatingModule} from "ng2-rating";
+
+
+// Importing Video Player Files
+import {VgCoreModule} from 'videogular2/core';
+import {VgControlsModule} from 'videogular2/controls';
+import {VgOverlayPlayModule} from 'videogular2/overlay-play';
+import {VgBufferingModule} from 'videogular2/buffering';
+
+
 import { SocialLoginModule, AuthServiceConfig } from "angular4-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angular4-social-login";
-import { LoaderModule } from './loader/loader.module';
-// import { partnershipservice } from './partnership/partnership.service';
-// import { SlickModule } from 'ngx-slick';
+
+import {BasicInfoService} from './basic-info/basic-info.service';
+import { SingleCategoryComponent } from './single-category/single-category.component';
+
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {BiddingService} from './bidding-dialog/bidding.service';
+import { EventsService } from './events/events.service';
+import {ContactUsService} from './contact-us/contact-us.service';
+import { ChatComponent } from './chat/chat.component';
+import {HomeService} from './home/home.service';
+import {SingleEventService} from './event/single-event.service';
+import { WebSocketService } from 'angular2-websocket-service';
+import {ServerSocket} from './single-course/server-socket.service';
+import {HeaderService} from './header/header.service';
+import {InstructorService} from "./become-instructor-questions/instructor.service";
+import {PagerService} from "./paginator.service";
+import {AccountService} from "./account/account.service";
+import {AdminPanelService} from "./admin-panel/admin-panel.service";
+import {CourseCheckoutService} from "./course-checkout/course-checkout.service";
+
+
+import { SimpleGlobal } from 'ng2-simple-global';
+import {AdminLayoutComponent} from "./layouts/admin/admin-layout.component";
+import {WebsocketService} from "./websocket.service";
+import {SingleCourseGlobalService} from "./singleCourse.global.service";
+import {ProfileService} from "./profile/profile.service";
+import {AdminCategoriesService} from "./admin-categories/admin-categories.service";
+import {AdminFaqsService} from "./admin-faqs/admin-faqs.service";
+import {LoaderModule} from "./loader/loader.module";
+
+import {HeadersService} from "./headers.service";
+import {EmailActivationService} from "./email-activation/email-activation.service";
+import {ChangeForgetPasswordService} from "./change-forget-password/change-forget-password.service";
+import {FooterService} from "./footer/footer.service";
+import {SubscriptionConfirmationService} from "./subscription-confirmation/subscription-confirmation.service";
+import {BuyNowService} from "./BuyNow.service";
+import {FollowUnfollowService} from "./Follow-Unfollow.service";
+import {ChatboxService} from "./chatbox/chatbox.service";
+import { WinbidDialogComponent } from './winbid-dialog/winbid-dialog.component';
+import {AddCourseDialogComponent} from './upload-courses/upload-courses.component';
+import { BuynowDialogComponent } from './buynow-dialog/buynow-dialog.component';
+
 let config = new AuthServiceConfig([
-    {
-        id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider("210115018603-187b6essbhk7booo33ab36d1u8cn3jpp.apps.googleusercontent.com")
-    },
-    {
-        id: FacebookLoginProvider.PROVIDER_ID,
-        provider: new FacebookLoginProvider("692540294438102")
-    }
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("494272768782-co69j2gbh9vrci7a7frhgh37l9rlpbhv.apps.googleusercontent.com")
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider("219249381809488")
+  }
 ]);
+
 export function provideConfig() {
-    return config;
+  return config;
 }
-
-///////////////////////// END ////////////////////////////////////
-
 @NgModule({
-    exports: [
+  declarations: [
+    NormalLayoutComponent,
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    UserProfileComponent,
+    AdminLayoutComponent,
+    LogoutComponent,
+   
+    ChangePasswordComponent,
+    SingleCategoryComponent,
+    ChatComponent,
+    WinbidDialogComponent,
+    BiddingDialogComponent,
+    BuynowDialogComponent,
+    // SearchResultsComponent,
+    // NestedsubcatTopRatedCoursesComponent,
+    // NestedsubcatTrendingNowCoursesComponent,
+    // NestedsubcatBidCourseComponent,
+    // NestedsubCatCoursesComponent,
 
-        MatAutocompleteModule,
-        MatButtonModule,
-        MatButtonToggleModule,
-        MatCardModule,
-        MatCheckboxModule,
-        MatChipsModule,
-        MatStepperModule,
-        MatDatepickerModule,
-        MatDialogModule,
-        MatExpansionModule,
-        MatGridListModule,
-        MatIconModule,
-        MatInputModule,
-        MatListModule,
-        MatMenuModule,
-        MatNativeDateModule,
-        MatPaginatorModule,
-        MatProgressBarModule,
-        MatProgressSpinnerModule,
-        MatRadioModule,
-        MatRippleModule,
-        MatSelectModule,
-        MatSidenavModule,
-        MatSliderModule,
-        MatSlideToggleModule,
-        MatSnackBarModule,
-        MatSortModule,
-        MatTableModule,
-        MatTabsModule,
-        MatToolbarModule,
-        MatTooltipModule,
-        MatStepperModule,
-        // BlackgeeksRecaptchaModule
-    ],
-    declarations: [],
+  ],
 
-})
-export class MaterialModule { }
-@NgModule({
-    imports: [
-        InternationalPhoneModule,
-        CommonModule,
-        UsMapModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        TextMaskModule,
-        RouterModule.forRoot(AppRoutes),
-        HttpModule,
-        MaterialModule,
-        MatNativeDateModule,
-        ProgressHttpModule,
-        Ng2SearchPipeModule,
-        NgxCarouselModule,
-        AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyDPnJ0zatoiPOI1GOeeS7HCj7AxIW183tg'
-        }),
-        ReactiveFormsModule,
-        // RecaptchaModule.forRoot(),
-        MatTabsModule,
-        MatToolbarModule,
-        MatTooltipModule,
-        MatStepperModule,
-        SocialLoginModule,
-        LoaderModule,
-    ],
-    declarations: [
-        AdminComponent,SuperloginComponent,
-        SuperadminComponent,
-        // UnsubscribeComponent,
-        AllnotificationComponent,
-        // PaymentmethodsComponent,
-        SidebarComponent,
-        AppComponent,
-        AuthLayoutComponent,
-        AdminLayoutComponent,
-        HomeComponent,
-        HeaderComponent,
-        SingleRfpComponent,
-        UserSidebarComponent,
-        RecapchaComponent,
-        // PricingComponent,
-        RfpComponent,
-        PreloaderFull,
-        PreloaderSmall,
-        // LoaderComponent,
-        RegisteredComponent,
-        AuthenticateComponent,
-        LoginComponent,
-        // ForgetPasswordComponent,
-        // RecaptchaComponent,
-        // StateRfpComponent,
-        // CategoryRfpComponent,
-        // AllCategoryComponent,
-        // AllStateComponent,
-        DialogOverviewExample,
-        // ProfileComponent,
-        // AllRfpsComponent,
-        FooterComponent,
-        // ChangedPasswordComponent,
-        // AdvanceSearchComponent,
-        // BlogComponent,
-        // BlogComponent,
-        // SingleblogComponent,
-        // PartnershipComponent,
-        // BaseComponent,
-        ResultsComponent,
-        // HistoryComponent,
-        // AllAgenciesComponent,
-        // AgencyRfpComponent,
-        WatchlistComponent
-    ],
-    providers: [
-        {
-            provide: AuthServiceConfig,
-            useFactory: provideConfig
-        },
-        DatePipe,
-        // MainService,
-        // AllStateService,
-        RecapchaService,
-        SharedData,
-        AdvanceService,
-        HomeService,
-        HeaderService,
-        // ChangedPasswordService,
-        // AllCategoryService,
-        CategoryRfpService,
-        StateService,
-        RfpService,
-        SidebarService,
-        LoginService,
-        // PricingService,
-        RegisterService,
-        // AllRfpsService,
-        // ForgetPasswordService,
-        PreloaderService,
-        // PagerService,
-        AuthGuard,
-        BaseRequestOptions,
-        // ProfileService,
-        // ContactUsService,
-        FooterService,
-        ResultsService,
-        // AllAgenciesService,
-        AgencyService,
-        BlogService,
-        // partnershipservice,
-        SpeechRecognitionService,
-        PaymentmethodsService, UnsubscribeService,
-        {
-            provide: HttpService,
-            useFactory: httpServiceFactory,
-            deps: [XHRBackend, RequestOptions, PreloaderService]
-        },
-    ],
-    bootstrap: [AppComponent],
-    schemas: [
-        CUSTOM_ELEMENTS_SCHEMA
-    ]
+  imports: [
+    // BrowserModule.withServerTransition({ appId: 'universal-demo-v5' }),
+    // BrowserTransferStateModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAH0kHXWGjjeBCjG3PNiBBmMi9usTLuW1c',
+      libraries: ['geometry', 'places']
+    }),
+    HttpClientModule,
+    // ModuleMapLoaderModule,
+    SlickModule,RatingModule,
+    // SocialLoginModule.initialize(config),
+    SocialLoginModule,
+    BrowserModule,
+    CommonModule,
+    Routing,
+    FormsModule,
+    HttpModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatStepperModule,
+    MatTableModule,
+    // MatInput,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatTabsModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatSlideToggleModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatIconModule,
+    MatStepperModule,
+    MatNativeDateModule,
+    NgxPaginationModule,
+    // FilePickerModule,
+    MatRadioModule,
+    MatSelectModule,
+    ImageCropperModule,
+    NguiDatetimePickerModule,
+    // RecaptchaModule.forRoot(),
+// Videoplayer
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
+    AddCartDialogModule,
+    LoaderModule,
+    MatSidenavModule,
+    MatToolbarModule
+  ],
+  entryComponents: [
+    ChatComponent,WinbidDialogComponent,BuynowDialogComponent,BiddingDialogComponent
+  ],
+ 
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    },
+    AppRoutingProvider,
+    SignUpservice,PaymentmethodsService,RecapchaService,
+    SimpleGlobal,
+    AuthGuard,
+    LoginService,
+    LogoutService,
+    UploadCoursesService,
+    // UploadChaptersService,
+    HeaderService,
+    ChangePasswordService,
+    SingleCourseService,
+    BasicInfoService,
+    CoursesService,
+    BiddingService,
+    EventsService,
+    ContactUsService,
+    HomeService,
+    SingleEventService,
+    WebSocketService,
+    ServerSocket,
+    GlobalService,
+    PartnershipService,
+    InstructorService,
+    PagerService,
+    AccountService,
+    AdminPanelService,
+    CourseCheckoutService,
+    WebsocketService,
+    SingleCourseGlobalService,
+    ProfileService,
+    AdminCategoriesService,
+    AdminFaqsService,
+    HeadersService,
+    EmailActivationService,
+    ChangeForgetPasswordService,
+    FooterService,
+    SubscriptionConfirmationService,
+    BuyNowService,
+    FollowUnfollowService,
+    ChatboxService,
+    // Uploader,
+  ],
+ 
+
+  bootstrap: [
+    AppComponent,
+  ]
 })
 export class AppModule {
-    constructor(private dateAdapter: DateAdapter<Date>) {
-        dateAdapter.setLocale('en-us'); // DD/MM/YYYY
-      }
-    
 }

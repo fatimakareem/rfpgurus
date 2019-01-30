@@ -1,26 +1,42 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ContactUsComponent } from './contact-us.component';
-import { Routes, RouterModule } from '@angular/router';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MatInputModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
-import { TextMaskModule } from 'angular2-text-mask';
-const routes: Routes = [
-  {
-    path: '', component: ContactUsComponent
-  }
-]
+import {Routes, RouterModule} from '@angular/router';
+import {NgModule} from '@angular/core';
+import {CommonModule} from "@angular/common";
+import {ContactUsComponent} from "./contact-us.component";
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import {MatIconModule} from '@angular/material';
+import {MatInputModule} from '@angular/material';
+import { AgmCoreModule } from '@agm/core';
+// import {RecaptchaModule} from "ng-recaptcha";
+import {LoaderModule} from "../loader/loader.module";
+
+const contactRoutes: Routes = [
+  { path: '', component: ContactUsComponent },
+];
+
+
 @NgModule({
+  declarations: [
+    ContactUsComponent
+  ],
+
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatIconModule,
     MatInputModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    TextMaskModule,
-    RouterModule.forChild(routes)
+    AgmCoreModule,
+    // RecaptchaModule.forRoot(),
+    RouterModule.forChild(contactRoutes),
+    LoaderModule
   ],
-  declarations: [ContactUsComponent]
+
+  providers: [],
+  exports: []
+
 })
-export class ContactUsModule { }
+
+export class ContactUsModule {
+
+}
+

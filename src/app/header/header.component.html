@@ -1,389 +1,232 @@
-<div id="wrapper" [ngClass]="{'search-active': mainSearch === 1}">
-  <div class="search-outer" [ngClass]="{'active': mainSearch === 1}">
-  <div class="container">
- 
- 
-  <div class="search-holder">
-  <input ngAutoFocus type="search" value="{{query}}" name=querysearch [(ngModel)]="query" #querysearch="ngModel"
-  (ngModelChange)=filter(query) (keyup.enter)=fund(query) placeholder="Search RFPGurus" id="textsearch">
- 
-  <!-- <app-input class="sh-mat-input" showInput = false (error)="onError($event)" (spokenText)="response($event)" ></app-input> -->
- 
-  <i id="box" class="fa fa-microphone" (click)="triggerMike()"></i>
- 
-  <i class="fa fa-close" id="iconClose" (click)="closeSearch()"></i>
-  </div>
- 
-  <div class="search-results" *ngIf="Rfp">
-  <ul class="list-normal">
-  <li *ngIf="!Rfp">
-  <p>No results found. Please use keywords.</p>
-  </li>
-  <li *ngFor="let item of Rfp">
-  <a style="cursor:pointer" (click)="singlerfp(item.seoTitleUrl)">
-  <i class="material-icons">arrow_forward</i> {{item.title}} </a>
-  </li>
-  </ul>
-  </div>
-  </div>
-  </div>
- </div>
- 
- 
- 
- <div class="header-home navbar-transparent ">
-  <!-- <div class="mainheader sh" *ngIf="!check_login()">
-  <p class="info-bar">
-  <i class="material-icons">phone</i>CALL TOLL FREE: <a href="tel:+1 (888) 764-0100" style="color:#c00">+1 (888)
-  764-0100</a> Email: contact@rfpgurus.com
-  </p>
-  <div style="display: flex; flex-direction: row;">
-  <mat-list class="items mat-list" role="list">
-  <a routerLink="/contact-us">
-  <p role="listitem">
-  Contact Us
-  </p>
-  </a>
-  <a routerLink="/faqs">
-  <p role="listitem">
-  Help
-  </p>
-  </a>
-  <a routerLink="/login">
-  <p role="listitem">
-  My Account
-  </p>
-  </a>
-  </mat-list>
-  <mat-list class="socialLinks mat-list" role="list1">
-  <a href="https://www.facebook.com/RFPGurus-757980041074297/" target="_blank">
-  <span role="listitem">
-  <i class="fa fa-facebook"></i>
-  </span>
-  </a>
-  <a href="https://twitter.com/RFPGurus" target="_blank">
-  <span role="listitem">
-  <i class="fa fa-twitter"></i></span>
-  </a>
-  <a href="https://www.pinterest.com/RFPGurus/" target="_blank">
-  <i class="fa fa-pinterest-p"></i>
-  </a>
-  <a routerlink="" target="_blank">
-  <span role="listitem">
-  <i class="fa fa-linkedin"></i>
-  </span>
-  </a>
-  </mat-list>
-  </div>
-  </div> -->
-  <nav class="nav-home ">
- 
-  <div class="navbar-header ">
-  <button class="navbar-toggle" data-target="#menu-example" data-toggle="collapse" type="button">
-  <span class="sr-only">Toggle navigation</span>
-  <span class="icon-bar"></span>
-  <span class="icon-bar"></span>
-  <span class="icon-bar"></span>
-  </button>
-  <a routerLink="/" class="logo">
-  <img src="../../assets/img/logo.png" alt="RFPGurus" />
-  </a>
-  </div>
-  <div class="collapse navbar-collapse " id="menu-example">
-  <div class="navbar-right navbar-nav">
-  <ul class="navbar-nav sh-main-options">
-  <li>
-  <a routerLink="/latest-rfp" routerLinkActive="Active">
-  <i class="fa fa-stack-overflow" aria-hidden="true"></i>Latest RFPs
-  </a>
-  </li>
-  <li >
-  <a routerLink="/advanced-search" routerLinkActive="Active">
-  <i class="fas fa-search"></i>Advanced Search
-  </a>
-  </li>
- 
-  <li class="">
-  <a routerLink="/find-bids" routerLinkActive="Active">
-  <i class="fa fa-user-plus" aria-hidden="true"></i> Find RFPs
-  </a>
-  </li>
-  <li class="" *ngIf="!subscribe">
-  <a routerLink="/pricing" routerLinkActive="Active">
-  <i class="fa fa-shopping-cart" aria-hidden="true"></i> Pricing
-  </a>
-  </li>
-  <li>
-  <a routerLink="/all-agencies">
-  <i class="fa fa-building-o" aria-hidden="true"></i>Agencies
-  </a>
-  </li>
-  <li>
-  <a routerLink="/features-comparison" routerLinkActive="Active">
-  <i class="fa fa-bar-chart" aria-hidden="true"></i>Comparison
-  </a>
-  </li>
-  <li class="vanders ">
-  <a href="javascript:void(0)" routerLinkActive="Active">
-  <i class="fa fa-question-circle-o"></i> Why RFPGurus?
-  </a>
-  <div class="drop-downs sh-why">
-  <ul class="nav-vanders why-rfp-sublist sh">
-  <li>
-  <a routerLink="/why-rfpgurus">
-  <i class="fa fa-question-circle-o"></i> Why RFPGurus?
-  </a>
-  </li>
-  <li>
-  <a routerLink="/how-it-works">
-  <i class="fa fa-fire"></i> How it Works?
-  </a>
-  </li>
-  <li>
-  <a routerLink="/our-team">
-  <i class="fa fa-flask"></i> Our Expert Team
-  </a>
-  </li>
-  <li>
-  <a routerLink="/what-we-do">
-  <i class="fa fa-cube"></i> What We Do?
-  </a>
-  </li>
-  <li>
-  <a routerLink="/faqs">
-  <i class="fa fa-leanpub"></i> FAQs
-  </a>
-  </li>
-  <li>
-  <a routerLink="/what-is-rfp">
-  <i class="fa fa-leaf"></i> What is RFPGurus?
-  </a>
-  </li>
-  <li>
-  <a routerLink="/who-are-we">
-  <i class="fa fa-plus"></i> Who are We?
-  </a>
-  </li>
-  </ul>
-  </div>
-  </li>
-  <li>
-  <a routerLink="/rfp-as-service" routerLinkActive="Active">
-  <i class="fa fa-briefcase" aria-hidden="true"></i>RFP as a Service
-  </a>
-  </li>
-  </ul>
-  <!--.............-->
-  <ul class="navbar-nav sh-android-apple">
-  <li class="heart-li" *ngIf="check_login()">
-  <a routerLink="/" title="Watchlist">
-    <i class="fas fa-eye"></i>
-  <sup>{{total}}</sup>
-  </a>
-  <div class="heart-sub-meun">
-  <div class="heart-full-div">
- 
-  <div class="heart" *ngFor="let data of wrfp; let i = index">
-  <div class="addtocart-time" data-target="#myModal3" data-toggle="modal" (click)="get(data?.wrfp.id,data?.wrfp.title)">
-  <i class="fa fa-times"></i>
-  </div>
-  <div class="heart-main-div">
-  <!-- <img src="{{Imageurl}}{{data?.course.course_thumbnail}}" class="heart-img" alt="Course"> -->
-  <div class="heart-contact">
-  <a [routerLink]="['/rfp/', data?.wrfp.seoTitleUrl]"> <div class="heart-heading" style="cursor:pointer">
-  {{data?.wrfp.title}}
-  </div></a>
-  <div class="heart-detail plan-detail" [routerLink]="['/rfp/', data?.wrfp.seoTitleUrl]" style="cursor:pointer">
-  <h5><i class="fa fa-university"></i>Category : <span>{{data?.wrfp.category}}</span></h5>
-  <h5><i class="fa fa-fort-awesome"></i>State : <span>{{data?.wrfp.state}}</span></h5>
-  <h5 *ngIf="data?.wrfp.agency"><i class="fa fa-building-o"></i>Agency : <span>{{data?.wrfp.agency}}</span></h5>
-  </div>
-  <!-- <div class="heart-price">
-  <span class="heart-new-price">{{data.course.price | currency:'USD'}}</span>
-  <span class="discount-p">{{data?.course.discount | currency:'USD'}}
-  <i class="fas fa-arrow-down"></i>
-  </span>
-  </div> -->
-  </div>
-  </div>
- 
-  </div>
- 
- 
- 
- 
-  </div>
-  <div class="wishlist-btn-div" *ngIf="check_login()">
-  <a routerLink="/my-watchlist" class="addtocart-btn">Go to Watchlist</a>
-  </div>
-  </div>
-  <!-- </a> -->
-  </li>
-  <li class="heart-li" *ngIf="check_login()">
-  <a routerLink="/" title="Notification">
-  <i class="fa fa-bell"></i>
-  <sup *ngIf="unread >=1">{{unread}}</sup>
-  </a>
-  <div class="heart-sub-meun">
-  <div class="heart-full-div">
-  
-                <div class="heart" *ngFor="let item of notificate">
-                  <div class="addtocart-time" (click)="deletenofication(item?.id)">
-                    <i class="fa fa-times"></i>
-                  </div>
-                  <div class="heart-main-div">
-                    <div class="heart-contact">
-                        <a [routerLink]="['/rfp/', item.target]"> <div class="heart-heading" style="cursor:pointer">
-                            {{item.type_of_notification}}
-                         </div></a>
-                      <div class="heart-detail plan-detail"*ngIf="item.read == false">
-                        <h5 style="cursor:pointer"  (click)="single(item.target);updatenofication(item.id)"> {{item.description}}</h5>
-                      </div>
-                      <div class="heart-detail plan-detail sh-notification-seen" *ngIf="item.read == true">
-                          <h5 (click)="single(item.target);updatenofication(item?.id)"> {{item.description}}</h5>
+<div id="wrapper" [ngClass]="{'search-active': search==='1'}">
+    <div class="search-outer" [ngClass]="{'active': searchCourses==='1' || searchSlider==='1'}">
+        <div class="container container-fluid">
+            <div class="search-holder"> <input autofocus type="search" name=querysearch [(ngModel)]="query"
+                    #querysearch="ngModel" (keyup)=filter(query) (keyup.enter)=fund(query) placeholder="Search CourseFrenzy"
+                    id="textsearch"> <i class="fa fa-close" id="iconClose" (click)="closeSearch()"></i> </div>
+            <div class="search-results" *ngIf="Courses">
+                <div class="head" *ngIf="Courses.courses">
+                    <p *ngIf="Courses.courses.length==0" class="results-found"> No results found. Please use keywords.</p>
+                    <p *ngIf="Courses.courses.length==1" class="results-found">{{Courses.courses.length}}result found.</p>
+                    <p *ngIf="Courses.courses.length>1" class="results-found">{{Courses.courses.length}}results found.</p>
+                </div>
+                <div class="col-xs-12 col-sm-5 col-md-3 col-lg-3 economy languages history" *ngFor="let item of Courses">
+                    <div class="product-list__item width-100"> <a (click)="select(item.id); closeSearch();" routerLink="/courses/single/{{item.id}}">
+                            <figure class="imghvr-zoom-out-down product-list__img"> <img *ngIf="item?.course_image" src="{{ImageUrl}}{{item?.course_image}}"
+                                    alt="" class="img-responsive" onError="this.src='../../assets/img/default_thumbnail.png'">
+                                <figcaption>
+                                    <p>Includes:</p>
+                                    <p><i class="fa fa-file-video-o"></i> &nbsp; 27.5 hours on-demand video</p>
+                                    <p><i class="fa fa-book"></i> &nbsp; 7 Articles</p>
+                                    <p><i class="fa fa-universal-access"></i> &nbsp; Full lifetime access</p>
+                                    <p><i class="fa fa-bolt"></i> &nbsp;&nbsp; Assignments</p>
+                                    <p><i class="fa fa-certificate"></i> &nbsp; Certificate of Completion</p>
+                                </figcaption>
+                            </figure>
+                        </a>
+                        <div class="product-list__content"> <a class="product-list__category" (click)="select(item.id); closeSearch();"
+                                routerLink="/courses/single/{{item.id}}">{{item.name.slice(0, 50)}}<a *ngIf="item.name.length>50">
+                                    ... </a>
+                                <div *ngIf="item.name.length<40"> <br></div>
+                            </a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header class="header darkheader">
+        <div class="container-fluid">
+            <nav class="navbar navbar-default">
+                <div class="container-f">
+                    <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle
+                                navigation</span> <span class="icon-bar"> </span> <span class="icon-bar"></span> <span
+                                class="icon-bar"></span> </button> </div>
+                    <div class="header-holder"> <a [routerLink]="['/']" class="navbar-brand logo"><img src="../../assets/img/main-logo.png">
+                        </a>
+                        <div id="navbar" class="navbar-collapse collapse pull-right">
+                            <ul class="nav navbar-nav float-r hover-effect">
+                                <li> <a [routerLink]="['/courses']" routerLinkActive="active"><i class="fa fa-file-alt"></i>Courses</a>
+                                </li>
+                                <li *ngIf="userRole !='Teacher'"><a [routerLink]="['/become_instructor']"
+                                        routerLinkActive="active"><i class="fa fa-users"></i>Instructors</a></li>
+                                <li class="has-submenu" *ngIf="loaded"> <a [routerLink]="['/categories']"
+                                        routerLinkActive="active" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                        aria-haspopup="true" aria-expanded="false"><i class="fa fa-th-large"></i>Categories
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown" *ngFor="let cat of Categories"> <a href="" class="dropdown-toggle"
+                                                data-toggle="dropdown" role="button" aria-expanded="false">
+                                                <div class="row">
+                                                    <div class="col-xs-2 off-set-1 padding-right-0"><img class="category-img"
+                                                            src="../../assets/img/caticons/{{cat.name}}.png"></div>
+                                                    <div class="col-xs-8 padding-Left-0"> <a routerLink='/cat_courses/{{cat.id}}'>{{cat.name}}</a>
+                                                    </div>
+                                                    <div class="col-xs-1"><span class="fa fa-angle-right"></span></div>
+                                                </div>
+                                            </a>
+                                            <ul *ngIf="cat.category" class="dropdown-menu show-left" role="menu">
+                                                <li class="pull-left width-full" *ngFor=" let caty of cat.category ">
+                                                    <a class="display-inline-b width-full" 
+                                                        routerLink='/courses/subcat_courses/{{caty.id}}'>
+                                                        <div id="sub" class="pull-left col-xs-8">{{caty.name}}</div><i
+                                                            class="fa fa-angle-right pull-right col-xs-2 margin-r-10"
+                                                            *ngIf="caty.subcategory !='' && caty.name !='Other' "></i>
+                                                    </a>
+                                                    <ul *ngIf="caty.subcategory !='' && caty.name !='Other' " class="dropdown-menu show-left"
+                                                        role="menu">
+                                                        <li *ngFor="let nestcaty of caty.subcategory "> <a
+                                                                routerLink='/courses/nestedsubcat_courses/{{nestcaty.id}}'
+                                                                class="line-h-15">
+                                                                <div id="sub">{{nestcaty.name}}</div>
+                                                            </a> </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li> <a [routerLink]="['/business']" routerLinkActive="active"><i class="fas fa-briefcase"></i>Business</a>
+                                </li>
+                                <li (click)="openDialog()"> <a routerLinkActive="active"><i class="fa fa-money"
+                                            aria-hidden="true"></i>Sell your course</a> </li>
+                                <ul class="nav navbar-nav search-icons">
+                                    <li class="cartmenu" [ngStyle]="{'display':Logedin==='1' ? 'inline-block' : 'none'}">
+                                        <a [routerLink]="['/checkout']" class="dropdown-toggle pointer" data-toggle="tooltip"
+                                            title="Courses in cart"> <i class="fas fa-shopping-cart"></i><sup *ngIf="GlobalCartCourses.courses">{{totalcarts}}</sup>
+                                        </a>
+                                        <div class="chat dropdown-menu dropdown-menu-right">
+                                            <ul *ngIf="!emptyCart && totalcarts > 0" class="chat notifications shopping-cart box-shadow-no">
+                                                <li *ngFor="let data of GlobalCartCourses.courses; let i=index;"> <i
+                                                        class="fa fa-close" data-toggle="tooltip" title="Remove from Cart"
+                                                        (click)="removeFromCart(i, data.course.id)"> </i> <a routerLink=""
+                                                        class="img"> <img *ngIf="data.course.course_image" src="{{ImageUrl}}{{data.course.course_image}}"
+                                                            alt="" class="img-responsive imgheight" onError="this.src='../../assets/img/default_thumbnail.png'">
+                                                    </a>
+                                                    <div class="desc"> <a class="product-list__category" routerLink="/courses/single/{{data.course.id}}">{{data.course.name}}</a>
+                                                        <span class="price">${{data.course.actual_price}}</span> </div>
+                                                    <div class="text-right"> <button type="button" class="btn-file"
+                                                            (click)="click(i, data.course.id)">Add to Wishlist</button>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <div class="submenu-btn-holder"> <a *ngIf="!emptyCart && totalcarts > 0"
+                                                    class="text-center width-100" routerLink="/checkout" class="btn btn-file text-right">Go
+                                                    to Cart</a> </div>
+                                        </div>
+                                        <ul *ngIf="totalcarts===0" class="dropdown-menu dropdown-menu-right chat notifications shopping-cart overflow-h">
+                                            <li class="text-center border-b-no"> <i class="fas fa-shopping-cart"></i>
+                                                <p class="margin-b-7">No items in Cart</p><button routerLink="/courses"
+                                                    type="button" class="btn btn-primary btn-sm add-items-btn">Add
+                                                    Items</button>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown cartmenu searchmenu hasmenu"> <a (click)="openSearch()" class="dropdown-toggle"><i
+                                                class="fas fa-search"></i></a> </li>
+                                    <li class="cartmenu" [ngStyle]="{'display':Logedin==='1' ? 'inline-block' : 'none'}">
+                                        <a data-toggle="dropdown"> <i class="fas fa-bell color-custom"></i> <sup *ngIf="notify">{{notify.unread}}</sup>
+                                        </a>
+                                        <ul id="notifications" class="dropdown-menu dropdown-menu-right notifications chat">
+                                            <li class="left clearfix" *ngFor="let item of notify?.notifications"> <span
+                                                    class="fa fa-times time notification-close"></span>
+                                                <div class="clearfix margin-0" *ngIf="item.read==false">
+                                                    <div class="notification-dropdowns"> <a href="{{item.verb}}">
+                                                            <strong class="primary-font font-weight-bold">{{item.nf_type}}</strong></a>
+                                                    </div><a href="{{item.verb}}">
+                                                        <p>{{item.description}}</p>
+                                                    </a>
+                                                </div>
+                                                <div class="clearfix margin-0 left clearfix un-read" *ngIf="item.read==true">
+                                                    <div class="notification-dropdowns"> <a href="{{item.verb}}">
+                                                            <strong class="primary-font font-weight-bold">{{item.nf_type}}</strong></a>
+                                                    </div><a href="{{item.verb}}">
+                                                        <p>{{item.description}}</p>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown cartmenu searchmenu hasmenu" [ngStyle]="{'display':Logedin==='1' ? 'none' : 'inline-block'}">
+                                        <a href="https://play.google.com/store/apps/details?id=com.brainplow.brainplow.coursefrenzy&hl=en"
+                                            target="_blank" class="dropdown-toggle pointer" data-toggle="tooltip" title="CourseFrenzy Android Application"><i
+                                                class="fa fa-android"></i></a> </li>
+                                    <li class="dropdown cartmenu searchmenu hasmenu" [ngStyle]="{'display':Logedin==='1' ? 'none' : 'inline-block'}">
+                                        <a class="dropdown-toggle pointer" data-toggle="tooltip" title="CourseFrenzy IOS Application"><i
+                                                class="fa fa-apple"></i></a> </li>
+                                    <li class="dropdown cartmenu searchmenu hasmenu" [ngStyle]="{'display':Logedin==='1' ? 'inline-block' : 'none'}">
+                                        <a [routerLink]="['/wishlist']" class="dropdown-toggle pointer" data-toggle="tooltip"
+                                            title="Courses in wishlist"> <i class="fas fa-heart color-custom font-18"></i>
+                                            <sup *ngIf="wishlistCourses">{{wishlistCourses.length}}</sup> </a>
+                                        <div class="chat dropdown-menu dropdown-menu-right">
+                                            <ul *ngIf="wishlistCourses.length>0" class="chat notifications shopping-cart box-shadow-no">
+                                                <li *ngFor="let data of wishlistCourses; let i=index;"> <i class="fa fa-close"
+                                                        data-toggle="tooltip" title="Remove from Wishlist" (click)="removeFromWishlist(i, data.course.id)">
+                                                    </i> <a class="img"> <img *ngIf="data.course.course_image" src="{{ImageUrl}}{{data.course.course_image}}"
+                                                            alt="" class="img-responsive imgheight" onError="this.src='../../assets/img/default_thumbnail.png'">
+                                                    </a>
+                                                    <div class="desc"> <a class="product-list__category" routerLink="/courses/single/{{data.course.id}}">{{data.course.name}}</a>
+                                                        <div class="price-holder pull-left"> <span class="price-cut">$300</span>
+                                                            <span class="price">${{data.course.actual_price}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-right"> <button type="button" (click)="openCartDialog(i, data.course.id)"
+                                                            class="btn-file">Add to Cart</button> </div>
+                                                </li>
+                                            </ul>
+                                            <div class="submenu-btn-holder"> <a *ngIf="wishlistCourses.length>0"
+                                                    routerLink="/wishlist" class="btn btn-file text-center">Go to
+                                                    Wishlist</a> </div>
+                                        </div>
+                                        <ul *ngIf="wishlistCourses.length===0" class="dropdown-menu dropdown-menu-right chat notifications sh opping-cart overflow-h">
+                                            <li class="text-center border-b-no"> <i class="material-icons font-90">shopping_basket</i>
+                                                <p class="margin-b-7">No items in Wishlist</p><button routerLink="/courses"
+                                                    type="button" class="btn btn-primary btn-sm add-items-btn">Add
+                                                    Items</button>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <div class="user-detail">
+                                    <ul class="nav navbar-nav small">
+                                        <li style="border-right: 2px solid #555;" [ngStyle]="{'display':Logedin==='1' ? 'none' : 'inline-block'}">
+                                            <a [routerLink]="['/signup']" routerLinkActive="active"><i class="fas fa-user-plus"></i>Sign
+                                                up</a> </li>
+                                        <li *ngIf="isAuthenticated()" class="dropdown hasmenu inner" [ngStyle]="{'display':Logedin==='1' ? 'inline-block' : 'none'}">
+                                            <a href="" class="dropdown-toggle width-168" data-toggle="dropdown" role="button"
+                                                aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user-circle margin-top-10"></i>
+                                                <span id="log-name" class="width-auto"> My CourseFrenzy </span> <span
+                                                    class="fa fa-angle-down"></span> </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a [routerLink]="['/profile']"><i class="fa fa-edit"></i>My Profile</a></li>
+                                                <li> <a routerLink="/profile/payout" routerLinkActive="active"> <i
+                                                            class="fa fa-money" aria-hidden="true"></i>Payment Methods
+                                                    </a> </li>
+                                                <li [ngStyle]="{'display':userRole==='Admin' ? 'inline-block' : 'none'}"><a
+                                                        [routerLink]="['/admin']"><i class="material-icons">perm_identity</i>Admin
+                                                        Panel</a></li>
+                                                <li *ngIf="userRole !='Teacher'"><a [routerLink]="['/become_instructor']"><i
+                                                            class="material-icons">video_library</i>Instructors</a></li>
+                                                <li><a [routerLink]="['/mycourses']"><i class="material-icons">description</i>My
+                                                        Courses</a></li>
+                                                <li><a [routerLink]="['/events']"><i class="material-icons">local_activity</i>All
+                                                        Events</a></li>
+                                                <li><a [routerLink]="['/winbidUser']"><i class="material-icons">announcement</i>Completed
+                                                        Bidding...</a></li>
+                                                <li><a onclick="topFunction()" (click)="logFunction()"><i class="material-icons">error_outline</i>
+                                                        logout</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="list-user" [ngStyle]="{'display':Logedin==='1' ? 'none' : 'inline-block'}">
+                                            <a [routerLink]="['/login']" routerLinkActive="active"><i class="fas fa-fingerprint"></i>login</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </ul>
                         </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-              <div class="wishlist-btn-div" *ngIf="check_login()">
-                <a routerLink="/notifications" class="addtocart-btn">All Notifications</a>
-              </div>
-            </div>
-            <!-- </a> -->
-          </li>
-        <li>
-          <a href="https://play.google.com/store/apps/details?id=com.brainplow.rfpgurus" target="_blank">
-            <i class="fa fa-android"></i>
-          </a>
-        </li>
-        <li>
-          <a routerLink="">
-            <i class="fa fa-apple"></i>
-          </a>
-        </li>
-        <li class="dropdown cartmenu searchmenu hasmenu">
-          <a id="search" style="cursor:pointer"  class="dropdown-toggle" (click)="openSearch()">
-            <i class="material-icons">search</i>
-          </a>
-        </li>
-      </ul>
-        <!--............-->
-      <ul class="navbar-nav sh-signin-signup">
-        <li *ngIf="check_login()" class="vanders">
-          <a routerLink="/profile">
-            <i class="fa fa-user" aria-hidden="true"></i> My RFPGurus
-          </a>
-          <div class="profile-name drop-downs" style="right:163%;">
-            <ul class="nav-vanders  why-rfp-sublist">
-                <li *ngIf="check_login()">
-                    <a routerLink="/Preferences">
-                      <i class="far fa-newspaper"></i> RFP Preferences</a>
-                  </li>
-                  <li *ngIf="check_login()">
-                      <a routerLink="/bid-notifications">
-                          <i class="fa fa-bell"></i>
-                        Bid Notifications</a>
-                    </li>
-                    <li *ngIf="check_login()">
-                        <a routerLink="/my-watchlist">
-                            <i class="fa fa-heart" aria-hidden="true"></i>
-                          My Watchlist</a>
-                      </li>                 
-              <li *ngIf="check_login()">
-                <a routerLink="/profile">
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
-               Profile</a>
-              </li>
-              <li *ngIf="check_login()">
-                  <a routerLink="/purchase-history">
-                    <i class="fa fa-history" aria-hidden="true"></i>
-                    Subscription</a>
-                </li>   
-                <li *ngIf="check_login()">
-                    <a routerLink="/payment">
-                      <i class="fa fa-money" aria-hidden="true"></i>
-                      Payment Methods</a>
-                  </li>
-              <li *ngIf="check_login()">
-                <a routerLink="/change-password">
-                  <i class="fas fa-key" ria-hidden="true"></i>
-                  Change Password</a>
-              </li>
-              <li *ngIf="check_login()">
-                <a routerLink="/contact-us">
-                  <i class="fa fa-comment" aria-hidden="true"></i>
-                  Feedback</a>
-              </li>
-              <li *ngIf="check_login()" class="">
-                <a (click)="logout()" style="cursor:pointer">
-                    <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Sign out</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li *ngIf="!check_login() && !check_adminlogin()" class="">
-          <a routerLink="/login" routerLinkActive="Active">
-            <i class="fas fa-fingerprint"></i> Sign in
-          </a>
-        </li>
-        <li *ngIf="!check_login() && !check_adminlogin()" class="">
-          <a routerLink="/sign-up" routerLinkActive="Active">
-            <i class="fa fa-unlock" aria-hidden="true"></i>
-            Sign up
-          </a>
-        </li>
-        
-        <li *ngIf="check_adminlogin()" class="vanders">
-            <a routerLink="/admin-panel" routerLinkActive="Active">
-              <i class="fas fa-user"></i> Admin
-            </a>
-            <div class="drop-downs sh-why sh-super-admin">
-              <ul class="nav-vanders why-rfp-sublist sh ">
-              <li>
-              <a routerLink="/admin-panel">
-              <i class="fa fa-question-circle-o"></i> Dashboard
-              </a>
-              </li>
-              <li><a routerLink="/" >
-                <i class="fa fa-home"></i>Home</a>
-            </li>
-              <li>
-              <a (click)="logout()">
-              <i class="fa fa-fire"></i> Sign out
-              </a>
-              </li>
-            </ul>
-            </div>
-          </li>
-        <!--............-->
-      </ul>
-      </div>
-    </div>
-  </nav>
- </div>
- 
- 
- <!-- Modal -->
- <div id="myModal3" class="modal fade" role="dialog">
-  <div class="modal-dialog">
- 
-  <!-- Modal content-->
-  <div class="modal-content">
-  <div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times btn-dismiss"></i></button>
-  <h4 class="modal-title heading-modal">{{title}}</h4>
-  </div>
-  <div class="modal-body text-center padding-zero">
-  <h4>Are You Sure To Remove From The Watchlist?</h4>
-  </div>
-  <div class="modal-footer">
-  <div class="modal-buttons">
-  <button type="button" class="btn btn-default" (click)="deletewatchlist()" data-dismiss="modal">Yes</button>
-  <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-  </div>
-  </div>
-  </div>
- 
-  </div>
- </div>
+            </nav>
+        </div>
+    </header>
+</div>

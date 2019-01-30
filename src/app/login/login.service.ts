@@ -1,77 +1,136 @@
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import { Injectable } from '@angular/core';
-import { Headers, Response } from '@angular/http';
-// import { JwtHelperService  } from '@auth0/angular-jwt';
-import { JwtHelper } from 'angular2-jwt';
-import 'rxjs/add/operator/map';
-import { HttpService } from './../serv/http-service';
-import * as moment from 'moment';
+import {Injectable, Inject, PLATFORM_ID} from '@angular/core';
+import {Http, Response, Headers} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import {Router} from '@angular/router';
+import {Config} from '../Config';
+import { isPlatformBrowser } from '@angular/common';
+import {JwtHelper} from 'angular2-jwt';
+import {GlobalService} from '../global.service';
+import {HttpService} from '../serv/http-service';
+
+// import { isBrowser } from 'angular2-universal';
+
+
 @Injectable()
 export class LoginService {
-    jwtHelper: JwtHelper  = new JwtHelper ();
+  private token: string | any;
+  constructor(private http: Http, private _http2: HttpService, private _nav: Router, @Inject(PLATFORM_ID) private platformId: Object,
+              private global: GlobalService
+  ) {
+  }
+  users_id;
+  id;
+  jwtHelper: JwtHelper = new JwtHelper();
+  login_authenticate(username) {
+    return this._http2.post(Config.api +'users/isactivate/', {
+        'username': username
+    }).map((res: Response) => res.json())
+}
 
-    constructor(private _http5: HttpService) {
-    }
+  loged_in(username: any, pass: any, returnUrl: any) {
+    return this._http2.post(Config.api + 'login', {'username': username, 'password': pass})
+      .map((res: Response) => {
+        if (res) {
+          if (res.status === 201 || res.status === 200) {
 
-    loaded: boolean = false;
-    time;
-    exp_time;
-    login(username: string, password: string) {
-        const headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this._http5.post('https://apis.rfpgurus.com/user-token-auth/',
-            JSON.stringify({ username: username, password: password }), { headers: headers })
-            .map((response: Response) => {
-                let user = { userid: this.jwtHelper.decodeToken(response.json().token).user_id, username: this.jwtHelper.decodeToken(response.json().token).username, token: response.json().token };
-                if (user && user.token) {
-                    this.time=new Date()
-                   this.exp_time= moment(this.time).add(1,'days');
-                    localStorage.setItem('loged_in', '1');
-                    localStorage.setItem('exp', this.exp_time);
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                }
-                // console.log("junaid",this.jwtHelper.decodeToken(response.json().token))
-            });
-    }
+            if (isPlatformBrowser(this.platformId)) {
+              localStorage.setItem('username', this.jwtHelper.decodeToken(res.json().token).username);
+              localStorage.setItem('loged_in', '1');
+              localStorage.setItem('Authorization', res.json().token);
+              localStorage.setItem('id', this.jwtHelper.decodeToken(res.json().token).user_id);
+              // console.log("Ussama",this.jwtHelper.decodeToken(res.json().token));
 
+            }
 
-    login_authenticate(username) {
-        return this._http5.post('https://apis.rfpgurus.com/ac_login/', {
-            'username': username
-        }).map((res: Response) => res.json())
-    }
+            this.global.setGlobalToken(true);
 
+            this._nav.navigate([returnUrl]);
+          }
+          else if (res.status === 7373) {
+            if (isPlatformBrowser(this.platformId)) {
+              localStorage.setItem('loged_in', '1');
+            }
+            if (isPlatformBrowser(this.platformId)) {
+              localStorage.setItem('Authorization', res.json().token);
+            }
+            this._nav.navigate(['/']);
+          }
+        }
+      }).catch((error: any) => {
+        if (error.status === 404) {
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('loged_in', '0');
+          }
+          return Observable.throw(new Error(error.status));
+        } else if (error.status === 400) {
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('loged_in', '0');
+          }
+          return Observable.throw(new Error(error.status));
+        } else if (error.status === 401) {
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('loged_in', '0');
+          }
+        } else {
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('loged_in', '0');
+          }
+          return Observable.throw(new Error(error.status));
+        }
+      });
+  }
 
-    post_service(obj) {
-        return this._http5.post("https://apis.rfpgurus.com/register/", {
-            'obj': obj
-        }).map((res: Response) => res.json());
-    }
-    activation_service(email) {
-        console.log(email);
-        return this._http5.post("https://apis.rfpgurus.com/ac_code/", {
-            'email': email
-        }).map((res: Response) => res.json())
-    }
+  reset_password(email ) {
+    // console.log('Event Name is ' + eventname);
+    return this._http2.post(Config.api + 'users/forget_password/',
+      {
 
-    authenticate_service(uid) {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://apis.rfpgurus.com/activate/' + uid,
-            { headers: headers }).map((response: Response) => response.json());
-    }
-    forget_password(email) {
-        return this._http5.post('https://apis.rfpgurus.com/forget_password/', {
-            'email': email
-        }).map((res: Response) => res.json())
-    }
-    change_password(pass1, pass2, code) {
-        return this._http5.post('https://apis.rfpgurus.com/change_password/', {
-            'pass1': pass1,
-            'pass2': pass2,
-            'code': code,
-        }).map((res: Response) => res.json())
-    }
-   
+        'email': email,
+
+      }).map((res: Response) => {
+      if (res) {
+        // console.log('1');
+        if (res.status === 201 || res.status === 200) {
+          const responce_data = res.json();
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('user_id', responce_data.id);
+            this.users_id = localStorage.getItem('user_id');
+          }
+          return [{status: res.status, json: res}];
+        } else if (res.status === 5300) {
+          // this._nav.navigate(['/login']);
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('conformation', '1');
+          }
+          // console.log('ok submited 200');
+          return [{status: res.status, json: res}];
+        } else {
+          // console.log('ok');
+        }
+      }
+    }).catch((error: any) => {
+      // alert(error);
+      if (error.status === 404) {
+        // console.log('ok not submited submit 404');
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('error', '1');
+        }
+        return Observable.throw(new Error(error.status));
+      } else if (error.status === 400) {
+        //    this._nav.navigate(['/pages/accident']);
+        // console.log('ok not submited submit 400');
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('error', '1');
+        }
+        return Observable.throw(new Error(error.status));
+      } else {
+        //  this._nav.navigate(['/pages/accident']);
+        // console.log('ok not submited submit error');
+
+        return Observable.throw(new Error(error.status));
+      }
+    });
+  }
+
 }

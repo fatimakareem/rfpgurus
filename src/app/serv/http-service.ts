@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, ConnectionBackend, Request, RequestOptions, RequestOptionsArgs, Response, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/observable/throw';
 import 'rxjs/Rx';
 import { PreloaderService } from './preloader-service';
-import { Config } from '../config';
+import { Config2 } from '../config-2';
 
 @Injectable()
 export class HttpService extends Http {
@@ -78,7 +78,7 @@ export class HttpService extends Http {
    * @param options
    * @returns {Observable<>}
    */
-  put(url: string, body: string, options?: RequestOptionsArgs): Observable<any> {
+  put(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
     this.requestInterceptor();
 
     return super.put(this.getFullUrl(url), body, this.requestOptions(options))
@@ -122,7 +122,7 @@ export class HttpService extends Http {
    * @returns {string}
    */
   private getFullUrl(str): string {
-    return Config.api + str;
+    return Config2.api + str;
   }
 
   /**

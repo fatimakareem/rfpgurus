@@ -1,61 +1,71 @@
-import { Component, OnInit, Inject,ElementRef } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/filter';
-import { DOCUMENT } from '@angular/platform-browser';
-// import { networkInterfaces } from 'os';
+import {Component, OnInit, ViewContainerRef, PLATFORM_ID, Inject} from '@angular/core';
+import {ChatComponent} from './chat/chat.component';
+import {MatDialog} from '@angular/material';
+import { Router, NavigationEnd } from '@angular/router';
+import {GlobalService} from './global.service';
+import {SimpleGlobal} from 'ng2-simple-global';
 declare var $: any;
 
 @Component({
-    selector: 'app-my-app',
-    templateUrl: './app.component.html'
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 
 export class AppComponent implements OnInit {
+  GlobalChatVar: number;
+  LoggedIn: number;
+  MainSearch: number;
+  title = 'app';
+  chatVar = 0;
+  public checkLogin;
 
-    // siteKey = '6Lebrk8UAAAAAFt6cq9isv1EzTIXN6wgrC8Drbwy';
-    // secretKey = '6Lebrk8UAAAAAJDD-gFnna3WtX6-ZKFtDC1dE1Te';
-    
-    private _router: Subscription;
-    time;
-    constructor( private _nav: Router, private router: Router, @Inject(DOCUMENT,) private document: any) {}
-   
-    ngOnInit() {
-        
-        if (window['callPhantom'] || window['_phantom']) {
-            // window.location = "http://google.com";
-            let url = 'page-not-found';
-            this._nav.navigate([url]);
-        }
-        if (navigator.webdriver == true) {
-            let url = 'page-not-found';
-            this._nav.navigate([url]);
-          
-        } 
-        
-        if (window.document.documentElement.getAttribute("webdriver")) {
-          
-            let url = 'page-not-found';
-        this._nav.navigate([url]);
-        }
-            console.log(window.console);
-           
-        $.material.options.autofill = true;
-        $.material.init();
-        this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {
-            if (window.outerWidth > 991) {
-                window.document.children[0].scrollTop = 0;
-            }else{
-                window.document.activeElement.scrollTop = 0;
-            }
-        });
-       
-        window.onbeforeunload = function () {
-            $(this).scrollTop(0);
-          }
-        //   .animate({ scrollTop: 0 }, 800);
-        console.log('lll');
-        console.clear();
+  constructor(
+              public dialog: MatDialog,
+              private router: Router,
+              vRef: ViewContainerRef,
+              private global: GlobalService,
+              private glb_ser: SimpleGlobal,
+  @Inject(PLATFORM_ID) private platformId: Object ) {
+    this.LoggedIn = global.logedin;
+    this.GlobalChatVar = global.globalChatVar;
+  }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ChatComponent, {
+      width: '400px',
+      height: '530px',
+      // data: {name: this.name, animal: this.animal}
+    });
+  }
+
+  ngOnInit() {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
+    window.onbeforeunload = function () {
+      $(this).scrollTop(0);
     }
+  }
+
+  // openChat(): void {
+  //   if(this.btnChat)
+  //     this.btnChat = false;
+  //   else
+  //     this.btnChat = true;
+  // }
+
+  openChat() {
+    if (this.chatVar === 1) {
+      this.chatVar = 0;
+    } else {
+      this.chatVar = 1;
+    }
+  }
+
 }
+
+

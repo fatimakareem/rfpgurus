@@ -1,18 +1,39 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TermsComponent } from '../terms/terms.component';
-import { Routes, RouterModule} from '@angular/router';
-const routes :Routes =[
-  {
-    path:'',component:TermsComponent
-  }
-]
+import {Routes, RouterModule} from '@angular/router';
+import {NgModule} from '@angular/core';
+import {CommonModule} from "@angular/common";
+import {TermsComponent} from "./terms.component";
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import {MatIconModule} from '@angular/material';
+import {MatInputModule} from '@angular/material';
+import {LoaderModule} from "../loader/loader.module";
+
+const loginRoutes: Routes = [
+  { path: '', component: TermsComponent }
+];
+
+
 @NgModule({
+  declarations: [
+    TermsComponent
+  ],
+
+
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatInputModule,
+    RouterModule.forChild(loginRoutes),
+    LoaderModule
   ],
-  declarations: [TermsComponent]
+
+  providers: [],
+  exports: []
+
 })
-export class TermsModule { }
+
+export class TermsModule {
+
+}
 

@@ -1,103 +1,372 @@
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import {Injectable} from '@angular/core';
-import {Http ,Headers , Response} from '@angular/http';
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
+import {Http , Headers , Response} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import { Router } from '@angular/router';
+
 import 'rxjs/add/operator/map';
-import { HttpService } from './../serv/http-service';
+import {getDate} from 'ngx-bootstrap/bs-moment/utils/date-getters';
+// import {log} from "util";
+import { Config} from '../Config';
+import {isPlatformBrowser} from "@angular/common";
+
 @Injectable()
+
 export class HeaderService {
-  currentUser;
-  constructor(private _http: HttpService,private _http5: Http) { this.currentUser=JSON.parse(localStorage.getItem('currentUser')); }
-  notify(){
-    let headers = new Headers();
-    if(localStorage.getItem('currentUser')){
-      headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
-      }  
-    headers.append('Content-Type', 'application/json');
-    return this._http5.get('https://apis.rfpgurus.com/user_notifications/',
-    {headers: headers}).map((response: Response) => response.json());
+  constructor(private http: Http, private _http2: Http, private _nav: Router, @Inject(PLATFORM_ID) private platformId: Object) {
   }
-  deletenotify(id){
-    let headers = new Headers();
-    if(localStorage.getItem('currentUser')){
-      headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
-      }  
-    headers.append('Content-Type', 'application/json');
-    return this._http5.delete('https://apis.rfpgurus.com/read_delete/'+id +'/',
-    {headers: headers}).map((response: Response) => response.json());
+  get_categories() {
+    return this._http2.get( Config.api + 'courses/allcat/').map((response: Response) => response.json());
   }
-  Updatenotify(id){
-    let headers = new Headers();
-    if(localStorage.getItem('currentUser')){
-      headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
-      }  
-    headers.append('Content-Type', 'application/json');
-    return this._http5.put('https://apis.rfpgurus.com/read_delete/'+id +'/', JSON.stringify({}),
-    {headers: headers}).map((response: Response) => response.json());
+  get_nestedcategories(subcat_id) {
+    return this._http2.get( Config.api + 'courses/nestedsubcat/'+ subcat_id + '/').map((response: Response) => response.json());
   }
-Watchlist(){
-  let headers = new Headers();
-  if(localStorage.getItem('currentUser')){
-    headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
-    }  
-  headers.append('Content-Type', 'application/json');
-  return this._http5.get('https://apis.rfpgurus.com/rf_p/watchlist/',
-  {headers: headers}).map((response: Response) => response.json());
-}
-deleteallnotify(){
-  let headers = new Headers();
-  if(localStorage.getItem('currentUser')){
-    headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
-    }  
-  headers.append('Content-Type', 'application/json');
-  return this._http5.delete('https://apis.rfpgurus.com/delete_all_notification/',
-  {headers: headers}).map((response: Response) => response.json());
-}
-deleteWatchlist(rfpid){
-  let headers = new Headers();
-  if(localStorage.getItem('currentUser')){
-    headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
-    }  
-  headers.append('Content-Type', 'application/json');
-  return this._http5.delete('https://apis.rfpgurus.com/rf_p/watchlistdelete/'+rfpid,
-  {headers: headers}).map((response: Response) => response.json());
-}
-AlldeleteWatchlist(){
-  let headers = new Headers();
-  if(localStorage.getItem('currentUser')){
-    headers = new Headers({'Authorization': 'JWT ' + JSON.parse(localStorage.getItem('currentUser')).token});
-    }  
-  headers.append('Content-Type', 'application/json');
-  return this._http5.delete('https://apis.rfpgurus.com/rf_p/Delete_all_watch_list/', {headers: headers}).map((response: Response) => response.json());
-}
-  searchrecord(obj) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this._http5.get('https://apis.rfpgurus.com/rf_p/search_id/'+obj+'/10?page=1',
-    {headers: headers}).map((response: Response) => response.json());
-    }
-    searchSuggestions(obj) {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this._http5.post('https://apis.rfpgurus.com/rf_p/search_key/'+'15?page=1',{"query":obj},
-            {headers: headers}).map((response: Response) => response.json());
-    }
-    record(obj){
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://apis.rfpgurus.com/rf_p/search_id/'+obj+'/',
-            {headers: headers}).map((response: Response) => response.json());
-    }
-    rfpstate() {
-      let headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      return this._http5.get('https://apis.rfpgurus.com/rf_p/allstate/',
-      {headers: headers}).map((response: Response) => response.json());
+  get_single_category(cat_id) {
+    return this._http2.get( Config.api + 'courses/get_single_cat/'+cat_id+'').map((response: Response) => response.json());
+  }
+  get_toprated(cat_id) {
+    return this._http2.get( Config.api + 'courses/topratedcoursesviacat/cat/'+cat_id+'').map((response: Response) => response.json());
+  }
+
+  get_single_sub_category(subcat_id) {
+    return this._http2.get( Config.api + 'courses/get_single_subcat/' + subcat_id + '').map((response: Response) => response.json());
+  }
+  get_sub_categories(cat_id) {
+    return this._http2.get( Config.api + 'courses/subcat/' + cat_id + '/').map((response: Response) => response.json());
+  }
+  search(query) {
+    return this._http2.post(Config.api + 'courses/searchKeyword/',
+      {
+        'query': query,
+      }).map((res: Response) => {
+      if (res) {
+        if (res.status === 201 || res.status === 200) {
+          const responce_data = res.json();
+          return res.json();
+        } else if (res.status === 5300) {
+          return [{status: res.status, json: res}];
+        } else {
+        }
       }
-      rfpcategory() {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this._http5.get('https://apis.rfpgurus.com/rf_p/allcategory/',
-        {headers: headers}).map((response: Response) => response.json());
-        }  
+    }).catch((error: any) => {
+      if (error.status === 404) {
+        return Observable.throw(new Error(error.status));
+      } else if (error.status === 400) {
+        return Observable.throw(new Error(error.status));
+      } else {
+        return Observable.throw(new Error(error.status));
+      }
+    });
+  }
+  searchresults(query) {
+    return this._http2.post(Config.api + 'courses/main_search_results/',
+      {
+        'query': query,
+      }).map((res: Response) => {
+      if (res) {
+        if (res.status === 201 || res.status === 200) {
+          const responce_data = res.json();
+          return res.json();
+        } else if (res.status === 5300) {
+          return [{status: res.status, json: res}];
+        } else {
+        }
+      }
+    }).catch((error: any) => {
+      if (error.status === 404) {
+        return Observable.throw(new Error(error.status));
+      } else if (error.status === 400) {
+        return Observable.throw(new Error(error.status));
+      } else {
+        return Observable.throw(new Error(error.status));
+      }
+    });
+  }
+
+  logout() {
+    const headers = new Headers();
+
+    if (isPlatformBrowser(this.platformId)) {
+      headers.append('Authorization', 'JWT ' + localStorage.getItem('Authorization').toString());
+    }
+    headers.append('Content-Type', 'application/json');
+    return this._http2.get( Config.api + 'courses/search/', {headers : headers}).map((response: Response) => response.json());
+  }
+
+  Biduser(){
+
+    const headers = new Headers();
+
+    if (isPlatformBrowser(this.platformId)) {
+      headers.append('Authorization', 'JWT ' + localStorage.getItem('Authorization').toString());
+    }
+    headers.append('Content-Type', 'application/json');
+    return this._http2.get( Config.api + 'courses/bid_Result_User/', {headers : headers}).map((response: Response) => response.json());
+  }
+  Notifications(){
+
+    const headers = new Headers();
+
+    // if (isPlatformBrowser(this.platformId)) {
+      headers.append('Authorization', 'JWT ' + localStorage.getItem('Authorization').toString());
+    // }
+    headers.append('Content-Type', 'application/json');
+    return this._http2.get(  Config.api + 'courses/user_notifications/', {headers : headers}).map((response: Response) => response.json());
+  }
+  winbidpayment1(id,bid_id,status) {
+    //  console.log('Chapter Name is ' + amount);
+      const headers = new Headers();
+      if (isPlatformBrowser(this.platformId)) {
+        headers.append('Authorization', 'JWT ' + localStorage.getItem('Authorization').toString());
+      }
+      headers.append('Content-Type', 'application/json');
+      if(status==true)
+      {
+        return this._http2.post(Config.api + 'courses/bidpayment/', 
+        {
+        "bid_id":bid_id,
+            'id': id,
+          }, {headers: headers}).map((res: Response) => {
+          if (res) {
+            // console.log('1');
+            if (res.status === 201 || res.status === 200) {
+              const responce_data = res.json();
+              // localStorage.setItem('user_id', responce_data.id);
+              // this.users_id = localStorage.getItem('user_id');
+              return [{status: res.status, json: res}];
+            } else if (res.status === 5300) {
+              // this._nav.navigate(['/login']);
+    
+              // localStorage.setItem('conformation', '1');
+              // console.log('ok submited 200');
+              return [{status: res.status, json: res}];
+            } else {
+              // console.log('ok');
+            }
+          }
+        }).catch((error: any) => {
+          // alert(error);
+          if (error.status === 404) {
+            // console.log('ok not submited submit 404');
+            // localStorage.setItem('error', '1');
+            return Observable.throw(new Error(error.status));
+          } else if (error.status === 400) {
+            //    this._nav.navigate(['/pages/accident']);
+            // console.log('ok not submited submit 400');
+            // localStorage.setItem('error', '1');
+            return Observable.throw(new Error(error.status));
+          } else {
+            //  this._nav.navigate(['/pages/accident']);
+            // console.log('ok not submited submit error');
+    
+            return Observable.throw(new Error(error.status));
+          }
+        });
+      }
+     
+     
+    }
+  winbidpayment(cardNumber, expirationdate, cardcod,id,bid_id,status) {
+  //  console.log('Chapter Name is ' + amount);
+    const headers = new Headers();
+    if (isPlatformBrowser(this.platformId)) {
+      headers.append('Authorization', 'JWT ' + localStorage.getItem('Authorization').toString());
+    }
+    headers.append('Content-Type', 'application/json');
+    if(cardNumber.slice(0,1)=='*')
+    {
+      return this._http2.post(Config.api + 'courses/bidpayment/', 
+      {
+      "bid_id":bid_id,
+          'id': id,
+        }, {headers: headers}).map((res: Response) => {
+        if (res) {
+          // console.log('1');
+          if (res.status === 201 || res.status === 200) {
+            const responce_data = res.json();
+            // localStorage.setItem('user_id', responce_data.id);
+            // this.users_id = localStorage.getItem('user_id');
+            return [{status: res.status, json: res}];
+          } else if (res.status === 5300) {
+            // this._nav.navigate(['/login']);
+  
+            // localStorage.setItem('conformation', '1');
+            // console.log('ok submited 200');
+            return [{status: res.status, json: res}];
+          } else {
+            // console.log('ok');
+          }
+        }
+      }).catch((error: any) => {
+        // alert(error);
+        if (error.status === 404) {
+          // console.log('ok not submited submit 404');
+          // localStorage.setItem('error', '1');
+          return Observable.throw(new Error(error.status));
+        } else if (error.status === 400) {
+          //    this._nav.navigate(['/pages/accident']);
+          // console.log('ok not submited submit 400');
+          // localStorage.setItem('error', '1');
+          return Observable.throw(new Error(error.status));
+        } else {
+          //  this._nav.navigate(['/pages/accident']);
+          // console.log('ok not submited submit error');
+  
+          return Observable.throw(new Error(error.status));
+        }
+      });
+    }
+    else{
+      return this._http2.post(Config.api + 'courses/bidpayment/', 
+      {
+        'bid_id': bid_id,
+          'ccv': cardcod,
+           'exp': expirationdate,
+          'creditno': cardNumber,
+          // 'amount': amount
+        }, {headers: headers}).map((res: Response) => {
+        if (res) {
+          // console.log('1');
+          if (res.status === 201 || res.status === 200) {
+            const responce_data = res.json();
+            // localStorage.setItem('user_id', responce_data.id);
+            // this.users_id = localStorage.getItem('user_id');
+            return [{status: res.status, json: res}];
+          } else if (res.status === 5300) {
+            // this._nav.navigate(['/login']);
+  
+            // localStorage.setItem('conformation', '1');
+            // console.log('ok submited 200');
+            return [{status: res.status, json: res}];
+          } else {
+            // console.log('ok');
+          }
+        }
+      }).catch((error: any) => {
+        // alert(error);
+        if (error.status === 404) {
+          // console.log('ok not submited submit 404');
+          // localStorage.setItem('error', '1');
+          return Observable.throw(new Error(error.status));
+        } else if (error.status === 400) {
+          //    this._nav.navigate(['/pages/accident']);
+          // console.log('ok not submited submit 400');
+          // localStorage.setItem('error', '1');
+          return Observable.throw(new Error(error.status));
+        } else {
+          //  this._nav.navigate(['/pages/accident']);
+          // console.log('ok not submited submit error');
+  
+          return Observable.throw(new Error(error.status));
+        }
+      });
+    }
+   
+  }
+
+
+  coursepayment(cardNumber, expirationdate, cardcod,id,course_id,status,type,holder) {
+   
+    //  console.log('Chapter Name is ' + amount);
+      const headers = new Headers();
+      if (isPlatformBrowser(this.platformId)) {
+        headers.append('Authorization', 'JWT ' + localStorage.getItem('Authorization').toString());
+      }
+      headers.append('Content-Type', 'application/json');
+      if(cardNumber.slice(0,1)=='*')
+      {
+        return this._http2.post(Config.api + 'courses/payamount/', 
+        {
+        "course_id":course_id,
+            'id': id,
+          }, {headers: headers}).map((res: Response) => {
+          if (res) {
+            // console.log('1');
+            if (res.status === 201 || res.status === 200) {
+              const responce_data = res.json();
+              // localStorage.setItem('user_id', responce_data.id);
+              // this.users_id = localStorage.getItem('user_id');
+              return [{status: res.status, json: res}];
+            } else if (res.status === 5300) {
+              // this._nav.navigate(['/login']);
+    
+              // localStorage.setItem('conformation', '1');
+              // console.log('ok submited 200');
+              return [{status: res.status, json: res}];
+            } else {
+              // console.log('ok');
+            }
+          }
+        }).catch((error: any) => {
+          // alert(error);
+          if (error.status === 404) {
+            // console.log('ok not submited submit 404');
+            // localStorage.setItem('error', '1');
+            return Observable.throw(new Error(error.status));
+          } else if (error.status === 400) {
+            //    this._nav.navigate(['/pages/accident']);
+            // console.log('ok not submited submit 400');
+            // localStorage.setItem('error', '1');
+            return Observable.throw(new Error(error.status));
+          } else {
+            //  this._nav.navigate(['/pages/accident']);
+            // console.log('ok not submited submit error');
+    
+            return Observable.throw(new Error(error.status));
+          }
+        });
+      }
+      else{
+        return this._http2.post(Config.api + 'courses/payamount/', 
+        {
+          'course_id': course_id,
+            'ccv': cardcod,
+             'exp': expirationdate,
+            'creditno': cardNumber,
+            'card_type':type,
+            'card_holder':holder
+            // 'amount': amount
+          }, {headers: headers}).map((res: Response) => {
+          if (res) {
+            // console.log('1');
+            if (res.status === 201 || res.status === 200) {
+              const responce_data = res.json();
+              // localStorage.setItem('user_id', responce_data.id);
+              // this.users_id = localStorage.getItem('user_id');
+              return [{status: res.status, json: res}];
+            } else if (res.status === 5300) {
+              // this._nav.navigate(['/login']);
+    
+              // localStorage.setItem('conformation', '1');
+              // console.log('ok submited 200');
+              return [{status: res.status, json: res}];
+            } else {
+              // console.log('ok');
+            }
+          }
+        }).catch((error: any) => {
+          // alert(error);
+          if (error.status === 404) {
+            // console.log('ok not submited submit 404');
+            // localStorage.setItem('error', '1');
+            return Observable.throw(new Error(error.status));
+          } else if (error.status === 400) {
+            //    this._nav.navigate(['/pages/accident']);
+            // console.log('ok not submited submit 400');
+            // localStorage.setItem('error', '1');
+            return Observable.throw(new Error(error.status));
+          } else {
+            //  this._nav.navigate(['/pages/accident']);
+            // console.log('ok not submited submit error');
+    
+            return Observable.throw(new Error(error.status));
+          }
+        });
+      }
+     
+    }
 }
+
+
+
+
