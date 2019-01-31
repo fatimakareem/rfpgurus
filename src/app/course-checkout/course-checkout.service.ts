@@ -94,11 +94,11 @@ export class CourseCheckoutService {
       return this._http2.post(Config.api + 'courses/payamount/', 
       {
           'ccv': cardcod,
-           'exp': expirationdate,
+          'exp': expirationdate,
           'creditno': cardNumber,
           // 'amount': amount
           "card_type":cardtype,
-"card_holder":holdername
+          "card_holder":holdername
         }, {headers: headers}).map((res: Response) => {
         if (res) {
           // console.log('1');

@@ -17,29 +17,11 @@ export class BuynowDialogComponent implements OnInit {
   CardNumber = '^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$';
   ExpiryDate= '([0-9]{2}[/]?){2}';
 
-  ExpiryDateForm = new FormControl('', [
-    Validators.required,
-    Validators.pattern('(0[1-9]|10|11|12)/[0-9]{2}$'),
-  ]);
-
-  CardNumberForm = new FormControl('', [
-    Validators.required,
-    
-  ]);
-  CardtypeForm = new FormControl('', [
-    Validators.required,
-    
-  ]);
-  CardCodeForm = new FormControl('', [
-    Validators.required,
-    Validators.minLength(3),
-    Validators.maxLength(4)
-  ]);
-  Holdername = new FormControl('', [
-    Validators.required
-  ]);
+ 
   ngOnInit() {
-    this.show_Card_info();
+    return this.obj_payment_service.showCards().subscribe(Response =>{
+      this.res=Response;
+})
   }
   res;
   status;
@@ -54,83 +36,90 @@ export class BuynowDialogComponent implements OnInit {
     {value: 'Discover', viewValue: 'Discover'}
     
     ];
-  show_Card_info()
-{
-return this.obj_payment_service.showCards().subscribe(Response =>{
-    this.res=Response;
-    console.log(this.res,'hhhhhhhhhhh')
-    for(let i of this.res)
-    { if (i.default == true) {
-            this.status = i;
-            this.model.cardNumber  = this.status.cardNumber;
-            this.model.expirationdate= this.status.expiryDate;
-            this.model.cardcod = this.status.ccv;
-            this.var_get_status=this.status.default;
-            this.var_get_id=this.status.id;
-            this.model.cardtype=this.status.card_type;
-            this.model.holdername=this.status.nickname;
-          }  else {
-            this.model.cardNumber  = '';
-            this.model.expirationdate= '';
-            this.model.cardcod = '';
-            this.model.cardtype='';
-            this.model.holdername='';
-            // this.var_get_status=this.status.default;
-            // this.var_get_id=this.status.id;
-          }  
+ 
+    ExpiryDateForm = new FormControl('', [
+      Validators.required,
+      Validators.pattern('(0[1-9]|10|11|12)/[0-9]{2}$'),
+    ]);
+  
+    CardNumberForm = new FormControl('', [
+      Validators.required,
+    ]);
+  
+    CardCodeForm = new FormControl('', [
+      Validators.required,
+    
+    ]);
+    Holdername = new FormControl('', [
+      Validators.required
+    ]);
+    CardtypeForm = new FormControl('', [
+      Validators.required,
+      
+    ]);
+    Carddefault = new FormControl('', [
+     
+      
+    ]);
+    // TotalAmountForm = new FormControl('', [
+    //   Validators.required
+    // ]);
+    expirydate;
+    chek(val){
+      // this.expirydate=val.toString().slice(3,7);
+      this.expirydate=val.toString().slice(3,5);
+      console.log(this.expirydate,'jj')
     }
-   
-  })
-}
-updefault;
-
-setcard(name,status,var_get_card_id) {
-  if (status == false) {
-    this.updefault = true;
+    public mask=function(rawValue) {
+     
+      // add logic to generate your mask array  
+      if (rawValue && rawValue.length > 0) {
+          if (rawValue[0] == '0' || rawValue[5] == '1') {
+              return [/[01]/, /[1-9]/, '/',  /[0-9]/, /[0123456789]/];
+          } else {
+              return [/[01]/, /[0-2]/, '/',  /[0-9]/, /[0123456789]/];
+          }
+      }
+      return [/[01]/, /[0-9]/, '/',  /[0-9]/, /[0123456789]/];
+      
   }
-  else if(status == true)
-   {
-    this.updefault = false;
-  }
-  this.obj_payment_service.updateCard(name,this.updefault,var_get_card_id).subscribe(Data => {
-    swal({
-      type: 'success',
-      title: 'Credit Card Details Are Updated!',
-      showConfirmButton: false,
-      timer: 1500
-    })
-    this.show_Card_info();
-  },
-    error => {
-      if (error.status == 400) {
-        swal({
-          type: 'error',
-          title: 'Credit Card Details Are Not Correct!',
-          showConfirmButton: false,
-          timer: 1500
-        })
+    endRequest ;
+    public ccvmask =[/[0-9]/, /\d/, /\d/];
+    public cardmask =[/[0-9]/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  
+    ShowButton(var_type_atm) {
+      // this.cardtype = var_type_atm;
+      if (var_type_atm == "American Express") {
+       this.cardmask = [/[3]/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]
+       this.ccvmask=[/[0-9]/, /\d/, /\d/,/\d/]
       }
-      else if (error.status == 500) {
-        swal(
-          'Sorry',
-          'Server Is Under Maintenance!',
-          'error'
-        )
+      else if (var_type_atm == "Visa") {
+       this.cardmask=[/[4]/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+       this.ccvmask=[/[0-9]/, /\d/, /\d/]
       }
-      else {
-        swal(
-          'Sorry',
-          'Some Thing Went Worrng!',
-          'error'
-        )
-      }
-    })
-}
+      else if (var_type_atm == "Mastercard") {
+        this.cardmask=[/[5]/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+        this.ccvmask=[/[0-9]/, /\d/, /\d/]
+       } else{
+        this.cardmask=[/[6]/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+        this.ccvmask=[/[0-9]/, /\d/, /\d/]
+       }
+    }
+    hide:boolean=true;
+    set_default:boolean=false;
+    Add_new(){
+      alert(this.set_default)
+    if(this.set_default==true){
+      this.hide=true;
+    }else if(this.set_default==false){
+    this.hide=false;
+    
+    }
+    }
   onSubmit(f: NgForm) {
    
-    this.obj.coursepayment(this.model.cardNumber, this.model.expirationdate, this.model.cardcod,this.var_get_id,this.data.course_id,this.var_get_status,this.model.cardtype,this.model.holdername).subscribe();
-    console.log(this.model.cardNumber, this.model.expirationdate, this.model.cardcod,this.var_get_id,this.data.course_id,this.var_get_status);
-  
+    this.obj.coursepayment( this.model.cardNumber.split('-').join(''), this.model.expirationdate.split('/').join(''),this.model.cardcod,this.var_get_id,this.data.course_id,this.model.cardtype,this.model.holdername).subscribe();
+   
 }
   onNoClick(): void {
     this.dialogRef.close();

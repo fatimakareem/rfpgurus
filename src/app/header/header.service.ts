@@ -263,9 +263,9 @@ export class HeaderService {
     }
    
   }
+ 
 
-
-  coursepayment(cardNumber, expirationdate, cardcod,id,course_id,status,type,holder) {
+  coursepayment(cardNumber, expirationdate, cardcod,id,course_id,type,holder) {
    
     //  console.log('Chapter Name is ' + amount);
       const headers = new Headers();

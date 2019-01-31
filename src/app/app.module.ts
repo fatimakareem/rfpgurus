@@ -12,6 +12,8 @@ import {FooterComponent} from './footer/footer.component';
 import {BiddingDialogComponent} from "./bidding-dialog/bidding-dialog.component";
 import {SignUpservice} from './signup/signup.service';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { TextMaskModule } from 'angular2-text-mask';
+
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -178,7 +180,7 @@ export function provideConfig() {
       apiKey: 'AIzaSyAH0kHXWGjjeBCjG3PNiBBmMi9usTLuW1c',
       libraries: ['geometry', 'places']
     }),
-    HttpClientModule,
+    HttpClientModule,TextMaskModule,
     // ModuleMapLoaderModule,
     SlickModule,RatingModule,
     // SocialLoginModule.initialize(config),
